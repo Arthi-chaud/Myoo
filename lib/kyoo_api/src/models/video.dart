@@ -1,8 +1,12 @@
 import 'package:myoo/kyoo_api/src/models/illustrated_ressource.dart';
-import 'package:myoo/kyoo_api/src/models/ressource.dart';
+import 'package:myoo/kyoo_api/src/models/json.dart';
 
-/// A [ressource] that has duration
+/// A [IllustratedRessource] that has duration and an air date
 class Video extends IllustratedRessource {
-  /// The length of the ressource
-  Duration duration;
+  /// Date of the Episode's first air, or day of release
+  DateTime firstAirDate;
+
+  Video.fromJSON(JSONData input):
+    firstAirDate = input['releaseDate'],
+    super.fromJSON(input);
 }

@@ -16,11 +16,9 @@ class Ressource {
 
   Ressource({required this.id, required this.slug, required this.name, required this.overview});
 
-  factory Ressource.fromJSON(JSONData input) => 
-    Ressource(
-      id: input['id'],
-      slug: input['slug'],
-      name: input['name'],
-      overview: input['overview'],
-    );
+  Ressource.fromJSON(JSONData input): 
+    id = input['id'],
+    slug = input['slug'],
+    name = input['title'],
+    overview = input['overview'];
 }
