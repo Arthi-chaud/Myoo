@@ -12,5 +12,7 @@ class Episode extends Video {
   Episode.fromJSON(JSONData input):
     absoluteIndex = input['absoluteNumber'],
     index = input['episodeNumber'],
-    super.fromJSON(input);
+    super.fromJSON(input) {
+      assert(absoluteIndex == null || index == null, "An Episode must have a defined index.");
+    }
 }

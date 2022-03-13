@@ -11,7 +11,7 @@ class Ressource {
   /// A display name for the ressource
   String name;
 
-  /// An overviewe for the ressource
+  /// A description of the ressource
   String overview;
 
   Ressource({required this.id, required this.slug, required this.name, required this.overview});
