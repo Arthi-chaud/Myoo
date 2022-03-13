@@ -1,10 +1,9 @@
 import 'package:myoo/kyoo_api/src/models/json.dart';
 import 'package:myoo/kyoo_api/src/models/ressource.dart';
 
-/// A [Ressource] that can have a Poster, and/or a thumbnail
-
 typedef IllustrationURL = String;
 
+/// A [Ressource] that can have a Poster, and/or a thumbnail
 class IllustratedRessource extends Ressource {
   /// URL of the Poster of the [Ressource], if it has one.
   IllustrationURL? poster;
