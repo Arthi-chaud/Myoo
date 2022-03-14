@@ -48,3 +48,5 @@ app.*.map.json
 # Dartdoc-generated documentation
 doc/
 *.g.dart
+
+coverage/
