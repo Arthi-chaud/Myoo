@@ -4,6 +4,7 @@ import 'package:myoo/kyoo_api/src/models/collection.dart';
 import 'package:myoo/kyoo_api/src/models/library.dart';
 import 'package:http/http.dart' as http;
 import 'package:myoo/kyoo_api/src/models/ressource_preview.dart';
+import 'package:myoo/kyoo_api/src/models/slug.dart';
 
 enum RequestType { get, post, put, delete }
 
@@ -14,8 +15,10 @@ class KyooAPI {
 
   // TODO: manage JWT
 
+  /// Construct a [KyooAPI] using Server's URL
   KyooAPI({required this.serverURL});
 
+  /// Retrieves a list of $[count] [RessourcePreview]s, starting from [afterID] from the current server
   Future<List<RessourcePreview>> getItems({int? afterID, int? count}) async {
     Map<String, dynamic> queryParams = {};
     if (afterID != null) {
@@ -24,41 +27,40 @@ class KyooAPI {
     if (count != null) {
       queryParams['count'] = count;
     }
-    JSONData responseBody = await _request(RequestType.get, '/items', params: queryParams);
+    JSONData responseBody =
+        await _request(RequestType.get, '/items', params: queryParams);
     return (responseBody['items'] as List)
-      .map((e) => RessourcePreview.fromJSON(e))
-      .toList();
+        .map((e) => RessourcePreview.fromJSON(e))
+        .toList();
   }
 
-  Future<Movie> getMovie(String slug) async {
-    JSONData responseBody = await _request(RequestType.get, '/shows/$slug', params: {'fields': 'genres'});
+  /// Retrieves a [Movie] (with its [Genre]s) from current server using its [Slug]
+  Future<Movie> getMovie(Slug movieSlug) async {
+    JSONData responseBody = await _request(RequestType.get, '/shows/$movieSlug', params: {'fields': 'genres'});
     return Movie.fromJSON(responseBody);
   }
 
-  Future<TVSeries> getSeries(String slug) async {
-    JSONData responseBody = await _request(RequestType.get, '/shows/$slug', params: {'fields': 'genres,seasons'});
+  /// Retrieves a [TVSeries] (with its [Genre]s and [Season]s) from current server using [TVSeries]'s [Slug]
+  Future<TVSeries> getSeries(Slug seriesSlug) async {
+    JSONData responseBody = await _request(RequestType.get, '/shows/$seriesSlug', params: {'fields': 'genres,seasons'});
     return TVSeries.fromJSON(responseBody);
   }
 
-  Future<Collection> getCollection(String slug) async {
-    JSONData responseBody = await _request(RequestType.get, '/collections/$slug');
-    return Collection.fromJSON(responseBody);
-  }
-
-  Future<List<RessourcePreview>> getItems({int? afterID, int? count}) async {
-    Map<String, dynamic> queryParams = {};
-    if (afterID != null) {
-      queryParams['afterID'] = afterID;
-    }
-    if (count != null) {
-      queryParams['count'] = count;
-    }
-    JSONData responseBody = await _request(RequestType.get, '/items', params: queryParams);
+  /// Retrieves [Episode]s of a [Season] from current server using [Season]'s [Slug]
+  Future<List<Episode>> getEpisodes(Slug seasonSlug) async {
+    JSONData responseBody = await _request(RequestType.get, '/seasons/$seasonSlug/episodes', params: {'limit': '0'});
     return (responseBody['items'] as List)
-      .map((e) => RessourcePreview.fromJSON(e))
+      .map((item) => Episode.fromJSON(item))
       .toList();
   }
 
+  /// Retrieves a [Collection] (including its [RessourcePreview]s ) using its [Slug]
+  Future<Collection> getCollection(Slug collectionSlug) async {
+    JSONData responseBody = await _request(RequestType.get, '/collections/$collectionSlug');
+    return Collection.fromJSON(responseBody);
+  }
+
+  /// Retrieves the server's [Librarie]s
   Future<List<Library>> getLibraries() async {
     JSONData responseBody = await _request(RequestType.get, '/libraries');
     return (responseBody['items'] as List)

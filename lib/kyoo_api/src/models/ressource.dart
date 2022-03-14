@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:myoo/kyoo_api/src/models/json.dart';
+import 'package:myoo/kyoo_api/src/models/slug.dart';
 
 part 'ressource.g.dart';
 
@@ -10,7 +11,7 @@ class Ressource {
   int id;
 
   /// String identifier
-  String slug;
+  Slug slug;
 
   /// A display name for the ressource
   @JsonKey(name: 'title')
