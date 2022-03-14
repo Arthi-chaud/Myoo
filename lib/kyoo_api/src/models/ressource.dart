@@ -14,7 +14,7 @@ class Ressource {
   Slug slug;
 
   /// A display name for the ressource
-  @JsonKey(name: 'title')
+  @JsonKey(readValue: _getTitleFromJSON)
   String name;
 
   /// A description of the ressource
@@ -28,6 +28,13 @@ class Ressource {
     required this.name,
     required this.overview
   });
+  /// Get the [Ressource]'s title from JSON. It is usually in 'title', but sometimes in 'name'
+  static Object? _getTitleFromJSON(Map<dynamic, dynamic> input, String _) {
+    if (input.containsKey('name')) {
+      return input['name'];
+    }
+    return input['title'];
+  }
 
   /// Unserialize [Ressource] from [JSONData]
   factory Ressource.fromJSON(JSONData input) => _$RessourceFromJson(input);
