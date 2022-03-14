@@ -9,6 +9,9 @@
 # packages, and plugins designed to encourage good coding practices.
 include: package:flutter_lints/flutter.yaml
 
+analyze:
+  exclude: [lib/src/*.g.dart]
+
 linter:
   # The lint rules applied to this project can be customized in the
   # section below to disable rules from the `package:flutter_lints/flutter.yaml`
@@ -43,7 +46,6 @@ linter:
     - empty_constructor_bodies
     - eol_at_end_of_file
     - exhaustive_cases
-    - flutter_style_todos
     - prefer_asserts_with_message
     - prefer_foreach
     - unnecessary_const

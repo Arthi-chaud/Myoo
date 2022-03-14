@@ -12,7 +12,7 @@ class KyooAPI {
   /// URL to the Server to call when using member function of this instance of [KyooAPI]
   final String serverURL;
 
-  ///TODO manage JWT
+  // TODO: manage JWT
 
   KyooAPI({required this.serverURL});
 
