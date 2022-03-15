@@ -3,6 +3,7 @@ import 'package:myoo/kyoo_api/src/models/genre.dart';
 import 'package:myoo/kyoo_api/src/models/trailer_url.dart';
 import 'package:myoo/kyoo_api/src/models/video.dart';
 import 'package:myoo/kyoo_api/src/models/json.dart';
+import 'package:myoo/kyoo_api/src/models/ressource.dart';
 
 part 'movie.g.dart';
 
@@ -10,7 +11,7 @@ part 'movie.g.dart';
 @JsonSerializable()
 class Movie extends Video {
   /// List of genres to describe a [Movie]
-  @JsonKey(fromJson: GenresParsing.fromJSON)
+  @JsonKey(fromJson: GenresParsing.fromJSON, defaultValue: [])
   List<Genre> genres;
 
   /// External URL to the [Movie]'s trailer

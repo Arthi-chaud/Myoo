@@ -7,8 +7,8 @@ extension GenreParsing on String {
 }
 
 extension GenresParsing on String {
-  static List<Genre> fromJSON(JSONData input) =>
-    (input as List)
+  static List<Genre> fromJSON(List input) =>
+    input
       .map((genre) => GenreParsing.fromJSON(genre))
       .toList();
 }
