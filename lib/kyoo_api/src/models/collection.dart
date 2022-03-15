@@ -8,7 +8,7 @@ part 'collection.g.dart';
 @JsonSerializable(anyMap: true)
 class Collection extends IllustratedRessource {
   /// The content of the [Collection]
-  @JsonKey(name: 'shows')
+  @JsonKey(name: 'shows', defaultValue: [])
   List<RessourcePreview> content;
 
   /// Default constructor

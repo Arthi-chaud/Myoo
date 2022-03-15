@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:myoo/kyoo_api/src/models/episode.dart';
 import 'package:myoo/kyoo_api/src/models/illustrated_ressource.dart';
 import 'package:myoo/kyoo_api/src/models/json.dart';
+import 'package:myoo/kyoo_api/src/models/ressource.dart';
 
 part 'season.g.dart';
 

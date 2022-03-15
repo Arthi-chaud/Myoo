@@ -56,7 +56,7 @@ class KyooAPI {
 
   /// Retrieves a [Collection] (including its [RessourcePreview]s ) using its [Slug]
   Future<Collection> getCollection(Slug collectionSlug) async {
-    JSONData responseBody = await _request(RequestType.get, '/collections/$collectionSlug');
+    JSONData responseBody = await _request(RequestType.get, '/collections/$collectionSlug', params: {'fields': 'shows'});
     return Collection.fromJSON(responseBody);
   }
 

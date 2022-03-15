@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:myoo/kyoo_api/kyoo_api.dart';
+import 'package:myoo/kyoo_api/src/models/ressource.dart';
 
 part 'ressource_preview.g.dart';
 
@@ -13,6 +14,7 @@ enum RessourcePreviewType {
 @JsonSerializable()
 class RessourcePreview extends IllustratedRessource {
   /// The type of the previwed [Ressource]
+  @JsonKey(readValue: _getTypeFromJson)
   RessourcePreviewType type;
 
   /// Default constructor
@@ -26,5 +28,15 @@ class RessourcePreview extends IllustratedRessource {
     required String? thumbnail
   }) : super(id: id, slug: slug, name: name, overview: overview, poster: poster, thumbnail: thumbnail);
   /// Unserialize [RessourcePreview] from [JSONData]
-  factory RessourcePreview.fromJSON(JSONData input) => _$RessourcePreviewFromJson(input);
+  factory RessourcePreview.fromJson(JSONData input) => _$RessourcePreviewFromJson(input);
+
+  static RessourcePreviewType _getTypeFromJson(Map input, String _) {
+    if (input.containsKey('type')) {
+      return input['type'];
+    }
+    if (input['isMove']) {
+      return RessourcePreviewType.movie;
+    }
+    return RessourcePreviewType.series;
+  }
 }
