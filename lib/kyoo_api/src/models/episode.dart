@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:myoo/kyoo_api/src/models/json.dart';
 import 'package:myoo/kyoo_api/src/models/video.dart';
-
+import 'package:myoo/kyoo_api/src/models/ressource.dart';
 part 'episode.g.dart';
 
 /// An Object Representation of an [Episode], usually from a [Season], itself from a [TVSeries]. It is a [Video]
