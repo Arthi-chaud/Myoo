@@ -27,11 +27,10 @@ class KyooAPI {
     if (count != null) {
       queryParams['count'] = count;
     }
-    JSONData responseBody =
-        await _request(RequestType.get, '/items', params: queryParams);
-    return (responseBody['items'] as List)
-        .map((e) => RessourcePreview.fromJSON(e))
-        .toList();
+    JSONData responseBody = await _request(RequestType.get, '/items', params: queryParams);
+    return (responseBody['items'] as List<JSONData>)
+      .map((e) => RessourcePreview.fromJSON(e))
+      .toList();
   }
 
   /// Retrieves a [Movie] (with its [Genre]s) from current server using its [Slug]

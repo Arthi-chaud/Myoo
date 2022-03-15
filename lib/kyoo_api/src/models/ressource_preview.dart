@@ -28,7 +28,7 @@ class RessourcePreview extends IllustratedRessource {
     required String? thumbnail
   }) : super(id: id, slug: slug, name: name, overview: overview, poster: poster, thumbnail: thumbnail);
   /// Unserialize [RessourcePreview] from [JSONData]
-  factory RessourcePreview.fromJson(JSONData input) => _$RessourcePreviewFromJson(input);
+  factory RessourcePreview.fromJSON(JSONData input) => _$RessourcePreviewFromJson(input);
 
   static RessourcePreviewType _getTypeFromJson(Map input, String _) {
     if (input.containsKey('type')) {
