@@ -20,12 +20,12 @@ class Episode extends Video {
     required String slug,
     required String name,
     required String overview,
-    required DateTime firstAirDate,
+    required DateTime releaseDate,
     required this.absoluteIndex,
     required this.index,
     required String? poster,
     required String? thumbnail,
-  }) : super(id: id, name: name, slug: slug, overview: overview, poster: poster, thumbnail: thumbnail, firstAirDate: firstAirDate);
+  }) : super(id: id, name: name, slug: slug, overview: overview, poster: poster, thumbnail: thumbnail, releaseDate: releaseDate);
   /// Unserialize [Episode] from [JSONData]
   factory Episode.fromJSON(JSONData input) => _$EpisodeFromJson(input);
 }
