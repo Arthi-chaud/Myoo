@@ -19,12 +19,12 @@ class Video extends IllustratedRessource {
     required String slug,
     required String name,
     required String overview,
-    required String? poster,
-    required String? thumbnail,
+    String? poster,
+    String? thumbnail,
   }) : super(id: id, name: name, slug: slug, overview: overview, poster: poster, thumbnail: thumbnail);
 
   /// Unserialize [Video] from [JSONData]
-  factory Video.fromJSON(JSONData input) => _$VideoFromJson(input);
+  factory Video.fromJson(JSONData input) => _$VideoFromJson(input);
 
   /// Get the [Video]'s Release Date from JSON. It is usually in 'releaseDate', but sometimes in 'startAir'
   static Object? getReleaseDateFromJSON(Map<dynamic, dynamic> input, String _) {

@@ -29,41 +29,41 @@ class KyooAPI {
     }
     JSONData responseBody = await _request(RequestType.get, '/items', params: queryParams);
     return (responseBody['items'] as List<JSONData>)
-      .map((e) => RessourcePreview.fromJSON(e))
+      .map((e) => RessourcePreview.fromJson(e))
       .toList();
   }
 
   /// Retrieves a [Movie] (with its [Genre]s) from current server using its [Slug]
   Future<Movie> getMovie(Slug movieSlug) async {
     JSONData responseBody = await _request(RequestType.get, '/shows/$movieSlug', params: {'fields': 'genres'});
-    return Movie.fromJSON(responseBody);
+    return Movie.fromJson(responseBody);
   }
 
   /// Retrieves a [TVSeries] (with its [Genre]s and [Season]s) from current server using [TVSeries]'s [Slug]
   Future<TVSeries> getSeries(Slug seriesSlug) async {
     JSONData responseBody = await _request(RequestType.get, '/shows/$seriesSlug', params: {'fields': 'genres,seasons'});
-    return TVSeries.fromJSON(responseBody);
+    return TVSeries.fromJson(responseBody);
   }
 
   /// Retrieves [Episode]s of a [Season] from current server using [Season]'s [Slug]
   Future<List<Episode>> getEpisodes(Slug seasonSlug) async {
     JSONData responseBody = await _request(RequestType.get, '/seasons/$seasonSlug/episodes', params: {'limit': '0'});
     return (responseBody['items'] as List)
-      .map((item) => Episode.fromJSON(item))
+      .map((item) => Episode.fromJson(item))
       .toList();
   }
 
   /// Retrieves a [Collection] (including its [RessourcePreview]s ) using its [Slug]
   Future<Collection> getCollection(Slug collectionSlug) async {
     JSONData responseBody = await _request(RequestType.get, '/collections/$collectionSlug', params: {'fields': 'shows'});
-    return Collection.fromJSON(responseBody);
+    return Collection.fromJson(responseBody);
   }
 
   /// Retrieves the server's [Librarie]s
   Future<List<Library>> getLibraries() async {
     JSONData responseBody = await _request(RequestType.get, '/libraries');
     return (responseBody['items'] as List)
-      .map((e) => Library.fromJSON(e))
+      .map((e) => Library.fromJson(e))
       .toList();
   }
 

@@ -19,5 +19,5 @@ class Library extends Ressource {
   }) : super(id: id, slug: slug, name: name, overview: overview);
 
   /// Unserialize [Library] from [JSONData]
-  factory Library.fromJSON(JSONData input) => _$LibraryFromJson(input);
+  factory Library.fromJson(JSONData input) => _$LibraryFromJson(input);
 }

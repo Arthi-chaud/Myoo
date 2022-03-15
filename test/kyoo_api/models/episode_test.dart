@@ -12,7 +12,6 @@ void main() {
         slug: 'slug',
         name: 'name',
         overview: 'overview',
-        poster: 'poster',
         thumbnail: 'thumbnail',
         releaseDate: now,
         absoluteIndex: 1,
@@ -22,7 +21,6 @@ void main() {
       expect(ressource.slug, 'slug');
       expect(ressource.name, 'name');
       expect(ressource.overview, 'overview');
-      expect(ressource.poster, 'poster');
       expect(ressource.thumbnail, 'thumbnail');
       expect(ressource.releaseDate, now);
       expect(ressource.absoluteIndex, 1);
@@ -34,7 +32,6 @@ void main() {
         'id': 12345,
         'slug': 'mySlug2',
         'name': 'myRessource2',
-        'poster': 'poster',
         'thumbnail': 'thumbnail',
         'overview': 'overview',
         'trailer': 'trailer',
@@ -42,12 +39,11 @@ void main() {
         'absoluteNumber': 1,
         'episodeNumber': 2
       };
-      Episode ressource = Episode.fromJSON(input);
+      Episode ressource = Episode.fromJson(input);
       expect(ressource.id, 12345);
       expect(ressource.slug, 'mySlug2');
       expect(ressource.name, 'myRessource2');
       expect(ressource.overview, 'overview');
-      expect(ressource.poster, 'poster');
       expect(ressource.thumbnail, 'thumbnail');
       expect(ressource.releaseDate, now);
       expect(ressource.absoluteIndex, 1);
@@ -64,7 +60,7 @@ void main() {
         'overview': 'overview',
         'releaseDate': now.toIso8601String(),
       };
-      Episode ressource = Episode.fromJSON(input);
+      Episode ressource = Episode.fromJson(input);
       expect(ressource.id, 12345);
       expect(ressource.slug, 'mySlug2');
       expect(ressource.name, 'myRessource2');

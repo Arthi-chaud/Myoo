@@ -12,7 +12,7 @@ void main() {
         overview: 'overview',
         poster: 'poster',
         thumbnail: 'thumbnail',
-        type: 1 as RessourcePreviewType
+        type: RessourcePreviewType.movie
       );
       expect(ressource.id, 1);
       expect(ressource.slug, 'slug');
@@ -33,7 +33,7 @@ void main() {
         'overview': 'overview',
         'type': 0
       };
-      RessourcePreview ressource = RessourcePreview.fromJSON(input);
+      RessourcePreview ressource = RessourcePreview.fromJson(input);
       expect(ressource.id, 12345);
       expect(ressource.slug, 'mySlug2');
       expect(ressource.name, 'myRessource2');

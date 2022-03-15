@@ -28,5 +28,5 @@ class IllustratedRessource extends Ressource {
   }) : super(id: id, slug: slug, name: name, overview: overview);
 
   /// Unserialize [IllustratedRessource] from [JSONData]
-  factory IllustratedRessource.fromJSON(JSONData input) => _$IllustratedRessourceFromJson(input);
+  factory IllustratedRessource.fromJson(JSONData input) => _$IllustratedRessourceFromJson(input);
 }

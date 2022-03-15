@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:myoo/kyoo_api/kyoo_api.dart';
-import 'package:myoo/kyoo_api/src/models/ressource.dart';
 
 part 'ressource_preview.g.dart';
 
@@ -24,19 +23,19 @@ class RessourcePreview extends IllustratedRessource {
     required String slug,
     required String name,
     required String overview,
-    required String? poster,
-    required String? thumbnail
+    String? poster,
+    String? thumbnail
   }) : super(id: id, slug: slug, name: name, overview: overview, poster: poster, thumbnail: thumbnail);
   /// Unserialize [RessourcePreview] from [JSONData]
-  factory RessourcePreview.fromJSON(JSONData input) => _$RessourcePreviewFromJson(input);
+  factory RessourcePreview.fromJson(JSONData input) => _$RessourcePreviewFromJson(input);
 
-  static RessourcePreviewType _getTypeFromJson(Map input, String _) {
-    if (input.containsKey('type')) {
-      return input['type'];
+  static _getTypeFromJson(Map input, String type) {
+    if (input.containsKey(type)) {
+      return RessourcePreviewType.values.elementAt(input[type]).name;
     }
-    if (input['isMove']) {
-      return RessourcePreviewType.movie;
+    if (input['isMovie']) {
+      return RessourcePreviewType.movie.name;
     }
-    return RessourcePreviewType.series;
+    return RessourcePreviewType.series.name;
   }
 }

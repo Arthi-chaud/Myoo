@@ -34,7 +34,7 @@ void main() {
         'overview': 'overview',
         'releaseDate': now.toIso8601String()
       };
-      Video ressource = Video.fromJSON(input);
+      Video ressource = Video.fromJson(input);
       expect(ressource.id, 12345);
       expect(ressource.slug, 'mySlug2');
       expect(ressource.name, 'myRessource2');
@@ -54,7 +54,7 @@ void main() {
         'overview': 'overview',
         'startAir': now.toIso8601String()
       };
-      Video ressource = Video.fromJSON(input);
+      Video ressource = Video.fromJson(input);
       expect(ressource.id, 12345);
       expect(ressource.slug, 'mySlug2');
       expect(ressource.name, 'myRessource2');

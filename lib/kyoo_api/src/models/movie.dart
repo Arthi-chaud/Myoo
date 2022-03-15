@@ -11,7 +11,7 @@ part 'movie.g.dart';
 @JsonSerializable()
 class Movie extends Video {
   /// List of genres to describe a [Movie]
-  @JsonKey(fromJson: GenresParsing.fromJSON, defaultValue: [])
+  @JsonKey(fromJson: GenresParsing.fromJson, defaultValue: [])
   List<Genre> genres;
 
   /// External URL to the [Movie]'s trailer
@@ -25,12 +25,12 @@ class Movie extends Video {
     required String name,
     required String overview,
     required DateTime releaseDate,
-    required String? poster,
-    required String? thumbnail,
+    String? poster,
+    String? thumbnail,
     required this.genres,
     required this.trailer,
   }) : super(id: id, slug: slug, name: name, overview: overview, releaseDate: releaseDate, poster: poster, thumbnail: thumbnail);
 
   /// Unserialize [Movie] from [JSONData]
-  factory Movie.fromJSON(JSONData input) => _$MovieFromJson(input);
+  factory Movie.fromJson(JSONData input) => _$MovieFromJson(input);
 }

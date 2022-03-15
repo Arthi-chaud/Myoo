@@ -18,7 +18,7 @@ void main() {
         'name': 'myRessource',
         'overview': 'My overview'
       };
-      Ressource ressource = Ressource.fromJSON(input);
+      Ressource ressource = Ressource.fromJson(input);
       expect(ressource.id, 123);
       expect(ressource.slug, 'mySlug');
       expect(ressource.name, 'myRessource');
@@ -32,7 +32,7 @@ void main() {
         'title': 'myRessource',
         'overview': 'My overview'
       };
-      Ressource ressource = Ressource.fromJSON(input);
+      Ressource ressource = Ressource.fromJson(input);
       expect(ressource.id, 123);
       expect(ressource.slug, 'mySlug');
       expect(ressource.name, 'myRessource');
@@ -46,7 +46,7 @@ void main() {
         'name': 'myRessource1',
         'overview': null
       };
-      Ressource ressource = Ressource.fromJSON(input);
+      Ressource ressource = Ressource.fromJson(input);
       expect(ressource.id, 1234);
       expect(ressource.slug, 'mySlug1');
       expect(ressource.name, 'myRessource1');
@@ -59,7 +59,7 @@ void main() {
         'slug': 'mySlug2',
         'name': 'myRessource2',
       };
-      Ressource ressource = Ressource.fromJSON(input);
+      Ressource ressource = Ressource.fromJson(input);
       expect(ressource.id, 12345);
       expect(ressource.slug, 'mySlug2');
       expect(ressource.name, 'myRessource2');

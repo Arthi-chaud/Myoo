@@ -1,5 +1,6 @@
 import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/kyoo_api/src/models/json.dart';
+import 'package:myoo/kyoo_api/src/models/ressource_preview.dart';
 import 'package:test/test.dart';
 import 'package:myoo/kyoo_api/src/models/collection.dart';
 
@@ -40,26 +41,26 @@ void main() {
           'poster': 'poster',
           'thumbnail': 'thumbnail',
           'overview': 'overview',
-          'trailer': 'trailer',
           'isMovie': true,
           'releaseDate': now.toIso8601String(),
-          'genres': [
-            {'id': 1, 'name': 'Action'},
-            {'id': 2, 'name': 'Adventure'},
-            {'id': 3, 'name': 'Express'}
-          ]
         }]
       };
-      Collection ressource = Collection.fromJSON(input);
+      Collection ressource = Collection.fromJson(input);
       expect(ressource.id, 12345);
       expect(ressource.slug, 'mySlug2');
       expect(ressource.name, 'myRessource2');
       expect(ressource.overview, 'overview');
       expect(ressource.poster, 'poster');
       expect(ressource.thumbnail, 'thumbnail');
-      expect(ressource.content, [
-        Movie(id: 12345, slug: 'mySlug2', name: 'myRessource2', overview: 'overview', releaseDate: now, poster: 'poster', thumbnail: 'thumbnail', genres: ['Action', 'Adventure', 'Express'], trailer: 'trailer')
-      ]);
+      expect(ressource.content.length, 1);
+      RessourcePreview preview = ressource.content[0];
+      expect(preview.id, 12345);
+      expect(preview.slug, 'mySlug2');
+      expect(preview.name, 'myRessource2');
+      expect(preview.overview, 'overview');
+      expect(preview.poster, 'poster');
+      expect(preview.thumbnail, 'thumbnail');
+      expect(preview.type, RessourcePreviewType.movie);
     });
 
     test('Unserialize: No content specified', () {
@@ -71,7 +72,7 @@ void main() {
         'thumbnail': 'thumbnail',
         'overview': 'overview',
       };
-      Collection ressource = Collection.fromJSON(input);
+      Collection ressource = Collection.fromJson(input);
       expect(ressource.id, 12345);
       expect(ressource.slug, 'mySlug2');
       expect(ressource.name, 'myRessource2');

@@ -37,5 +37,5 @@ class Ressource {
   }
 
   /// Unserialize [Ressource] from [JSONData]
-  factory Ressource.fromJSON(JSONData input) => _$RessourceFromJson(input);
+  factory Ressource.fromJson(JSONData input) => _$RessourceFromJson(input);
 }

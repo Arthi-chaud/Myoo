@@ -25,10 +25,10 @@ class Season extends IllustratedRessource {
     required String slug,
     required String name,
     required String overview,
-    required String? poster,
-    required String? thumbnail,
+    String? poster,
+    String? thumbnail,
   }) : super(id: id, name: name, slug: slug, overview: overview, poster: poster, thumbnail: thumbnail);
 
   /// Unserialize [Season] from [JSONData]
-  factory Season.fromJSON(JSONData input) => _$SeasonFromJson(input);
+  factory Season.fromJson(JSONData input) => _$SeasonFromJson(input);
 }

@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:myoo/kyoo_api/src/models/genre.dart';
 import 'package:myoo/kyoo_api/src/models/illustrated_ressource.dart';
+import 'package:myoo/kyoo_api/src/models/ressource.dart';
 import 'package:myoo/kyoo_api/src/models/json.dart';
 import 'package:myoo/kyoo_api/src/models/season.dart';
 import 'package:myoo/kyoo_api/src/models/trailer_url.dart';
@@ -11,7 +12,7 @@ part 'tv_series.g.dart';
 @JsonSerializable()
 class TVSeries extends IllustratedRessource {
   /// List of [Genre] to describe the [TVSeries]
-  @JsonKey(fromJson: GenresParsing.fromJSON)
+  @JsonKey(fromJson: GenresParsing.fromJson)
   List<Genre> genres;
 
   /// List of [Season] of the [TVSeries]
@@ -30,9 +31,9 @@ class TVSeries extends IllustratedRessource {
     required String slug,
     required String name,
     required String overview,
-    required String? poster,
-    required String? thumbnail,
+    String? poster,
+    String? thumbnail,
   }) : super(id: id, name: name, slug: slug, overview: overview, poster: poster, thumbnail: thumbnail);
 
-  factory TVSeries.fromJSON(JSONData input) => _$TVSeriesFromJson(input);
+  factory TVSeries.fromJson(JSONData input) => _$TVSeriesFromJson(input);
 }

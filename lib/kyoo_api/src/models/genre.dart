@@ -3,12 +3,12 @@ import 'package:myoo/kyoo_api/src/models/json.dart';
 typedef Genre = String;
 
 extension GenreParsing on String {
-  static Genre fromJSON(JSONData input) => input['name'];
+  static Genre fromJson(JSONData input) => input['name'];
 }
 
 extension GenresParsing on String {
-  static List<Genre> fromJSON(List input) =>
+  static List<Genre> fromJson(List input) =>
     input
-      .map((genre) => GenreParsing.fromJSON(genre))
+      .map((genre) => GenreParsing.fromJson(genre))
       .toList();
 }

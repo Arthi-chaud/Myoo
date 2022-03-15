@@ -29,7 +29,7 @@ void main() {
         'thumbnail': 'thumbnail',
         'overview': 'overview'
       };
-      IllustratedRessource ressource = IllustratedRessource.fromJSON(input);
+      IllustratedRessource ressource = IllustratedRessource.fromJson(input);
       expect(ressource.id, 12345);
       expect(ressource.slug, 'mySlug2');
       expect(ressource.name, 'myRessource2');
@@ -45,7 +45,7 @@ void main() {
         'name': 'myRessource2',
         'overview': 'overview'
       };
-      IllustratedRessource ressource = IllustratedRessource.fromJSON(input);
+      IllustratedRessource ressource = IllustratedRessource.fromJson(input);
       expect(ressource.id, 12345);
       expect(ressource.slug, 'mySlug2');
       expect(ressource.name, 'myRessource2');
@@ -63,7 +63,7 @@ void main() {
         'thumbnail': null,
         'overview': 'overview'
       };
-      IllustratedRessource ressource = IllustratedRessource.fromJSON(input);
+      IllustratedRessource ressource = IllustratedRessource.fromJson(input);
       expect(ressource.id, 12345);
       expect(ressource.slug, 'mySlug2');
       expect(ressource.name, 'myRessource2');

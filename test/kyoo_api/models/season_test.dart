@@ -33,29 +33,36 @@ void main() {
         'poster': 'poster',
         'thumbnail': 'thumbnail',
         'overview': 'overview',
+        'seasonNumber': 42,
         'episodes': [{
           'id': 12345,
           'slug': 'mySlug2',
           'name': 'myRessource2',
-          'poster': 'poster',
-          'thumbnail': 'thumbnail',
           'overview': 'overview',
-          'trailer': 'trailer',
           'releaseDate': now.toIso8601String(),
+          'thumbnail': 'thumbnail',
           'absoluteNumber': 1,
           'episodeNumber': 2
         }]
       };
-      Season ressource = Season.fromJSON(input);
+      Season ressource = Season.fromJson(input);
       expect(ressource.id, 12345);
+      expect(ressource.index, 42);
       expect(ressource.slug, 'mySlug2');
       expect(ressource.name, 'myRessource2');
       expect(ressource.overview, 'overview');
       expect(ressource.poster, 'poster');
       expect(ressource.thumbnail, 'thumbnail');
-      expect(ressource.episodes, [
-        Episode(id: 12345, slug: 'mySlug2', name: 'myRessource2', overview: 'overview', releaseDate: now, poster: 'poster', thumbnail: 'thumbnail', absoluteIndex: 1, index: 2)
-      ]);
+      expect(ressource.episodes.length, 1);
+      Episode episode = ressource.episodes[0];
+      expect(episode.id, 12345);
+      expect(episode.slug, 'mySlug2');
+      expect(episode.name, 'myRessource2');
+      expect(episode.overview, 'overview');
+      expect(episode.releaseDate, now);
+      expect(episode.thumbnail, 'thumbnail');
+      expect(episode.absoluteIndex, 1);
+      expect(episode.index, 2);
     });
 
     test('Unserialize: No content specified', () {
@@ -64,11 +71,13 @@ void main() {
         'slug': 'mySlug2',
         'name': 'myRessource2',
         'poster': 'poster',
+        'seasonNumber': 456,
         'thumbnail': 'thumbnail',
         'overview': 'overview',
       };
-      Season ressource = Season.fromJSON(input);
+      Season ressource = Season.fromJson(input);
       expect(ressource.id, 12345);
+      expect(ressource.index, 456);
       expect(ressource.slug, 'mySlug2');
       expect(ressource.name, 'myRessource2');
       expect(ressource.overview, 'overview');

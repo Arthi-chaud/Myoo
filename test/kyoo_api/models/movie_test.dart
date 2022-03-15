@@ -45,7 +45,7 @@ void main() {
           {'id': 3, 'name': 'Express'}
         ]
       };
-      Movie ressource = Movie.fromJSON(input);
+      Movie ressource = Movie.fromJson(input);
       expect(ressource.id, 12345);
       expect(ressource.slug, 'mySlug2');
       expect(ressource.name, 'myRessource2');
@@ -67,7 +67,7 @@ void main() {
         'overview': 'overview',
         'releaseDate': now.toIso8601String(),
       };
-      Movie ressource = Movie.fromJSON(input);
+      Movie ressource = Movie.fromJson(input);
       expect(ressource.id, 12345);
       expect(ressource.slug, 'mySlug2');
       expect(ressource.name, 'myRessource2');
