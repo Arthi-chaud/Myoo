@@ -49,4 +49,25 @@ class AppState {
     currentSeries: currentSeries ?? this.currentSeries,
     currentSeason: currentSeason ?? this.currentSeason
   );
+
+  @override
+  int get hashCode => clients.hashCode ^
+    currentClient.hashCode ^ 
+    isLoading.hashCode ^
+    previews.hashCode ^
+    currentClient.hashCode ^
+    currentMovie.hashCode ^
+    currentSeason.hashCode;
+  
+  @override
+  bool operator==(Object other) =>
+    other is AppState &&
+    clients == other.clients &&
+    currentClient == other.currentClient &&
+    isLoading == other.isLoading &&
+    previews == other.previews &&
+    currentClient == other.currentClient &&
+    currentMovie == other.currentMovie &&
+    currentSeason == other.currentSeason;
+
 }
