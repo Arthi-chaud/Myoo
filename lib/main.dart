@@ -1,6 +1,15 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-void main() {
+import 'package:flutter/material.dart';
+import 'package:myoo/kyoo_api/src/kyoo_client.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+void main() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  List<KyooClient> clients = prefs
+    .getStringList('clients')
+    ?.map((e) => KyooClient.fromJson(jsonDecode(e)))
+    .toList() ?? [];
   runApp(const MyApp());
 }
 
