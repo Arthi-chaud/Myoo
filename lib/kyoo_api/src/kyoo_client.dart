@@ -88,6 +88,9 @@ class KyooClient {
       'Content-type': 'application/json',
       'Accept': 'application/json',
     };
+    if (jwt != null) {
+      body['Authorization'] = 'Bearer $jwt';
+    }
     switch (type) {
       case RequestType.get:
         response = await http.get(fullRoute);
