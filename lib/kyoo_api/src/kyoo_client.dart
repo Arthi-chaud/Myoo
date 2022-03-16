@@ -1,22 +1,33 @@
-import 'dart:convert';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:myoo/kyoo_api/kyoo_api.dart';
+import 'dart:convert';
 import 'package:myoo/kyoo_api/src/models/collection.dart';
 import 'package:myoo/kyoo_api/src/models/library.dart';
 import 'package:http/http.dart' as http;
 import 'package:myoo/kyoo_api/src/models/ressource_preview.dart';
 import 'package:myoo/kyoo_api/src/models/slug.dart';
 
+part 'kyoo_client.g.dart';
+
+typedef ServerURL = String;
+
 enum RequestType { get, post, put, delete }
 
-/// Interface Class to communicate
-class KyooAPI {
-  /// URL to the Server to call when using member function of this instance of [KyooAPI]
-  final String serverURL;
+/// Client of a Kyoo Server, used to make requests to it
+@JsonSerializable()
+class KyooClient {
+  /// String URL of the Kyoo server
+  @JsonKey(name: 'url')
+  final ServerURL serverURL;
 
-  // TODO: manage JWT
+  /// JWT used to make requests to server
+  @JsonKey(defaultValue: null)
+  String? jwt;
 
-  /// Construct a [KyooAPI] using Server's URL
-  KyooAPI({required this.serverURL});
+  /// Default constructor
+  KyooClient({required this.serverURL, this.jwt});
+
+  factory KyooClient.fromJson(JSONData input) => _$KyooClientFromJson(input);
 
   /// Retrieves a list of $[count] [RessourcePreview]s, starting from [afterID] from the current server
   Future<List<RessourcePreview>> getItems({int? afterID, int? count}) async {
