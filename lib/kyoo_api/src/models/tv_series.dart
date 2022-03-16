@@ -13,17 +13,17 @@ part 'tv_series.g.dart';
 class TVSeries extends IllustratedRessource {
   /// List of [Genre] to describe the [TVSeries]
   @JsonKey(fromJson: GenresParsing.fromJson)
-  List<Genre> genres;
+  final List<Genre> genres;
 
   /// List of [Season] of the [TVSeries]
   @JsonKey(defaultValue: [])
-  List<Season> seasons;
+  final List<Season> seasons;
 
   /// External URL to the [TVSeries]'s trailer
-  TrailerURL trailer;
+  final TrailerURL trailer;
 
   /// Default Constructor
-  TVSeries({
+  const TVSeries({
     required this.genres,
     required this.trailer,
     required this.seasons,

@@ -11,14 +11,14 @@ typedef IllustrationURL = String;
 class IllustratedRessource extends Ressource {
   /// URL of the Poster of the [Ressource], if it has one.
   @JsonKey(defaultValue: null)
-  IllustrationURL? poster;
+  final IllustrationURL? poster;
 
   /// URL of the Thumbnail of the [Ressource], if it has one.
   @JsonKey(defaultValue: null)
-  IllustrationURL? thumbnail;
+  final IllustrationURL? thumbnail;
 
   /// Default constructor
-  IllustratedRessource({
+  const IllustratedRessource({
     required int id,
     required String slug,
     required String name,

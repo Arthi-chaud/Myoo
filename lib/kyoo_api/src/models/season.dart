@@ -11,14 +11,14 @@ part 'season.g.dart';
 class Season extends IllustratedRessource {
   /// Index of the [Season] in the parent [TVSeries]
   @JsonKey(name: 'seasonNumber')
-  int index;
+  final int index;
 
   /// Container of children [Episode].
   @JsonKey(defaultValue: [])
-  List<Episode> episodes;
+  final List<Episode> episodes;
 
   /// Default constructor
-  Season({
+  const Season({
     required this.index,
     required this.episodes,
     required int id,

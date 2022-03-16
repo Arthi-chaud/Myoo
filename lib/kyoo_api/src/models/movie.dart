@@ -12,14 +12,14 @@ part 'movie.g.dart';
 class Movie extends Video {
   /// List of genres to describe a [Movie]
   @JsonKey(fromJson: GenresParsing.fromJson, defaultValue: [])
-  List<Genre> genres;
+  final List<Genre> genres;
 
   /// External URL to the [Movie]'s trailer
   @JsonKey(defaultValue: null)
-  TrailerURL? trailer;
+  final TrailerURL? trailer;
 
   /// Default constructor
-  Movie({
+  const Movie({
     required int id,
     required String slug,
     required String name,

@@ -8,21 +8,21 @@ part 'ressource.g.dart';
 @JsonSerializable()
 class Ressource {
   /// Unique identifier from Kyoo's Database
-  int id;
+  final int id;
 
   /// String identifier
-  Slug slug;
+  final Slug slug;
 
   /// A display name for the ressource
   @JsonKey(readValue: getTitleFromJSON)
-  String name;
+  final String name;
 
   /// A description of the ressource
   @JsonKey(defaultValue: "")
-  String overview;
+  final String overview;
 
   /// Default constructor
-  Ressource({
+  const Ressource({
     required this.id,
     required this.slug,
     required this.name,

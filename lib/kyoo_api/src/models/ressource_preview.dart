@@ -14,7 +14,7 @@ enum RessourcePreviewType {
 class RessourcePreview extends IllustratedRessource {
   /// The type of the previwed [Ressource]
   @JsonKey(readValue: _getTypeFromJson)
-  RessourcePreviewType type;
+  final RessourcePreviewType type;
 
   /// Default constructor
   RessourcePreview({
@@ -29,7 +29,7 @@ class RessourcePreview extends IllustratedRessource {
   /// Unserialize [RessourcePreview] from [JSONData]
   factory RessourcePreview.fromJson(JSONData input) => _$RessourcePreviewFromJson(input);
 
-  static _getTypeFromJson(Map input, String type) {
+  static String _getTypeFromJson(Map input, String type) {
     if (input.containsKey(type)) {
       return RessourcePreviewType.values.elementAt(input[type]).name;
     }
