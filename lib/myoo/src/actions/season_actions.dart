@@ -3,14 +3,14 @@ import 'package:myoo/kyoo_api/src/models/slug.dart';
 import 'package:myoo/myoo/src/actions/action.dart';
 
 /// Action to load [Season] as [AppState]'s current [Season]
-class LoadSeason extends ContainerAction<Slug> {
-  LoadSeason(Slug seasonSlug) : super(content: seasonSlug);
+class LoadSeasonAction extends ContainerAction<Season> {
+  LoadSeasonAction(Season season) : super(content: season);
 }
 
 /// Action to set [Season] as [AppState]'s current [Season]
-class LoadedSeason extends ContainerAction<Season> {
-  LoadedSeason(Season season) : super(content: season);
+class LoadedSeasonAction extends ContainerAction<Season> {
+  LoadedSeasonAction(Season season) : super(content: season);
 }
 
 /// Action to unload [AppState]'s current [Season]
-class UnloadSeason extends Action {}
+class UnloadSeasonAction extends Action {}

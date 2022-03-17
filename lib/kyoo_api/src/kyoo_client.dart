@@ -55,7 +55,7 @@ class KyooClient {
   }
 
   /// Retrieves a [TVSeries] (with its [Genre]s and [Season]s) from current server using [TVSeries]'s [Slug]
-  Future<TVSeries> getSeries(Slug seriesSlug) async {
+  Future<TVSeries> getTVSeries(Slug seriesSlug) async {
     JSONData responseBody = await _request(
         RequestType.get, '/shows/$seriesSlug',
         params: {'fields': 'genres,seasons'});

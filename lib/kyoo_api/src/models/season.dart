@@ -29,6 +29,10 @@ class Season extends IllustratedRessource {
     String? thumbnail,
   }) : super(id: id, name: name, slug: slug, overview: overview, poster: poster, thumbnail: thumbnail);
 
+  /// Copy constructor to apply episodes
+  Season copyWith({required List<Episode> episodes}) => 
+    Season(index: index, episodes: episodes, id: id, slug: slug, name: name, overview: overview);
+
   /// Unserialize [Season] from [JSONData]
   factory Season.fromJson(JSONData input) => _$SeasonFromJson(input);
 }

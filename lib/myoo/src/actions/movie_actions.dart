@@ -3,15 +3,14 @@ import 'package:myoo/kyoo_api/src/models/slug.dart';
 import 'package:myoo/myoo/src/actions/action.dart';
 
 /// Action to load [Movie] as [AppState]'s current [Movie]
-class LoadMovie extends ContainerAction<Slug> {
-  LoadMovie(Slug movieSlug) : super(content: movieSlug);
+class LoadMovieAction extends ContainerAction<Slug> {
+  LoadMovieAction(Slug movieSlug) : super(content: movieSlug);
 }
 
 /// Action to set [Movie] as [AppState]'s current [Movie]
-class LoadedMovie extends ContainerAction<Movie> {
-  LoadedMovie(Movie movie) : super(content: movie);
+class LoadedMovieAction extends ContainerAction<Movie> {
+  LoadedMovieAction(Movie movie) : super(content: movie);
 }
 
-
 /// Action to unload [AppState]'s current [Movie]
-class UnloadMovie extends Action {}
+class UnloadMovieAction extends Action {}

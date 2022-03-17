@@ -3,14 +3,14 @@ import 'package:myoo/kyoo_api/src/models/slug.dart';
 import 'package:myoo/myoo/src/actions/action.dart';
 
 /// Action to load [TVSeries] as [AppState]'s current [TVSeries]
-class LoadTVSeries extends ContainerAction<Slug> {
-  LoadTVSeries(Slug seriesSlug) : super(content: seriesSlug);
+class LoadTVSeriesAction extends ContainerAction<Slug> {
+  LoadTVSeriesAction(Slug seriesSlug) : super(content: seriesSlug);
 }
 
 /// Action to set [TVSeries] as [AppState]'s current [TVSeries]
-class LoadedTVSeries extends ContainerAction<TVSeries> {
-  LoadedTVSeries(TVSeries series) : super(content: series);
+class LoadedTVSeriesAction extends ContainerAction<TVSeries> {
+  LoadedTVSeriesAction(TVSeries series) : super(content: series);
 }
 
 /// Action to unload [AppState]'s current [TVSeries]
-class UnloadTVSeries extends Action {}
+class UnloadTVSeriesAction extends Action {}
