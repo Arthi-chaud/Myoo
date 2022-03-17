@@ -19,6 +19,7 @@ final currentClientReducers = combineReducers<KyooClient?>([
   TypedReducer<KyooClient?, DisconnectClientAction>(_unsetCurrentClient),
 ]);
 
+/// Sets [AppState]'s current [KyooClient] 
 KyooClient? _setCurrentClient(KyooClient? oldClient, action) {
   if (action is ContainerAction<KyooClient>) {
     return action.content;
@@ -26,19 +27,22 @@ KyooClient? _setCurrentClient(KyooClient? oldClient, action) {
     return (action as ContainerAction<List<KyooClient>>).content.first;
   }
 }
-
+/// Unsets [AppState]'s current [KyooClient]  (set to null)
 KyooClient? _unsetCurrentClient(KyooClient? _, __) => null;
 
+/// Adds new [KyooClient] to [AppState]'s [KyooClient]s
 List<KyooClient> _addClient(List<KyooClient>? oldClients, action) {
   List newClients = List.from(oldClients!);
   newClients.add((action as ContainerAction<KyooClient>).content);
   return List.from(newClients);
 }
 
+/// Removes new [KyooClient] to [AppState]'s [KyooClient]s
 List<KyooClient>? _removeClient(List<KyooClient>? oldClients, action) {
   List newClients = List.from(oldClients!);
   newClients.remove((action as ContainerAction<KyooClient>).content);
   return List.from(newClients);
 }
 
+/// Resets [AppState]'s [KyooClient]s
 List<KyooClient>? _setClients(_, action) => (action as ContainerAction<List<KyooClient>>).content;
