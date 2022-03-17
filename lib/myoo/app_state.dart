@@ -10,7 +10,7 @@ class AppState {
   /// Array of [ressourcePreview], for example in list view
   final List<RessourcePreview>? previews;
   /// Current [TVSeries]
-  final TVSeries? currentSeries;
+  final TVSeries? currentTVSeries;
   /// Current [Season]
   final Season? currentSeason;
   /// Current [Movie]
@@ -25,7 +25,7 @@ class AppState {
     required this.currentClient,
     required this.previews,
     required this.currentMovie,
-    required this.currentSeries,
+    required this.currentTVSeries,
     required this.currentSeason
   }) {
     assert(clients?.contains(currentClient!) ?? true, 'The current client is not known');
@@ -36,7 +36,7 @@ class AppState {
     isLoading = true,
     previews = null,
     currentMovie = null,
-    currentSeries = null,
+    currentTVSeries = null,
     currentSeason = null;
 
   /// Copy constructor for easier copies
@@ -44,7 +44,7 @@ class AppState {
     List<KyooClient>? clients,
     KyooClient? currentClient,
     List<RessourcePreview>? previews,
-    TVSeries? currentSeries,
+    TVSeries? currentTVSeries,
     Season? currentSeason,
     Movie? currentMovie,
     bool? isLoading,
@@ -54,7 +54,7 @@ class AppState {
     clients: clients ?? this.clients,
     previews: previews ?? this.previews,
     currentMovie: currentMovie ?? this.currentMovie,
-    currentSeries: currentSeries ?? this.currentSeries,
+    currentTVSeries: currentTVSeries ?? this.currentTVSeries,
     currentSeason: currentSeason ?? this.currentSeason
   );
 
@@ -65,6 +65,7 @@ class AppState {
     previews.hashCode ^
     currentClient.hashCode ^
     currentMovie.hashCode ^
+    currentTVSeries.hashCode ^
     currentSeason.hashCode;
   
   @override
@@ -76,6 +77,7 @@ class AppState {
     previews == other.previews &&
     currentClient == other.currentClient &&
     currentMovie == other.currentMovie &&
+    currentTVSeries == other.currentTVSeries &&
     currentSeason == other.currentSeason;
 
 }
