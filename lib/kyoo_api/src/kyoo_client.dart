@@ -40,41 +40,49 @@ class KyooClient {
     if (count != null) {
       queryParams['count'] = count;
     }
-    JSONData responseBody =
-        await _request(RequestType.get, '/items', params: queryParams);
+    JSONData responseBody = await _request(RequestType.get, '/items', params: queryParams);
     return (responseBody['items'] as List<JSONData>)
-        .map((e) => RessourcePreview.fromJson(e))
-        .toList();
+      .map((e) => RessourcePreview.fromJson(e))
+      .toList();
   }
 
   /// Retrieves a [Movie] (with its [Genre]s) from current server using its [Slug]
   Future<Movie> getMovie(Slug movieSlug) async {
-    JSONData responseBody = await _request(RequestType.get, '/shows/$movieSlug',
-        params: {'fields': 'genres'});
+    JSONData responseBody = await _request(
+      RequestType.get,
+      '/shows/$movieSlug',
+      params: {'fields': 'genres'}
+    );
     return Movie.fromJson(responseBody);
   }
 
   /// Retrieves a [TVSeries] (with its [Genre]s and [Season]s) from current server using [TVSeries]'s [Slug]
   Future<TVSeries> getTVSeries(Slug seriesSlug) async {
     JSONData responseBody = await _request(
-        RequestType.get, '/shows/$seriesSlug',
-        params: {'fields': 'genres,seasons'});
+      RequestType.get,
+      '/shows/$seriesSlug',
+      params: {'fields': 'genres,seasons'}
+    );
     return TVSeries.fromJson(responseBody);
   }
 
   /// Retrieves a [Season] with its [Episode]s from current server using [Season]'s [Slug]
   Future<Season> getSeason(Slug seasonSlug) async {
     JSONData responseBody = await _request(
-        RequestType.get, '/seasons/$seasonSlug',
-        params: {'limit': '0', 'fields': 'episodes'});
+      RequestType.get,
+      '/seasons/$seasonSlug',
+      params: {'limit': '0', 'fields': 'episodes'}
+    );
     return Season.fromJson(responseBody);
   }
 
   /// Retrieves a [Collection] (including its [RessourcePreview]s ) using its [Slug]
   Future<Collection> getCollection(Slug collectionSlug) async {
     JSONData responseBody = await _request(
-        RequestType.get, '/collections/$collectionSlug',
-        params: {'fields': 'shows'});
+      RequestType.get,
+      '/collections/$collectionSlug',
+      params: {'fields': 'shows'}
+    );
     return Collection.fromJson(responseBody);
   }
 
@@ -82,18 +90,16 @@ class KyooClient {
   Future<List<Library>> getLibraries() async {
     JSONData responseBody = await _request(RequestType.get, '/libraries');
     return (responseBody['items'] as List)
-        .map((e) => Library.fromJson(e))
-        .toList();
+      .map((e) => Library.fromJson(e))
+      .toList();
   }
 
   /// Request Kyoo's API, the route must not start with '/api'
-  Future<JSONData> _request(RequestType type, String route,
-      {Map<String, dynamic>? body, Map<String, dynamic>? params}) async {
+  Future<JSONData> _request(RequestType type, String route, {Map<String, dynamic>? body, Map<String, dynamic>? params}) async {
     body ??= {};
     params ??= {};
     http.Response response;
-    Uri fullRoute =
-        Uri(host: serverURL, path: 'api$route', queryParameters: params);
+    Uri fullRoute = Uri(host: serverURL, path: 'api$route', queryParameters: params);
     final Map<String, String> headers = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
