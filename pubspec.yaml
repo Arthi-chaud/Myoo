@@ -38,6 +38,8 @@ dependencies:
   json_annotation: ^4.4.0
   test: ^1.19.5
   shared_preferences: ^2.0.13
+  flutter_redux: ^0.8.2
+  redux: ^5.0.0
 
 dev_dependencies:
   flutter_test:

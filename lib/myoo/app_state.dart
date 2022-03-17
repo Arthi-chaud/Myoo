@@ -4,9 +4,9 @@ import 'package:myoo/kyoo_api/src/models/ressource_preview.dart';
 /// State of the Myoo App
 class AppState {
   /// List of clients in the current state
-  final List<KyooClient> clients;
+  final List<KyooClient>? clients;
   /// The current [KyooClient] from which the requests must be made with
-  final KyooClient currentClient;
+  final KyooClient? currentClient;
   /// Array of [ressourcePreview], for example in list view
   final List<RessourcePreview>? previews;
   /// Current [TVSeries]
@@ -28,8 +28,16 @@ class AppState {
     required this.currentSeries,
     required this.currentSeason
   }) {
-    assert(clients.contains(currentClient), 'The current client is not known');
+    assert(clients?.contains(currentClient!) ?? true, 'The current client is not known');
   }
+  /// Initial state for [MyooApp], sets [isLoading] to true.
+  /// The first thing done when initiating the [MyooApp] is to load [KyooClient]s
+  AppState.initState({required this.clients, required this.currentClient}):
+    isLoading = true,
+    previews = null,
+    currentMovie = null,
+    currentSeries = null,
+    currentSeason = null;
 
   /// Copy constructor for easier copies
   AppState copyWith({
