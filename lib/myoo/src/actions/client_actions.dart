@@ -17,6 +17,11 @@ class NewClientConnectedAction extends ContainerAction<KyooClient> {
   NewClientConnectedAction(KyooClient newClient) : super(content: newClient);
 }
 
+/// Action when a [KyooClient] is selected. Client must be in [AppState]'s [KyooClient]s list
+class UseClientAction extends ContainerAction<KyooClient> {
+  UseClientAction(KyooClient client) : super(content: client);
+}
+
 /// Action when a [KyooClient] is disconnected (by user, or when a JWT rots)
 class DisconnectClientAction extends ContainerAction<KyooClient> {
   DisconnectClientAction(KyooClient toRemove) : super(content: toRemove);

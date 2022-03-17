@@ -9,6 +9,8 @@ import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+
   runApp(MyooApp(
     store: Store<AppState>(appReducer,
         initialState: AppState.initState(clients: clients)),
