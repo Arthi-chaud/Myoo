@@ -5,7 +5,7 @@ import 'package:myoo/kyoo_api/src/models/ressource.dart';
 void main() {
   group('Ressource', () {
     test('Default constructor', () {
-      Ressource ressource = Ressource(id: 123, slug: 'mySlug', name: 'myRessource', overview: 'My overview');
+      Ressource ressource = const Ressource(id: 123, slug: 'mySlug', name: 'myRessource', overview: 'My overview');
       expect(ressource.id, 123);
       expect(ressource.slug, 'mySlug');
       expect(ressource.name, 'myRessource');

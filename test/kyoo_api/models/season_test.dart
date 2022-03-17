@@ -5,7 +5,7 @@ void main() {
   var now = DateTime.now();
   group('Season', () {
     test('Default constructor', () {
-      Season ressource = Season(
+      Season ressource = const Season(
         id: 1,
         slug: 'slug',
         name: 'name',

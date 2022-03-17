@@ -4,7 +4,6 @@ import 'package:myoo/kyoo_api/src/models/episode.dart';
 
 void main() {
   var now = DateTime.now();
-  var genres = ['Action', 'Adventure', "Express"];
   group('Episode', () {
     test('Default constructor', () {
       Episode ressource = Episode(

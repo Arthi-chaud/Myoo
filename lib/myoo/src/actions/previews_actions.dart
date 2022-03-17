@@ -1,5 +1,4 @@
 import 'package:myoo/kyoo_api/src/models/ressource_preview.dart';
-import 'package:myoo/kyoo_api/src/models/slug.dart';
 import 'package:myoo/myoo/src/actions/action.dart';
 
 

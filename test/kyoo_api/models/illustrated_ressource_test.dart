@@ -5,7 +5,7 @@ import 'package:myoo/kyoo_api/src/models/illustrated_ressource.dart';
 void main() {
   group('Illustrated Ressource', () {
     test('Default constructor', () {
-      IllustratedRessource ressource = IllustratedRessource(
+      IllustratedRessource ressource = const IllustratedRessource(
         id: 1,
         slug: 'slug',
         name: 'name',
