@@ -1,6 +1,6 @@
 
 import 'package:myoo/kyoo_api/src/kyoo_client.dart';
-import 'package:myoo/myoo/actions/action_model.dart';
+import 'package:myoo/myoo/actions/action.dart';
 
 /// Action when retrieving [KyooClient]s from storage ([SharedPreferences])
 class LoadStoredClientsAction extends Action {}
