@@ -43,7 +43,6 @@ Middleware<AppState> loadStoredClientsMiddleware(LocalStorage localStorage) {
       store.dispatch(NoLoadedStoredClientsAction());
     } else {
       store.dispatch(LoadedStoredClientsAction(clients));
-      store.dispatch(UseClientAction(clients.first));
     }
     store.dispatch(LoadedAction());
   };
@@ -56,7 +55,6 @@ Middleware<AppState> storageSetClientsMiddleWare(LocalStorage localStorage) {
     List<KyooClient> toStore = List.from([...store.state.clients!, newClient]);
 
     _setRawClients(localStorage, toStore);
-    store.dispatch(UseClientAction(newClient));
     next(action);
   };
 }
