@@ -32,8 +32,10 @@ class AppState {
   }
   /// Initial state for [MyooApp], sets [isLoading] to true.
   /// The first thing done when initiating the [MyooApp] is to load [KyooClient]s
-  AppState.initState({required this.clients, required this.currentClient}):
+  AppState.initState():
     isLoading = true,
+    currentClient = null,
+    clients = null,
     previews = null,
     currentMovie = null,
     currentTVSeries = null,
