@@ -1,7 +1,4 @@
-import 'dart:convert';
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:myoo/kyoo_api/src/kyoo_client.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/middlewares/kyoo_api_middleware.dart';
 import 'package:myoo/myoo/src/middlewares/local_storage_middleware.dart';

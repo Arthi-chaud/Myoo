@@ -62,14 +62,12 @@ class KyooClient {
     return TVSeries.fromJson(responseBody);
   }
 
-  /// Retrieves [Episode]s of a [Season] from current server using [Season]'s [Slug]
-  Future<List<Episode>> getEpisodes(Slug seasonSlug) async {
+  /// Retrieves a [Season] with its [Episode]s from current server using [Season]'s [Slug]
+  Future<Season> getSeason(Slug seasonSlug) async {
     JSONData responseBody = await _request(
-        RequestType.get, '/seasons/$seasonSlug/episodes',
-        params: {'limit': '0'});
-    return (responseBody['items'] as List)
-        .map((item) => Episode.fromJson(item))
-        .toList();
+        RequestType.get, '/seasons/$seasonSlug',
+        params: {'limit': '0', 'fields': 'episodes'});
+    return Season.fromJson(responseBody);
   }
 
   /// Retrieves a [Collection] (including its [RessourcePreview]s ) using its [Slug]

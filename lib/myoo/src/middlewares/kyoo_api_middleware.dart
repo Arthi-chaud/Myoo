@@ -36,12 +36,12 @@ Middleware<AppState> loadTVSeries() =>
 Middleware<AppState> loadSeason() =>
   (Store<AppState> store, action, NextDispatcher next) {
     next(action);
-    Season season = (action as ContainerAction<Season>).content;
+    Slug seasonSlug = (action as ContainerAction<Slug>).content;
     store.state.currentClient!
-      .getEpisodes(season.slug)
+      .getSeason(seasonSlug)
       .then(
-        (episodes) => store.dispatch(
-          LoadedSeasonAction(season.copyWith(episodes: episodes))
+        (season) => store.dispatch(
+          LoadedSeasonAction(season)
         )
       );
   };
