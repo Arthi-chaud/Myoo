@@ -9,9 +9,9 @@ class AppState {
   final KyooClient? currentClient;
   /// Array of [ressourcePreview], for example in list view
   final List<RessourcePreview>? previews;
-  /// Current [TVSeries]
+  /// Current [TVSeries], it must hold related [Season]s
   final TVSeries? currentTVSeries;
-  /// Current [Season]
+  /// Current [Season], it must hold related [Episode]s
   final Season? currentSeason;
   /// Current [Movie]
   final Movie? currentMovie;
