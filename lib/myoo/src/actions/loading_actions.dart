@@ -1,4 +1,4 @@
-import 'package:myoo/myoo/actions/action.dart';
+import 'package:myoo/myoo/src/actions/action.dart';
 
 /// Action to set Loading state at true
 class LoadAction extends Action {}

@@ -1,5 +1,5 @@
 import 'package:myoo/kyoo_api/src/models/slug.dart';
-import 'package:myoo/myoo/actions/action.dart';
+import 'package:myoo/myoo/src/actions/action.dart';
 
 /// Action to load [TVSeries] as [AppState]'s current [TVSeries]
 class LoadTVSeries extends ContainerAction<Slug> {
