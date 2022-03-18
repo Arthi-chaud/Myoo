@@ -39,9 +39,5 @@ Middleware<AppState> loadSeason() =>
     Slug seasonSlug = (action as ContainerAction<Slug>).content;
     store.state.currentClient!
       .getSeason(seasonSlug)
-      .then(
-        (season) => store.dispatch(
-          LoadedSeasonAction(season)
-        )
-      );
+      .then((season) => store.dispatch(LoadedSeasonAction(season)));
   };

@@ -31,18 +31,16 @@ KyooClient? _setCurrentClient(KyooClient? oldClient, action) {
 KyooClient? _unsetCurrentClient(KyooClient? _, __) => null;
 
 /// Adds new [KyooClient] to [AppState]'s [KyooClient]s
-List<KyooClient> _addClient(List<KyooClient>? oldClients, action) {
-  List newClients = List.from(oldClients!);
-  newClients.add((action as ContainerAction<KyooClient>).content);
-  return List.from(newClients);
-}
+List<KyooClient> _addClient(List<KyooClient>? oldClients, action) => 
+  List
+    .from(oldClients!)
+    ..add((action as ContainerAction<KyooClient>).content);
 
 /// Removes new [KyooClient] to [AppState]'s [KyooClient]s
-List<KyooClient>? _removeClient(List<KyooClient>? oldClients, action) {
-  List newClients = List.from(oldClients!);
-  newClients.remove((action as ContainerAction<KyooClient>).content);
-  return List.from(newClients);
-}
+List<KyooClient>? _removeClient(List<KyooClient>? oldClients, action) => 
+  List
+    .from(oldClients!)
+    ..remove((action as ContainerAction<KyooClient>).content);
 
 /// Resets [AppState]'s [KyooClient]s
 List<KyooClient>? _setClients(_, action) => (action as ContainerAction<List<KyooClient>>).content;
