@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/middlewares/kyoo_api_middleware.dart';
 import 'package:myoo/myoo/src/middlewares/local_storage_middleware.dart';
@@ -8,12 +9,16 @@ import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
 
   runApp(MyooApp(
     store: Store<AppState>(
       appReducer,
-      middleware: [...createLocalStorageMiddleware(prefs), ...createKyooAPIMiddleware()],
+      middleware: [
+        ...createLocalStorageMiddleware(prefs),
+        ...createKyooAPIMiddleware()
+      ],
       initialState: AppState.initState()
     ),
   ));
@@ -25,10 +30,13 @@ class MyooApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(colorScheme: colorScheme),
-      home: const Text('Flutter Demo Home Page'),
+    return StoreProvider(
+      store: store,
+      child: MaterialApp(
+        title: 'Myoo',
+        theme: ThemeData(colorScheme: colorScheme),
+        home: const Text("Hello World"),
+      )
     );
   }
 }
