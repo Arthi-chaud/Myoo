@@ -1,9 +1,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:myoo/myoo/src/views/init_page.dart';
+import 'package:myoo/myoo/src/views/login_page.dart';
 
 Map<String, Widget Function()> routes = {
   '/init': () => const InitializationPage(),
+  '/login': () => const LoginPage(),
 };
 
 dynamic generateRoutes (RouteSettings settings) =>

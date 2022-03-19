@@ -16,17 +16,15 @@ class LoginForm extends StatelessWidget {
           FormInput(
             name: 'server',
             title: 'Server URL',
-            icon: Icon(Icons.language),
           ),
           FormInput(
             name: 'username',
             title: 'User name',
-            icon: Icon(Icons.account_circle),
           ),
           FormInput(
             name: 'password',
             title: 'Password',
-            icon: Icon(Icons.key),
+            isPassword: true,
           ),
         ],
       ),

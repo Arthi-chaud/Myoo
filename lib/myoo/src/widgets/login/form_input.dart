@@ -7,7 +7,7 @@ class FormInput extends StatelessWidget {
     Key? key,
     required this.name,
     required this.title,
-    required this.icon,
+    this.isPassword = false,
     this.validators = const []
   }) : super(key: key);
 
@@ -17,8 +17,8 @@ class FormInput extends StatelessWidget {
   /// Description of field for user
   final String title;
 
-  /// Leading icon in field
-  final Icon icon;
+  /// Is the Field's value something to obscure?
+  final bool isPassword;
 
   /// Field validators.
   /// A [FormInput] value is required by default
@@ -26,16 +26,34 @@ class FormInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-    FormBuilderTextField(
-      name: name,
-      decoration: InputDecoration(
-        helperText: title,
-        icon: icon
+    Card(
+      color: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20)
       ),
-      validator: FormBuilderValidators.compose([
-        FormBuilderValidators.required(context),
-        ...validators
-      ],
+      child: Padding(
+        padding: const EdgeInsets.only(left: 20, right: 20),
+        child: FormBuilderTextField(
+          name: name,
+          obscureText: isPassword,
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.primary
+          ),
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            label: Text(
+              title,
+              style: const TextStyle(
+                color: Colors.grey
+              )
+            ),
+          ),
+          validator: FormBuilderValidators.compose([
+            FormBuilderValidators.required(context),
+            ...validators
+          ],
+        )
+      )
     )
   );
 }
