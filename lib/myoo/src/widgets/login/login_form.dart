@@ -21,8 +21,8 @@ class LoginForm extends StatelessWidget {
               title: 'Server URL',
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 50, vertical: 10
+              padding: const EdgeInsets.only(
+                left: 50, right: 50, bottom: 10
               ),
               child: Divider(
                 thickness: 0,
@@ -39,14 +39,21 @@ class LoginForm extends StatelessWidget {
               isPassword: true,
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 30, left: 50, right: 50),
+              padding: const EdgeInsets.symmetric(horizontal: 50),
               child: FormButton(
                 label: 'Login',
-                onPressed: () => print("")
+                onPressed: () {
+                  _formKey.currentState?.save();
+                  if (_formKey.currentState?.validate() ?? false) {
+                    print(_formKey.currentState?.value);
+                  } else {
+                    print("validation failed");
+                  }
+                }
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 50),
               child: FormButton(
                 label: 'Register',
                 onPressed: () => print("")

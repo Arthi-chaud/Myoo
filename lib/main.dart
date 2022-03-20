@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/middlewares/kyoo_api_middleware.dart';
 import 'package:myoo/myoo/src/middlewares/local_storage_middleware.dart';
@@ -46,7 +47,10 @@ class MyooApp extends StatelessWidget {
             return null;
           }
           return generateRoutes(settings);
-        }
+        },
+        localizationsDelegates: const [
+          FormBuilderLocalizations.delegate
+        ],
       )
     );
   }

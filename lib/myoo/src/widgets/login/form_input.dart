@@ -26,33 +26,31 @@ class FormInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-    Card(
-      color: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20)
-      ),
-      child: Padding(
-        padding: const EdgeInsets.only(left: 30, right: 20),
-        child: FormBuilderTextField(
-          name: name,
-          obscureText: isPassword,
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.primary
+    Padding(
+      padding: const EdgeInsets.only(bottom: 15),
+      child: FormBuilderTextField(
+        name: name,
+        obscureText: isPassword,
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.primary
+        ),
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          border:  OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20)
           ),
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            label: Text(
-              title,
-              style: const TextStyle(
-                color: Colors.grey
-              )
-            ),
+          label: Text(
+            title,
+            style: const TextStyle(
+              color: Colors.grey
+            )
           ),
-          validator: FormBuilderValidators.compose([
-            FormBuilderValidators.required(context),
-            ...validators
-          ],
-        )
+        ),
+        validator: FormBuilderValidators.compose([
+          FormBuilderValidators.required(context),
+          ...validators
+        ],
       )
     )
   );
