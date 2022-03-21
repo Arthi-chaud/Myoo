@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:myoo/myoo/src/widgets/login/form_button.dart';
 import 'package:myoo/myoo/src/widgets/login/form_input.dart';
 
@@ -29,14 +30,20 @@ class LoginForm extends StatelessWidget {
                 color: Theme.of(context).colorScheme.surface,
               ),
             ),
-            const FormInput(
+            FormInput(
               name: 'username',
               title: 'User name',
+              validators: [
+                FormBuilderValidators.minLength(context, 4)
+              ],
             ),
-            const FormInput(
+            FormInput(
               name: 'password',
               title: 'Password',
               isPassword: true,
+              validators: [
+                FormBuilderValidators.minLength(context, 8)
+              ],
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50),

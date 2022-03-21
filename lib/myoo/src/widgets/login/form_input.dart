@@ -34,6 +34,7 @@ class FormInput extends StatelessWidget {
         style: TextStyle(
           color: Theme.of(context).colorScheme.onPrimary
         ),
+        cursorColor: Theme.of(context).colorScheme.onPrimary,
         decoration: InputDecoration(
           border:  OutlineInputBorder(
             borderRadius: BorderRadius.circular(20)
