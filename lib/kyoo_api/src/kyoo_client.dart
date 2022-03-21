@@ -13,7 +13,7 @@ typedef ServerURL = String;
 
 enum RequestType { get, post, put, delete }
 
-/// Client of a Kyoo Server, used to make requests to it
+/// Interface of a Kyoo Server, used to make requests to it
 @JsonSerializable()
 class KyooClient {
   /// String URL of the Kyoo server
@@ -24,26 +24,32 @@ class KyooClient {
   @JsonKey(defaultValue: null)
   String? jwt;
 
+  /// The server's Libraries
+  @JsonKey(ignore: true)
+  List<Library> serverLibraries;
+
   /// Default constructor
-  KyooClient({required this.serverURL, this.jwt});
+  KyooClient({required this.serverURL, this.jwt, this.serverLibraries = const []});
 
   factory KyooClient.fromJson(JSONData input) => _$KyooClientFromJson(input);
 
   JSONData toJson() => _$KyooClientToJson(this);
 
   /// Retrieves a list of $[count] [ResourcePreview]s, starting from [afterID] from the current server
-  Future<List<ResourcePreview>> getItems({int? afterID, int? count}) async {
+  /// If library is [null], fetches items from '/api/items', otherwise, fetch items from given collection
+  Future<List<ResourcePreview>> getItemsFrom({Library? library, int? afterID, int? count}) async {
     Map<String, dynamic> queryParams = {};
+    final String route = library == null ? '/items' : '/libraries/${library.slug}/items';
     if (afterID != null) {
-      queryParams['afterID'] = afterID;
+      queryParams['afterID'] = afterID.toString();
     }
     if (count != null) {
-      queryParams['count'] = count;
+      count = 51;
+      queryParams['count'] = count.toString();
     }
-    JSONData responseBody =
-        await _request(RequestType.get, '/items', params: queryParams);
-    return (responseBody['items'] as List<JSONData>)
-        .map((e) => ResourcePreview.fromJson(e))
+    JSONData responseBody = await _request(RequestType.get, route, params: queryParams);
+    return (responseBody['items'] as List)
+        .map((e) => ResourcePreview.fromJson(e as JSONData))
         .toList();
   }
 
@@ -87,13 +93,11 @@ class KyooClient {
   }
 
   /// Request Kyoo's API, the route must not start with '/api'
-  Future<JSONData> _request(RequestType type, String route,
-      {Map<String, dynamic>? body, Map<String, dynamic>? params}) async {
+  Future<JSONData> _request(RequestType type, String route, {Map<String, dynamic>? body, Map<String, dynamic>? params}) async {
     body ??= {};
-    params ??= {};
+    params ?? {};
     http.Response response;
-    Uri fullRoute =
-        Uri(host: serverURL, path: 'api$route', queryParameters: params);
+    Uri fullRoute = Uri.http(serverURL, 'api$route', params);
     final Map<String, String> headers = {
       'Content-type': 'application/json',
       'Accept': 'application/json',

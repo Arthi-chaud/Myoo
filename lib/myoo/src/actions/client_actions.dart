@@ -1,4 +1,6 @@
+import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/kyoo_api/src/kyoo_client.dart';
+import 'package:myoo/kyoo_api/src/models/library.dart';
 import 'package:myoo/myoo/src/actions/action.dart';
 
 /// Action when retrieving [KyooClient]s from storage ([SharedPreferences])
@@ -25,4 +27,14 @@ class UseClientAction extends ContainerAction<KyooClient> {
 /// Action when a [KyooClient] is disconnected (by user, or when a JWT rots)
 class DisconnectClientAction extends ContainerAction<KyooClient> {
   DisconnectClientAction(KyooClient toRemove) : super(content: toRemove);
+}
+
+/// Action when to fetch [Library]es of the current server of [KyooClient]
+class LoadLibraries extends ContainerAction<KyooClient> {
+  LoadLibraries(KyooClient client) : super(content: client);
+}
+
+/// Action when [Library]es of the current server of [KyooClient] are fetched
+class LoadedLibraries extends ContainerAction<List<Library>> {
+  LoadedLibraries(List<Library> libraries) : super(content: libraries);
 }

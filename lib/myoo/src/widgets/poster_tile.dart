@@ -38,6 +38,8 @@ class PosterTile extends StatelessWidget{
         CachedNetworkImage(
           imageUrl: imageURL,
           height: posterHeight,
+          width: posterWidth,
+          fit: BoxFit.cover,
           placeholder: (_, __) => emptyPoster(context),
           errorWidget: (_, __, ___) => emptyPoster(context)
         ),
@@ -49,6 +51,7 @@ class PosterTile extends StatelessWidget{
               title,
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: textSize,
                 color: getColorScheme(context).onPrimary

@@ -1,6 +1,7 @@
 import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/kyoo_api/src/kyoo_client.dart';
 import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
+import 'package:myoo/kyoo_api/src/models/library.dart';
 
 /// State of the Myoo App
 class AppState {
@@ -13,8 +14,8 @@ class AppState {
   /// Array of [resourcePreview], for example in list view
   final List<ResourcePreview>? previews;
 
-  /// Array of [resourcePreview], for example in list view
-  final List<ResourcePreview>? previews;
+  /// The current [Library] whose items are listed
+  final Library? currentLibrary;
 
   /// Current [TVSeries], it must hold related [Season]s
   final TVSeries? currentTVSeries;
@@ -29,68 +30,73 @@ class AppState {
   final bool isLoading;
 
   /// Default constructor
-  AppState(
-      {required this.isLoading,
-      required this.clients,
-      required this.currentClient,
-      required this.previews,
-      required this.currentMovie,
-      required this.currentTVSeries,
-      required this.currentSeason}) {
-    assert(clients?.contains(currentClient!) ?? true,
-        'The current client is not known');
+  AppState({
+    required this.isLoading,
+    required this.clients,
+    required this.currentClient,
+    required this.previews,
+    required this.currentMovie,
+    required this.currentLibrary,
+    required this.currentTVSeries,
+    required this.currentSeason}) {
+    assert(clients?.map((client) => client.serverURL).toList().contains(currentClient!.serverURL) ?? true, 'The current client is not known');
   }
 
   /// Initial state for [MyooApp], sets [isLoading] to true.
   /// The first thing done when initiating the [MyooApp] is to load [KyooClient]s
-  AppState.initState()
-      : isLoading = true,
-        currentClient = null,
-        clients = null,
-        previews = null,
-        currentMovie = null,
-        currentTVSeries = null,
-        currentSeason = null;
+  AppState.initState():
+    isLoading = true,
+    currentClient = null,
+    clients = null,
+    currentLibrary = null,
+    previews = null,
+    currentMovie = null,
+    currentTVSeries = null,
+    currentSeason = null;
 
   /// Copy constructor for easier copies
   AppState copyWith({
     List<KyooClient>? clients,
     KyooClient? currentClient,
     List<ResourcePreview>? previews,
+    Library? currentLibrary,
     TVSeries? currentTVSeries,
     Season? currentSeason,
     Movie? currentMovie,
     bool? isLoading,
-  }) =>
-      AppState(
-          currentClient: currentClient ?? this.currentClient,
-          isLoading: isLoading ?? this.isLoading,
-          clients: clients ?? this.clients,
-          previews: previews ?? this.previews,
-          currentMovie: currentMovie ?? this.currentMovie,
-          currentTVSeries: currentTVSeries ?? this.currentTVSeries,
-          currentSeason: currentSeason ?? this.currentSeason);
+  }) => AppState(
+    currentClient: currentClient ?? this.currentClient,
+    isLoading: isLoading ?? this.isLoading,
+    clients: clients ?? this.clients,
+    previews: previews ?? this.previews,
+    currentLibrary: currentLibrary ?? this.currentLibrary,
+    currentMovie: currentMovie ?? this.currentMovie,
+    currentTVSeries: currentTVSeries ?? this.currentTVSeries,
+    currentSeason: currentSeason ?? this.currentSeason
+  );
 
   @override
   int get hashCode =>
-      clients.hashCode ^
-      currentClient.hashCode ^
-      isLoading.hashCode ^
-      previews.hashCode ^
-      currentClient.hashCode ^
-      currentMovie.hashCode ^
-      currentTVSeries.hashCode ^
-      currentSeason.hashCode;
+    clients.hashCode ^
+    currentClient.hashCode ^
+    isLoading.hashCode ^
+    previews.hashCode ^
+    currentLibrary.hashCode ^
+    currentClient.hashCode ^
+    currentMovie.hashCode ^
+    currentTVSeries.hashCode ^
+    currentSeason.hashCode;
 
   @override
   bool operator ==(Object other) =>
-      other is AppState &&
-      clients == other.clients &&
-      currentClient == other.currentClient &&
-      isLoading == other.isLoading &&
-      previews == other.previews &&
-      currentClient == other.currentClient &&
-      currentMovie == other.currentMovie &&
-      currentTVSeries == other.currentTVSeries &&
-      currentSeason == other.currentSeason;
+    other is AppState &&
+    clients == other.clients &&
+    currentClient == other.currentClient &&
+    isLoading == other.isLoading &&
+    previews == other.previews &&
+    currentLibrary == other.currentLibrary &&
+    currentClient == other.currentClient &&
+    currentMovie == other.currentMovie &&
+    currentTVSeries == other.currentTVSeries &&
+    currentSeason == other.currentSeason;
 }

@@ -21,10 +21,8 @@ final currentSeasonReducers = combineReducers<Season?>([
 ]);
 
 final previewsReducers = combineReducers<List<ResourcePreview>?>([
-  TypedReducer<List<ResourcePreview>?, LoadedPreviewsAction>(
-      setResource<List<ResourcePreview>>),
-  TypedReducer<List<ResourcePreview>?, UnloadPreviewsAction>(
-      unsetResource<List<ResourcePreview>>)
+  TypedReducer<List<ResourcePreview>?, LoadedPreviewsAction>(setResource<List<ResourcePreview>>),
+  TypedReducer<List<ResourcePreview>?, UnloadPreviewsAction>(unsetResource<List<ResourcePreview>>)
 ]);
 
 T setResource<T>(T? oldValue, action) => (action as ContainerAction<T>).content;

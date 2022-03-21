@@ -21,12 +21,13 @@ class Collection extends IllustratedResource {
     String? poster,
     String? thumbnail,
   }) : super(
-            id: id,
-            name: name,
-            slug: slug,
-            overview: overview,
-            poster: poster,
-            thumbnail: thumbnail);
+    id: id,
+    name: name,
+    slug: slug,
+    overview: overview,
+    poster: poster,
+    thumbnail: thumbnail
+  );
 
   /// Unserialize [Collection] from [JSONData]
   factory Collection.fromJson(JSONData input) => _$CollectionFromJson(input);

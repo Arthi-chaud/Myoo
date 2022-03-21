@@ -22,12 +22,13 @@ class Video extends IllustratedResource {
     String? poster,
     String? thumbnail,
   }) : super(
-            id: id,
-            name: name,
-            slug: slug,
-            overview: overview,
-            poster: poster,
-            thumbnail: thumbnail);
+    id: id,
+    name: name,
+    slug: slug,
+    overview: overview,
+    poster: poster,
+    thumbnail: thumbnail
+  );
 
   /// Unserialize [Video] from [JSONData]
   factory Video.fromJson(JSONData input) => _$VideoFromJson(input);

@@ -28,12 +28,13 @@ class Season extends IllustratedResource {
     String? poster,
     String? thumbnail,
   }) : super(
-            id: id,
-            name: name,
-            slug: slug,
-            overview: overview,
-            poster: poster,
-            thumbnail: thumbnail);
+    id: id,
+    name: name,
+    slug: slug,
+    overview: overview,
+    poster: poster,
+    thumbnail: thumbnail
+  );
 
   /// Copy constructor to apply episodes
   Season copyWith({required List<Episode> episodes}) => Season(

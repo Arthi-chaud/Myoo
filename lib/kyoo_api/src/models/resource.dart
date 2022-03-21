@@ -13,20 +13,21 @@ class Resource {
   /// String identifier
   final Slug slug;
 
-  /// A display name for the resource
+  /// A display name for the Resource
   @JsonKey(readValue: getTitleFromJSON)
   final String name;
 
-  /// A description of the resource
+  /// A description of the Resource
   @JsonKey(defaultValue: "")
   final String overview;
 
   /// Default constructor
-  const Resource(
-      {required this.id,
-      required this.slug,
-      required this.name,
-      required this.overview});
+  const Resource({
+    required this.id,
+    required this.slug,
+    required this.name,
+    required this.overview
+  });
 
   /// Get the [Resource]'s title from JSON. It is usually in 'title', but sometimes in 'name'
   static Object? getTitleFromJSON(Map<dynamic, dynamic> input, String _) {

@@ -34,12 +34,13 @@ class TVSeries extends IllustratedResource {
     String? poster,
     String? thumbnail,
   }) : super(
-            id: id,
-            name: name,
-            slug: slug,
-            overview: overview,
-            poster: poster,
-            thumbnail: thumbnail);
+    id: id,
+    name: name,
+    slug: slug,
+    overview: overview,
+    poster: poster,
+    thumbnail: thumbnail
+  );
 
   factory TVSeries.fromJson(JSONData input) => _$TVSeriesFromJson(input);
 }

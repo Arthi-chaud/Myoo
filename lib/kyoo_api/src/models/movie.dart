@@ -30,13 +30,14 @@ class Movie extends Video {
     required this.genres,
     required this.trailer,
   }) : super(
-            id: id,
-            slug: slug,
-            name: name,
-            overview: overview,
-            releaseDate: releaseDate,
-            poster: poster,
-            thumbnail: thumbnail);
+    id: id,
+    slug: slug,
+    name: name,
+    overview: overview,
+    releaseDate: releaseDate,
+    poster: poster,
+    thumbnail: thumbnail
+  );
 
   /// Unserialize [Movie] from [JSONData]
   factory Movie.fromJson(JSONData input) => _$MovieFromJson(input);

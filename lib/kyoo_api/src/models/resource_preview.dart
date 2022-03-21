@@ -17,21 +17,22 @@ class ResourcePreview extends IllustratedResource {
   final ResourcePreviewType type;
 
   /// Default constructor
-  ResourcePreview(
-      {required this.type,
-      required int id,
-      required String slug,
-      required String name,
-      required String overview,
-      String? poster,
-      String? thumbnail})
-      : super(
-            id: id,
-            slug: slug,
-            name: name,
-            overview: overview,
-            poster: poster,
-            thumbnail: thumbnail);
+  ResourcePreview({
+    required this.type,
+    required int id,
+    required String slug,
+    required String name,
+    required String overview,
+    String? poster,
+    String? thumbnail
+  }) : super(
+    id: id,
+    slug: slug,
+    name: name,
+    overview: overview,
+    poster: poster,
+    thumbnail: thumbnail
+  );
 
   /// Unserialize [ResourcePreview] from [JSONData]
   factory ResourcePreview.fromJson(JSONData input) =>

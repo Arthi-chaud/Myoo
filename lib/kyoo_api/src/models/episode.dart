@@ -25,13 +25,14 @@ class Episode extends Video {
     required this.index,
     String? thumbnail,
   }) : super(
-            id: id,
-            name: name,
-            slug: slug,
-            overview: overview,
-            poster: null,
-            thumbnail: thumbnail,
-            releaseDate: releaseDate) {
+    id: id,
+    name: name,
+    slug: slug,
+    overview: overview,
+    poster: null,
+    thumbnail: thumbnail,
+    releaseDate: releaseDate
+  ) {
     assert(absoluteIndex != null || index != null,
         'Episode $name ($slug) has no set index');
   }
