@@ -33,17 +33,17 @@ class PosterTile extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) =>
-    SizedBox(
-      width: posterWidth,
-      child: Column(
-        children: [
-          CachedNetworkImage(
-            imageUrl: imageURL,
-            height: posterHeight,
-            placeholder: (_, __) => emptyPoster(context),
-            errorWidget: (_, __, ___) => emptyPoster(context)
-          ),
-          Padding(
+    Column(
+      children: [
+        CachedNetworkImage(
+          imageUrl: imageURL,
+          height: posterHeight,
+          placeholder: (_, __) => emptyPoster(context),
+          errorWidget: (_, __, ___) => emptyPoster(context)
+        ),
+        SizedBox(
+          width: posterWidth,
+          child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 5),
             child: Text(
               title,
@@ -55,16 +55,16 @@ class PosterTile extends StatelessWidget{
               ),
             ),
           ),
-          Text(
-            subtitle ?? '',
-            style: TextStyle(
-              fontSize: textSize,
-              overflow: TextOverflow.ellipsis,
-              color: getColorScheme(context).onPrimary,
-              fontWeight: FontWeight.w200
-            ),
+        ),
+        Text(
+          subtitle ?? '',
+          style: TextStyle(
+            fontSize: textSize * 0.8,
+            overflow: TextOverflow.ellipsis,
+            color: getColorScheme(context).onPrimary,
+            fontWeight: FontWeight.w200
           ),
-        ]
-      )
+        ),
+      ]
     );
 }
