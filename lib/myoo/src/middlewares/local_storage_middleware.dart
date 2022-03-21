@@ -24,10 +24,7 @@ const clientsDataKey = 'clients';
 List<KyooClient>? _loadRawStoredClients(SharedPreferences localStorage) =>
   localStorage
     .getStringList(clientsDataKey)
-    ?.map((e) {
-        print(e);
-        return KyooClient.fromJson(jsonDecode(e));
-      })
+    ?.map((e) => KyooClient.fromJson(jsonDecode(e)))
     .toList();
 
 /// Loads [KyooClient]s from Local Storage. On failure, returns [null]

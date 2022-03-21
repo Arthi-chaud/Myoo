@@ -6,6 +6,7 @@ import 'package:myoo/myoo/src/actions/client_actions.dart';
 import 'package:myoo/myoo/src/widgets/login_page/form_input.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/widgets/login_page/form_button.dart';
+import 'package:myoo/myoo/src/theme_data.dart';
 
 /// Form Page to Connect a [KyooClient] and add it to [AppState]
 class LoginPage extends StatelessWidget {
@@ -34,7 +35,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   child: Divider(
                     thickness: 0,
-                    color: Theme.of(context).colorScheme.surface,
+                    color: getColorScheme(context).surface,
                   ),
                 ),
                 Padding(
@@ -44,7 +45,6 @@ class LoginPage extends StatelessWidget {
                     onPressed: () {
                       _formKey.currentState?.save();
                       if (_formKey.currentState?.validate() ?? false) {
-                        print(_formKey.currentState?.value);
                         StoreProvider.of<AppState>(context).dispatch(
                             NewClientConnectedAction(
                               KyooClient(

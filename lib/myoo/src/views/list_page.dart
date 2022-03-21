@@ -1,4 +1,5 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:myoo/myoo/src/widgets/poster_tile.dart';
 
 /// Page to list all libraries and their content from a server
 class ListPage extends StatelessWidget {
@@ -6,8 +7,14 @@ class ListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return const Scaffold(
+      body: Center(
+        child: PosterTile(
+          imageURL: 'http://arthichaud.me/api/show/sophie-ellis-bextor-live-from-shepherds-bush-empire/poster2',
+          title: '1001 Pattes',
+          subtitle: '2001'
+        )
+      )
+    );
   }
-
 }

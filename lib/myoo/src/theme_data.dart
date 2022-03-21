@@ -12,6 +12,10 @@ const ColorScheme colorScheme = ColorScheme(
   onPrimary: Colors.white,
   onSecondary: Colors.white,
   onBackground: Colors.white,
-  surface: Color.fromARGB(255, 196, 196, 196),
+  surface: Color.fromARGB(255, 0x33, 0x33, 0x33),
   onSurface: Color.fromARGB(255, 113, 113, 113),
 );
+
+/// Retrieves color scheme from current context
+ColorScheme getColorScheme(BuildContext context) =>
+    Theme.of(context).colorScheme;

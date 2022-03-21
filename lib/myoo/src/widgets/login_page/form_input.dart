@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:myoo/myoo/src/theme_data.dart';
 
 class FormInput extends StatelessWidget {
   const FormInput({
@@ -32,9 +33,9 @@ class FormInput extends StatelessWidget {
         name: name,
         obscureText: isPassword,
         style: TextStyle(
-          color: Theme.of(context).colorScheme.onPrimary
+          color: getColorScheme(context).onPrimary
         ),
-        cursorColor: Theme.of(context).colorScheme.onPrimary,
+        cursorColor: getColorScheme(context).onPrimary,
         decoration: InputDecoration(
           border:  OutlineInputBorder(
             borderRadius: BorderRadius.circular(20)

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myoo/myoo/src/theme_data.dart';
 
 class FormButton extends StatelessWidget {
   const FormButton({Key? key, required this.onPressed, required this.label}) : super(key: key);
@@ -17,7 +18,7 @@ class FormButton extends StatelessWidget {
         child: Text(label),
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          primary: Theme.of(context).colorScheme.secondary,
+          primary: getColorScheme(context).secondary,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(10)

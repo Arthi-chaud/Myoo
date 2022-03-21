@@ -38,6 +38,7 @@ class MyooApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Myoo',
         theme: ThemeData(
+          brightness: Brightness.dark,
           colorScheme: colorScheme,
           scaffoldBackgroundColor: colorScheme.primary
         ),
