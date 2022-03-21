@@ -12,7 +12,7 @@ class InitializationPage extends StatelessWidget {
   /// If a currentClient is set, it is connected
   /// Otherwise, a login is required
   void onLoaded(Store<AppState> store, BuildContext context) {
-    final route = store.state.currentClient == null ? '/login' : '/home';
+    final route = store.state.currentClient == null ? '/login' : '/list';
     Future.delayed(const Duration(seconds: 2))
       .then((value) => Navigator.of(context).pushNamed(route));
   }

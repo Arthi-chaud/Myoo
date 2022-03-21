@@ -44,6 +44,7 @@ class LoginPage extends StatelessWidget {
                     onPressed: () {
                       _formKey.currentState?.save();
                       if (_formKey.currentState?.validate() ?? false) {
+                        print(_formKey.currentState?.value);
                         StoreProvider.of<AppState>(context).dispatch(
                             NewClientConnectedAction(
                               KyooClient(
@@ -51,7 +52,7 @@ class LoginPage extends StatelessWidget {
                               )
                             )
                         );
-                        Navigator.of(context).pushNamed('/home');
+                        Navigator.of(context).pushNamed('/list');
                       }
                     }
                   ),

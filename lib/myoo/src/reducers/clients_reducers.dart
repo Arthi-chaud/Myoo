@@ -34,7 +34,7 @@ KyooClient? _unsetCurrentClient(KyooClient? _, __) => null;
 /// Adds new [KyooClient] to [AppState]'s [KyooClient]s
 List<KyooClient> _addClient(List<KyooClient>? oldClients, action) => 
   List
-    .from(oldClients!)
+    .from(oldClients ?? [])
     ..add((action as ContainerAction<KyooClient>).content);
 
 /// Removes new [KyooClient] to [AppState]'s [KyooClient]s

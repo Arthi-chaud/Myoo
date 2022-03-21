@@ -24,14 +24,17 @@ const clientsDataKey = 'clients';
 List<KyooClient>? _loadRawStoredClients(SharedPreferences localStorage) =>
   localStorage
     .getStringList(clientsDataKey)
-    ?.map((e) => KyooClient.fromJson(jsonDecode(e)))
+    ?.map((e) {
+        print(e);
+        return KyooClient.fromJson(jsonDecode(e));
+      })
     .toList();
 
-/// Loads [KyooClient]s frmo Local Storage. On failure, returns [null]
+/// Loads [KyooClient]s from Local Storage. On failure, returns [null]
 void _setRawClients(SharedPreferences localStorage, List<KyooClient> clients) =>
   localStorage.setStringList(
     clientsDataKey,
-    clients.map((client) => client.toJson().toString()).toList()
+    clients.map((client) => jsonEncode(client)).toList()
   );
 
 /// Middleware to load [KyooClient]s from [LocalStorage].
@@ -52,7 +55,7 @@ Middleware<AppState> loadStoredClientsMiddleware(LocalStorage localStorage) {
 Middleware<AppState> storageSetClientsMiddleWare(LocalStorage localStorage) {
   return (Store<AppState> store, action, NextDispatcher next) {
     KyooClient newClient = ((action as ContainerAction<KyooClient>).content);
-    List<KyooClient> toStore = List.from([...store.state.clients!, newClient]);
+    List<KyooClient> toStore = List.from([...store.state.clients ?? [], newClient]);
 
     _setRawClients(localStorage, toStore);
     next(action);
