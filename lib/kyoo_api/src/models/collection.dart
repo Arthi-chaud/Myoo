@@ -1,15 +1,15 @@
 import 'package:myoo/kyoo_api/kyoo_api.dart';
-import 'package:myoo/kyoo_api/src/models/ressource_preview.dart';
+import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'collection.g.dart';
 
 /// A [Collection] groups related [Movie]s and/or [TVSeries]
 @JsonSerializable(anyMap: true)
-class Collection extends IllustratedRessource {
+class Collection extends IllustratedResource {
   /// The content of the [Collection]
   @JsonKey(name: 'shows', defaultValue: [])
-  List<RessourcePreview> content;
+  List<ResourcePreview> content;
 
   /// Default constructor
   Collection({
@@ -20,7 +20,13 @@ class Collection extends IllustratedRessource {
     required String overview,
     String? poster,
     String? thumbnail,
-  }) : super(id: id, name: name, slug: slug, overview: overview, poster: poster, thumbnail: thumbnail);
+  }) : super(
+            id: id,
+            name: name,
+            slug: slug,
+            overview: overview,
+            poster: poster,
+            thumbnail: thumbnail);
 
   /// Unserialize [Collection] from [JSONData]
   factory Collection.fromJson(JSONData input) => _$CollectionFromJson(input);

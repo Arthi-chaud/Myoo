@@ -1,75 +1,75 @@
 import 'package:myoo/kyoo_api/src/models/json.dart';
 import 'package:test/test.dart';
-import 'package:myoo/kyoo_api/src/models/illustrated_ressource.dart';
+import 'package:myoo/kyoo_api/src/models/illustrated_resource.dart';
 
 void main() {
-  group('Illustrated Ressource', () {
+  group('Illustrated Resource', () {
     test('Default constructor', () {
-      IllustratedRessource ressource = const IllustratedRessource(
-        id: 1,
-        slug: 'slug',
-        name: 'name',
-        overview: 'overview',
-        poster: 'poster',
-        thumbnail: 'thumbnail');
-      expect(ressource.id, 1);
-      expect(ressource.slug, 'slug');
-      expect(ressource.name, 'name');
-      expect(ressource.overview, 'overview');
-      expect(ressource.poster, 'poster');
-      expect(ressource.thumbnail, 'thumbnail');
+      IllustratedResource resource = const IllustratedResource(
+          id: 1,
+          slug: 'slug',
+          name: 'name',
+          overview: 'overview',
+          poster: 'poster',
+          thumbnail: 'thumbnail');
+      expect(resource.id, 1);
+      expect(resource.slug, 'slug');
+      expect(resource.name, 'name');
+      expect(resource.overview, 'overview');
+      expect(resource.poster, 'poster');
+      expect(resource.thumbnail, 'thumbnail');
     });
 
     test('Unserialize: All fields set', () {
       JSONData input = {
         'id': 12345,
         'slug': 'mySlug2',
-        'name': 'myRessource2',
+        'name': 'myResource2',
         'poster': 'poster',
         'thumbnail': 'thumbnail',
         'overview': 'overview'
       };
-      IllustratedRessource ressource = IllustratedRessource.fromJson(input);
-      expect(ressource.id, 12345);
-      expect(ressource.slug, 'mySlug2');
-      expect(ressource.name, 'myRessource2');
-      expect(ressource.overview, 'overview');
-      expect(ressource.poster, 'poster');
-      expect(ressource.thumbnail, 'thumbnail');
+      IllustratedResource resource = IllustratedResource.fromJson(input);
+      expect(resource.id, 12345);
+      expect(resource.slug, 'mySlug2');
+      expect(resource.name, 'myResource2');
+      expect(resource.overview, 'overview');
+      expect(resource.poster, 'poster');
+      expect(resource.thumbnail, 'thumbnail');
     });
 
     test('Unserialize: Undefined "thumbnail" and "poster"', () {
       JSONData input = {
         'id': 12345,
         'slug': 'mySlug2',
-        'name': 'myRessource2',
+        'name': 'myResource2',
         'overview': 'overview'
       };
-      IllustratedRessource ressource = IllustratedRessource.fromJson(input);
-      expect(ressource.id, 12345);
-      expect(ressource.slug, 'mySlug2');
-      expect(ressource.name, 'myRessource2');
-      expect(ressource.overview, 'overview');
-      expect(ressource.poster, null);
-      expect(ressource.thumbnail, null);
+      IllustratedResource resource = IllustratedResource.fromJson(input);
+      expect(resource.id, 12345);
+      expect(resource.slug, 'mySlug2');
+      expect(resource.name, 'myResource2');
+      expect(resource.overview, 'overview');
+      expect(resource.poster, null);
+      expect(resource.thumbnail, null);
     });
 
     test('Unserialize: "thumbnail" and "poster" explicitly at null', () {
       JSONData input = {
         'id': 12345,
         'slug': 'mySlug2',
-        'name': 'myRessource2',
+        'name': 'myResource2',
         'poster': null,
         'thumbnail': null,
         'overview': 'overview'
       };
-      IllustratedRessource ressource = IllustratedRessource.fromJson(input);
-      expect(ressource.id, 12345);
-      expect(ressource.slug, 'mySlug2');
-      expect(ressource.name, 'myRessource2');
-      expect(ressource.overview, 'overview');
-      expect(ressource.poster, null);
-      expect(ressource.thumbnail, null);
+      IllustratedResource resource = IllustratedResource.fromJson(input);
+      expect(resource.id, 12345);
+      expect(resource.slug, 'mySlug2');
+      expect(resource.name, 'myResource2');
+      expect(resource.overview, 'overview');
+      expect(resource.poster, null);
+      expect(resource.thumbnail, null);
     });
   });
 }

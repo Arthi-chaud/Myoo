@@ -3,7 +3,7 @@ import 'package:myoo/kyoo_api/src/models/genre.dart';
 import 'package:myoo/kyoo_api/src/models/trailer_url.dart';
 import 'package:myoo/kyoo_api/src/models/video.dart';
 import 'package:myoo/kyoo_api/src/models/json.dart';
-import 'package:myoo/kyoo_api/src/models/ressource.dart';
+import 'package:myoo/kyoo_api/src/models/resource.dart';
 
 part 'movie.g.dart';
 
@@ -29,7 +29,14 @@ class Movie extends Video {
     String? thumbnail,
     required this.genres,
     required this.trailer,
-  }) : super(id: id, slug: slug, name: name, overview: overview, releaseDate: releaseDate, poster: poster, thumbnail: thumbnail);
+  }) : super(
+            id: id,
+            slug: slug,
+            name: name,
+            overview: overview,
+            releaseDate: releaseDate,
+            poster: poster,
+            thumbnail: thumbnail);
 
   /// Unserialize [Movie] from [JSONData]
   factory Movie.fromJson(JSONData input) => _$MovieFromJson(input);

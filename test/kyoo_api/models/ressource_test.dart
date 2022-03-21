@@ -1,69 +1,70 @@
 import 'package:myoo/kyoo_api/src/models/json.dart';
 import 'package:test/test.dart';
-import 'package:myoo/kyoo_api/src/models/ressource.dart';
+import 'package:myoo/kyoo_api/src/models/resource.dart';
 
 void main() {
-  group('Ressource', () {
+  group('Resource', () {
     test('Default constructor', () {
-      Ressource ressource = const Ressource(id: 123, slug: 'mySlug', name: 'myRessource', overview: 'My overview');
-      expect(ressource.id, 123);
-      expect(ressource.slug, 'mySlug');
-      expect(ressource.name, 'myRessource');
-      expect(ressource.overview, 'My overview');
+      Resource resource = const Resource(
+          id: 123, slug: 'mySlug', name: 'myResource', overview: 'My overview');
+      expect(resource.id, 123);
+      expect(resource.slug, 'mySlug');
+      expect(resource.name, 'myResource');
+      expect(resource.overview, 'My overview');
     });
     test('Unserialize: All fields set (using "name")', () {
       JSONData input = {
         'id': 123,
         'slug': 'mySlug',
-        'name': 'myRessource',
+        'name': 'myResource',
         'overview': 'My overview'
       };
-      Ressource ressource = Ressource.fromJson(input);
-      expect(ressource.id, 123);
-      expect(ressource.slug, 'mySlug');
-      expect(ressource.name, 'myRessource');
-      expect(ressource.overview, 'My overview');
+      Resource resource = Resource.fromJson(input);
+      expect(resource.id, 123);
+      expect(resource.slug, 'mySlug');
+      expect(resource.name, 'myResource');
+      expect(resource.overview, 'My overview');
     });
 
     test('Unserialize: All fields set (using "title")', () {
       JSONData input = {
         'id': 123,
         'slug': 'mySlug',
-        'title': 'myRessource',
+        'title': 'myResource',
         'overview': 'My overview'
       };
-      Ressource ressource = Ressource.fromJson(input);
-      expect(ressource.id, 123);
-      expect(ressource.slug, 'mySlug');
-      expect(ressource.name, 'myRessource');
-      expect(ressource.overview, 'My overview');
+      Resource resource = Resource.fromJson(input);
+      expect(resource.id, 123);
+      expect(resource.slug, 'mySlug');
+      expect(resource.name, 'myResource');
+      expect(resource.overview, 'My overview');
     });
 
     test('Unserialize: "Overview" at null', () {
       JSONData input = {
         'id': 1234,
         'slug': 'mySlug1',
-        'name': 'myRessource1',
+        'name': 'myResource1',
         'overview': null
       };
-      Ressource ressource = Ressource.fromJson(input);
-      expect(ressource.id, 1234);
-      expect(ressource.slug, 'mySlug1');
-      expect(ressource.name, 'myRessource1');
-      expect(ressource.overview, '');
+      Resource resource = Resource.fromJson(input);
+      expect(resource.id, 1234);
+      expect(resource.slug, 'mySlug1');
+      expect(resource.name, 'myResource1');
+      expect(resource.overview, '');
     });
 
     test('Unserialize: Undefined "Overview"', () {
       JSONData input = {
         'id': 12345,
         'slug': 'mySlug2',
-        'name': 'myRessource2',
+        'name': 'myResource2',
       };
-      Ressource ressource = Ressource.fromJson(input);
-      expect(ressource.id, 12345);
-      expect(ressource.slug, 'mySlug2');
-      expect(ressource.name, 'myRessource2');
-      expect(ressource.overview, '');
+      Resource resource = Resource.fromJson(input);
+      expect(resource.id, 12345);
+      expect(resource.slug, 'mySlug2');
+      expect(resource.name, 'myResource2');
+      expect(resource.overview, '');
     });
   });
 }

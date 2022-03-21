@@ -2,33 +2,33 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:myoo/kyoo_api/src/models/json.dart';
 import 'package:myoo/kyoo_api/src/models/slug.dart';
 
-part 'ressource.g.dart';
+part 'resource.g.dart';
 
 /// A resource is an Object from the Kyoo API that can be identified with an id, a slug, an overview and a name  (for humans)
 @JsonSerializable()
-class Ressource {
+class Resource {
   /// Unique identifier from Kyoo's Database
   final int id;
 
   /// String identifier
   final Slug slug;
 
-  /// A display name for the ressource
+  /// A display name for the resource
   @JsonKey(readValue: getTitleFromJSON)
   final String name;
 
-  /// A description of the ressource
+  /// A description of the resource
   @JsonKey(defaultValue: "")
   final String overview;
 
   /// Default constructor
-  const Ressource({
-    required this.id,
-    required this.slug,
-    required this.name,
-    required this.overview
-  });
-  /// Get the [Ressource]'s title from JSON. It is usually in 'title', but sometimes in 'name'
+  const Resource(
+      {required this.id,
+      required this.slug,
+      required this.name,
+      required this.overview});
+
+  /// Get the [Resource]'s title from JSON. It is usually in 'title', but sometimes in 'name'
   static Object? getTitleFromJSON(Map<dynamic, dynamic> input, String _) {
     if (input.containsKey('name')) {
       return input['name'];
@@ -36,6 +36,6 @@ class Ressource {
     return input['title'];
   }
 
-  /// Unserialize [Ressource] from [JSONData]
-  factory Ressource.fromJson(JSONData input) => _$RessourceFromJson(input);
+  /// Unserialize [Resource] from [JSONData]
+  factory Resource.fromJson(JSONData input) => _$ResourceFromJson(input);
 }

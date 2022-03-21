@@ -7,33 +7,32 @@ void main() {
   var genres = ['Action', 'Adventure', "Express"];
   group('Movie', () {
     test('Default constructor', () {
-      Movie ressource = Movie(
-        id: 1,
-        slug: 'slug',
-        name: 'name',
-        overview: 'overview',
-        poster: 'poster',
-        thumbnail: 'thumbnail',
-        releaseDate: now,
-        genres: genres,
-        trailer: "trailer"
-      );
-      expect(ressource.id, 1);
-      expect(ressource.slug, 'slug');
-      expect(ressource.name, 'name');
-      expect(ressource.overview, 'overview');
-      expect(ressource.poster, 'poster');
-      expect(ressource.thumbnail, 'thumbnail');
-      expect(ressource.releaseDate, now);
-      expect(ressource.genres, genres);
-      expect(ressource.trailer, 'trailer');
+      Movie resource = Movie(
+          id: 1,
+          slug: 'slug',
+          name: 'name',
+          overview: 'overview',
+          poster: 'poster',
+          thumbnail: 'thumbnail',
+          releaseDate: now,
+          genres: genres,
+          trailer: "trailer");
+      expect(resource.id, 1);
+      expect(resource.slug, 'slug');
+      expect(resource.name, 'name');
+      expect(resource.overview, 'overview');
+      expect(resource.poster, 'poster');
+      expect(resource.thumbnail, 'thumbnail');
+      expect(resource.releaseDate, now);
+      expect(resource.genres, genres);
+      expect(resource.trailer, 'trailer');
     });
 
     test('Unserialize: All fields set', () {
       JSONData input = {
         'id': 12345,
         'slug': 'mySlug2',
-        'name': 'myRessource2',
+        'name': 'myResource2',
         'poster': 'poster',
         'thumbnail': 'thumbnail',
         'overview': 'overview',
@@ -45,39 +44,38 @@ void main() {
           {'id': 3, 'name': 'Express'}
         ]
       };
-      Movie ressource = Movie.fromJson(input);
-      expect(ressource.id, 12345);
-      expect(ressource.slug, 'mySlug2');
-      expect(ressource.name, 'myRessource2');
-      expect(ressource.overview, 'overview');
-      expect(ressource.poster, 'poster');
-      expect(ressource.thumbnail, 'thumbnail');
-      expect(ressource.releaseDate, now);
-      expect(ressource.genres, genres);
-      expect(ressource.trailer, 'trailer');
+      Movie resource = Movie.fromJson(input);
+      expect(resource.id, 12345);
+      expect(resource.slug, 'mySlug2');
+      expect(resource.name, 'myResource2');
+      expect(resource.overview, 'overview');
+      expect(resource.poster, 'poster');
+      expect(resource.thumbnail, 'thumbnail');
+      expect(resource.releaseDate, now);
+      expect(resource.genres, genres);
+      expect(resource.trailer, 'trailer');
     });
 
     test('Unserialize: Undefined "genres" and "trailer"', () {
       JSONData input = {
         'id': 12345,
         'slug': 'mySlug2',
-        'name': 'myRessource2',
+        'name': 'myResource2',
         'poster': 'poster',
         'thumbnail': 'thumbnail',
         'overview': 'overview',
         'releaseDate': now.toIso8601String(),
       };
-      Movie ressource = Movie.fromJson(input);
-      expect(ressource.id, 12345);
-      expect(ressource.slug, 'mySlug2');
-      expect(ressource.name, 'myRessource2');
-      expect(ressource.overview, 'overview');
-      expect(ressource.poster, 'poster');
-      expect(ressource.thumbnail, 'thumbnail');
-      expect(ressource.releaseDate, now);
-      expect(ressource.genres, []);
-      expect(ressource.trailer, null);
+      Movie resource = Movie.fromJson(input);
+      expect(resource.id, 12345);
+      expect(resource.slug, 'mySlug2');
+      expect(resource.name, 'myResource2');
+      expect(resource.overview, 'overview');
+      expect(resource.poster, 'poster');
+      expect(resource.thumbnail, 'thumbnail');
+      expect(resource.releaseDate, now);
+      expect(resource.genres, []);
+      expect(resource.trailer, null);
     });
-
   });
 }

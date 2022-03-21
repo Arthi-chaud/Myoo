@@ -1,13 +1,13 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:myoo/kyoo_api/src/models/illustrated_ressource.dart';
+import 'package:myoo/kyoo_api/src/models/illustrated_resource.dart';
 import 'package:myoo/kyoo_api/src/models/json.dart';
-import 'package:myoo/kyoo_api/src/models/ressource.dart';
+import 'package:myoo/kyoo_api/src/models/resource.dart';
 
 part 'video.g.dart';
 
-/// A [IllustratedRessource] that has duration and an air date
+/// A [IllustratedResource] that has duration and an air date
 @JsonSerializable()
-class Video extends IllustratedRessource {
+class Video extends IllustratedResource {
   /// Date of the [Video]'s first air, or day of release
   @JsonKey(readValue: getReleaseDateFromJSON)
   final DateTime releaseDate;
@@ -21,7 +21,13 @@ class Video extends IllustratedRessource {
     required String overview,
     String? poster,
     String? thumbnail,
-  }) : super(id: id, name: name, slug: slug, overview: overview, poster: poster, thumbnail: thumbnail);
+  }) : super(
+            id: id,
+            name: name,
+            slug: slug,
+            overview: overview,
+            poster: poster,
+            thumbnail: thumbnail);
 
   /// Unserialize [Video] from [JSONData]
   factory Video.fromJson(JSONData input) => _$VideoFromJson(input);
