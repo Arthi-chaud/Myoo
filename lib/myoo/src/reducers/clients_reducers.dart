@@ -22,6 +22,7 @@ final currentClientReducers = combineReducers<KyooClient?>([
 /// Sets [AppState]'s current [KyooClient] 
 KyooClient? _setCurrentClient(KyooClient? oldClient, action) {
   if (action is ContainerAction<KyooClient>) {
+    print("Using client fro server ${action.content.serverURL}");
     return action.content;
   } else {
     return (action as ContainerAction<List<KyooClient>>).content.first;
