@@ -11,7 +11,7 @@ class ListPage extends StatelessWidget {
       body: Center(
         child: PosterTile(
           imageURL: 'http://arthichaud.me/api/show/sophie-ellis-bextor-live-from-shepherds-bush-empire/poster2',
-          title: '1001 Pattes',
+          title: '1001 Pattes et ses supers ami',
           subtitle: '2001'
         )
       )
