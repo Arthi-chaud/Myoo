@@ -8,7 +8,6 @@ AppState appReducer(AppState oldState, action) => AppState(
     isLoading: loadingReducers(oldState.isLoading, action),
     clients: clientsReducers(oldState.clients, action),
     currentClient: currentClientReducers(oldState.currentClient, action),
-    previews: previewsReducers(oldState.previews, action),
     currentLibrary: currentLibraryReducers(oldState.currentLibrary, action),
     currentMovie: currentMovieReducers(oldState.currentMovie, action),
     currentTVSeries: currentTVSeriesReducers(oldState.currentTVSeries, action),

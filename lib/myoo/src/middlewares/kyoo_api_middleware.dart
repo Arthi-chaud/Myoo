@@ -3,12 +3,13 @@ import 'package:myoo/kyoo_api/src/kyoo_client.dart';
 import 'package:myoo/kyoo_api/src/models/slug.dart';
 import 'package:myoo/myoo/src/actions/action.dart';
 import 'package:myoo/myoo/src/actions/client_actions.dart';
+import 'package:myoo/myoo/src/actions/library_actions.dart';
 import 'package:myoo/myoo/src/actions/loading_actions.dart';
 import 'package:myoo/myoo/src/actions/movie_actions.dart';
-import 'package:myoo/myoo/src/actions/previews_actions.dart';
 import 'package:myoo/myoo/src/actions/season_actions.dart';
 import 'package:myoo/myoo/src/actions/tv_series_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
+import 'package:myoo/myoo/src/models/library_content.dart';
 import 'package:redux/redux.dart';
 
 /// Returns list of middlewares related to [KyooAPI]
@@ -17,7 +18,7 @@ List<Middleware<AppState>> createKyooAPIMiddleware() => [
   TypedMiddleware<AppState, LoadSeasonAction>(loadSeason()),
   TypedMiddleware<AppState, LoadTVSeriesAction>(loadTVSeries()),
   TypedMiddleware<AppState, LoadLibraries>(loadLibraries()),
-  TypedMiddleware<AppState, LoadPreviewsFromLibrary>(loadItems()),
+  TypedMiddleware<AppState, LoadContentFromLibrary>(loadItems()),
 ];
 
 /// Retrieve [Movie] from [AppState]'s current [KyooClient] and dispatches it using [LoadedMovieAction]
@@ -61,12 +62,17 @@ Middleware<AppState> loadLibraries() =>
 Middleware<AppState> loadItems() =>
   (Store<AppState> store, action, NextDispatcher next) {
     next(action);
+    LibraryContent currentLibrary = store.state.currentLibrary!;
     store.state.currentClient!
       .getItemsFrom(
-        library: store.state.currentLibrary,
-        afterID: store.state.previews?.last.id)
+        library: currentLibrary.library,
+        afterID: currentLibrary.content.isEmpty ? null : currentLibrary.content.last.id)
       .then((items) {
-        store.dispatch(LoadedPreviewsAction(items));
+        if (items.isEmpty) {
+          store.dispatch(LibraryIsFullAction());
+        } else {
+          store.dispatch(LoadedContentFromLibraryAction(items));
+        }
         store.dispatch(LoadedAction());
       });
   };

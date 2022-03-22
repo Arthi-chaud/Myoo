@@ -2,6 +2,7 @@ import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/kyoo_api/src/kyoo_client.dart';
 import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
 import 'package:myoo/kyoo_api/src/models/library.dart';
+import 'package:myoo/myoo/src/models/library_content.dart';
 
 /// State of the Myoo App
 class AppState {
@@ -11,11 +12,8 @@ class AppState {
   /// The current [KyooClient] from which the requests must be made with
   final KyooClient? currentClient;
 
-  /// Array of [resourcePreview], for example in list view
-  final List<ResourcePreview>? previews;
-
   /// The current [Library] whose items are listed
-  final Library? currentLibrary;
+  final LibraryContent? currentLibrary;
 
   /// Current [TVSeries], it must hold related [Season]s
   final TVSeries? currentTVSeries;
@@ -34,7 +32,6 @@ class AppState {
     required this.isLoading,
     required this.clients,
     required this.currentClient,
-    required this.previews,
     required this.currentMovie,
     required this.currentLibrary,
     required this.currentTVSeries,
@@ -49,7 +46,6 @@ class AppState {
     currentClient = null,
     clients = null,
     currentLibrary = null,
-    previews = null,
     currentMovie = null,
     currentTVSeries = null,
     currentSeason = null;
@@ -59,7 +55,7 @@ class AppState {
     List<KyooClient>? clients,
     KyooClient? currentClient,
     List<ResourcePreview>? previews,
-    Library? currentLibrary,
+    LibraryContent? currentLibrary,
     TVSeries? currentTVSeries,
     Season? currentSeason,
     Movie? currentMovie,
@@ -68,7 +64,6 @@ class AppState {
     currentClient: currentClient ?? this.currentClient,
     isLoading: isLoading ?? this.isLoading,
     clients: clients ?? this.clients,
-    previews: previews ?? this.previews,
     currentLibrary: currentLibrary ?? this.currentLibrary,
     currentMovie: currentMovie ?? this.currentMovie,
     currentTVSeries: currentTVSeries ?? this.currentTVSeries,
@@ -80,7 +75,6 @@ class AppState {
     clients.hashCode ^
     currentClient.hashCode ^
     isLoading.hashCode ^
-    previews.hashCode ^
     currentLibrary.hashCode ^
     currentClient.hashCode ^
     currentMovie.hashCode ^
@@ -93,7 +87,6 @@ class AppState {
     clients == other.clients &&
     currentClient == other.currentClient &&
     isLoading == other.isLoading &&
-    previews == other.previews &&
     currentLibrary == other.currentLibrary &&
     currentClient == other.currentClient &&
     currentMovie == other.currentMovie &&

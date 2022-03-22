@@ -3,9 +3,10 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:lazy_loading_list/lazy_loading_list.dart';
 import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
 import 'package:myoo/myoo/src/actions/client_actions.dart';
+import 'package:myoo/myoo/src/actions/library_actions.dart';
 import 'package:myoo/myoo/src/actions/loading_actions.dart';
-import 'package:myoo/myoo/src/actions/previews_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
+import 'package:myoo/myoo/src/models/library_content.dart';
 import 'package:myoo/myoo/src/widgets/loading_widget.dart';
 import 'package:myoo/myoo/src/widgets/poster_tile.dart';
 
@@ -20,9 +21,10 @@ class ListPage extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: StoreBuilder<AppState>(
           onInit: (store) {
+            store.dispatch(SetCurrentLibraryAction(const LibraryContent(fullyLoaded: false, content: [])));
             store.dispatch(LoadAction());
             store.dispatch(LoadLibraries(store.state.currentClient!));
-            store.dispatch(LoadPreviewsFromLibrary(store.state.currentLibrary));
+            store.dispatch(LoadContentFromLibrary(store.state.currentLibrary));
           },
           builder: (context, store) {
             if (store.state.isLoading && store.state.currentLibrary == null) {
@@ -33,17 +35,17 @@ class ListPage extends StatelessWidget {
                 crossAxisCount: 3,
                 childAspectRatio: 1 / 2,
               ),
-              itemCount: store.state.previews!.length,
+              itemCount: store.state.currentLibrary!.content.length,
               itemBuilder: (context, index) {
-                ResourcePreview preview = store.state.previews![index];
+                ResourcePreview preview = store.state.currentLibrary!.content[index];
                 return LazyLoadingList(
-                  loadMore: () => store.dispatch(LoadPreviewsFromLibrary(store.state.currentLibrary)),
+                  loadMore: () => store.dispatch(LoadContentFromLibrary(store.state.currentLibrary)),
                   child: PosterTile(
                     imageURL: preview.poster,
                     title: preview.name,
                   ),
                   index: index,
-                  hasMore: true
+                  hasMore: store.state.currentLibrary!.fullyLoaded == false
                 );
               }
             );
