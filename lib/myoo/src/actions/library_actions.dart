@@ -1,5 +1,3 @@
-import 'package:myoo/kyoo_api/src/kyoo_client.dart';
-import 'package:myoo/kyoo_api/src/models/illustrated_resource.dart';
 import 'package:myoo/kyoo_api/src/models/library.dart';
 import 'package:myoo/myoo/src/actions/action.dart';
 
@@ -11,4 +9,3 @@ class SetCurrentLibraryAction extends ContainerAction<Library> {
 
 /// Action to set currentLibrary from [AppState] to null
 class UnsetCurrentLibraryAction extends Action {}
-

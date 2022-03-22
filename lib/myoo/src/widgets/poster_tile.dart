@@ -7,7 +7,8 @@ import 'package:myoo/myoo/src/theme_data.dart';
 /// It is not used for an item's detail pages
 class PosterTile extends StatelessWidget{
   /// URL of the image to display
-  final String imageURL;
+  /// If null, display a empty, grey poster
+  final String? imageURL;
 
   /// Title of the poster
   final String title;
@@ -35,14 +36,16 @@ class PosterTile extends StatelessWidget{
   Widget build(BuildContext context) =>
     Column(
       children: [
-        CachedNetworkImage(
-          imageUrl: imageURL,
-          height: posterHeight,
-          width: posterWidth,
-          fit: BoxFit.cover,
-          placeholder: (_, __) => emptyPoster(context),
-          errorWidget: (_, __, ___) => emptyPoster(context)
-        ),
+        imageURL != null ?
+          CachedNetworkImage(
+            imageUrl: imageURL!,
+            height: posterHeight,
+            width: posterWidth,
+            fit: BoxFit.cover,
+            placeholder: (_, __) => emptyPoster(context),
+            errorWidget: (_, __, ___) => emptyPoster(context)
+          )
+        : emptyPoster(context),
         SizedBox(
           width: posterWidth,
           child: Padding(

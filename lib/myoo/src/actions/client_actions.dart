@@ -1,4 +1,3 @@
-import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/kyoo_api/src/kyoo_client.dart';
 import 'package:myoo/kyoo_api/src/models/library.dart';
 import 'package:myoo/myoo/src/actions/action.dart';

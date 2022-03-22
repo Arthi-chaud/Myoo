@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
 import 'package:myoo/myoo/src/actions/client_actions.dart';
 import 'package:myoo/myoo/src/actions/loading_actions.dart';
@@ -34,7 +33,7 @@ class ListPage extends StatelessWidget {
               children: [
                 for (ResourcePreview item in store.state.previews!)
                   PosterTile(
-                    imageURL: item.poster ?? '',
+                    imageURL: item.poster,
                     title: item.name,
                     subtitle: '',
 

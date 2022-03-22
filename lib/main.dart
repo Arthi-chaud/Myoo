@@ -44,7 +44,7 @@ class MyooApp extends StatelessWidget {
         ),
         initialRoute: '/init',
         onGenerateRoute: (settings) {
-          if (settings.name == Navigator.defaultRouteName) {
+          if (settings.name == '/') {
             return null;
           }
           return generateRoutes(settings);
