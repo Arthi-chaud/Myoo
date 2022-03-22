@@ -39,12 +39,13 @@ class KyooClient {
   /// If library is [null], fetches items from '/api/items', otherwise, fetch items from given collection
   Future<List<ResourcePreview>> getItemsFrom({Library? library, int? afterID, int? count}) async {
     Map<String, dynamic> queryParams = {};
-    count ??= 51;
     final String route = library == null ? '/items' : '/libraries/${library.slug}/items';
     if (afterID != null) {
       queryParams['afterID'] = afterID.toString();
     }
-    queryParams['limit'] = count.toString();
+    if (count != null) {
+      queryParams['limit'] = count.toString();
+    }
     JSONData responseBody = await _request(RequestType.get, route, params: queryParams);
     return (responseBody['items'] as List)
       .map((e) => ResourcePreview.fromJson(e as JSONData))
