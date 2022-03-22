@@ -29,6 +29,10 @@ class ListPage extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: getColorScheme(context).background,
             elevation: 30,
+            title: Text(
+              Uri.parse(store.state.currentClient!.serverURL).toString(),
+              style: TextStyle(fontSize: 15, color: getColorScheme(context).onBackground)
+            ),
             actions: [
               DropdownButton<String?>(
                 value: store.state.currentLibrary?.library?.name,
