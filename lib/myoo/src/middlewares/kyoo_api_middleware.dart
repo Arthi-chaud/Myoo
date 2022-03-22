@@ -3,6 +3,7 @@ import 'package:myoo/kyoo_api/src/kyoo_client.dart';
 import 'package:myoo/kyoo_api/src/models/slug.dart';
 import 'package:myoo/myoo/src/actions/action.dart';
 import 'package:myoo/myoo/src/actions/client_actions.dart';
+import 'package:myoo/myoo/src/actions/collection_actions.dart';
 import 'package:myoo/myoo/src/actions/library_actions.dart';
 import 'package:myoo/myoo/src/actions/loading_actions.dart';
 import 'package:myoo/myoo/src/actions/movie_actions.dart';
@@ -17,6 +18,7 @@ List<Middleware<AppState>> createKyooAPIMiddleware() => [
   TypedMiddleware<AppState, LoadMovieAction>(loadMovie()),
   TypedMiddleware<AppState, LoadSeasonAction>(loadSeason()),
   TypedMiddleware<AppState, LoadTVSeriesAction>(loadTVSeries()),
+  TypedMiddleware<AppState, LoadCollectionAction>(loadCollection()),
   TypedMiddleware<AppState, LoadLibraries>(loadLibraries()),
   TypedMiddleware<AppState, LoadContentFromLibrary>(loadItems()),
 ];
@@ -30,7 +32,7 @@ Middleware<AppState> loadMovie() =>
       .then((movie) => store.dispatch(LoadedMovieAction(movie)));
   };
 
-/// Retrieve [TVSeries] from [AppState]'s current [KyooClient] and dispatches it using [LoadTVSeriesAction]
+/// Retrieve [TVSeries] from [AppState]'s current [KyooClient] and dispatches it using [LoadedTVSeriesAction]
 Middleware<AppState> loadTVSeries() =>
   (Store<AppState> store, action, NextDispatcher next) {
     next(action);
@@ -39,7 +41,7 @@ Middleware<AppState> loadTVSeries() =>
       .then((movie) => store.dispatch(LoadedTVSeriesAction(movie)));
   };
 
-/// Retrieve [Season] from [AppState]'s current [KyooClient] and dispatches it using [LoadSeasonAction]
+/// Retrieve [Season] from [AppState]'s current [KyooClient] and dispatches it using [LoadedSeasonAction]
 Middleware<AppState> loadSeason() =>
   (Store<AppState> store, action, NextDispatcher next) {
     next(action);
@@ -47,6 +49,16 @@ Middleware<AppState> loadSeason() =>
     store.state.currentClient!
       .getSeason(seasonSlug)
       .then((season) => store.dispatch(LoadedSeasonAction(season)));
+  };
+
+/// Retrieve [Collection] from [AppState]'s current [KyooClient] and dispatches it using [LoadedCollectionAction]
+Middleware<AppState> loadCollection() =>
+  (Store<AppState> store, action, NextDispatcher next) {
+    next(action);
+    Slug collectionSlug = (action as ContainerAction<Slug>).content;
+    store.state.currentClient!
+      .getCollection(collectionSlug)
+      .then((collection) => store.dispatch(LoadedCollectionAction(collection)));
   };
 
 /// Retrieves [Library]es from currently connected [KyooClient] in [AppState]

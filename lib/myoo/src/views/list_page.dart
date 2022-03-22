@@ -5,8 +5,11 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:lazy_loading_list/lazy_loading_list.dart';
 import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
 import 'package:myoo/myoo/src/actions/client_actions.dart';
+import 'package:myoo/myoo/src/actions/collection_actions.dart';
 import 'package:myoo/myoo/src/actions/library_actions.dart';
 import 'package:myoo/myoo/src/actions/loading_actions.dart';
+import 'package:myoo/myoo/src/actions/movie_actions.dart';
+import 'package:myoo/myoo/src/actions/tv_series_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/models/library_content.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
@@ -71,15 +74,34 @@ class ListPage extends StatelessWidget {
               ResourcePreview preview = store.state.currentLibrary!.content[index];
               return LazyLoadingList(
                 loadMore: () => store.dispatch(LoadContentFromLibrary(store.state.currentLibrary)),
-                child: PosterTile(
-                  imageURL: preview.poster,
-                  title: preview.name,
-                  subtitle: preview.maxDate == null || preview.maxDate?.year == preview.minDate?.year
-                    ? preview.minDate?.year.toString()
-                    : "${preview.minDate!.year.toString()} - ${preview.maxDate!.year.toString()}",
-                ),
+                hasMore: store.state.currentLibrary!.fullyLoaded == false,
                 index: index,
-                hasMore: store.state.currentLibrary!.fullyLoaded == false
+                child: InkWell(
+                  onTap: (() {
+                    switch (preview.type) {
+                      case ResourcePreviewType.collection:
+                        store.dispatch(LoadCollectionAction(preview.slug));
+                        Navigator.of(context).pushNamed('/collection');
+                        break;
+                      case ResourcePreviewType.movie:
+                        store.dispatch(LoadMovieAction(preview.slug));
+                        Navigator.of(context).pushNamed('/movie');
+                        break;
+                      case ResourcePreviewType.series:
+                        store.dispatch(LoadTVSeriesAction(preview.slug));
+                        Navigator.of(context).pushNamed('/series');
+                        break;
+                      default:
+                    }
+                  }),
+                  child: PosterTile(
+                    imageURL: preview.poster,
+                    title: preview.name,
+                    subtitle: preview.maxDate == null || preview.maxDate?.year == preview.minDate?.year
+                      ? preview.minDate?.year.toString()
+                      : "${preview.minDate!.year.toString()} - ${preview.maxDate!.year.toString()}",
+                  ),
+                )
               );
             }
           )

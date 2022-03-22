@@ -1,5 +1,6 @@
 import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/kyoo_api/src/kyoo_client.dart';
+import 'package:myoo/kyoo_api/src/models/collection.dart';
 import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
 import 'package:myoo/kyoo_api/src/models/library.dart';
 import 'package:myoo/myoo/src/models/library_content.dart';
@@ -18,6 +19,9 @@ class AppState {
   /// Current [TVSeries], it must hold related [Season]s
   final TVSeries? currentTVSeries;
 
+  /// Current [Collection], it must hold related [ResourcePreview]s
+  final Collection? currentCollection;
+
   /// Current [Season], it must hold related [Episode]s
   final Season? currentSeason;
 
@@ -35,6 +39,7 @@ class AppState {
     required this.currentMovie,
     required this.currentLibrary,
     required this.currentTVSeries,
+    required this.currentCollection,
     required this.currentSeason}) {
     assert(clients?.map((client) => client.serverURL).toList().contains(currentClient!.serverURL) ?? true, 'The current client is not known');
   }
@@ -48,6 +53,7 @@ class AppState {
     currentLibrary = null,
     currentMovie = null,
     currentTVSeries = null,
+    currentCollection = null,
     currentSeason = null;
 
   /// Copy constructor for easier copies
@@ -59,6 +65,7 @@ class AppState {
     TVSeries? currentTVSeries,
     Season? currentSeason,
     Movie? currentMovie,
+    Collection? currentCollection,
     bool? isLoading,
   }) => AppState(
     currentClient: currentClient ?? this.currentClient,
@@ -67,7 +74,8 @@ class AppState {
     currentLibrary: currentLibrary ?? this.currentLibrary,
     currentMovie: currentMovie ?? this.currentMovie,
     currentTVSeries: currentTVSeries ?? this.currentTVSeries,
-    currentSeason: currentSeason ?? this.currentSeason
+    currentSeason: currentSeason ?? this.currentSeason,
+    currentCollection: currentCollection ?? this.currentCollection
   );
 
   @override
@@ -79,6 +87,7 @@ class AppState {
     currentClient.hashCode ^
     currentMovie.hashCode ^
     currentTVSeries.hashCode ^
+    currentCollection.hashCode ^
     currentSeason.hashCode;
 
   @override
@@ -91,5 +100,6 @@ class AppState {
     currentClient == other.currentClient &&
     currentMovie == other.currentMovie &&
     currentTVSeries == other.currentTVSeries &&
+    currentCollection == other.currentCollection &&
     currentSeason == other.currentSeason;
 }
