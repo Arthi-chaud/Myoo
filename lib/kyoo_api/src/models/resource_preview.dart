@@ -16,6 +16,12 @@ class ResourcePreview extends IllustratedResource {
   @JsonKey(readValue: _getTypeFromJson)
   final ResourcePreviewType type;
 
+  @JsonKey(name: 'startAir')
+  final DateTime? minDate;
+
+  @JsonKey(name: 'endAir')
+  final DateTime? maxDate;
+
   /// Default constructor
   ResourcePreview({
     required this.type,
@@ -24,7 +30,9 @@ class ResourcePreview extends IllustratedResource {
     required String name,
     required String overview,
     String? poster,
-    String? thumbnail
+    String? thumbnail,
+    this.minDate,
+    this.maxDate
   }) : super(
     id: id,
     slug: slug,

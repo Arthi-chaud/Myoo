@@ -74,6 +74,9 @@ class ListPage extends StatelessWidget {
                 child: PosterTile(
                   imageURL: preview.poster,
                   title: preview.name,
+                  subtitle: preview.maxDate == null || preview.maxDate?.year == preview.minDate?.year
+                    ? preview.minDate?.year.toString()
+                    : "${preview.minDate!.year.toString()} - ${preview.maxDate!.year.toString()}",
                 ),
                 index: index,
                 hasMore: store.state.currentLibrary!.fullyLoaded == false
