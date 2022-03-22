@@ -38,7 +38,6 @@ class KyooClient {
   /// Retrieves a list of $[count] [ResourcePreview]s, starting from [afterID] from the current server
   /// If library is [null], fetches items from '/api/items', otherwise, fetch items from given collection
   Future<List<ResourcePreview>> getItemsFrom({Library? library, int? afterID, int? count}) async {
-    print("I'm called");
     Map<String, dynamic> queryParams = {};
     count ??= 51;
     final String route = library == null ? '/items' : '/libraries/${library.slug}/items';
