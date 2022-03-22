@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
+import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
 
 /// Widget to display a [Movie]/[TVSeries]/[Collection] in a list
@@ -18,10 +19,18 @@ class PosterTile extends StatelessWidget{
 
   /// Default constructor
   const PosterTile({Key? key, required this.imageURL, required this.title, this.subtitle}) : super(key: key);
+  /// Construct Poster tile from [ResourcePreview]
+  PosterTile.fromPreview(ResourcePreview resource, {Key? key}) : 
+    imageURL = resource.poster,
+    title = resource.name,
+    subtitle = resource.maxDate == null || resource.maxDate?.year == resource.minDate?.year
+      ? resource.minDate?.year.toString()
+      : "${resource.minDate!.year.toString()} - ${resource.maxDate!.year.toString()}",
+    super(key: key);
 
   static const double posterHeight = 150;
   static const double posterWidth = posterHeight * 2 /3;
-
+  static const double posterRatio = 1 / 2;
   static const double textSize = 14;
 
   Widget emptyPoster(BuildContext context) => SizedBox(

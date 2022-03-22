@@ -66,7 +66,7 @@ class ListPage extends StatelessWidget {
             padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
-              childAspectRatio: 1 / 2,
+              childAspectRatio: PosterTile.posterRatio,
             ),
             itemCount: store.state.currentLibrary!.content.length,
             itemBuilder: (context, index) {
@@ -94,13 +94,7 @@ class ListPage extends StatelessWidget {
                       default:
                     }
                   }),
-                  child: PosterTile(
-                    imageURL: preview.poster,
-                    title: preview.name,
-                    subtitle: preview.maxDate == null || preview.maxDate?.year == preview.minDate?.year
-                      ? preview.minDate?.year.toString()
-                      : "${preview.minDate!.year.toString()} - ${preview.maxDate!.year.toString()}",
-                  ),
+                  child: PosterTile.fromPreview(preview),
                 )
               );
             }
