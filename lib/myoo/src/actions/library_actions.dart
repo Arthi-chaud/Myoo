@@ -11,6 +11,9 @@ class SetCurrentLibraryAction extends ContainerAction<LibraryContent> {
 /// Action to set currentLibrary from [AppState] to null
 class UnsetCurrentLibraryAction extends Action {}
 
+/// Empty currentLibrary from [AppState]
+class ResetCurrentLibraryAction extends Action {}
+
 
 /// Action to set [LibraryContent]'s content
 /// If [Library] field is null, fetch all

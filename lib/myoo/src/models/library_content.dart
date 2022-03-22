@@ -13,5 +13,5 @@ class LibraryContent {
   /// Content collection
   final List<ResourcePreview> content;
 
-  const LibraryContent({this.library, required this.fullyLoaded, required this.content});
+  const LibraryContent({this.library, this.fullyLoaded = false, this.content = const []});
 }

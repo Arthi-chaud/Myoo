@@ -7,6 +7,7 @@ import 'package:myoo/myoo/src/actions/library_actions.dart';
 import 'package:myoo/myoo/src/actions/loading_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/models/library_content.dart';
+import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/loading_widget.dart';
 import 'package:myoo/myoo/src/widgets/poster_tile.dart';
 
@@ -16,41 +17,63 @@ class ListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-    Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: StoreBuilder<AppState>(
-          onInit: (store) {
-            store.dispatch(SetCurrentLibraryAction(const LibraryContent(fullyLoaded: false, content: [])));
-            store.dispatch(LoadAction());
-            store.dispatch(LoadLibraries(store.state.currentClient!));
-            store.dispatch(LoadContentFromLibrary(store.state.currentLibrary));
-          },
-          builder: (context, store) {
-            if (store.state.isLoading && store.state.currentLibrary == null) {
-              return const LoadingWidget();
-            }
-            return GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                childAspectRatio: 1 / 2,
+    StoreBuilder<AppState>(
+      onInit: (store) {
+        store.dispatch(LoadAction());
+        store.dispatch(ResetCurrentLibraryAction());
+        store.dispatch(LoadLibraries(store.state.currentClient!));
+        store.dispatch(LoadContentFromLibrary(store.state.currentLibrary));
+      },
+      builder: (context, store) {
+        return Scaffold(
+          appBar: AppBar(
+            backgroundColor: getColorScheme(context).background,
+            elevation: 30,
+            actions: [
+              DropdownButton<String?>(
+                value: store.state.currentLibrary?.library?.name,
+                items: store.state.currentClient!.serverLibraries.map(
+                  (library) => DropdownMenuItem(value: library.name, child: Text(library.name))
+                ).toList()..insert(0, const DropdownMenuItem(value: null, child: Text('All'))),
+                onChanged: (selectedLib) {
+                  store.dispatch(ResetCurrentLibraryAction());
+                  if (selectedLib != null) {
+                    store.dispatch(SetCurrentLibraryAction(
+                      LibraryContent(
+                        library: store.state.currentClient!.serverLibraries.firstWhere(
+                          (element) => element.name == selectedLib
+                        )
+                      ) 
+                    ));
+                  }
+                  store.dispatch(LoadAction());
+                  store.dispatch(LoadContentFromLibrary(store.state.currentLibrary));
+                }
               ),
-              itemCount: store.state.currentLibrary!.content.length,
-              itemBuilder: (context, index) {
-                ResourcePreview preview = store.state.currentLibrary!.content[index];
-                return LazyLoadingList(
-                  loadMore: () => store.dispatch(LoadContentFromLibrary(store.state.currentLibrary)),
-                  child: PosterTile(
-                    imageURL: preview.poster,
-                    title: preview.name,
-                  ),
-                  index: index,
-                  hasMore: store.state.currentLibrary!.fullyLoaded == false
-                );
-              }
-            );
-          }
-        )
-      )
+              const IconButton(onPressed: null, icon: Icon(Icons.search))
+            ]
+          ),
+          body: GridView.builder(
+            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              childAspectRatio: 1 / 2,
+            ),
+            itemCount: store.state.currentLibrary!.content.length,
+            itemBuilder: (context, index) {
+              ResourcePreview preview = store.state.currentLibrary!.content[index];
+              return LazyLoadingList(
+                loadMore: () => store.dispatch(LoadContentFromLibrary(store.state.currentLibrary)),
+                child: PosterTile(
+                  imageURL: preview.poster,
+                  title: preview.name,
+                ),
+                index: index,
+                hasMore: store.state.currentLibrary!.fullyLoaded == false
+              );
+            }
+          )
+        );
+      }
     );
 }

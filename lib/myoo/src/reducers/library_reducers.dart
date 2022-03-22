@@ -6,6 +6,7 @@ import 'package:redux/redux.dart';
 final currentLibraryReducers = combineReducers<LibraryContent?>([
   TypedReducer<LibraryContent?, SetCurrentLibraryAction>(setLibrary),
   TypedReducer<LibraryContent?, UnsetCurrentLibraryAction>((_, __) => null),
+  TypedReducer<LibraryContent?, ResetCurrentLibraryAction>((_, __) => const LibraryContent(fullyLoaded: false, content: [])),
   TypedReducer<LibraryContent?, LoadedContentFromLibraryAction>(setItems),
   TypedReducer<LibraryContent?, LibraryIsFullAction>(setLibraryAsFull),
 ]);
