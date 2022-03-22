@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:lazy_loading_list/lazy_loading_list.dart';
 import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
 import 'package:myoo/myoo/src/actions/client_actions.dart';
 import 'package:myoo/myoo/src/actions/loading_actions.dart';
@@ -27,18 +28,24 @@ class ListPage extends StatelessWidget {
             if (store.state.isLoading && store.state.currentLibrary == null) {
               return const LoadingWidget();
             }
-            return GridView.count(
-              crossAxisCount: 3,
-              childAspectRatio: 1 / 2,
-              children: [
-                for (ResourcePreview item in store.state.previews!)
-                  PosterTile(
-                    imageURL: item.poster,
-                    title: item.name,
-                    subtitle: '',
-
-                  )
-              ],
+            return GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                childAspectRatio: 1 / 2,
+              ),
+              itemCount: store.state.previews!.length,
+              itemBuilder: (context, index) {
+                ResourcePreview preview = store.state.previews![index];
+                return LazyLoadingList(
+                  loadMore: () => store.dispatch(LoadPreviewsFromLibrary(store.state.currentLibrary)),
+                  child: PosterTile(
+                    imageURL: preview.poster,
+                    title: preview.name,
+                  ),
+                  index: index,
+                  hasMore: true
+                );
+              }
             );
           }
         )
