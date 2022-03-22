@@ -14,7 +14,9 @@ class InitializationPage extends StatelessWidget {
   void onLoaded(Store<AppState> store, BuildContext context) {
     final route = store.state.currentClient == null ? '/login' : '/list';
     Future.delayed(const Duration(seconds: 2))
-      .then((value) => Navigator.of(context).popAndPushNamed(route));
+      .then((value) {
+        Navigator.of(context).pushReplacementNamed(route);
+      });
   }
 
   @override
