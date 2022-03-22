@@ -3,7 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:myoo/kyoo_api/src/models/collection.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
-import 'package:myoo/myoo/src/widgets/poster_tile.dart';
+import 'package:myoo/myoo/src/widgets/clickable_poster.dart';
 
 /// View to display currentCollection of [AppState]
 class CollectionPage extends StatelessWidget {
@@ -18,12 +18,12 @@ class CollectionPage extends StatelessWidget {
           return GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
-              childAspectRatio: PosterTile.posterRatio
+              childAspectRatio: ClickablePoster.posterRatio
             ),
             padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
             itemCount: collection.content.length,
             itemBuilder: (BuildContext context, int index) =>
-              PosterTile.fromPreview(collection.content[index]),
+              ClickablePoster(resource: collection.content[index]),
           );
         }
       )

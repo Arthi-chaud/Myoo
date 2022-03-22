@@ -1,19 +1,15 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:lazy_loading_list/lazy_loading_list.dart';
 import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
 import 'package:myoo/myoo/src/actions/client_actions.dart';
-import 'package:myoo/myoo/src/actions/collection_actions.dart';
 import 'package:myoo/myoo/src/actions/library_actions.dart';
 import 'package:myoo/myoo/src/actions/loading_actions.dart';
-import 'package:myoo/myoo/src/actions/movie_actions.dart';
-import 'package:myoo/myoo/src/actions/tv_series_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/models/library_content.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
-import 'package:myoo/myoo/src/widgets/poster_tile.dart';
+import 'package:myoo/myoo/src/widgets/clickable_poster.dart';
 
 /// Page to list all libraries and their content from a server
 class ListPage extends StatelessWidget {
@@ -66,7 +62,7 @@ class ListPage extends StatelessWidget {
             padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
-              childAspectRatio: PosterTile.posterRatio,
+              childAspectRatio: ClickablePoster.posterRatio,
             ),
             itemCount: store.state.currentLibrary!.content.length,
             itemBuilder: (context, index) {
@@ -75,27 +71,7 @@ class ListPage extends StatelessWidget {
                 loadMore: () => store.dispatch(LoadContentFromLibrary(store.state.currentLibrary)),
                 hasMore: store.state.currentLibrary!.fullyLoaded == false,
                 index: index,
-                child: InkWell(
-                  onTap: (() {
-                    store.dispatch(LoadAction());
-                    switch (preview.type) {
-                      case ResourcePreviewType.collection:
-                        store.dispatch(LoadCollectionAction(preview.slug));
-                        Navigator.of(context).pushNamed('/collection');
-                        break;
-                      case ResourcePreviewType.movie:
-                        store.dispatch(LoadMovieAction(preview.slug));
-                        Navigator.of(context).pushNamed('/movie');
-                        break;
-                      case ResourcePreviewType.series:
-                        store.dispatch(LoadTVSeriesAction(preview.slug));
-                        Navigator.of(context).pushNamed('/series');
-                        break;
-                      default:
-                    }
-                  }),
-                  child: PosterTile.fromPreview(preview),
-                )
+                child: ClickablePoster(resource: preview),
               );
             }
           )
