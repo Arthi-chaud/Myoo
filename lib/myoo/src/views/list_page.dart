@@ -13,7 +13,6 @@ import 'package:myoo/myoo/src/actions/tv_series_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/models/library_content.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
-import 'package:myoo/myoo/src/widgets/loading_widget.dart';
 import 'package:myoo/myoo/src/widgets/poster_tile.dart';
 
 /// Page to list all libraries and their content from a server
@@ -78,6 +77,7 @@ class ListPage extends StatelessWidget {
                 index: index,
                 child: InkWell(
                   onTap: (() {
+                    store.dispatch(LoadAction());
                     switch (preview.type) {
                       case ResourcePreviewType.collection:
                         store.dispatch(LoadCollectionAction(preview.slug));
