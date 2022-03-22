@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:lazy_loading_list/lazy_loading_list.dart';
@@ -39,6 +41,7 @@ class ListPage extends StatelessWidget {
                 items: store.state.currentClient!.serverLibraries.map(
                   (library) => DropdownMenuItem(value: library.name, child: Text(library.name))
                 ).toList()..insert(0, const DropdownMenuItem(value: null, child: Text('All'))),
+                underline: Container(),
                 onChanged: (selectedLib) {
                   store.dispatch(ResetCurrentLibraryAction());
                   if (selectedLib != null) {
