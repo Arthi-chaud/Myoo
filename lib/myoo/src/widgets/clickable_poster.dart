@@ -20,8 +20,8 @@ class ClickablePoster extends StatelessWidget{
   const ClickablePoster({Key? key, required this.resource}) : super(key: key);
 
   static const double posterHeight = 150;
-  static const double posterWidth = posterHeight * 2 /3;
-  static const double posterRatio = 1 / 2;
+  static const double posterWidth = posterHeight * 2 / 3;
+  static const double posterRatio = 0.5;
   static const double textSize = 14;
 
   Widget emptyPoster(BuildContext context) => SizedBox(
