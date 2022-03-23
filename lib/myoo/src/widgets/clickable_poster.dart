@@ -21,7 +21,7 @@ class ClickablePoster extends StatelessWidget{
   const ClickablePoster({Key? key, required this.resource}) : super(key: key);
 
 
-  static const double posterRatio = 0.5;
+  static const double posterRatio = 0.48;
 
   @override
   Widget build(BuildContext context) {

@@ -48,9 +48,9 @@ class Poster extends StatelessWidget {
           )
         ) : _emptyPoster(context),
         SizedBox(
-          width: Poster.posterWidth,
+          width: MediaQuery.of(context).size.width * 0.8,
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5),
+            padding: const EdgeInsets.symmetric(vertical: 7),
             child: Text(
               title,
               overflow: TextOverflow.ellipsis,
