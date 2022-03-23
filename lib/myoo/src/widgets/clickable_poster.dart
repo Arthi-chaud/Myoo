@@ -3,7 +3,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
 import 'package:myoo/myoo/src/actions/collection_actions.dart';
-import 'package:myoo/myoo/src/actions/loading_actions.dart';
 import 'package:myoo/myoo/src/actions/movie_actions.dart';
 import 'package:myoo/myoo/src/actions/tv_series_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
@@ -38,7 +37,6 @@ class ClickablePoster extends StatelessWidget{
     Store<AppState> store = StoreProvider.of<AppState>(context);
     return InkWell(
       onTap: (() {
-        store.dispatch(LoadAction());
         switch (resource.type) {
           case ResourcePreviewType.collection:
             store.dispatch(LoadCollectionAction(resource.slug));

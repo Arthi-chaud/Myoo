@@ -5,7 +5,6 @@ import 'package:lazy_loading_list/lazy_loading_list.dart';
 import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
 import 'package:myoo/myoo/src/actions/client_actions.dart';
 import 'package:myoo/myoo/src/actions/library_actions.dart';
-import 'package:myoo/myoo/src/actions/loading_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/models/library_content.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
@@ -19,7 +18,6 @@ class ListPage extends StatelessWidget {
   Widget build(BuildContext context) =>
     StoreBuilder<AppState>(
       onInit: (store) {
-        store.dispatch(LoadAction());
         store.dispatch(ResetCurrentLibraryAction());
         store.dispatch(LoadLibraries(store.state.currentClient!));
         store.dispatch(LoadContentFromLibrary(store.state.currentLibrary));
@@ -51,7 +49,6 @@ class ListPage extends StatelessWidget {
                       ) 
                     ));
                   }
-                  store.dispatch(LoadAction());
                   store.dispatch(LoadContentFromLibrary(store.state.currentLibrary));
                 }
               ),
