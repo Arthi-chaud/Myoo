@@ -12,9 +12,9 @@ class CollectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DetailPageScaffold(
-      child: StoreBuilder<AppState>(
-        builder: (context, store) {
-          Collection collection = store.state.currentCollection!;
+      child: StoreConnector<AppState, Collection>(
+        converter: (store) => store.state.currentCollection!,
+        builder: (context, collection) {
           return GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,

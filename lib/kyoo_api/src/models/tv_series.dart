@@ -20,7 +20,7 @@ class TVSeries extends IllustratedResource {
   final List<Season> seasons;
 
   /// External URL to the [TVSeries]'s trailer
-  final TrailerURL trailer;
+  final TrailerURL? trailer;
 
   /// Default Constructor
   const TVSeries({

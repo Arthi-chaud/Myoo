@@ -1,15 +1,20 @@
 
 import 'package:flutter/material.dart';
+import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/myoo/src/views/collection_page.dart';
 import 'package:myoo/myoo/src/views/init_page.dart';
 import 'package:myoo/myoo/src/views/list_page.dart';
 import 'package:myoo/myoo/src/views/login_page.dart';
+import 'package:myoo/myoo/src/views/movie_page.dart';
+import 'package:myoo/myoo/src/views/tvseries_page.dart';
 
 Map<String, Widget Function()> routes = {
   '/init': () => const InitializationPage(),
   '/login': () => const LoginPage(),
   '/list': () => const ListPage(),
   '/collection': () => const CollectionPage(),
+  '/movie': () => const MoviePage(),
+  '/series': () => const TVSeriesPage(),
 };
 
 dynamic generateRoutes(RouteSettings settings) =>
