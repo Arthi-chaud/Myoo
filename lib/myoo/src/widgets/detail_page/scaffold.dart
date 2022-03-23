@@ -12,20 +12,25 @@ class DetailPageScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
     Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).pop()
-        ),
-        backgroundColor: Colors.transparent
-      ),
       body: StoreConnector<AppState, bool>(
         converter: (store) => store.state.isLoading,
         builder: (context, isLoading) {
           if (isLoading) {
             return const LoadingWidget();
           }
-          return child;
+          return Stack(
+            children: [
+              child,
+              AppBar(
+                elevation: 0,
+                leading: IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () => Navigator.of(context).pop()
+                ),
+                backgroundColor: Colors.transparent
+              ),
+            ]
+          );
         }
       ),
     );
