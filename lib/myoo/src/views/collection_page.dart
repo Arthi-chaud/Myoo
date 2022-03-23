@@ -1,9 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:myoo/kyoo_api/src/models/collection.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
 import 'package:myoo/myoo/src/widgets/clickable_poster.dart';
+import 'package:myoo/myoo/src/widgets/thumbnail.dart';
 
 /// View to display currentCollection of [AppState]
 class CollectionPage extends StatelessWidget {
@@ -15,15 +17,26 @@ class CollectionPage extends StatelessWidget {
       child: StoreConnector<AppState, Collection>(
         converter: (store) => store.state.currentCollection!,
         builder: (context, collection) {
-          return GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              childAspectRatio: ClickablePoster.posterRatio
-            ),
-            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-            itemCount: collection.content.length,
-            itemBuilder: (BuildContext context, int index) =>
-              ClickablePoster(resource: collection.content[index]),
+          return Column(
+            children: [
+              Stack(
+                children: [
+                  Thumbnail(thumbnailURL: collection.thumbnail)
+                ],
+              ),
+              GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  childAspectRatio: ClickablePoster.posterRatio
+                ),
+                //padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+                itemCount: collection.content.length,
+                itemBuilder: (BuildContext context, int index) =>
+                  ClickablePoster(resource: collection.content[index]),
+              ),
+            ],
           );
         }
       )

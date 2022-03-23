@@ -18,17 +18,21 @@ class DetailPageScaffold extends StatelessWidget {
           if (isLoading) {
             return const LoadingWidget();
           }
-          return Stack(
+          return ListView(
             children: [
-              child,
-              AppBar(
-                elevation: 0,
-                leading: IconButton(
-                  icon: const Icon(Icons.arrow_back),
-                  onPressed: () => Navigator.of(context).pop()
-                ),
-                backgroundColor: Colors.transparent
-              ),
+              Stack(
+                children: [
+                  child,
+                  AppBar(
+                    elevation: 0,
+                    leading: IconButton(
+                      icon: const Icon(Icons.arrow_back),
+                      onPressed: () => Navigator.of(context).pop()
+                    ),
+                    backgroundColor: Colors.transparent
+                  ),
+                ]
+              )
             ]
           );
         }
