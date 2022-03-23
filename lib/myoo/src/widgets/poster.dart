@@ -18,7 +18,7 @@ class Poster extends StatelessWidget {
   static const double posterWidth = posterHeight * 2 / 3;
   static const double textSize = 14;
 
-  static const double _roundedEdges = 4;
+  static const double _roundedEdges = 6;
 
   Widget _emptyPoster(BuildContext context) => Container(
     decoration: BoxDecoration(
@@ -36,15 +36,26 @@ class Poster extends StatelessWidget {
   Widget build(BuildContext context) =>
     Column(
       children: [
-        posterURL != null ? ClipRRect(
-          borderRadius: BorderRadius.circular(_roundedEdges),
-          child: CachedNetworkImage(
-            imageUrl: posterURL!,
-            height: posterHeight,
-            width: posterWidth,
-            fit: BoxFit.cover,
-            placeholder: (_, __) => _emptyPoster(context),
-            errorWidget: (_, __, ___) => _emptyPoster(context)
+        posterURL != null ? Container(
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withAlpha(90),
+                spreadRadius: 2,
+                blurRadius: 3,
+              ),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(_roundedEdges),
+            child: CachedNetworkImage(
+              imageUrl: posterURL!,
+              height: posterHeight,
+              width: posterWidth,
+              fit: BoxFit.cover,
+              placeholder: (_, __) => _emptyPoster(context),
+              errorWidget: (_, __, ___) => _emptyPoster(context)
+            )
           )
         ) : _emptyPoster(context),
         SizedBox(
