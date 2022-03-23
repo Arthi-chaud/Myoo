@@ -26,6 +26,7 @@ class CollectionPage extends StatelessWidget {
               ),
               GridView.builder(
                 shrinkWrap: true,
+                padding: const EdgeInsets.all(20),
                 physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,

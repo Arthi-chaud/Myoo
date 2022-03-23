@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:myoo/myoo/src/app_state.dart';
+import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/loading_widget.dart';
 
 /// Common Scaffold for all detail page ([MoviePage], [CollectionPage], [TVSeriesPage])
@@ -25,11 +26,15 @@ class DetailPageScaffold extends StatelessWidget {
                   child,
                   AppBar(
                     elevation: 0,
-                    leading: IconButton(
-                      icon: const Icon(Icons.arrow_back),
+                    backgroundColor: Colors.transparent,
+                    leading:IconButton(
+                      splashRadius: 25,
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: getColorScheme(context).onBackground,  
+                      ),
                       onPressed: () => Navigator.of(context).pop()
                     ),
-                    backgroundColor: Colors.transparent
                   ),
                 ]
               )
