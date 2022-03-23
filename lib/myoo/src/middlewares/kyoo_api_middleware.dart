@@ -5,7 +5,6 @@ import 'package:myoo/myoo/src/actions/action.dart';
 import 'package:myoo/myoo/src/actions/client_actions.dart';
 import 'package:myoo/myoo/src/actions/collection_actions.dart';
 import 'package:myoo/myoo/src/actions/library_actions.dart';
-import 'package:myoo/myoo/src/actions/loading_actions.dart';
 import 'package:myoo/myoo/src/actions/movie_actions.dart';
 import 'package:myoo/myoo/src/actions/season_actions.dart';
 import 'package:myoo/myoo/src/actions/tv_series_actions.dart';
@@ -85,6 +84,5 @@ Middleware<AppState> loadItems() =>
         } else {
           store.dispatch(LoadedContentFromLibraryAction(items));
         }
-        store.dispatch(LoadedAction());
       });
   };

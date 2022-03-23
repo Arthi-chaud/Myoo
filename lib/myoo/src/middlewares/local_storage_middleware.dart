@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:myoo/kyoo_api/src/kyoo_client.dart';
 import 'package:myoo/myoo/src/actions/action.dart';
 import 'package:myoo/myoo/src/actions/client_actions.dart';
-import 'package:myoo/myoo/src/actions/loading_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -44,7 +43,6 @@ Middleware<AppState> loadStoredClientsMiddleware(LocalStorage localStorage) {
     } else {
       store.dispatch(LoadedStoredClientsAction(clients));
     }
-    store.dispatch(LoadedAction());
   };
 }
 
