@@ -19,7 +19,7 @@ class _InitializationPageState extends State<InitializationPage> {
     final route = store.currentClient == null ? '/login' : '/list';
     Future.delayed(const Duration(seconds: 2))
       .then((value) {
-        Navigator.of(context).popAndPushNamed(route);
+        Navigator.of(context).pushReplacementNamed(route);
       });
   }
 
