@@ -11,13 +11,13 @@ class Thumbnail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
     Widget emptyThumbnail = Container(
-      height: MediaQuery.of(context).size.width * 9 / 16,
+      height: width * 9 / 16,
     );
     if (thumbnailURL == null) {
       return emptyThumbnail;
     }
-    var width = MediaQuery.of(context).size.width;
     return CachedNetworkImage(
       imageUrl: thumbnailURL!,
       fit: BoxFit.cover,
