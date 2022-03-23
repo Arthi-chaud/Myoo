@@ -9,11 +9,14 @@ class Thumbnail extends StatelessWidget {
 
   const Thumbnail({Key? key, required this.thumbnailURL}) : super(key: key);
 
+  /// Get the heigth of the thumbnail, using the width of the media
+  static double height(BuildContext context) => MediaQuery.of(context).size.width * 9 / 16;
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     Widget emptyThumbnail = Container(
-      height: width * 9 / 16,
+      height: height(context) * 9 /16,
     );
     if (thumbnailURL == null) {
       return emptyThumbnail;

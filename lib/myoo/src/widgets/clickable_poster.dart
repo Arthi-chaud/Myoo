@@ -7,6 +7,7 @@ import 'package:myoo/myoo/src/actions/movie_actions.dart';
 import 'package:myoo/myoo/src/actions/tv_series_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
+import 'package:myoo/myoo/src/widgets/poster.dart';
 import 'package:redux/redux.dart';
 
 /// Widget to display a [Movie]/[TVSeries]/[Collection] poster in a list
@@ -19,18 +20,8 @@ class ClickablePoster extends StatelessWidget{
   /// Default constructor
   const ClickablePoster({Key? key, required this.resource}) : super(key: key);
 
-  static const double posterHeight = 150;
-  static const double posterWidth = posterHeight * 2 / 3;
-  static const double posterRatio = 0.5;
-  static const double textSize = 14;
 
-  Widget emptyPoster(BuildContext context) => SizedBox(
-    height: posterHeight,
-    width: posterWidth,
-    child: Container(
-      color: getColorScheme(context).surface,
-    ),
-  );
+  static const double posterRatio = 0.5;
 
   @override
   Widget build(BuildContext context) {
@@ -55,38 +46,13 @@ class ClickablePoster extends StatelessWidget{
       }),
       child: Column(
         children: [
-          resource.poster != null ?
-            CachedNetworkImage(
-              imageUrl: resource.poster!,
-              height: posterHeight,
-              width: posterWidth,
-              fit: BoxFit.cover,
-              placeholder: (_, __) => emptyPoster(context),
-              errorWidget: (_, __, ___) => emptyPoster(context)
-            )
-          : emptyPoster(context),
-          SizedBox(
-            width: posterWidth,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
-              child: Text(
-                resource.name,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: textSize,
-                  color: getColorScheme(context).onPrimary
-                ),
-              ),
-            ),
-          ),
+          Poster(posterURL: resource.poster, title: resource.name),
           Text(
             resource.maxDate == null || resource.maxDate?.year == resource.minDate?.year
               ? resource.minDate?.year.toString() ?? ''
               : "${resource.minDate!.year.toString()} - ${resource.maxDate!.year.toString()}",
             style: TextStyle(
-              fontSize: textSize * 0.8,
+              fontSize: Poster.textSize * 0.8,
               overflow: TextOverflow.ellipsis,
               color: getColorScheme(context).onPrimary,
               fontWeight: FontWeight.w200

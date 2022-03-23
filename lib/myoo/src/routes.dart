@@ -1,12 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:myoo/kyoo_api/kyoo_api.dart';
-import 'package:myoo/myoo/src/views/collection_page.dart';
+import 'package:myoo/myoo/src/views/detail_views/collection_page.dart';
 import 'package:myoo/myoo/src/views/init_page.dart';
 import 'package:myoo/myoo/src/views/list_page.dart';
 import 'package:myoo/myoo/src/views/login_page.dart';
-import 'package:myoo/myoo/src/views/movie_page.dart';
-import 'package:myoo/myoo/src/views/tvseries_page.dart';
+import 'package:myoo/myoo/src/views/detail_views/movie_page.dart';
+import 'package:myoo/myoo/src/views/detail_views/tvseries_page.dart';
 
 Map<String, Widget Function()> routes = {
   '/init': () => const InitializationPage(),

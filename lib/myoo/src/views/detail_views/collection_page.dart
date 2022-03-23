@@ -5,6 +5,7 @@ import 'package:myoo/kyoo_api/src/models/collection.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
 import 'package:myoo/myoo/src/widgets/clickable_poster.dart';
+import 'package:myoo/myoo/src/widgets/poster.dart';
 import 'package:myoo/myoo/src/widgets/thumbnail.dart';
 
 /// View to display currentCollection of [AppState]
@@ -19,10 +20,19 @@ class CollectionPage extends StatelessWidget {
         builder: (context, collection) {
           return Column(
             children: [
-              Stack(
-                children: [
-                  Thumbnail(thumbnailURL: collection.thumbnail)
-                ],
+              Padding(
+                padding: const EdgeInsets.only(bottom: 100),
+                child: Stack(
+                  alignment: Alignment.center,
+                  clipBehavior: Clip.none,
+                  children: [
+                    Thumbnail(thumbnailURL: collection.thumbnail),
+                    Positioned(
+                      bottom: -100,
+                      child: Poster(posterURL: collection.poster, title: collection.name, titleSize: 18)
+                    ),
+                  ],
+                )
               ),
               GridView.builder(
                 shrinkWrap: true,

@@ -27,7 +27,7 @@ class DetailPageScaffold extends StatelessWidget {
                   AppBar(
                     elevation: 0,
                     backgroundColor: Colors.transparent,
-                    leading:IconButton(
+                    leading: IconButton(
                       splashRadius: 25,
                       icon: Icon(
                         Icons.arrow_back,
