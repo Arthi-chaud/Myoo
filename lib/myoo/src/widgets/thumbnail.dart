@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:myoo/myoo/src/theme_data.dart';
 
 /// Cached Image for a show's thumbnail
 /// If said thumbnail doesnot exist, display transparent container
@@ -21,13 +22,23 @@ class Thumbnail extends StatelessWidget {
     if (thumbnailURL == null) {
       return emptyThumbnail;
     }
-    return CachedNetworkImage(
-      imageUrl: thumbnailURL!,
-      fit: BoxFit.cover,
-      width: width,
-      height: width * 9 / 16,
-      errorWidget: (_, __, ___) => emptyThumbnail,
-      placeholder: (_, __) => emptyThumbnail,
+    return Container(
+      foregroundDecoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [getColorScheme(context).background, Colors.transparent],
+          stops: const [0, 0.5],
+          begin: Alignment.bottomCenter,
+          end: Alignment.center
+        )
+      ),
+      child: CachedNetworkImage(
+        imageUrl: thumbnailURL!,
+        fit: BoxFit.cover,
+        width: width,
+        height: width * 9 / 16,
+        errorWidget: (_, __, ___) => emptyThumbnail,
+        placeholder: (_, __) => emptyThumbnail,
+      )
     );
   }
 }

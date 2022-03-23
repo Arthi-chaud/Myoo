@@ -29,7 +29,11 @@ class CollectionPage extends StatelessWidget {
                     Thumbnail(thumbnailURL: collection.thumbnail),
                     Positioned(
                       bottom: -100,
-                      child: Poster(posterURL: collection.poster, title: collection.name, titleSize: 18)
+                      child: Poster(
+                        posterURL: collection.poster,
+                        title: collection.name,
+                        titleSize: 18
+                      )
                     ),
                   ],
                 )

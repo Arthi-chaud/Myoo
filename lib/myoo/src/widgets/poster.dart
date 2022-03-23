@@ -8,31 +8,36 @@ class Poster extends StatelessWidget {
   final String? posterURL;
   /// title to be displayed below poster
   final String title;
+  /// Optional text below title
+  final String? subtitle;
   /// Default size of the title
   final double titleSize;
-  const Poster({Key? key, this.posterURL, required this.title, this.titleSize = textSize}) : super(key: key);
+  const Poster({Key? key, this.posterURL, required this.title, this.subtitle, this.titleSize = textSize}) : super(key: key);
 
   static const double posterHeight = 150;
   static const double posterWidth = posterHeight * 2 / 3;
   static const double textSize = 14;
 
-  Widget _emptyPoster(BuildContext context) => SizedBox(
+  static const double _roundedEdges = 4;
+
+  Widget _emptyPoster(BuildContext context) => Container(
+    decoration: BoxDecoration(
+      color: getColorScheme(context).surface,
+      border: Border.all(
+        color: getColorScheme(context).surface,
+      ),
+      borderRadius: BorderRadius.circular(_roundedEdges),
+    ),
     height: posterHeight,
     width: posterWidth,
-    child: Container(
-      color: getColorScheme(context).surface,
-    ),
   );
 
   @override
-  Widget build(BuildContext context) {
-    if (posterURL == null) {
-      return _emptyPoster(context);
-    }
-    return Column(
+  Widget build(BuildContext context) =>
+    Column(
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(4.0),
+        posterURL != null ? ClipRRect(
+          borderRadius: BorderRadius.circular(_roundedEdges),
           child: CachedNetworkImage(
             imageUrl: posterURL!,
             height: posterHeight,
@@ -41,7 +46,7 @@ class Poster extends StatelessWidget {
             placeholder: (_, __) => _emptyPoster(context),
             errorWidget: (_, __, ___) => _emptyPoster(context)
           )
-        ),
+        ) : _emptyPoster(context),
         SizedBox(
           width: Poster.posterWidth,
           child: Padding(
@@ -57,8 +62,16 @@ class Poster extends StatelessWidget {
               ),
             ),
           ),
-        )
+        ),
+        subtitle != null ? Text(
+          subtitle!,
+          style: TextStyle(
+            fontSize: Poster.textSize * 0.8,
+            overflow: TextOverflow.ellipsis,
+            color: getColorScheme(context).onPrimary,
+            fontWeight: FontWeight.w200
+          ),
+        ) : Container()
       ]
     );
-  }
 }

@@ -44,21 +44,15 @@ class ClickablePoster extends StatelessWidget{
           default:
         }
       }),
-      child: Column(
-        children: [
-          Poster(posterURL: resource.poster, title: resource.name),
-          Text(
-            resource.maxDate == null || resource.maxDate?.year == resource.minDate?.year
-              ? resource.minDate?.year.toString() ?? ''
-              : "${resource.minDate!.year.toString()} - ${resource.maxDate!.year.toString()}",
-            style: TextStyle(
-              fontSize: Poster.textSize * 0.8,
-              overflow: TextOverflow.ellipsis,
-              color: getColorScheme(context).onPrimary,
-              fontWeight: FontWeight.w200
-            ),
-          ),
-        ]
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Poster(
+          posterURL: resource.poster,
+          title: resource.name,
+          subtitle: resource.maxDate == null || resource.maxDate?.year == resource.minDate?.year
+            ? resource.minDate?.year.toString() ?? ''
+            : "${resource.minDate!.year.toString()} - ${resource.maxDate!.year.toString()}"
+        )
       )
     );
   }
