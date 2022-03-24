@@ -46,6 +46,7 @@ dependencies:
   cached_network_image: ^3.2.0
   lazy_loading_list: ^1.0.1
   flutter_staggered_animations: ^1.0.0
+  decorated_icon: ^1.2.1
 
 dev_dependencies:
   flutter_test:

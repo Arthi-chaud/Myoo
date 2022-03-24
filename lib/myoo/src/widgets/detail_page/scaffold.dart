@@ -1,3 +1,4 @@
+import 'package:decorated_icon/decorated_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:myoo/myoo/src/app_state.dart';
@@ -30,9 +31,16 @@ class DetailPageScaffold extends StatelessWidget {
                       backgroundColor: Colors.transparent,
                       leading: IconButton(
                         splashRadius: 25,
-                        icon: Icon(
+                        icon: DecoratedIcon(
                           Icons.arrow_back,
-                          color: getColorScheme(context).onBackground,  
+                          color: getColorScheme(context).onBackground,
+                          shadows: [
+                            BoxShadow(
+                              blurRadius: 10.0,
+                              spreadRadius: 30,
+                              color: getColorScheme(context).background,
+                            ),
+                          ],
                         ),
                         onPressed: () => Navigator.of(context).pop()
                       ),
