@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:myoo/kyoo_api/src/models/genre.dart';
+import 'package:myoo/kyoo_api/src/models/studio.dart';
 import 'package:myoo/kyoo_api/src/models/trailer_url.dart';
 import 'package:myoo/kyoo_api/src/models/video.dart';
 import 'package:myoo/kyoo_api/src/models/json.dart';
@@ -18,6 +19,10 @@ class Movie extends Video {
   @JsonKey(defaultValue: null)
   final TrailerURL? trailer;
 
+  /// Name of the studio
+  @JsonKey(fromJson: StudioParsing.fromJson)
+  final String? studio;
+
   /// Default constructor
   const Movie({
     required int id,
@@ -27,6 +32,7 @@ class Movie extends Video {
     required DateTime releaseDate,
     String? poster,
     String? thumbnail,
+    required this.studio,
     required this.genres,
     required this.trailer,
   }) : super(

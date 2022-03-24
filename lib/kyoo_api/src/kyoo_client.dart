@@ -56,7 +56,7 @@ class KyooClient {
   Future<Movie> getMovie(Slug movieSlug) async {
     JSONData responseBody = await _request(
       RequestType.get, '/shows/$movieSlug',
-      params: {'fields': 'genres'});
+      params: {'fields': 'genres,studio'});
     return Movie.fromJson(responseBody);
   }
 
