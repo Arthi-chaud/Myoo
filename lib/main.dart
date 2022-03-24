@@ -52,7 +52,7 @@ class MyooApp extends StatelessWidget {
         localizationsDelegates: const [
           FormBuilderLocalizations.delegate
         ],
-      )
+      ),
     );
   }
 }

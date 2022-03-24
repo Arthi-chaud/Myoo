@@ -23,7 +23,6 @@ class CollectionPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               DetailPageHeader(
-                height: 350,
                 thumbnailURL: collection.thumbnail,
                 posterURL: collection.poster!,
                 title: collection.name,

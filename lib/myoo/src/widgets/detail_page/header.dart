@@ -14,36 +14,44 @@ class DetailPageHeader extends StatelessWidget {
   /// Widget to display at the right-side of the poster
   /// Poster and widget will be spaced evenly
   final Widget? sideWidget;
-  /// Height of the Header
-  final double height;
 
-  const DetailPageHeader({Key? key, required this.thumbnailURL, required this.posterURL, this.title, this.sideWidget, required this.height}) : super(key: key);
+  const DetailPageHeader({Key? key, required this.thumbnailURL, required this.posterURL, this.title, this.sideWidget}) : super(key: key);
 
   @override
   Widget build(BuildContext context) =>
-    Stack(
-      alignment: Alignment.topCenter,
-      children: [
-        SizedBox(
-          height: height,
-          width: MediaQuery.of(context).size.width,
-        ),
-        Thumbnail(thumbnailURL: thumbnailURL),
-        Positioned(
-          top: 90,
-          child: Row(
+    Padding(
+      padding: EdgeInsets.only(bottom: (sideWidget == null) ? 130 : 0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Stack(
+            clipBehavior: Clip.none,
+            alignment: Alignment.topLeft,
             children: [
-              Poster(
-                posterURL: posterURL,
-                title: title,
-                titleSize: 18,
-                height: 220,
+              Thumbnail(thumbnailURL: thumbnailURL),
+              Positioned(
+                top: sideWidget == null ? 90 : 150,
+                left: sideWidget == null ? 0 : -90,
+                width: MediaQuery.of(context).size.width,
+                child: Poster(
+                  posterURL: posterURL,
+                  title: title,
+                  titleSize: 18,
+                  height: 220,
+                ),
               ),
-              sideWidget ?? Container(),
             ],
           ),
-        ),
-      ],
+          if (sideWidget != null)
+          SizedBox(
+            width: MediaQuery.of(context).size.width / 2,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+              child: sideWidget
+            ),
+          )
+        ],
+      ),
     );
  
 }
