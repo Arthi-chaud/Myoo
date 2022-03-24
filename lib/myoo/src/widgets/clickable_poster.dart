@@ -6,7 +6,6 @@ import 'package:myoo/myoo/src/actions/collection_actions.dart';
 import 'package:myoo/myoo/src/actions/movie_actions.dart';
 import 'package:myoo/myoo/src/actions/tv_series_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
-import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/poster.dart';
 import 'package:redux/redux.dart';
 

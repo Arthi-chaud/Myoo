@@ -6,19 +6,24 @@ import 'package:myoo/myoo/src/theme_data.dart';
 class Poster extends StatelessWidget {
   /// URL of the poster, if null, displays placeholder
   final String? posterURL;
+  /// Height of the poster, width will be deduced from it
+  final double height;
   /// title to be displayed below poster
   final String title;
   /// Optional text below title
   final String? subtitle;
-  /// Default size of the title
+  /// Size of the title
   final double titleSize;
-  const Poster({Key? key, this.posterURL, required this.title, this.subtitle, this.titleSize = textSize}) : super(key: key);
+  const Poster({Key? key, this.posterURL, required this.title, this.subtitle, this.titleSize = defaultTextSize, this.height = defaultPosterHeight}) : super(key: key);
 
-  static const double posterHeight = 150;
-  static const double posterWidth = posterHeight * 2 / 3;
-  static const double textSize = 14;
+  static const double defaultPosterHeight = 150;
+  static const double defaultPosterWidth = defaultPosterHeight * 2 / 3;
+  static const double defaultTextSize = 14;
 
   static const double _roundedEdges = 6;
+
+  /// Width deduced from provided height
+  double get width => height * 2 / 3;
 
   Widget _emptyPoster(BuildContext context) => Container(
     decoration: BoxDecoration(
@@ -28,8 +33,8 @@ class Poster extends StatelessWidget {
       ),
       borderRadius: BorderRadius.circular(_roundedEdges),
     ),
-    height: posterHeight,
-    width: posterWidth,
+    height: height,
+    width: width,
   );
 
   @override
@@ -50,8 +55,8 @@ class Poster extends StatelessWidget {
             borderRadius: BorderRadius.circular(_roundedEdges),
             child: CachedNetworkImage(
               imageUrl: posterURL!,
-              height: posterHeight,
-              width: posterWidth,
+              height: height,
+              width: width,
               fit: BoxFit.cover,
               placeholder: (_, __) => _emptyPoster(context),
               errorWidget: (_, __, ___) => _emptyPoster(context)
@@ -77,7 +82,7 @@ class Poster extends StatelessWidget {
         subtitle != null ? Text(
           subtitle!,
           style: TextStyle(
-            fontSize: Poster.textSize * 0.8,
+            fontSize: titleSize * 0.8,
             overflow: TextOverflow.ellipsis,
             color: getColorScheme(context).onPrimary,
             fontWeight: FontWeight.w200

@@ -21,18 +21,19 @@ class CollectionPage extends StatelessWidget {
           return Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(bottom: 100),
+                padding: const EdgeInsets.only(bottom: 150),
                 child: Stack(
                   alignment: Alignment.center,
                   clipBehavior: Clip.none,
                   children: [
                     Thumbnail(thumbnailURL: collection.thumbnail),
                     Positioned(
-                      bottom: -100,
+                      bottom: -150,
                       child: Poster(
                         posterURL: collection.poster,
                         title: collection.name,
-                        titleSize: 18
+                        titleSize: 18,
+                        height: 220,
                       )
                     ),
                   ],
