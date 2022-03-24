@@ -9,12 +9,12 @@ class Poster extends StatelessWidget {
   /// Height of the poster, width will be deduced from it
   final double height;
   /// title to be displayed below poster
-  final String title;
+  final String? title;
   /// Optional text below title
   final String? subtitle;
   /// Size of the title
   final double titleSize;
-  const Poster({Key? key, this.posterURL, required this.title, this.subtitle, this.titleSize = defaultTextSize, this.height = defaultPosterHeight}) : super(key: key);
+  const Poster({Key? key, this.posterURL, this.title, this.subtitle, this.titleSize = defaultTextSize, this.height = defaultPosterHeight}) : super(key: key);
 
   static const double defaultPosterHeight = 150;
   static const double defaultPosterWidth = defaultPosterHeight * 2 / 3;
@@ -68,7 +68,7 @@ class Poster extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 7),
             child: Text(
-              title,
+              title ?? '',
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
               textAlign: TextAlign.center,

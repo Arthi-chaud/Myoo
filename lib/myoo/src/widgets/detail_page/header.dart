@@ -10,11 +10,11 @@ class DetailPageHeader extends StatelessWidget {
   /// URL of the poster to display
   final String? posterURL;
   /// Title to display below poster
-  final String title;
+  final String? title;
   /// Offset of the poster, compared to the center of the thumbnail
   final double? left;
 
-  const DetailPageHeader({Key? key, required this.thumbnailURL, required this.posterURL, this.left, required this.title}) : super(key: key);
+  const DetailPageHeader({Key? key, required this.thumbnailURL, required this.posterURL, this.left, this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) =>
