@@ -12,35 +12,37 @@ class DetailPageScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-    Scaffold(
-      body: StoreConnector<AppState, bool>(
-        converter: (store) => store.state.isLoading,
-        builder: (context, isLoading) {
-          if (isLoading) {
-            return const LoadingWidget();
-          }
-          return ListView(
-            children: [
-              Stack(
-                children: [
-                  child,
-                  AppBar(
-                    elevation: 0,
-                    backgroundColor: Colors.transparent,
-                    leading: IconButton(
-                      splashRadius: 25,
-                      icon: Icon(
-                        Icons.arrow_back,
-                        color: getColorScheme(context).onBackground,  
+    SafeArea(
+      child: Scaffold(
+        body: StoreConnector<AppState, bool>(
+          converter: (store) => store.state.isLoading,
+          builder: (context, isLoading) {
+            if (isLoading) {
+              return const LoadingWidget();
+            }
+            return ListView(
+              children: [
+                Stack(
+                  children: [
+                    child,
+                    AppBar(
+                      elevation: 0,
+                      backgroundColor: Colors.transparent,
+                      leading: IconButton(
+                        splashRadius: 25,
+                        icon: Icon(
+                          Icons.arrow_back,
+                          color: getColorScheme(context).onBackground,  
+                        ),
+                        onPressed: () => Navigator.of(context).pop()
                       ),
-                      onPressed: () => Navigator.of(context).pop()
                     ),
-                  ),
-                ]
-              )
-            ]
-          );
-        }
-      ),
+                  ]
+                )
+              ]
+            );
+          }
+        ),
+      )
     );
 }
