@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:myoo/kyoo_api/src/models/collection.dart';
 import 'package:myoo/myoo/src/app_state.dart';
+import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
 import 'package:myoo/myoo/src/widgets/clickable_poster.dart';
 import 'package:myoo/myoo/src/widgets/poster.dart';
@@ -19,25 +20,12 @@ class CollectionPage extends StatelessWidget {
         converter: (store) => store.state.currentCollection!,
         builder: (context, collection) {
           return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 150),
-                child: Stack(
-                  alignment: Alignment.center,
-                  clipBehavior: Clip.none,
-                  children: [
-                    Thumbnail(thumbnailURL: collection.thumbnail),
-                    Positioned(
-                      bottom: -150,
-                      child: Poster(
-                        posterURL: collection.poster,
-                        title: collection.name,
-                        titleSize: 18,
-                        height: 220,
-                      )
-                    ),
-                  ],
-                )
+              DetailPageHeader(
+                thumbnailURL: collection.thumbnail,
+                posterURL: collection.poster!,
+                title: collection.name,
               ),
               GridView.builder(
                 shrinkWrap: true,
