@@ -4,6 +4,7 @@ import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
+import 'package:myoo/myoo/src/widgets/poster.dart';
 
 /// View to display cuurentMovie of [AppState]
 class MoviePage extends StatelessWidget {
@@ -20,7 +21,8 @@ class MoviePage extends StatelessWidget {
               DetailPageHeader(
                 thumbnailURL: movie.thumbnail,
                 posterURL: movie.poster,
-                left: -50,
+                sideWidget: Poster(posterURL: movie.poster,),
+                height: 400,
               )
             ],
           )

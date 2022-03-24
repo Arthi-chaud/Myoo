@@ -11,32 +11,39 @@ class DetailPageHeader extends StatelessWidget {
   final String? posterURL;
   /// Title to display below poster
   final String? title;
-  /// Offset of the poster, compared to the center of the thumbnail
-  final double? left;
+  /// Widget to display at the right-side of the poster
+  /// Poster and widget will be spaced evenly
+  final Widget? sideWidget;
+  /// Height of the Header
+  final double height;
 
-  const DetailPageHeader({Key? key, required this.thumbnailURL, required this.posterURL, this.left, this.title}) : super(key: key);
+  const DetailPageHeader({Key? key, required this.thumbnailURL, required this.posterURL, this.title, this.sideWidget, required this.height}) : super(key: key);
 
   @override
   Widget build(BuildContext context) =>
-    Padding(
-      padding: const EdgeInsets.only(bottom: 150),
-      child: Stack(
-        alignment: Alignment.center,
-        clipBehavior: Clip.none,
-        children: [
-          Thumbnail(thumbnailURL: thumbnailURL),
-          Positioned(
-            bottom: -150,
-            left: left,
-            child: Poster(
-              posterURL: posterURL,
-              title: title,
-              titleSize: 18,
-              height: 220,
-            )
+    Stack(
+      alignment: Alignment.topCenter,
+      children: [
+        SizedBox(
+          height: height,
+          width: MediaQuery.of(context).size.width,
+        ),
+        Thumbnail(thumbnailURL: thumbnailURL),
+        Positioned(
+          top: 90,
+          child: Row(
+            children: [
+              Poster(
+                posterURL: posterURL,
+                title: title,
+                titleSize: 18,
+                height: 220,
+              ),
+              sideWidget ?? Container(),
+            ],
           ),
-        ],
-      )
+        ),
+      ],
     );
  
 }
