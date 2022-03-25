@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
+import 'package:myoo/myoo/src/widgets/detail_page/icon_button.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
 import 'package:expandable_text/expandable_text.dart';
 
@@ -49,15 +49,62 @@ class MoviePage extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(20),
-                child: ExpandableText(
-                    movie.overview,
-                    expandText: 'Show more',
-                    maxLines: 5,
-                    linkColor: getColorScheme(context).onBackground,
-                    linkStyle: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-              ),
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                        flex: 4,
+                        child: ElevatedButton.icon(
+                            icon: const Icon(Icons.play_arrow),
+                            onPressed: () {}, ///TODO Open play page
+                            label: const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                              child: Text("Play")
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: getColorScheme(context).secondary,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12)
+                              )
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 5,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              DetailPageIconButton(
+                                onTap: () {}, ///TODO Open trailer page
+                                icon: const Icon(Icons.local_movies),
+                                label: "Trailer"
+                              ),
+                              DetailPageIconButton(
+                                onTap: () {}, ///TODO Manage downloads
+                                icon: const Icon(Icons.download),
+                                label: "Download"
+                              )
+                            ],
+                          )
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 30),
+                      child: ExpandableText(
+                        movie.overview,
+                        expandText: 'Show more',
+                        maxLines: 5,
+                        linkColor: getColorScheme(context).onBackground,
+                        linkStyle: const TextStyle(fontWeight: FontWeight.bold),
+                      )
+                    )
+                  ]
+                )
+              )
             ],
           )
         ),

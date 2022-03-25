@@ -1,0 +1,27 @@
+import 'package:flutter/material.dart';
+
+/// Buton with tap callback
+/// Like [TextButton] with an icon, but disposed as column
+class DetailPageIconButton extends StatelessWidget {
+  /// The text below the icon
+  final String label;
+  /// The icon to display
+  final Widget icon;
+  /// Callback on button tap
+  final void Function() onTap;
+
+  const DetailPageIconButton({Key? key, required this.label, required this.icon, required this.onTap}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) =>
+    InkWell(
+      onTap: onTap,
+      ///TODO circular splash
+      child: Column(
+        children: [
+          icon,
+          Text(label)
+        ],
+      )
+    );
+}
