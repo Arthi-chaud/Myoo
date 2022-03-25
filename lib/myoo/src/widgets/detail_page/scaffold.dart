@@ -16,7 +16,7 @@ class DetailPageScaffold extends StatelessWidget {
     SafeArea(
       child: Scaffold(
         body: DefaultTextStyle(
-          style: const TextStyle(fontSize: 12),
+          style: TextStyle(fontSize: 12, color: getColorScheme(context).onBackground, height: 1.5),
           child: StoreConnector<AppState, bool>(
             converter: (store) => store.state.isLoading,
             builder: (context, isLoading) {

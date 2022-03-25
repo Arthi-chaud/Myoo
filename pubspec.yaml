@@ -48,6 +48,7 @@ dependencies:
   flutter_staggered_animations: ^1.0.0
   decorated_icon: ^1.2.1
   expandable_text: ^2.2.0
+  bulleted_list: ^0.0.1+0.1a
 
 dev_dependencies:
   flutter_test:

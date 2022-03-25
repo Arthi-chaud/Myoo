@@ -1,3 +1,5 @@
+import 'package:bulleted_list/bulleted_list.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:myoo/kyoo_api/kyoo_api.dart';
@@ -35,12 +37,9 @@ class MoviePage extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 15),
-                      child: Text(movie.releaseDate.year.toString())
-                    ),
-                    if (movie.studio != null)
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 15),
-                      child: Text("Studio: ${movie.studio}"),
+                      child: Text(
+                        movie.releaseDate.year.toString() + (movie.studio != null ? ", ${movie.studio}" : ""),
+                      )
                     ),
                     if (movie.genres.isNotEmpty) ...[
                       const Text("Genre:"),
