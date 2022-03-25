@@ -15,42 +15,45 @@ class DetailPageScaffold extends StatelessWidget {
   Widget build(BuildContext context) =>
     SafeArea(
       child: Scaffold(
-        body: StoreConnector<AppState, bool>(
-          converter: (store) => store.state.isLoading,
-          builder: (context, isLoading) {
-            if (isLoading) {
-              return const LoadingWidget();
-            }
-            return ListView(
-              children: [
-                Stack(
-                  children: [
-                    child,
-                    AppBar(
-                      elevation: 0,
-                      backgroundColor: Colors.transparent,
-                      leading: IconButton(
-                        splashRadius: 25,
-                        icon: DecoratedIcon(
-                          Icons.arrow_back,
-                          color: getColorScheme(context).onBackground,
-                          shadows: [
-                            BoxShadow(
-                              blurRadius: 10.0,
-                              spreadRadius: 30,
-                              color: getColorScheme(context).background,
-                            ),
-                          ],
+        body: DefaultTextStyle(
+          style: const TextStyle(fontSize: 12),
+          child: StoreConnector<AppState, bool>(
+            converter: (store) => store.state.isLoading,
+            builder: (context, isLoading) {
+              if (isLoading) {
+                return const LoadingWidget();
+              }
+              return ListView(
+                children: [
+                  Stack(
+                    children: [
+                      child,
+                      AppBar(
+                        elevation: 0,
+                        backgroundColor: Colors.transparent,
+                        leading: IconButton(
+                          splashRadius: 25,
+                          icon: DecoratedIcon(
+                            Icons.arrow_back,
+                            color: getColorScheme(context).onBackground,
+                            shadows: [
+                              BoxShadow(
+                                blurRadius: 10.0,
+                                spreadRadius: 30,
+                                color: getColorScheme(context).background,
+                              ),
+                            ],
+                          ),
+                          onPressed: () => Navigator.of(context).pop()
                         ),
-                        onPressed: () => Navigator.of(context).pop()
                       ),
-                    ),
-                  ]
-                )
-              ]
-            );
-          }
-        ),
+                    ]
+                  )
+                ]
+              );
+            }
+          ),
+        )
       )
     );
 }

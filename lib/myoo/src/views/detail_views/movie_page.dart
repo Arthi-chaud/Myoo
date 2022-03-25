@@ -12,12 +12,6 @@ import 'package:expandable_text/expandable_text.dart';
 class MoviePage extends StatelessWidget {
   const MoviePage({Key? key}) : super(key: key);
 
-  Text movieText(String text) => Text(
-    text, style: const TextStyle(
-      fontSize: 12,
-    ),
-  ); /// TODO make this default text style
-
   @override
   Widget build(BuildContext context) =>
     DetailPageScaffold(
@@ -41,17 +35,17 @@ class MoviePage extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 15),
-                      child: movieText(movie.releaseDate.year.toString())
+                      child: Text(movie.releaseDate.year.toString())
                     ),
                     if (movie.studio != null)
                     Padding(
                       padding: const EdgeInsets.only(bottom: 15),
-                      child: movieText("Studio: ${movie.studio}"),
+                      child: Text("Studio: ${movie.studio}"),
                     ),
                     if (movie.genres.isNotEmpty) ...[
-                      movieText("Genre:"),
-                      ...movie.genres.map(
-                        (genre) => movieText("   • $genre")
+                      const Text("Genre:"),
+                      ...movie.genres.take(3).map(
+                        (genre) => Text("   • $genre")
                       )
                     ]
                   ],
@@ -61,7 +55,6 @@ class MoviePage extends StatelessWidget {
                 padding: const EdgeInsets.all(20),
                 child: ExpandableText(
                     movie.overview,
-                    style: const TextStyle(fontSize: 12), ///TODO text style
                     expandText: 'Show more',
                     maxLines: 5,
                     linkColor: getColorScheme(context).onBackground,
