@@ -7,6 +7,7 @@ import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/icon_button.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
 import 'package:expandable_text/expandable_text.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /// View to display cuurentMovie of [AppState]
 class MoviePage extends StatelessWidget {
@@ -77,8 +78,9 @@ class MoviePage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
+                              if (movie.trailer != null)
                               DetailPageIconButton(
-                                onTap: () {}, ///TODO Open trailer page
+                                onTap: () => launch(Uri.parse(movie.trailer!).toString()),
                                 icon: const Icon(Icons.local_movies),
                                 label: "Trailer"
                               ),

@@ -20,6 +20,7 @@ class TVSeries extends IllustratedResource {
   final List<Season> seasons;
 
   /// External URL to the [TVSeries]'s trailer
+  @JsonKey(name: 'trailerUrl')
   final TrailerURL? trailer;
 
   /// Default Constructor

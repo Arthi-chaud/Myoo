@@ -16,7 +16,7 @@ class Movie extends Video {
   final List<Genre> genres;
 
   /// External URL to the [Movie]'s trailer
-  @JsonKey(defaultValue: null)
+  @JsonKey(defaultValue: null, name: 'trailerUrl')
   final TrailerURL? trailer;
 
   /// Name of the studio
