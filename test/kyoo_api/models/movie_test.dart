@@ -16,6 +16,7 @@ void main() {
           thumbnail: 'thumbnail',
           releaseDate: now,
           genres: genres,
+          studio: 'Pixar',
           trailer: "trailer");
       expect(resource.id, 1);
       expect(resource.slug, 'slug');
@@ -26,6 +27,7 @@ void main() {
       expect(resource.releaseDate, now);
       expect(resource.genres, genres);
       expect(resource.trailer, 'trailer');
+      expect(resource.studio, 'Pixar');
     });
 
     test('Unserialize: All fields set', () {
@@ -37,6 +39,7 @@ void main() {
         'thumbnail': 'thumbnail',
         'overview': 'overview',
         'trailer': 'trailer',
+        'studio': 'studio',
         'releaseDate': now.toIso8601String(),
         'genres': [
           {'id': 1, 'name': 'Action'},
@@ -54,9 +57,10 @@ void main() {
       expect(resource.releaseDate, now);
       expect(resource.genres, genres);
       expect(resource.trailer, 'trailer');
+      expect(resource.studio, 'studio');
     });
 
-    test('Unserialize: Undefined "genres" and "trailer"', () {
+    test('Unserialize: Undefined "genres", "trailer" and "stdio', () {
       JSONData input = {
         'id': 12345,
         'slug': 'mySlug2',
@@ -76,6 +80,7 @@ void main() {
       expect(resource.releaseDate, now);
       expect(resource.genres, []);
       expect(resource.trailer, null);
+      expect(resource.studio, null);
     });
   });
 }
