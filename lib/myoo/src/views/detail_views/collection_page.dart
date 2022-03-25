@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:myoo/kyoo_api/src/models/collection.dart';
@@ -6,8 +5,6 @@ import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
 import 'package:myoo/myoo/src/widgets/clickable_poster.dart';
-import 'package:myoo/myoo/src/widgets/poster.dart';
-import 'package:myoo/myoo/src/widgets/thumbnail.dart';
 
 /// View to display currentCollection of [AppState]
 class CollectionPage extends StatelessWidget {

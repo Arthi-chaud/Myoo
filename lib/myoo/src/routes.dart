@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/myoo/src/views/detail_views/collection_page.dart';
 import 'package:myoo/myoo/src/views/init_page.dart';
 import 'package:myoo/myoo/src/views/list_page.dart';

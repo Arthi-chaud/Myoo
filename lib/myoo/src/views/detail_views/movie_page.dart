@@ -1,4 +1,3 @@
-import 'package:bulleted_list/bulleted_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -7,7 +6,6 @@ import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
-import 'package:myoo/myoo/src/widgets/poster.dart';
 import 'package:expandable_text/expandable_text.dart';
 
 /// View to display cuurentMovie of [AppState]
