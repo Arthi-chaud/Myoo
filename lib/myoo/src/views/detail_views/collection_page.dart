@@ -13,34 +13,32 @@ class CollectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DetailPageScaffold(
-      child: StoreConnector<AppState, Collection>(
-        converter: (store) => store.state.currentCollection!,
-        builder: (context, collection) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              DetailPageHeader(
-                thumbnailURL: collection.thumbnail,
-                posterURL: collection.poster!,
-                title: collection.name,
+      isLoading: (store) => store.state.currentCollection == null,
+      builder: (context, store) {
+        Collection collection = store.state.currentCollection!;
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            DetailPageHeader(
+              thumbnailURL: collection.thumbnail,
+              posterURL: collection.poster!,
+              title: collection.name,
+            ),
+            GridView.builder(
+              shrinkWrap: true,
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                childAspectRatio: ClickablePoster.posterRatio
               ),
-              GridView.builder(
-                shrinkWrap: true,
-                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: ClickablePoster.posterRatio
-                ),
-                //padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-                itemCount: collection.content.length,
-                itemBuilder: (BuildContext context, int index) =>
-                  ClickablePoster(resource: collection.content[index]),
-              ),
-            ],
-          );
-        }
-      )
+              itemCount: collection.content.length,
+              itemBuilder: (BuildContext context, int index) =>
+                ClickablePoster(resource: collection.content[index]),
+            ),
+          ],
+        );
+      }
     );
   }
 }

@@ -11,12 +11,11 @@ class TVSeriesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DetailPageScaffold(
-      child: StoreConnector<AppState, TVSeries>(
-        converter: (store) => store.state.currentTVSeries!,
-        builder: (context, tvseries) {
-          return Center(child: Text("Series: ${tvseries.name}"));
-        }
-      )
+      isLoading: (store) => store.state.currentTVSeries == null,
+      builder: (context, store) {
+        TVSeries tvSeries = store.state.currentTVSeries!;
+        return Center(child: Text("Series: ${tvSeries.name}"));
+      }
     );
   }
 }

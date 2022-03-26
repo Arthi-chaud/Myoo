@@ -16,99 +16,99 @@ class MoviePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
     DetailPageScaffold(
-      child: StoreConnector<AppState, Movie>(
-        converter: (store) => store.state.currentMovie!,
-        builder: (context, movie) =>
-          Column(
-            children: [
-              DetailPageHeader(
-                thumbnailURL: movie.thumbnail,
-                posterURL: movie.poster,
-                sideWidget: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      movie.name,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 20
-                      ),
+      isLoading: (store) => store.state.currentMovie == null,
+      builder: (context, store) {
+        Movie movie = store.state.currentMovie!;
+        return Column(
+          children: [
+            DetailPageHeader(
+              thumbnailURL: movie.thumbnail,
+              posterURL: movie.poster,
+              sideWidget: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    movie.name,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 15),
-                      child: Text(
-                        movie.releaseDate.year.toString() + (movie.studio != null ? ", ${movie.studio}" : ""),
-                      )
-                    ),
-                    if (movie.genres.isNotEmpty) ...[
-                      const Text("Genre:"),
-                      ...movie.genres.take(3).map(
-                        (genre) => Text("   • $genre")
-                      )
-                    ]
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                        flex: 4,
-                        child: ElevatedButton.icon(
-                            icon: const Icon(Icons.play_arrow),
-                            onPressed: () {}, ///TODO Open play page
-                            label: const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-                              child: Text("Play")
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              primary: getColorScheme(context).secondary,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12)
-                              )
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 5,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              if (movie.trailer != null)
-                              DetailPageIconButton(
-                                onTap: () => launch(Uri.parse(movie.trailer!).toString()),
-                                icon: const Icon(Icons.local_movies),
-                                label: "Trailer"
-                              ),
-                              DetailPageIconButton(
-                                onTap: () {}, ///TODO Manage downloads
-                                icon: const Icon(Icons.download),
-                                label: "Download"
-                              )
-                            ],
-                          )
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 30),
-                      child: ExpandableText(
-                        movie.overview,
-                        expandText: 'Show more',
-                        maxLines: 5,
-                        linkColor: getColorScheme(context).onBackground,
-                        linkStyle: const TextStyle(fontWeight: FontWeight.bold),
-                      )
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    child: Text(
+                      movie.releaseDate.year.toString() + (movie.studio != null ? ", ${movie.studio}" : ""),
+                    )
+                  ),
+                  if (movie.genres.isNotEmpty) ...[
+                    const Text("Genre:"),
+                    ...movie.genres.take(3).map(
+                      (genre) => Text("   • $genre")
                     )
                   ]
-                )
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                      flex: 4,
+                      child: ElevatedButton.icon(
+                          icon: const Icon(Icons.play_arrow),
+                          onPressed: () {}, ///TODO Open play page
+                          label: const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                            child: Text("Play")
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            primary: getColorScheme(context).secondary,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12)
+                            )
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 5,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            if (movie.trailer != null)
+                            DetailPageIconButton(
+                              onTap: () => launch(Uri.parse(movie.trailer!).toString()),
+                              icon: const Icon(Icons.local_movies),
+                              label: "Trailer"
+                            ),
+                            DetailPageIconButton(
+                              onTap: () {}, ///TODO Manage downloads
+                              icon: const Icon(Icons.download),
+                              label: "Download"
+                            )
+                          ],
+                        )
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 30),
+                    child: ExpandableText(
+                      movie.overview,
+                      expandText: 'Show more',
+                      maxLines: 5,
+                      linkColor: getColorScheme(context).onBackground,
+                      linkStyle: const TextStyle(fontWeight: FontWeight.bold),
+                    )
+                  )
+                ]
               )
-            ],
-          )
-        ),
+            )
+          ],
+        );
+      }
     );
 }
