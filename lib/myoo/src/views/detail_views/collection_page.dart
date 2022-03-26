@@ -5,6 +5,7 @@ import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
 import 'package:myoo/myoo/src/widgets/clickable_poster.dart';
+import 'package:responsive_grid/responsive_grid.dart';
 
 /// View to display currentCollection of [AppState]
 class CollectionPage extends StatelessWidget {
@@ -24,18 +25,15 @@ class CollectionPage extends StatelessWidget {
               posterURL: collection.poster,
               title: collection.name,
             ),
-            GridView.builder(
-              shrinkWrap: true,
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                childAspectRatio: ClickablePoster.posterRatio
-              ),
-              itemCount: collection.content.length,
-              itemBuilder: (BuildContext context, int index) =>
-                ClickablePoster(resource: collection.content[index]),
-            ),
+            ResponsiveGridList(
+              desiredItemWidth: 100,
+              minSpacing: 8,
+              scroll: false,
+              rowMainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: store.state.currentCollection!.content.map(
+                (preview) => ClickablePoster(resource: preview),
+              ).toList()
+            )
           ],
         );
       }

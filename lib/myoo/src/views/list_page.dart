@@ -57,7 +57,7 @@ class ListPage extends StatelessWidget {
             ]
           ),
           body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
             child: ResponsiveGridList(
               desiredItemWidth: 100,
               minSpacing: 8,
