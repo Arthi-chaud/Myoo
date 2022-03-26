@@ -19,38 +19,34 @@ class DetailPageHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-    Padding(
-      padding: EdgeInsets.only(bottom: (sideWidget == null) ? 130 : 0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Stack(
-            clipBehavior: Clip.none,
-            fit: StackFit.passthrough,
+    Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Thumbnail(thumbnailURL: thumbnailURL),
+        Padding(
+          padding:  EdgeInsets.only(top: Thumbnail.height(context) * 0.7),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Thumbnail(thumbnailURL: thumbnailURL),
-              Positioned(
-                top: sideWidget == null ? 90 : 150,
-                width: MediaQuery.of(context).size.width / 2,
-                child: Poster(
-                  posterURL: posterURL,
-                  title: title,
-                  titleSize: 18,
-                  height: 220,
-                )
+              Expanded(
+                  child: Poster(
+                    posterURL: posterURL,
+                    title: title,
+                    titleSize: 18,
+                    height: 220,
+                  )
               ),
+              sideWidget != null
+              ? Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 40, right: 10),
+                  child: sideWidget!
+                )
+              )
+              : Container()
             ],
-          ),
-          if (sideWidget != null)
-          SizedBox(
-            width: MediaQuery.of(context).size.width / 2,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 20, left: 10, right: 10),
-              child: sideWidget
-            ),
           )
-        ],
-      ),
+        ),
+      ],
     );
- 
 }
