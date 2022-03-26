@@ -35,7 +35,7 @@ class Thumbnail extends StatelessWidget {
         imageUrl: thumbnailURL!,
         fit: BoxFit.cover,
         width: width,
-        height: width * 9 / 16,
+        height: height(context),
         errorWidget: (_, __, ___) => emptyThumbnail,
         placeholder: (_, __) => emptyThumbnail,
       )

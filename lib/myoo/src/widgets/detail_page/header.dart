@@ -26,19 +26,18 @@ class DetailPageHeader extends StatelessWidget {
         children: [
           Stack(
             clipBehavior: Clip.none,
-            alignment: Alignment.topLeft,
+            fit: StackFit.passthrough,
             children: [
               Thumbnail(thumbnailURL: thumbnailURL),
               Positioned(
                 top: sideWidget == null ? 90 : 150,
-                left: sideWidget == null ? 0 : -90,
-                width: MediaQuery.of(context).size.width,
+                width: MediaQuery.of(context).size.width / 2,
                 child: Poster(
                   posterURL: posterURL,
                   title: title,
                   titleSize: 18,
                   height: 220,
-                ),
+                )
               ),
             ],
           ),
