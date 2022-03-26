@@ -52,7 +52,7 @@ class MoviePage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
               child: Column(
                 children: [
                   Row(

@@ -46,7 +46,7 @@ class DetailPageHeader extends StatelessWidget {
           SizedBox(
             width: MediaQuery.of(context).size.width / 2,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+              padding: const EdgeInsets.only(top: 20, left: 10, right: 10),
               child: sideWidget
             ),
           )
