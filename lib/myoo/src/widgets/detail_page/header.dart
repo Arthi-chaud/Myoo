@@ -26,7 +26,7 @@ class DetailPageHeader extends StatelessWidget {
         Padding(
           padding:  EdgeInsets.only(top: Thumbnail.height(context) * 0.7),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                   child: Poster(
@@ -39,7 +39,7 @@ class DetailPageHeader extends StatelessWidget {
               sideWidget != null
               ? Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 40, right: 10),
+                  padding: const EdgeInsets.only(top: 70, right: 10),
                   child: sideWidget!
                 )
               )

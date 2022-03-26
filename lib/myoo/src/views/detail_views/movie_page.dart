@@ -31,7 +31,8 @@ class MoviePage extends StatelessWidget {
                     movie.name,
                     style: const TextStyle(
                       fontWeight: FontWeight.w500,
-                      fontSize: 20
+                      height: 1.3,
+                      fontSize: 19
                     ),
                   ),
                   Padding(
@@ -52,7 +53,7 @@ class MoviePage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 25, right: 25, top: 10, bottom: 10),
+              padding: const EdgeInsets.only(left: 25, right: 25, top: 0, bottom: 10),
               child: Column(
                 children: [
                   Row(
