@@ -17,7 +17,7 @@ class Thumbnail extends StatelessWidget {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     Widget emptyThumbnail = Container(
-      height: height(context) * 9 /16,
+      height: height(context),
     );
     if (thumbnailURL == null) {
       return emptyThumbnail;
