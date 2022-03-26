@@ -9,6 +9,7 @@ import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/models/library_content.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/clickable_poster.dart';
+import 'package:responsive_grid/responsive_grid.dart';
 
 /// Page to list all libraries and their content from a server
 class ListPage extends StatelessWidget {
@@ -55,22 +56,20 @@ class ListPage extends StatelessWidget {
               const IconButton(onPressed: null, icon: Icon(Icons.search))
             ]
           ),
-          body: GridView.builder(
-            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              childAspectRatio: ClickablePoster.posterRatio,
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: ResponsiveGridList(
+              desiredItemWidth: 100,
+              minSpacing: 8,
+              children: store.state.currentLibrary!.content.map(
+                (preview) => LazyLoadingList(
+                  loadMore: () => store.dispatch(LoadContentFromLibrary(store.state.currentLibrary)),
+                  hasMore: store.state.currentLibrary!.fullyLoaded == false,
+                  index: store.state.currentLibrary!.content.indexOf(preview),
+                  child: ClickablePoster(resource: preview),
+                )
+              ).toList()
             ),
-            itemCount: store.state.currentLibrary!.content.length,
-            itemBuilder: (context, index) {
-              ResourcePreview preview = store.state.currentLibrary!.content[index];
-              return LazyLoadingList(
-                loadMore: () => store.dispatch(LoadContentFromLibrary(store.state.currentLibrary)),
-                hasMore: store.state.currentLibrary!.fullyLoaded == false,
-                index: index,
-                child: ClickablePoster(resource: preview),
-              );
-            }
           )
         );
       }

@@ -50,6 +50,7 @@ dependencies:
   expandable_text: ^2.2.0
   bulleted_list: ^0.0.1+0.1a
   url_launcher: ^6.0.20
+  responsive_grid: ^2.0.0
 
 dev_dependencies:
   flutter_test:
