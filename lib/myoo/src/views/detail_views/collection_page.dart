@@ -21,7 +21,7 @@ class CollectionPage extends StatelessWidget {
           children: [
             DetailPageHeader(
               thumbnailURL: collection.thumbnail,
-              posterURL: collection.poster!,
+              posterURL: collection.poster,
               title: collection.name,
             ),
             GridView.builder(

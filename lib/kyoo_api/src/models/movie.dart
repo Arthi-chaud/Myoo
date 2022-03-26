@@ -20,7 +20,7 @@ class Movie extends Video {
   final TrailerURL? trailer;
 
   /// Name of the studio
-  @JsonKey(fromJson: StudioParsing.fromJson)
+  @JsonKey(fromJson: StudioParsing.fromJson, defaultValue: null)
   final String? studio;
 
   /// Default constructor
@@ -29,7 +29,7 @@ class Movie extends Video {
     required String slug,
     required String name,
     required String overview,
-    required DateTime releaseDate,
+    required DateTime? releaseDate,
     String? poster,
     String? thumbnail,
     required this.studio,

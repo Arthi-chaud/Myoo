@@ -37,7 +37,9 @@ class MoviePage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     child: Text(
-                      movie.releaseDate.year.toString() + (movie.studio != null ? ", ${movie.studio}" : ""),
+                      movie.releaseDate != null
+                      ?  movie.releaseDate!.year.toString() + (movie.studio != null ? ", ${movie.studio}" : "")
+                      : movie.studio ?? ""
                     )
                   ),
                   if (movie.genres.isNotEmpty) ...[

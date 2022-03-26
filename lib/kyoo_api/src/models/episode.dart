@@ -20,7 +20,7 @@ class Episode extends Video {
     required String slug,
     required String name,
     required String overview,
-    required DateTime releaseDate,
+    required DateTime? releaseDate,
     required this.absoluteIndex,
     required this.index,
     String? thumbnail,

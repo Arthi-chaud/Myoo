@@ -10,7 +10,7 @@ part 'video.g.dart';
 class Video extends IllustratedResource {
   /// Date of the [Video]'s first air, or day of release
   @JsonKey(readValue: getReleaseDateFromJSON)
-  final DateTime releaseDate;
+  final DateTime? releaseDate;
 
   /// Default constructor
   const Video({
