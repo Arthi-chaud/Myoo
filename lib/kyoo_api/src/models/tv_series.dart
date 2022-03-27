@@ -4,6 +4,7 @@ import 'package:myoo/kyoo_api/src/models/illustrated_resource.dart';
 import 'package:myoo/kyoo_api/src/models/resource.dart';
 import 'package:myoo/kyoo_api/src/models/json.dart';
 import 'package:myoo/kyoo_api/src/models/season.dart';
+import 'package:myoo/kyoo_api/src/models/studio.dart';
 import 'package:myoo/kyoo_api/src/models/trailer_url.dart';
 
 part 'tv_series.g.dart';
@@ -23,6 +24,18 @@ class TVSeries extends IllustratedResource {
   @JsonKey(name: 'trailerUrl')
   final TrailerURL? trailer;
 
+  /// The name of the studio who produced the [TVSeries]
+  @JsonKey(fromJson: StudioParsing.fromJson, name: 'studio')
+  final String? studio;
+
+  /// Usually, the air date of the first episode
+  @JsonKey(name: 'startAir')
+  final DateTime? releaseDate;
+
+  /// Usually, the air date of the last episode
+  @JsonKey(name: 'endAir')
+  final DateTime? endDate;
+
   /// Default Constructor
   const TVSeries({
     required this.genres,
@@ -32,6 +45,9 @@ class TVSeries extends IllustratedResource {
     required String slug,
     required String name,
     required String overview,
+    required this.studio,
+    required this.releaseDate,
+    required this.endDate,
     String? poster,
     String? thumbnail,
   }) : super(

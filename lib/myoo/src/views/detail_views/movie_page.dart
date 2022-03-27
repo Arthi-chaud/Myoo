@@ -6,6 +6,7 @@ import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/icon_button.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
 import 'package:expandable_text/expandable_text.dart';
+import 'package:myoo/myoo/src/widgets/detail_page/show_info.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// View to display cuurentMovie of [AppState]
@@ -23,33 +24,12 @@ class MoviePage extends StatelessWidget {
             DetailPageHeader(
               thumbnailURL: movie.thumbnail,
               posterURL: movie.poster,
-              sideWidget: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    movie.name,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w500,
-                      height: 1.3,
-                      fontSize: 19
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 15),
-                    child: Text(
-                      movie.releaseDate != null
-                      ? movie.releaseDate!.year.toString() + (movie.studio != null ? ", ${movie.studio}" : "")
-                      : movie.studio ?? ""
-                    )
-                  ),
-                  if (movie.genres.isNotEmpty) ...[
-                    const Text("Genre:"),
-                    ...movie.genres.take(3).map(
-                      (genre) => Text("   • $genre")
-                    )
-                  ]
-                ],
-              ),
+              sideWidget: ShowInfo(
+                title: movie.name,
+                genres: movie.genres,
+                releaseDate: movie.releaseDate,
+                studio: movie.studio
+              )
             ),
             Padding(
               padding: const EdgeInsets.only(left: 25, right: 25, top: 20, bottom: 10),
