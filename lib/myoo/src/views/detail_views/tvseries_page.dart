@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';

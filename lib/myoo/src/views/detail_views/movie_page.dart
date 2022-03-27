@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
@@ -39,7 +38,7 @@ class MoviePage extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     child: Text(
                       movie.releaseDate != null
-                      ?  movie.releaseDate!.year.toString() + (movie.studio != null ? ", ${movie.studio}" : "")
+                      ? movie.releaseDate!.year.toString() + (movie.studio != null ? ", ${movie.studio}" : "")
                       : movie.studio ?? ""
                     )
                   ),
@@ -53,7 +52,7 @@ class MoviePage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 25, right: 25, top: 0, bottom: 10),
+              padding: const EdgeInsets.only(left: 25, right: 25, bottom: 10),
               child: Column(
                 children: [
                   Row(

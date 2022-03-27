@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:myoo/kyoo_api/src/models/collection.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
