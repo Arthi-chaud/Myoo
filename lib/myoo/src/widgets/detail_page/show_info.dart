@@ -17,6 +17,17 @@ class ShowInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String dateString = "";
+    if (releaseDate != null) {
+      dateString = releaseDate!.year.toString();
+      if (endDate != null && releaseDate!.year != endDate!.year) {
+        dateString += " - " + endDate!.year.toString();
+      }
+      if (studio != null) {
+        dateString += " • ";
+      }
+    }
+    dateString += studio ?? "";
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -28,10 +39,7 @@ class ShowInfo extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 15),
-          child: Text(releaseDate != null
-            ? releaseDate!.year.toString() + (studio != null ? ", $studio" : "")
-            : studio ?? ""
-          )
+          child: Text(dateString)
         ),
         if (genres.isNotEmpty) 
         ...[
