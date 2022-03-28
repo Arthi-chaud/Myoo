@@ -14,22 +14,32 @@ class EpisodeTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: Thumbnail(
-              thumbnailURL: episode.thumbnail,
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(4),
+                child: Thumbnail(
+                  thumbnailURL: episode.thumbnail,
+                ),
+              ),
             ),
           ),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(episode.name),
-                Padding(
-                  padding: const EdgeInsets.only(left: 4),
-                  child: ExpandableOverview(episode.overview, maxLines: 3),
-                )
-              ],
+            flex: 5,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(episode.name),
+                  ExpandableOverview(episode.overview, maxLines: 3)
+                ],
+              ),
             ),
           )
         ],
