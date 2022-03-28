@@ -22,9 +22,11 @@ class DetailPageHeader extends StatelessWidget {
     Stack(
       clipBehavior: Clip.none,
       children: [
-        Thumbnail(thumbnailURL: thumbnailURL),
+        Thumbnail(
+          thumbnailURL: thumbnailURL,
+        ),
         Padding(
-          padding:  EdgeInsets.only(top: Thumbnail.height(context) * 0.7),
+          padding: EdgeInsets.only(top: MediaQuery.of(context).size.width * 0.4),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
