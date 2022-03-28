@@ -26,7 +26,7 @@ class DetailPageScaffold extends StatelessWidget {
           style: TextStyle(fontSize: 12, color: getColorScheme(context).onBackground, height: 1.5),
           child: StoreBuilder<AppState>(
             builder: (context, store) {
-              if (store.state.isLoading || isLoading(store)) {
+              if (store.state.isLoading && isLoading(store)) {
                 return const LoadingWidget();
               }
               return ListView(

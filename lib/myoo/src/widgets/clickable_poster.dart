@@ -29,25 +29,19 @@ class ClickablePoster extends StatelessWidget{
       onTap: (() {
         switch (resource.type) {
           case ResourcePreviewType.collection:
-            var collection = store.state.currentCollection;
+            store.dispatch(UnloadCollectionAction());
             store.dispatch(LoadCollectionAction(resource.slug));
-            store.dispatch(NavigatorPushAction('/collection',
-              onPop: () => store.dispatch(SetCurrentCollection(collection))
-            ));
+            store.dispatch(NavigatorPushAction('/collection'));
             break;
           case ResourcePreviewType.movie:
-            var movie = store.state.currentMovie;
+            store.dispatch(UnloadMovieAction());
             store.dispatch(LoadMovieAction(resource.slug));
-            store.dispatch(NavigatorPushAction('/movie',
-              onPop: () => store.dispatch(SetCurrentMovie(movie))
-            ));
+            store.dispatch(NavigatorPushAction('/movie'));
             break;
           case ResourcePreviewType.series:
-            var series = store.state.currentTVSeries;
+            store.dispatch(UnloadTVSeriesAction());
             store.dispatch(LoadTVSeriesAction(resource.slug));
-            store.dispatch(NavigatorPushAction('/series',
-              onPop: () => store.dispatch(SetCurrentTVSeries(series))
-            ));
+            store.dispatch(NavigatorPushAction('/series'));
             break;
           default:
         }

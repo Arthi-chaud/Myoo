@@ -9,13 +9,13 @@ import 'package:redux/redux.dart';
 
 final currentMovieReducers = combineReducers<Movie?>([
   TypedReducer<Movie?, LoadedMovieAction>(setResource<Movie>),
-  TypedReducer<Movie?, SetCurrentMovie>(setResource<Movie?>),
+  TypedReducer<Movie?, SetCurrentMovie>(setResource<Movie>),
   TypedReducer<Movie?, UnloadMovieAction>(unsetResource<Movie>)
 ]);
 
 final currentTVSeriesReducers = combineReducers<TVSeries?>([
   TypedReducer<TVSeries?, LoadedTVSeriesAction>(setResource<TVSeries>),
-  TypedReducer<TVSeries?, SetCurrentTVSeries>(setResource<TVSeries?>),
+  TypedReducer<TVSeries?, SetCurrentTVSeries>(setResource<TVSeries>),
   TypedReducer<TVSeries?, UnloadTVSeriesAction>(unsetResource<TVSeries>)
 ]);
 
@@ -26,7 +26,7 @@ final currentSeasonReducers = combineReducers<Season?>([
 
 final currentCollectionReducers = combineReducers<Collection?>([
   TypedReducer<Collection?, LoadedCollectionAction>(setResource<Collection>),
-  TypedReducer<Collection?, SetCurrentCollection>(setResource<Collection?>),
+  TypedReducer<Collection?, SetCurrentCollection>(setResource<Collection>),
   TypedReducer<Collection?, UnloadCollectionAction>(unsetResource<Collection>)
 ]);
 
