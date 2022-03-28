@@ -4,6 +4,8 @@ import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/myoo/src/actions/season_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
+import 'package:myoo/myoo/src/widgets/detail_page/episode_tile.dart';
+import 'package:myoo/myoo/src/widgets/detail_page/expandable_overview.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/show_info.dart';
@@ -53,13 +55,7 @@ class TVSeriesPage extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 30),
-                    child: ExpandableText(
-                      tvSeries.overview,
-                      expandText: 'Show more',
-                      maxLines: 5,
-                      linkColor: getColorScheme(context).onBackground,
-                      linkStyle: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
+                    child: ExpandableOverview(tvSeries.overview, maxLines: 5),
                   ),
                   if (tvSeries.seasons.length == 1)
                   Text(tvSeries.seasons.first.name),
@@ -82,7 +78,7 @@ class TVSeriesPage extends StatelessWidget {
               ),
             ),
             for (Episode episode in season?.episodes ?? [])
-            Text(episode.name)
+            EpisodeTile(episode: episode)
           ],
         );
       }

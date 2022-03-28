@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
+import 'package:myoo/myoo/src/widgets/detail_page/expandable_overview.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/icon_button.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
@@ -78,13 +79,7 @@ class MoviePage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 30),
-                    child: ExpandableText(
-                      movie.overview,
-                      expandText: 'Show more',
-                      maxLines: 5,
-                      linkColor: getColorScheme(context).onBackground,
-                      linkStyle: const TextStyle(fontWeight: FontWeight.bold),
-                    )
+                    child: ExpandableOverview(movie.overview, maxLines: 5),
                   )
                 ]
               )
