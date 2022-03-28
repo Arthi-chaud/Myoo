@@ -7,7 +7,6 @@ import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/show_info.dart';
-import 'package:myoo/myoo/src/widgets/loading_widget.dart';
 
 /// View to display cuurentMovie of [AppState]
 class TVSeriesPage extends StatelessWidget {
