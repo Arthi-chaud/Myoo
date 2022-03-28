@@ -37,7 +37,7 @@ Middleware<AppState> loadTVSeries() =>
     next(action);
     store.state.currentClient!
       .getTVSeries((action as ContainerAction<Slug>).content)
-      .then((movie) => store.dispatch(LoadedTVSeriesAction(movie)));
+      .then((series) => store.dispatch(LoadedTVSeriesAction(series)));
   };
 
 /// Retrieve [Season] from [AppState]'s current [KyooClient] and dispatches it using [LoadedSeasonAction]

@@ -7,6 +7,7 @@ import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/show_info.dart';
+import 'package:myoo/myoo/src/widgets/loading_widget.dart';
 
 /// View to display cuurentMovie of [AppState]
 class TVSeriesPage extends StatelessWidget {
@@ -27,7 +28,11 @@ class TVSeriesPage extends StatelessWidget {
       isLoading: (store) => store.state.currentTVSeries == null,
       builder: (context, store) {
         TVSeries tvSeries = store.state.currentTVSeries!;
+        Season? season = store.state.currentSeason;
         int initialSeasonIndex = getFirstSeasonIndex(tvSeries);
+        if (season == null) {
+          store.dispatch(LoadSeasonAction(tvSeries.seasons[initialSeasonIndex].slug));
+        }
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -77,6 +82,8 @@ class TVSeriesPage extends StatelessWidget {
                 ).toList()
               ),
             ),
+            if (season == null)
+            const LoadingWidget(),
             for (Episode episode in store.state.currentSeason?.episodes ?? [])
             Text(episode.name)
           ],
