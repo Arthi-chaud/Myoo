@@ -4,6 +4,8 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/middlewares/kyoo_api_middleware.dart';
 import 'package:myoo/myoo/src/middlewares/local_storage_middleware.dart';
+import 'package:myoo/myoo/src/middlewares/navigation_middleware.dart';
+import 'package:myoo/myoo/src/navigation.dart';
 import 'package:myoo/myoo/src/reducers/reducers.dart';
 import 'package:myoo/myoo/src/routes.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
@@ -19,7 +21,8 @@ void main() async {
       appReducer,
       middleware: [
         ...createLocalStorageMiddleware(prefs),
-        ...createKyooAPIMiddleware()
+        ...createKyooAPIMiddleware(),
+        ...createNavigationMiddleware()
       ],
       initialState: AppState.initState()
     ),
@@ -35,6 +38,7 @@ class MyooApp extends StatelessWidget {
     return StoreProvider(
       store: store,
       child: MaterialApp(
+        navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
         title: 'Myoo',
         theme: ThemeData(

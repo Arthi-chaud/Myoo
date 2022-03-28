@@ -12,5 +12,10 @@ class LoadedMovieAction extends ContainerAction<Movie> {
   LoadedMovieAction(Movie movie) : super(content: movie);
 }
 
+/// Action to set [Movie]? as [AppState]'s current [Movie]
+class SetCurrentMovie extends ContainerAction<Movie?> {
+  SetCurrentMovie(Movie? movie) : super(content: movie);
+}
+
 /// Action to unload [AppState]'s current [Movie]
 class UnloadMovieAction extends Action {}

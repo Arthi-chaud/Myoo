@@ -12,5 +12,10 @@ class LoadedTVSeriesAction extends ContainerAction<TVSeries> {
   LoadedTVSeriesAction(TVSeries series) : super(content: series);
 }
 
+/// Action to set [TVSeries]? as [AppState]'s current [TVSeries]
+class SetCurrentTVSeries extends ContainerAction<TVSeries?> {
+  SetCurrentTVSeries(TVSeries? series) : super(content: series);
+}
+
 /// Action to unload [AppState]'s current [TVSeries]
 class UnloadTVSeriesAction extends Action {}

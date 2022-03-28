@@ -1,6 +1,7 @@
 import 'package:decorated_icon/decorated_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:myoo/myoo/src/actions/navigation_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/loading_widget.dart';
@@ -49,7 +50,7 @@ class DetailPageScaffold extends StatelessWidget {
                               ),
                             ],
                           ),
-                          onPressed: () => Navigator.of(context).pop()
+                          onPressed: () => store.dispatch(NavigatorPopAction())
                         ),
                       ),
                     ]

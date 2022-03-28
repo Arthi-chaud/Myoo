@@ -3,6 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
 import 'package:myoo/myoo/src/actions/collection_actions.dart';
 import 'package:myoo/myoo/src/actions/movie_actions.dart';
+import 'package:myoo/myoo/src/actions/navigation_actions.dart';
 import 'package:myoo/myoo/src/actions/tv_series_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/widgets/poster.dart';
@@ -28,16 +29,25 @@ class ClickablePoster extends StatelessWidget{
       onTap: (() {
         switch (resource.type) {
           case ResourcePreviewType.collection:
+            var collection = store.state.currentCollection;
             store.dispatch(LoadCollectionAction(resource.slug));
-            Navigator.of(context).pushNamed('/collection');
+            store.dispatch(NavigatorPushAction('/collection',
+              onPop: () => store.dispatch(SetCurrentCollection(collection))
+            ));
             break;
           case ResourcePreviewType.movie:
+            var movie = store.state.currentMovie;
             store.dispatch(LoadMovieAction(resource.slug));
-            Navigator.of(context).pushNamed('/movie');
+            store.dispatch(NavigatorPushAction('/movie',
+              onPop: () => store.dispatch(SetCurrentMovie(movie))
+            ));
             break;
           case ResourcePreviewType.series:
+            var series = store.state.currentTVSeries;
             store.dispatch(LoadTVSeriesAction(resource.slug));
-            Navigator.of(context).pushNamed('/series');
+            store.dispatch(NavigatorPushAction('/series',
+              onPop: () => store.dispatch(SetCurrentTVSeries(series))
+            ));
             break;
           default:
         }

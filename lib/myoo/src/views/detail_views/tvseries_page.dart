@@ -1,6 +1,5 @@
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/myoo/src/actions/season_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';

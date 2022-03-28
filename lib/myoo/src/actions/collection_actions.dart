@@ -9,7 +9,12 @@ class LoadCollectionAction extends ContainerAction<Slug> {
 
 /// Action to set [Collection] as [AppState]'s current [Collection]
 class LoadedCollectionAction extends ContainerAction<Collection> {
-  LoadedCollectionAction(Collection movie) : super(content: movie);
+  LoadedCollectionAction(Collection collection) : super(content: collection);
+}
+
+/// Action to set [Collection]? as [AppState]'s current [Collection]
+class SetCurrentCollection extends ContainerAction<Collection?> {
+  SetCurrentCollection(Collection? collection) : super(content: collection);
 }
 
 /// Action to unload [AppState]'s current [Collection]

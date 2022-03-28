@@ -15,6 +15,9 @@ void main() {
           thumbnail: 'thumbnail',
           genres: genres,
           trailer: "trailer",
+          endDate: null,
+          studio: null,
+          releaseDate: null,
           seasons: []);
       expect(resource.id, 1);
       expect(resource.slug, 'slug');
