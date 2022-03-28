@@ -74,15 +74,17 @@ Middleware<AppState> loadItems() =>
   (Store<AppState> store, action, NextDispatcher next) {
     next(action);
     LibraryContent currentLibrary = store.state.currentLibrary!;
+    const int itemCount = 30;
     store.state.currentClient!
       .getItemsFrom(
         library: currentLibrary.library,
-        afterID: currentLibrary.content.isEmpty ? null : currentLibrary.content.last.id)
+        afterID: currentLibrary.content.isEmpty ? null : currentLibrary.content.last.id,
+        count: itemCount
+      )
       .then((items) {
-        if (items.isEmpty) {
+        if (items.length < itemCount) {
           store.dispatch(LibraryIsFullAction());
-        } else {
-          store.dispatch(LoadedContentFromLibraryAction(items));
         }
+        store.dispatch(LoadedContentFromLibraryAction(items));
       });
   };
