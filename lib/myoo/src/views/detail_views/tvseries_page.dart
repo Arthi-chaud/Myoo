@@ -80,7 +80,10 @@ class TVSeriesPage extends StatelessWidget {
             for (Episode episode in season?.episodes ?? [])
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-              child: EpisodeTile(episode: episode),
+              child: InkWell(
+                child: EpisodeTile(episode: episode),
+                onTap: () {}, /// TODO Play screen
+              ),
             )
           ],
         );
