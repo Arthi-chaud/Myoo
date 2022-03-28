@@ -22,9 +22,13 @@ class EpisodeTile extends StatelessWidget {
           ),
           Expanded(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(episode.name),
-                ExpandableOverview(episode.overview, maxLines: 3)
+                Padding(
+                  padding: const EdgeInsets.only(left: 4),
+                  child: ExpandableOverview(episode.overview, maxLines: 3),
+                )
               ],
             ),
           )

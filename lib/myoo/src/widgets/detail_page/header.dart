@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/poster.dart';
 import 'package:myoo/myoo/src/widgets/thumbnail.dart';
 
@@ -22,8 +23,16 @@ class DetailPageHeader extends StatelessWidget {
     Stack(
       clipBehavior: Clip.none,
       children: [
-        Thumbnail(
-          thumbnailURL: thumbnailURL,
+        Container(
+          child: Thumbnail(thumbnailURL: thumbnailURL),
+          foregroundDecoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [getColorScheme(context).background, Colors.transparent],
+              stops: const [0, 0.5],
+              begin: Alignment.bottomCenter,
+              end: Alignment.center
+            ),
+          ),
         ),
         Padding(
           padding: EdgeInsets.only(top: MediaQuery.of(context).size.width * 0.4),

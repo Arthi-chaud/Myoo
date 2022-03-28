@@ -28,24 +28,13 @@ class Thumbnail extends StatelessWidget {
     if (thumbnailURL == null) {
       return emptyThumbnail;
     }
-    Widget thumbnail = CachedNetworkImage(
+    return CachedNetworkImage(
       imageUrl: thumbnailURL!,
       width: width,
       height: computedHeight,
       fit: BoxFit.cover,
       placeholder: (_, __) => emptyThumbnail,
       errorWidget: (_, __, ___) => emptyThumbnail
-    );
-    return Container(
-      foregroundDecoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [getColorScheme(context).background, Colors.transparent],
-          stops: const [0, 0.5],
-          begin: Alignment.bottomCenter,
-          end: Alignment.center
-        )
-      ),
-      child: thumbnail
     );
   }
 }

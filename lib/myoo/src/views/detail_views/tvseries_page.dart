@@ -78,7 +78,10 @@ class TVSeriesPage extends StatelessWidget {
               ),
             ),
             for (Episode episode in season?.episodes ?? [])
-            EpisodeTile(episode: episode)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              child: EpisodeTile(episode: episode),
+            )
           ],
         );
       }
