@@ -2,6 +2,7 @@ import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:myoo/kyoo_api/kyoo_api.dart';
+import 'package:myoo/myoo/src/actions/season_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
@@ -11,6 +12,15 @@ import 'package:myoo/myoo/src/widgets/detail_page/show_info.dart';
 /// View to display cuurentMovie of [AppState]
 class TVSeriesPage extends StatelessWidget {
   const TVSeriesPage({Key? key}) : super(key: key);
+  /// In the [TVSeries], retrives the index of the first 'real' season
+  /// I.E. exculding specials and Season 0
+  int getFirstSeasonIndex(TVSeries tvSeries) {
+    List<Season> realSeasons = tvSeries.seasons.where((season) => season.index >= 1).toList();
+    if (realSeasons.isEmpty) {
+      return 0;
+    }
+    return tvSeries.seasons.indexOf(realSeasons.first);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +28,7 @@ class TVSeriesPage extends StatelessWidget {
       isLoading: (store) => store.state.currentTVSeries == null,
       builder: (context, store) {
         TVSeries tvSeries = store.state.currentTVSeries!;
-        int initialSeasonIndex = 0;
-        if (tvSeries.seasons.first.name.toLowerCase().contains("specials") || // If specials
-          tvSeries.seasons.first.name.toLowerCase().endsWith(" 0")) { // if season 0
-          initialSeasonIndex = 1;
-        }
+        int initialSeasonIndex = getFirstSeasonIndex(tvSeries);
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -64,11 +70,16 @@ class TVSeriesPage extends StatelessWidget {
               child: TabBar(
                 isScrollable: true,
                 indicatorColor: getColorScheme(context).secondary,
+                onTap: (tabIndex) {
+                  store.dispatch(LoadSeasonAction(tvSeries.seasons[tabIndex].slug));
+                },
                 tabs: tvSeries.seasons.map(
                   (season) => Tab(text: season.name)
                 ).toList()
               ),
-            )
+            ),
+            for (Episode episode in store.state.currentSeason?.episodes ?? [])
+            Text(episode.name)
           ],
         );
       }
