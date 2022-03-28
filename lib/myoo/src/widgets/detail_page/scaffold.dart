@@ -21,6 +21,8 @@ class DetailPageScaffold extends StatelessWidget {
   Widget build(BuildContext context) =>
     SafeArea(
       bottom: false,
+      left: false,
+      right: false,
       child: Scaffold(
         body: DefaultTextStyle(
           style: TextStyle(fontSize: 12, color: getColorScheme(context).onBackground, height: 1.5),

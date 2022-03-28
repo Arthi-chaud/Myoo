@@ -82,9 +82,7 @@ class TVSeriesPage extends StatelessWidget {
                 ).toList()
               ),
             ),
-            if (season == null)
-            const LoadingWidget(),
-            for (Episode episode in store.state.currentSeason?.episodes ?? [])
+            for (Episode episode in season?.episodes ?? [])
             Text(episode.name)
           ],
         );
