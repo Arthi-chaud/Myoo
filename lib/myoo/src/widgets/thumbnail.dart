@@ -22,6 +22,15 @@ class Thumbnail extends StatelessWidget {
     if (thumbnailURL == null) {
       return emptyThumbnail;
     }
+    Widget thumbnail = CachedNetworkImage(
+      imageUrl: thumbnailURL!,
+      width: width,
+      height: height(context),
+      fit: BoxFit.cover,
+      placeholder: (_, __) => emptyThumbnail,
+      errorWidget: (_, __, ___) => emptyThumbnail
+    );
+    CachedNetworkImage.evictFromCache(thumbnailURL!);
     return Container(
       foregroundDecoration: BoxDecoration(
         gradient: LinearGradient(
@@ -31,14 +40,7 @@ class Thumbnail extends StatelessWidget {
           end: Alignment.center
         )
       ),
-      child: CachedNetworkImage(
-        imageUrl: thumbnailURL!,
-        fit: BoxFit.cover,
-        width: width,
-        height: height(context),
-        errorWidget: (_, __, ___) => emptyThumbnail,
-        placeholder: (_, __) => emptyThumbnail,
-      )
+      child: thumbnail
     );
   }
 }

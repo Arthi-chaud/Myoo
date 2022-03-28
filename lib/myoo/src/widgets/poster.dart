@@ -79,7 +79,8 @@ class Poster extends StatelessWidget {
             ),
           ),
         ),
-        subtitle != null ? Text(
+        if (subtitle != null)
+        Text(
           subtitle!,
           style: TextStyle(
             fontSize: titleSize * 0.8,
@@ -87,7 +88,7 @@ class Poster extends StatelessWidget {
             color: getColorScheme(context).onPrimary,
             fontWeight: FontWeight.w200
           ),
-        ) : Container()
+        ),
       ]
     );
 }
