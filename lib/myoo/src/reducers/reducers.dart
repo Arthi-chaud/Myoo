@@ -1,5 +1,6 @@
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/reducers/clients_reducers.dart';
+import 'package:myoo/myoo/src/reducers/download_reducers.dart';
 import 'package:myoo/myoo/src/reducers/library_reducers.dart';
 import 'package:myoo/myoo/src/reducers/loading_reducers.dart';
 import 'package:myoo/myoo/src/reducers/resource_reducers.dart';
@@ -12,5 +13,6 @@ AppState appReducer(AppState oldState, action) => AppState(
   currentMovie: currentMovieReducers(oldState.currentMovie, action),
   currentTVSeries: currentTVSeriesReducers(oldState.currentTVSeries, action),
   currentCollection: currentCollectionReducers(oldState.currentCollection, action),
-  currentSeason: currentSeasonReducers(oldState.currentSeason, action)
+  currentSeason: currentSeasonReducers(oldState.currentSeason, action),
+  currentDownloadProgresses: currentDownloadProgressReducers(oldState.currentDownloadProgresses, action)
 );
