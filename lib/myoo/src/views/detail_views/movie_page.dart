@@ -6,7 +6,6 @@ import 'package:myoo/myoo/src/widgets/detail_page/expandable_overview.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/icon_button.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
-import 'package:expandable_text/expandable_text.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/show_info.dart';
 import 'package:url_launcher/url_launcher.dart';
 

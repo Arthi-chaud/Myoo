@@ -1,7 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:myoo/myoo/src/theme_data.dart';
-
 /// Cached Image for a show's thumbnail
 /// If said thumbnail doesnot exist, display transparent container
 class Thumbnail extends StatelessWidget {
