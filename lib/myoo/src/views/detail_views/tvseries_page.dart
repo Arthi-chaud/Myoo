@@ -31,7 +31,7 @@ class TVSeriesPage extends StatelessWidget {
         TVSeries tvSeries = store.state.currentTVSeries!;
         Season? season = store.state.currentSeason;
         int initialSeasonIndex = getFirstSeasonIndex(tvSeries);
-        if (season == null) {
+        if (season == null || !tvSeries.seasons.map((s) => s.slug).contains(season.slug)) {
           store.dispatch(LoadSeasonAction(tvSeries.seasons[initialSeasonIndex].slug));
         }
         return Column(
