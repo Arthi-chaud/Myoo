@@ -36,7 +36,13 @@ class KyooClient {
   JSONData toJson() => _$KyooClientToJson(this);
 
   /// Retrieves full download link for resource, using client's [serverURL]
-  String getDownloadLink(Resource resource) => Uri.http(serverURL, 'video/${resource.slug}').toString();
+  String getDownloadLink(Slug resourceSlug) => Uri.http(serverURL, 'video/$resourceSlug').toString();
+
+  /// Retrieves the extension of the source file stored on the server
+  Future<String> getFileExtension(Slug resourceSlug) async {
+    JSONData responseBody = await _request(RequestType.get, '/watch/$resourceSlug');
+    return responseBody['container'] as String;
+  } 
 
   /// Retrieves a list of $[count] [ResourcePreview]s, starting from [afterID] from the current server
   /// If library is [null], fetches items from '/api/items', otherwise, fetch items from given collection
