@@ -77,14 +77,23 @@ class TVSeriesPage extends StatelessWidget {
                 ).toList()
               ),
             ),
-            for (Episode episode in season?.episodes ?? [])
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-              child: InkWell(
-                child: EpisodeTile(episode: episode),
-                onTap: () {}, /// TODO Play screen
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                children: ListTile.divideTiles(
+                  color: getColorScheme(context).surface,
+                  tiles: season?.episodes.map(
+                    (episode) => Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 7),
+                      child: InkWell(
+                        child: EpisodeTile(episode: episode),
+                        onTap: () {}, /// TODO Play screen
+                      ),
+                    ),
+                  ) ?? [],
+                ).toList(),
               ),
-            )
+            ),
           ],
         );
       }
