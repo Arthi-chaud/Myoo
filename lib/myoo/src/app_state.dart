@@ -3,7 +3,6 @@ import 'package:myoo/kyoo_api/src/kyoo_client.dart';
 import 'package:myoo/kyoo_api/src/models/collection.dart';
 import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
 import 'package:myoo/kyoo_api/src/models/library.dart';
-import 'package:myoo/kyoo_api/src/models/slug.dart';
 import 'package:myoo/myoo/src/models/library_content.dart';
 
 /// State of the Myoo App
@@ -32,9 +31,6 @@ class AppState {
   /// Loading state
   final bool isLoading;
 
-  /// Downloading states of items, refereing by their [Slug]
-  final Map<Slug, int> currentDownloadProgresses;
-
   /// Default constructor
   AppState({
     required this.isLoading,
@@ -44,7 +40,6 @@ class AppState {
     required this.currentLibrary,
     required this.currentTVSeries,
     required this.currentCollection,
-    required this.currentDownloadProgresses,
     required this.currentSeason}) {
     assert(clients?.map((client) => client.serverURL).toList().contains(currentClient!.serverURL) ?? true, 'The current client is not known');
   }
@@ -59,7 +54,6 @@ class AppState {
     currentMovie = null,
     currentTVSeries = null,
     currentCollection = null,
-    currentDownloadProgresses = const {},
     currentSeason = null;
 
   /// Copy constructor for easier copies
@@ -72,7 +66,6 @@ class AppState {
     Season? currentSeason,
     Movie? currentMovie,
     Collection? currentCollection,
-    Map<Slug, int>? currentDownloadProgresses,
     bool? isLoading,
   }) => AppState(
     currentClient: currentClient ?? this.currentClient,
@@ -82,7 +75,6 @@ class AppState {
     currentMovie: currentMovie ?? this.currentMovie,
     currentTVSeries: currentTVSeries ?? this.currentTVSeries,
     currentSeason: currentSeason ?? this.currentSeason,
-    currentDownloadProgresses: currentDownloadProgresses ?? this.currentDownloadProgresses,
     currentCollection: currentCollection ?? this.currentCollection
   );
 
@@ -95,7 +87,6 @@ class AppState {
     currentClient.hashCode ^
     currentMovie.hashCode ^
     currentTVSeries.hashCode ^
-    currentDownloadProgresses.hashCode ^
     currentCollection.hashCode ^
     currentSeason.hashCode;
 
@@ -103,7 +94,6 @@ class AppState {
   bool operator ==(Object other) =>
     other is AppState &&
     clients == other.clients &&
-    currentDownloadProgresses == other.currentDownloadProgresses &&
     currentClient == other.currentClient &&
     isLoading == other.isLoading &&
     currentLibrary == other.currentLibrary &&
