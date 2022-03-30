@@ -4,6 +4,7 @@ import 'package:myoo/kyoo_api/src/kyoo_client.dart';
 import 'package:myoo/kyoo_api/src/models/video.dart';
 import 'package:myoo/myoo/src/actions/loading_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
+import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/loading_widget.dart';
 import 'package:video_player/video_player.dart';
 
@@ -40,13 +41,9 @@ class _PlayPageState extends State<PlayPage> {
           return const LoadingWidget();
         }
         return Scaffold(
+          backgroundColor: getColorScheme(context).background,
           body: Center(
-            child: _controller.value.isInitialized
-                ? AspectRatio(
-                    aspectRatio: _controller.value.aspectRatio,
-                    child: VideoPlayer(_controller),
-                  )
-                : Container(),
+            child: AspectRatio(aspectRatio: _controller.value.aspectRatio, child: VideoPlayer(_controller))
           ),
         );
       },
