@@ -6,6 +6,7 @@ import 'package:myoo/myoo/src/views/list_page.dart';
 import 'package:myoo/myoo/src/views/login_page.dart';
 import 'package:myoo/myoo/src/views/detail_views/movie_page.dart';
 import 'package:myoo/myoo/src/views/detail_views/tvseries_page.dart';
+import 'package:myoo/myoo/src/views/play_page.dart';
 
 Map<String, Widget Function()> routes = {
   '/init': () => const InitializationPage(),
@@ -14,6 +15,7 @@ Map<String, Widget Function()> routes = {
   '/collection': () => const CollectionPage(),
   '/movie': () => const MoviePage(),
   '/series': () => const TVSeriesPage(),
+  '/play': () => PlayPage(),
 };
 
 dynamic generateRoutes(RouteSettings settings) =>

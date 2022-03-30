@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:myoo/myoo/src/app_state.dart';
@@ -16,7 +15,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  await FlutterDownloader.initialize();
 
   runApp(MyooApp(
     store: Store<AppState>(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myoo/kyoo_api/kyoo_api.dart';
+import 'package:myoo/myoo/src/actions/navigation_actions.dart';
+import 'package:myoo/myoo/src/actions/video_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/expandable_overview.dart';
@@ -43,7 +45,10 @@ class MoviePage extends StatelessWidget {
                       flex: 4,
                       child: ElevatedButton.icon(
                           icon: const Icon(Icons.play_arrow),
-                          onPressed: () {}, ///TODO Open play page
+                          onPressed: () {
+                            store.dispatch(SetCurrentVideo(movie));
+                            store.dispatch(NavigatorPushAction('/play'));
+                          },
                           label: const Padding(
                             padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
                             child: Text("Play")

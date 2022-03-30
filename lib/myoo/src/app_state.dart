@@ -28,6 +28,9 @@ class AppState {
   /// Current [Movie]
   final Movie? currentMovie;
 
+  /// Current [Video] that is being played
+  final Video? currentVideo;
+
   /// Loading state
   final bool isLoading;
 
@@ -38,6 +41,7 @@ class AppState {
     required this.currentClient,
     required this.currentMovie,
     required this.currentLibrary,
+    required this.currentVideo,
     required this.currentTVSeries,
     required this.currentCollection,
     required this.currentSeason}) {
@@ -51,6 +55,7 @@ class AppState {
     currentClient = null,
     clients = null,
     currentLibrary = null,
+    currentVideo = null,
     currentMovie = null,
     currentTVSeries = null,
     currentCollection = null,
@@ -66,6 +71,7 @@ class AppState {
     Season? currentSeason,
     Movie? currentMovie,
     Collection? currentCollection,
+    Video? currentVideo,
     bool? isLoading,
   }) => AppState(
     currentClient: currentClient ?? this.currentClient,
@@ -75,6 +81,7 @@ class AppState {
     currentMovie: currentMovie ?? this.currentMovie,
     currentTVSeries: currentTVSeries ?? this.currentTVSeries,
     currentSeason: currentSeason ?? this.currentSeason,
+    currentVideo: currentVideo ?? this.currentVideo,
     currentCollection: currentCollection ?? this.currentCollection
   );
 
@@ -88,6 +95,7 @@ class AppState {
     currentMovie.hashCode ^
     currentTVSeries.hashCode ^
     currentCollection.hashCode ^
+    currentVideo.hashCode ^
     currentSeason.hashCode;
 
   @override
@@ -99,6 +107,7 @@ class AppState {
     currentLibrary == other.currentLibrary &&
     currentClient == other.currentClient &&
     currentMovie == other.currentMovie &&
+    currentVideo == other.currentVideo &&
     currentTVSeries == other.currentTVSeries &&
     currentCollection == other.currentCollection &&
     currentSeason == other.currentSeason;

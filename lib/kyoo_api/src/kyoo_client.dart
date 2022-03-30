@@ -35,8 +35,24 @@ class KyooClient {
 
   JSONData toJson() => _$KyooClientToJson(this);
 
-  /// Retrieves full download link for resource, using client's [serverURL]
-  String getDownloadLink(Slug resourceSlug) => Uri.http(serverURL, 'video/$resourceSlug').toString();
+  /// Retrieves full download link for [Video], using client's [serverURL]
+  /// The slug must be from a [Video]
+  String getDownloadLink(Slug videoSlug) => Uri.http(serverURL, 'video/$videoSlug').toString();
+  
+  /// Retrieves streaming link for resource, using client's [serverURL] and a [StreamingMethod]
+  /// The slug must be from a [Video]
+  String getStreamingLink(Slug videoSlug, StreamingMethod method) {
+    String path;
+    switch (method) {
+      case StreamingMethod.direct:
+        path = '/videos/direct/$videoSlug';
+        break;
+      case StreamingMethod.transmux:
+        path = '/videos/transmux/$videoSlug/master.m3u8';
+        break;
+    }
+    return Uri.http(serverURL, path).toString();
+  }
 
   /// Retrieves the extension of the source file stored on the server
   Future<String> getFileExtension(Slug resourceSlug) async {

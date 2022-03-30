@@ -5,6 +5,13 @@ import 'package:myoo/kyoo_api/src/models/resource.dart';
 
 part 'video.g.dart';
 
+/// Enumeration of methods to stream a video
+enum StreamingMethod {
+  direct,
+  transmux,
+  ///transcode
+}
+
 /// A [IllustratedResource] that has duration and an air date
 @JsonSerializable()
 class Video extends IllustratedResource {

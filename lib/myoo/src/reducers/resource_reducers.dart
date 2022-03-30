@@ -5,6 +5,7 @@ import 'package:myoo/myoo/src/actions/collection_actions.dart';
 import 'package:myoo/myoo/src/actions/movie_actions.dart';
 import 'package:myoo/myoo/src/actions/season_actions.dart';
 import 'package:myoo/myoo/src/actions/tv_series_actions.dart';
+import 'package:myoo/myoo/src/actions/video_actions.dart';
 import 'package:redux/redux.dart';
 
 final currentMovieReducers = combineReducers<Movie?>([
@@ -22,6 +23,11 @@ final currentTVSeriesReducers = combineReducers<TVSeries?>([
 final currentSeasonReducers = combineReducers<Season?>([
   TypedReducer<Season?, LoadedSeasonAction>(setResource<Season>),
   TypedReducer<Season?, UnloadSeasonAction>(unsetResource<Season>)
+]);
+
+final currentVideoReducers = combineReducers<Video?>([
+  TypedReducer<Video?, SetCurrentVideo>(setResource<Video>),
+  TypedReducer<Video?, UnloadVideoAction>(unsetResource<Video>)
 ]);
 
 final currentCollectionReducers = combineReducers<Collection?>([

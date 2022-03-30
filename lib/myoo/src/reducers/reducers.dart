@@ -13,4 +13,5 @@ AppState appReducer(AppState oldState, action) => AppState(
   currentTVSeries: currentTVSeriesReducers(oldState.currentTVSeries, action),
   currentCollection: currentCollectionReducers(oldState.currentCollection, action),
   currentSeason: currentSeasonReducers(oldState.currentSeason, action),
+  currentVideo: currentVideoReducers(oldState.currentVideo, action),
 );
