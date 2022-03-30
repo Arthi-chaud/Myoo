@@ -16,7 +16,8 @@ class DetailPageIconButton extends StatelessWidget {
   Widget build(BuildContext context) =>
     InkWell(
       onTap: onTap,
-      ///TODO circular splash
+      radius: 20,
+      highlightColor: Colors.transparent,
       child: Column(
         children: [
           icon,
