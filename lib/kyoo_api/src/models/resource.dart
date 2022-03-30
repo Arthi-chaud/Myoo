@@ -30,7 +30,7 @@ class Resource {
   });
 
   /// Get the [Resource]'s title from JSON. It is usually in 'title', but sometimes in 'name'
-  static Object? getTitleFromJSON(Map<dynamic, dynamic> input, String _) {
+  static String? getTitleFromJSON(Map<dynamic, dynamic> input, _) {
     if (input.containsKey('name')) {
       return input['name'];
     }

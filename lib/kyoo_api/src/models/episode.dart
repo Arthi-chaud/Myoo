@@ -18,7 +18,7 @@ class Episode extends Video {
   Episode({
     required int id,
     required String slug,
-    required String name,
+    required String? name,
     required String overview,
     required DateTime? releaseDate,
     required this.absoluteIndex,
@@ -26,7 +26,7 @@ class Episode extends Video {
     String? thumbnail,
   }) : super(
     id: id,
-    name: name,
+    name: name ?? "Episode ${index ?? absoluteIndex}",
     slug: slug,
     overview: overview,
     poster: null,
