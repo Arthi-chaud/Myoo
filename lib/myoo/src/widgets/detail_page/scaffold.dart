@@ -5,6 +5,7 @@ import 'package:myoo/myoo/src/actions/navigation_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/loading_widget.dart';
+import 'package:myoo/myoo/src/widgets/safe_scaffold.dart';
 import 'package:redux/redux.dart';
 
 /// Common Scaffold for all detail page ([MoviePage], [CollectionPage], [TVSeriesPage])
@@ -21,11 +22,8 @@ class DetailPageScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-    SafeArea(
-      bottom: false,
-      left: false,
-      right: false,
-      child: Scaffold(
+    SafeScaffold(
+      scaffold: Scaffold(
         body: DefaultTextStyle(
           style: TextStyle(fontSize: 12, color: getColorScheme(context).onBackground, height: 1.5),
           child: StoreBuilder<AppState>(

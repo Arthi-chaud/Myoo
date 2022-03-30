@@ -7,6 +7,7 @@ import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/models/library_content.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/clickable_poster.dart';
+import 'package:myoo/myoo/src/widgets/safe_scaffold.dart';
 import 'package:responsive_grid/responsive_grid.dart';
 
 /// Page to list all libraries and their content from a server
@@ -22,50 +23,52 @@ class ListPage extends StatelessWidget {
         store.dispatch(LoadContentFromLibrary(store.state.currentLibrary));
       },
       builder: (context, store) {
-        return Scaffold(
-          appBar: AppBar(
-            backgroundColor: getColorScheme(context).background,
-            elevation: 30,
-            title: Text(
-              Uri.parse(store.state.currentClient!.serverURL).toString(),
-              style: TextStyle(fontSize: 15, color: getColorScheme(context).onBackground)
-            ),
-            actions: [
-              DropdownButton<String?>(
-                value: store.state.currentLibrary?.library?.name,
-                items: store.state.currentClient!.serverLibraries.map(
-                  (library) => DropdownMenuItem(value: library.name, child: Text(library.name))
-                ).toList()..insert(0, const DropdownMenuItem(value: null, child: Text('All'))),
-                underline: Container(),
-                onChanged: (selectedLib) {
-                  store.dispatch(ResetCurrentLibraryAction());
-                  if (selectedLib != null) {
-                    store.dispatch(SetCurrentLibraryAction(
-                      LibraryContent(
-                        library: store.state.currentClient!.serverLibraries.firstWhere(
-                          (element) => element.name == selectedLib
-                        )
-                      ) 
-                    ));
-                  }
-                  store.dispatch(LoadContentFromLibrary(store.state.currentLibrary));
-                }
+        return SafeScaffold(
+          scaffold: Scaffold(
+            appBar: AppBar(
+              backgroundColor: getColorScheme(context).background,
+              elevation: 30,
+              title: Text(
+                Uri.parse(store.state.currentClient!.serverURL).toString(),
+                style: TextStyle(fontSize: 15, color: getColorScheme(context).onBackground)
               ),
-              const IconButton(onPressed: null, icon: Icon(Icons.search))
-            ]
-          ),
-          body: Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
-            child: LazyLoadScrollView(
-              scrollOffset: 200,
-              isLoading: store.state.isLoading,
-              onEndOfPage: () => store.dispatch(LoadContentFromLibrary(store.state.currentLibrary)),
-              child: ResponsiveGridList(
-                desiredItemWidth: 100,
-                minSpacing: 8,
-                children: store.state.currentLibrary!.content.map(
-                  (preview) => ClickablePoster(resource: preview),
-                ).toList()
+              actions: [
+                DropdownButton<String?>(
+                  value: store.state.currentLibrary?.library?.name,
+                  items: store.state.currentClient!.serverLibraries.map(
+                    (library) => DropdownMenuItem(value: library.name, child: Text(library.name))
+                  ).toList()..insert(0, const DropdownMenuItem(value: null, child: Text('All'))),
+                  underline: Container(),
+                  onChanged: (selectedLib) {
+                    store.dispatch(ResetCurrentLibraryAction());
+                    if (selectedLib != null) {
+                      store.dispatch(SetCurrentLibraryAction(
+                        LibraryContent(
+                          library: store.state.currentClient!.serverLibraries.firstWhere(
+                            (element) => element.name == selectedLib
+                          )
+                        ) 
+                      ));
+                    }
+                    store.dispatch(LoadContentFromLibrary(store.state.currentLibrary));
+                  }
+                ),
+                const IconButton(onPressed: null, icon: Icon(Icons.search))
+              ]
+            ),
+            body: Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
+              child: LazyLoadScrollView(
+                scrollOffset: 200,
+                isLoading: store.state.isLoading,
+                onEndOfPage: () => store.dispatch(LoadContentFromLibrary(store.state.currentLibrary)),
+                child: ResponsiveGridList(
+                  desiredItemWidth: 100,
+                  minSpacing: 8,
+                  children: store.state.currentLibrary!.content.map(
+                    (preview) => ClickablePoster(resource: preview),
+                  ).toList()
+                ),
               ),
             ),
           ),

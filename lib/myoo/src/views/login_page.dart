@@ -52,7 +52,7 @@ class LoginPage extends StatelessWidget {
                               )
                             )
                         );
-                        Navigator.of(context).popAndPushNamed('/list');
+                        Navigator.of(context).pushNamed('/list');
                       }
                     }
                   ),

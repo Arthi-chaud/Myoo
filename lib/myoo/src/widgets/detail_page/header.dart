@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/poster.dart';
@@ -19,23 +21,28 @@ class DetailPageHeader extends StatelessWidget {
   const DetailPageHeader({Key? key, required this.thumbnailURL, required this.posterURL, this.title, this.sideWidget}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) =>
-    Stack(
+  Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+    var minDim = min(screenSize.height, screenSize.width);
+    return Stack(
       clipBehavior: Clip.none,
       children: [
-        Container(
-          child: Thumbnail(thumbnailURL: thumbnailURL),
-          foregroundDecoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [getColorScheme(context).background, Colors.transparent],
-              stops: const [0, 0.5],
-              begin: Alignment.bottomCenter,
-              end: Alignment.center
+        Center(
+          child: Container(
+            width: minDim,
+            child: Thumbnail(thumbnailURL: thumbnailURL),
+            foregroundDecoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [getColorScheme(context).background, Colors.transparent],
+                stops: const [0, 0.5],
+                begin: Alignment.bottomCenter,
+                end: Alignment.center
+              ),
             ),
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(top: MediaQuery.of(context).size.width * 0.4),
+          padding: EdgeInsets.only(top: minDim * 0.4),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -60,4 +67,5 @@ class DetailPageHeader extends StatelessWidget {
         ),
       ],
     );
+  }
 }
