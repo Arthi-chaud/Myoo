@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myoo/kyoo_api/kyoo_api.dart';
+import 'package:myoo/myoo/src/actions/movie_actions.dart';
 import 'package:myoo/myoo/src/actions/navigation_actions.dart';
 import 'package:myoo/myoo/src/actions/video_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
@@ -20,6 +21,7 @@ class MoviePage extends StatelessWidget {
   Widget build(BuildContext context) =>
     DetailPageScaffold(
       isLoading: (store) => store.state.currentMovie == null,
+      onDispose: (store) => store.dispatch(UnloadMovieAction()),
       builder: (context, store) {
         Movie movie = store.state.currentMovie!;
         return Column(

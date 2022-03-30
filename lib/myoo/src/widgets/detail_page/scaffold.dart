@@ -15,7 +15,9 @@ class DetailPageScaffold extends StatelessWidget {
   final bool Function(Store<AppState> store) isLoading;
   /// Function to build Scaffold's child using parameters provided by [StoreBuilder]
   final Widget Function(BuildContext context, Store<AppState> store) builder;
-  const DetailPageScaffold({Key? key, required this.builder, required this.isLoading}) : super(key: key);
+  /// Callback on page dispose
+  final void Function(Store<AppState>)? onDispose;
+  const DetailPageScaffold({Key? key, required this.builder, required this.isLoading, this.onDispose}) : super(key: key);
 
   @override
   Widget build(BuildContext context) =>
@@ -27,6 +29,7 @@ class DetailPageScaffold extends StatelessWidget {
         body: DefaultTextStyle(
           style: TextStyle(fontSize: 12, color: getColorScheme(context).onBackground, height: 1.5),
           child: StoreBuilder<AppState>(
+            onDispose: onDispose,
             builder: (context, store) {
               if (store.state.isLoading && isLoading(store)) {
                 return const LoadingWidget();

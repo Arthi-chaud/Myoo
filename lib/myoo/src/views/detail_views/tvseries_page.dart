@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/myoo/src/actions/season_actions.dart';
+import 'package:myoo/myoo/src/actions/tv_series_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/episode_tile.dart';
@@ -26,6 +27,10 @@ class TVSeriesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DetailPageScaffold(
       isLoading: (store) => store.state.currentTVSeries == null,
+      onDispose: (store) {
+        store.dispatch(UnloadTVSeriesAction());
+        store.dispatch(UnloadSeasonAction());
+      },
       builder: (context, store) {
         TVSeries tvSeries = store.state.currentTVSeries!;
         Season? season = store.state.currentSeason;

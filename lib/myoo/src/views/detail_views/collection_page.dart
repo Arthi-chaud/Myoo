@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myoo/kyoo_api/src/models/collection.dart';
+import 'package:myoo/myoo/src/actions/collection_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
@@ -14,6 +15,7 @@ class CollectionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DetailPageScaffold(
       isLoading: (store) => store.state.currentCollection == null,
+      onDispose: (store) => store.dispatch(UnloadCollectionAction()),
       builder: (context, store) {
         Collection collection = store.state.currentCollection!;
         return Column(
