@@ -4,6 +4,7 @@ import 'package:myoo/kyoo_api/src/models/collection.dart';
 import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
 import 'package:myoo/kyoo_api/src/models/library.dart';
 import 'package:myoo/myoo/src/models/library_content.dart';
+import 'package:myoo/myoo/src/models/streaming_parameters.dart';
 
 /// State of the Myoo App
 class AppState {
@@ -34,6 +35,9 @@ class AppState {
   /// Loading state
   final bool isLoading;
 
+  /// The parameters of the current stream
+  final StreamingParameters? streamingParams;
+
   /// Default constructor
   AppState({
     required this.isLoading,
@@ -44,6 +48,7 @@ class AppState {
     required this.currentVideo,
     required this.currentTVSeries,
     required this.currentCollection,
+    required this.streamingParams,
     required this.currentSeason}) {
     assert(clients?.map((client) => client.serverURL).toList().contains(currentClient!.serverURL) ?? true, 'The current client is not known');
   }
@@ -59,6 +64,7 @@ class AppState {
     currentMovie = null,
     currentTVSeries = null,
     currentCollection = null,
+    streamingParams = null,
     currentSeason = null;
 
   /// Copy constructor for easier copies
@@ -72,11 +78,13 @@ class AppState {
     Movie? currentMovie,
     Collection? currentCollection,
     Video? currentVideo,
+    StreamingParameters? streamingParams,
     bool? isLoading,
   }) => AppState(
     currentClient: currentClient ?? this.currentClient,
     isLoading: isLoading ?? this.isLoading,
     clients: clients ?? this.clients,
+    streamingParams: streamingParams ?? this.streamingParams,
     currentLibrary: currentLibrary ?? this.currentLibrary,
     currentMovie: currentMovie ?? this.currentMovie,
     currentTVSeries: currentTVSeries ?? this.currentTVSeries,
@@ -88,6 +96,7 @@ class AppState {
   @override
   int get hashCode =>
     clients.hashCode ^
+    streamingParams.hashCode ^
     currentClient.hashCode ^
     isLoading.hashCode ^
     currentLibrary.hashCode ^
@@ -101,6 +110,7 @@ class AppState {
   @override
   bool operator ==(Object other) =>
     other is AppState &&
+    streamingParams == other.streamingParams &&
     clients == other.clients &&
     currentClient == other.currentClient &&
     isLoading == other.isLoading &&
