@@ -1,0 +1,30 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+  workflow_dispatch:
+
+jobs:
+  build_apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '2.10.4'
+          channel: 'stable'
+      - name: Get dependencies
+        run: flutter pub get
+      - name: Generate JSON Serialization
+        run: flutter pub run build_runner build
+      - run: flutter build apk --release
+      - name: Move Build
+        run: mv build/app/outputs/flutter-apk/app-release.apk myoo.apk
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: myoo_apk
+          path: myoo.apk
