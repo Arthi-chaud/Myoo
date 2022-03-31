@@ -11,6 +11,7 @@ import 'package:myoo/myoo/src/widgets/detail_page/icon_button.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/show_info.dart';
 import 'package:myoo/myoo/src/widgets/download_button.dart';
+import 'package:myoo/myoo/src/widgets/trailer_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// View to display cuurentMovie of [AppState]
@@ -69,11 +70,7 @@ class MoviePage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             if (movie.trailer != null)
-                            DetailPageIconButton(
-                              onTap: () => launch(Uri.parse(movie.trailer!).toString()),
-                              icon: const Icon(Icons.local_movies),
-                              label: "Trailer"
-                            ),
+                            TrailerButton(movie.trailer!),
                             DownloadButton(
                               store.state.currentClient!.getDownloadLink(movie.slug)
                             ),
