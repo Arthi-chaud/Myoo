@@ -8,13 +8,16 @@ class SafeScaffold extends StatelessWidget {
   /// The scaffold to wrap
   final Widget scaffold;
 
-  const SafeScaffold({Key? key, required this.scaffold}) : super(key: key);
+  final bool bottom;
+
+  const SafeScaffold({Key? key, required this.scaffold, this.bottom = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: getColorScheme(context).background,
       child: SafeArea(
+        bottom: bottom,
         child: scaffold
       ),
     );

@@ -29,7 +29,7 @@ class DetailPageScaffold extends StatelessWidget {
           child: StoreBuilder<AppState>(
             onDispose: onDispose,
             builder: (context, store) {
-              if (store.state.isLoading && isLoading(store)) {
+              if (store.state.isLoading || isLoading(store)) {
                 return const LoadingWidget();
               }
               return ListView(
