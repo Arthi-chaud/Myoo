@@ -103,10 +103,14 @@ class KyooClient {
 
   /// Retrieves a [Collection] (including its [ResourcePreview]s ) using its [Slug]
   Future<Collection> getCollection(Slug collectionSlug) async {
-    JSONData responseBody = await _request(
-      RequestType.get, '/collections/$collectionSlug',
-      params: {'fields': 'shows'});
-    return Collection.fromJson(responseBody);
+    JSONData collection = await _request(
+      RequestType.get, '/collections/$collectionSlug');
+    JSONData collectionContent = await _request(RequestType.get, '/collections/$collectionSlug/shows',
+      params: {'sortBy': 'startair'});
+    return Collection.fromJson(collection)
+      ..content = (collectionContent['items'] as List).map(
+        (e) => ResourcePreview.fromJson(e)
+      ).toList();
   }
 
   /// Retrieves the server's [Librarie]s
