@@ -9,6 +9,7 @@ import 'package:myoo/myoo/src/widgets/detail_page/expandable_overview.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/show_info.dart';
+import 'package:myoo/myoo/src/widgets/trailer_button.dart';
 
 /// View to display cuurentMovie of [AppState]
 class TVSeriesPage extends StatelessWidget {
@@ -53,12 +54,19 @@ class TVSeriesPage extends StatelessWidget {
               )
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 25, right: 25, bottom: 10),
+              padding: const EdgeInsets.only(left: 25, right: 25, top: 20, bottom: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      if (tvSeries.trailer != null)
+                      TrailerButton(tvSeries.trailer!)
+                    ],
+                  ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 30),
+                    padding: const EdgeInsets.only(top: 20, bottom: 30),
                     child: ExpandableOverview(tvSeries.overview, maxLines: 5),
                   ),
                   if (tvSeries.seasons.length == 1)
