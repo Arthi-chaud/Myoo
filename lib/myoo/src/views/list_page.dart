@@ -39,6 +39,7 @@ class ListPage extends StatelessWidget {
               ),
               actions: [
                 DropdownButton<String?>(
+                  dropdownColor: getColorScheme(context).background,
                   value: store.state.currentLibrary?.library?.name,
                   items: store.state.currentClient!.serverLibraries.map(
                     (library) => DropdownMenuItem(value: library.name, child: Text(library.name))
