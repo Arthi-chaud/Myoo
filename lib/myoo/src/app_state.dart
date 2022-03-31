@@ -50,7 +50,11 @@ class AppState {
     required this.currentCollection,
     required this.streamingParams,
     required this.currentSeason}) {
-    assert(clients?.map((client) => client.serverURL).toList().contains(currentClient!.serverURL) ?? true, 'The current client is not known');
+    assert(
+      (clients != null && currentClient == null && clients!.isEmpty) ||
+      (clients?.map((client) => client.serverURL).toList().contains(currentClient?.serverURL) ?? true),
+      'The current client is not known'
+    );
   }
 
   /// Initial state for [MyooApp], sets [isLoading] to true.

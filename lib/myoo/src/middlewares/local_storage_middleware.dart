@@ -51,7 +51,7 @@ Middleware<AppState> loadStoredClientsMiddleware(LocalStorage localStorage) {
 Middleware<AppState> storageSetClientsMiddleWare(LocalStorage localStorage) {
   return (Store<AppState> store, action, NextDispatcher next) {
     KyooClient newClient = ((action as ContainerAction<KyooClient>).content);
-    List<KyooClient> toStore = List.from([...store.state.clients ?? [], newClient]);
+    List<KyooClient> toStore = List.from([newClient, ...store.state.clients ?? []]);
 
     _setRawClients(localStorage, toStore);
     next(action);

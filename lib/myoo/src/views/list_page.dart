@@ -8,6 +8,7 @@ import 'package:myoo/myoo/src/models/library_content.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/views/server_management_modal.dart';
 import 'package:myoo/myoo/src/widgets/clickable_poster.dart';
+import 'package:myoo/myoo/src/widgets/loading_widget.dart';
 import 'package:myoo/myoo/src/widgets/safe_scaffold.dart';
 import 'package:responsive_grid/responsive_grid.dart';
 
@@ -24,6 +25,9 @@ class ListPage extends StatelessWidget {
         store.dispatch(LoadContentFromLibrary(store.state.currentLibrary));
       },
       builder: (context, store) {
+        if (store.state.currentClient == null) {
+          return const Center(child: LoadingWidget());
+        }
         return SafeScaffold(
           scaffold: Scaffold(
             appBar: AppBar(

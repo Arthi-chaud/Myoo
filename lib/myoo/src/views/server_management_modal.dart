@@ -15,12 +15,21 @@ class ServerManagementDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreBuilder<AppState>(
       builder: (context, store) {
+        if (store.state.currentClient == null) {
+          return Container();
+        }
         KyooClient currentClient = store.state.currentClient!;
         List<KyooClient> otherClients = List.from(store.state.clients!)..remove(currentClient);
         var screenSize = MediaQuery.of(context).size;
         return AlertDialog(
           scrollable: true,
           title: const Text('Manage servers'),
+          actions: [
+            TextButton(
+              onPressed: () {},
+              child: const Text("Add new server"),
+            )
+          ],
           content: SizedBox(
             width: screenSize.width * 0.7,
             height: screenSize.height * 0.5,
@@ -32,10 +41,10 @@ class ServerManagementDialog extends StatelessWidget {
                     if (otherClients.isEmpty) {
                       store.dispatch(NavigatorPopAction());
                       store.dispatch(NavigatorPopAndPushAction('/login'));
-                      store.dispatch(DeleteClientAction(currentClient));
                     } else {
                       store.dispatch(UseClientAction(otherClients.first));
                     }
+                    store.dispatch(DeleteClientAction(currentClient));
                   },
                 ),
                 for (KyooClient client in otherClients)
