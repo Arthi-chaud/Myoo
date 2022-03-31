@@ -9,7 +9,7 @@ import 'package:redux/redux.dart';
 final clientsReducers = combineReducers<List<KyooClient>?>([
   TypedReducer<List<KyooClient>?, LoadedStoredClientsAction>(_setClients),
   TypedReducer<List<KyooClient>?, NewClientConnectedAction>(_addClient),
-  TypedReducer<List<KyooClient>?, DisconnectClientAction>(_removeClient),
+  TypedReducer<List<KyooClient>?, DeleteClientAction>(_removeClient),
 ]);
 
 /// List of reducers related to [AppState]'s current [KyooClient]
@@ -17,7 +17,7 @@ final currentClientReducers = combineReducers<KyooClient?>([
   TypedReducer<KyooClient?, LoadedStoredClientsAction>(_setCurrentClient),
   TypedReducer<KyooClient?, NewClientConnectedAction>(_setCurrentClient),
   TypedReducer<KyooClient?, UseClientAction>(_setCurrentClient),
-  TypedReducer<KyooClient?, DisconnectClientAction>(_unsetCurrentClient),
+  TypedReducer<KyooClient?, DeleteClientAction>(_unsetCurrentClient),
   TypedReducer<KyooClient?, LoadedLibraries>(_setLibraries),
 ]);
 
@@ -30,8 +30,14 @@ KyooClient? _setCurrentClient(KyooClient? oldClient, action) {
   }
 }
 
-/// Unsets [AppState]'s current [KyooClient]  (set to null)
-KyooClient? _unsetCurrentClient(KyooClient? _, __) => null;
+/// Unsets [AppState]'s current [KyooClient]  (set to null) if the action content is the current client
+KyooClient? _unsetCurrentClient(KyooClient? old, action) {
+  if (old! == (action as ContainerAction<KyooClient>).content) {
+    return null;
+  } else {
+    return old;
+  }
+}
 
 /// Adds new [KyooClient] to [AppState]'s [KyooClient]s
 List<KyooClient> _addClient(List<KyooClient>? oldClients, action) =>

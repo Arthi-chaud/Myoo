@@ -1,5 +1,6 @@
 import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/myoo/src/actions/action.dart';
+import 'package:myoo/myoo/src/actions/client_actions.dart';
 import 'package:myoo/myoo/src/actions/streaming_actions.dart';
 import 'package:myoo/myoo/src/models/streaming_parameters.dart';
 import 'package:redux/redux.dart';
@@ -17,6 +18,7 @@ final streamingReducers = combineReducers<StreamingParameters?>([
   TypedReducer<StreamingParameters?, SetSubtitlesTrackAction>(setSubtitlesTrackAction),
 
   TypedReducer<StreamingParameters?, UnsetStreamingParametersAction>((_, __) => null),
+  TypedReducer<StreamingParameters?, UseClientAction>((_, __) => null),
 ]);
 
 StreamingParameters initStreamingParameters(StreamingParameters? old, action) => StreamingParameters.init();

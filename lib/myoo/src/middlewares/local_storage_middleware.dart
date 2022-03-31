@@ -13,7 +13,8 @@ typedef LocalStorage = SharedPreferences;
 List<Middleware<AppState>> createLocalStorageMiddleware(SharedPreferences localStorage) => [
   TypedMiddleware<AppState, LoadStoredClientsAction>(loadStoredClientsMiddleware(localStorage)),
   TypedMiddleware<AppState, NewClientConnectedAction>(storageSetClientsMiddleWare(localStorage)),
-  TypedMiddleware<AppState, DisconnectClientAction>(storageRemoveClientMiddleWare(localStorage)),
+  TypedMiddleware<AppState, DeleteClientAction>(storageRemoveClientMiddleWare(localStorage)),
+  TypedMiddleware<AppState, UseClientAction>(storageReorderClients(localStorage)),
 ];
 
 /// Key for [SharedPreferences] to located serialized [KyooClient]'s in [LocalStorage]
@@ -57,13 +58,31 @@ Middleware<AppState> storageSetClientsMiddleWare(LocalStorage localStorage) {
   };
 }
 
+/// Middleware to reorder [KyooClient]s to [LocalStorage]. The action must be [ContainerAction<KyooClient>]
+/// Te action's content will be put first in the list
+Middleware<AppState> storageReorderClients(LocalStorage localStorage) {
+  return (Store<AppState> store, action, NextDispatcher next) {
+    KyooClient firstClient = ((action as ContainerAction<KyooClient>).content);
+    List<KyooClient> toStore = List.from(store.state.clients ?? []);
+    toStore.remove(firstClient);
+    toStore.insert(0, firstClient);
+
+    _setRawClients(localStorage, toStore);
+    next(action);
+  };
+}
+
 /// Middleware to remove a [KyooClient] from [LocalStorage].The action must be [ContainerAction<KyooClient>]
 Middleware<AppState> storageRemoveClientMiddleWare(LocalStorage localStorage) {
   return (Store<AppState> store, action, NextDispatcher next) {
     KyooClient toRemove = ((action as ContainerAction<KyooClient>).content);
     List<KyooClient> toStore = List.from(store.state.clients!);
     toStore.remove(toRemove);
-    _setRawClients(localStorage, toStore);
+    if (toStore.isEmpty) {
+      localStorage.remove(clientsDataKey);
+    } else {
+      _setRawClients(localStorage, toStore);
+    }
     next(action);
   };
 }

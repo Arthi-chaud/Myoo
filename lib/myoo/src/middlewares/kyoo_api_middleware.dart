@@ -20,6 +20,8 @@ List<Middleware<AppState>> createKyooAPIMiddleware() => [
   TypedMiddleware<AppState, LoadCollectionAction>(loadCollection()),
   TypedMiddleware<AppState, LoadLibraries>(loadLibraries()),
   TypedMiddleware<AppState, LoadContentFromLibrary>(loadItems()),
+  TypedMiddleware<AppState, UseClientAction>(loadLibraries()),
+  TypedMiddleware<AppState, UseClientAction>(loadItems()),
 ];
 
 /// Retrieve [Movie] from [AppState]'s current [KyooClient] and dispatches it using [LoadedMovieAction]

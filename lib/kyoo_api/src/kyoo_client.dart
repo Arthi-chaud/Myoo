@@ -146,4 +146,9 @@ class KyooClient {
     }
     return jsonDecode(response.body);
   }
+
+  @override
+  int get hashCode => serverURL.hashCode;
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is KyooClient && serverURL == other.serverURL;
 }

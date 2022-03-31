@@ -23,9 +23,9 @@ class UseClientAction extends ContainerAction<KyooClient> {
   UseClientAction(KyooClient client) : super(content: client);
 }
 
-/// Action when a [KyooClient] is disconnected (by user, or when a JWT rots)
-class DisconnectClientAction extends ContainerAction<KyooClient> {
-  DisconnectClientAction(KyooClient toRemove) : super(content: toRemove);
+/// Action to delete a client
+class DeleteClientAction extends ContainerAction<KyooClient> {
+  DeleteClientAction(KyooClient toRemove) : super(content: toRemove);
 }
 
 /// Action when to fetch [Library]es of the current server of [KyooClient]

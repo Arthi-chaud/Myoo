@@ -6,6 +6,7 @@ import 'package:myoo/myoo/src/actions/library_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/models/library_content.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
+import 'package:myoo/myoo/src/views/server_management_modal.dart';
 import 'package:myoo/myoo/src/widgets/clickable_poster.dart';
 import 'package:myoo/myoo/src/widgets/safe_scaffold.dart';
 import 'package:responsive_grid/responsive_grid.dart';
@@ -29,7 +30,7 @@ class ListPage extends StatelessWidget {
               backgroundColor: getColorScheme(context).background,
               elevation: 30,
               title: Text(
-                Uri.parse(store.state.currentClient!.serverURL).toString(),
+                store.state.currentClient!.serverURL,
                 style: TextStyle(fontSize: 15, color: getColorScheme(context).onBackground)
               ),
               actions: [
@@ -53,14 +54,21 @@ class ListPage extends StatelessWidget {
                     store.dispatch(LoadContentFromLibrary(store.state.currentLibrary));
                   }
                 ),
-                const IconButton(onPressed: null, icon: Icon(Icons.search))
+                const IconButton(onPressed: null, icon: Icon(Icons.search)),
+                IconButton(
+                  onPressed: () => showDialog(
+                    context: context,
+                    builder: (context) => const ServerManagementDialog()
+                  ),
+                  icon: const Icon(Icons.more_vert)
+                )
               ]
             ),
             body: Padding(
               padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
               child: LazyLoadScrollView(
                 scrollOffset: 200,
-                isLoading: store.state.isLoading,
+                isLoading: store.state.isLoading || store.state.currentLibrary == null,
                 onEndOfPage: () => store.dispatch(LoadContentFromLibrary(store.state.currentLibrary)),
                 child: ResponsiveGridList(
                   desiredItemWidth: 100,
