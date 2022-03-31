@@ -1,21 +1,18 @@
-
 import 'package:flutter/material.dart';
 import 'package:myoo/myoo/src/views/detail_views/collection_page.dart';
 import 'package:myoo/myoo/src/views/init_page.dart';
 import 'package:myoo/myoo/src/views/list_page.dart';
-import 'package:myoo/myoo/src/views/login_page.dart';
 import 'package:myoo/myoo/src/views/detail_views/movie_page.dart';
 import 'package:myoo/myoo/src/views/detail_views/tvseries_page.dart';
 import 'package:myoo/myoo/src/views/play_page.dart';
 
 Map<String, Widget Function()> routes = {
   '/init': () => const InitializationPage(),
-  '/login': () => const LoginPage(),
   '/list': () => const ListPage(),
   '/collection': () => const CollectionPage(),
   '/movie': () => const MoviePage(),
   '/series': () => const TVSeriesPage(),
-  '/play': () => PlayPage(),
+  '/play': () => const PlayPage(),
 };
 
 dynamic generateRoutes(RouteSettings settings) =>

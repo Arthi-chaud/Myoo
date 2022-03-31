@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:myoo/myoo/src/actions/client_actions.dart';
+import 'package:myoo/myoo/src/actions/navigation_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
+import 'package:myoo/myoo/src/views/login_dialog.dart';
 import 'package:myoo/myoo/src/widgets/loading_widget.dart';
+import 'package:redux/redux.dart';
 
 /// 'Lobby' Page while initiating [AppState]
-class InitializationPage extends StatefulWidget {
+class InitializationPage extends StatelessWidget {
   const InitializationPage({Key? key}) : super(key: key);
 
-  @override
-  State<InitializationPage> createState() => _InitializationPageState();
-}
-
-class _InitializationPageState extends State<InitializationPage> {
-  /// If a currentClient is set, it is connected
-  /// Otherwise, a login is required
-  void onLoaded(AppState store, BuildContext context) {
-    final route = store.currentClient == null ? '/login' : '/list';
+  void onLoaded(BuildContext context) {
     Future.delayed(const Duration(seconds: 2))
       .then((value) {
-        Navigator.of(context).pushReplacementNamed(route);
+        Store<AppState> store = StoreProvider.of<AppState>(context);
+        if (store.state.currentClient != null) {
+          store.dispatch(NavigatorPopAndPushAction('/list'));
+        } else {
+          showLoginDialog(context, disposable: false);
+        }
       });
   }
 
@@ -28,11 +28,11 @@ class _InitializationPageState extends State<InitializationPage> {
     return Scaffold(
       body: StoreConnector<AppState, AppState>(
         converter: (store) => store.state,
+        ignoreChange: (state) => state.isLoading == false,
         onInit: (store) => store.dispatch(LoadStoredClientsAction()),
-        ignoreChange: (store) => store.isLoading == false,
         builder: (context, store) {
           if (store.isLoading == false) {
-            onLoaded(store, context);
+            onLoaded(context);
           }
           return const LoadingWidget();
         }

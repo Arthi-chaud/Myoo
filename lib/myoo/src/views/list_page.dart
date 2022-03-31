@@ -6,7 +6,7 @@ import 'package:myoo/myoo/src/actions/library_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/models/library_content.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
-import 'package:myoo/myoo/src/views/server_management_modal.dart';
+import 'package:myoo/myoo/src/views/server_management_dialog.dart';
 import 'package:myoo/myoo/src/widgets/clickable_poster.dart';
 import 'package:myoo/myoo/src/widgets/loading_widget.dart';
 import 'package:myoo/myoo/src/widgets/safe_scaffold.dart';

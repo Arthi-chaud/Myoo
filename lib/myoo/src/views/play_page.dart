@@ -3,12 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:myoo/kyoo_api/src/kyoo_client.dart';
 import 'package:myoo/kyoo_api/src/models/video.dart';
-import 'package:myoo/myoo/src/actions/loading_actions.dart';
 import 'package:myoo/myoo/src/actions/navigation_actions.dart';
 import 'package:myoo/myoo/src/actions/video_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
-import 'package:myoo/myoo/src/theme_data.dart';
-import 'package:myoo/myoo/src/widgets/loading_widget.dart';
 import 'package:myoo/myoo/src/widgets/safe_scaffold.dart';
 import 'package:video_player/video_player.dart';
 
@@ -55,7 +52,7 @@ class _PlayPageState extends State<PlayPage> {
           bottom: true,
           scaffold: Scaffold(
             floatingActionButton: FloatingActionButton(
-              child: Icon(Icons.back_hand),
+              child: const Icon(Icons.back_hand),
               onPressed: () => store.dispatch(NavigatorPopAction()),
             ),
             body: Center(

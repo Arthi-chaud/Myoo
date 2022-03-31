@@ -27,11 +27,11 @@ Middleware<AppState> pop() =>
     next(action);
   };
 
+/// Pops all previous routes below new one
 Middleware<AppState> popAndPush() =>
   (Store<AppState> store, action, NextDispatcher next) {
-    navigatorKey.currentState?.pop();
     NavigationActionContent actionContent = (action as ContainerAction<NavigationActionContent>).content;
-    navigatorKey.currentState?.pushNamed(actionContent.routeName)
+    navigatorKey.currentState?.pushNamedAndRemoveUntil(actionContent.routeName, (route) => false)
       .then((_) => actionContent.onPop?.call());
     next(action);
   };

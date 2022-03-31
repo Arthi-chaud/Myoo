@@ -11,6 +11,7 @@ final currentLibraryReducers = combineReducers<LibraryContent?>([
   TypedReducer<LibraryContent?, LoadedContentFromLibraryAction>(setItems),
   TypedReducer<LibraryContent?, LibraryIsFullAction>(setLibraryAsFull),
   TypedReducer<LibraryContent?, UseClientAction>((_, __) => const LibraryContent()),
+  TypedReducer<LibraryContent?, NewClientConnectedAction>((_, __) => const LibraryContent()),
 ]);
 
 LibraryContent? setLibrary(LibraryContent? old, ContainerAction<LibraryContent> action) => action.content;

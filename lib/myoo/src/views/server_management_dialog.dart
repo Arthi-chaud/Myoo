@@ -6,6 +6,7 @@ import 'package:myoo/myoo/src/actions/library_actions.dart';
 import 'package:myoo/myoo/src/actions/navigation_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
+import 'package:myoo/myoo/src/views/login_dialog.dart';
 
 
 /// Dialog to manage (delete, connect, add new one) connected server(s)
@@ -28,7 +29,7 @@ class ServerManagementDialog extends StatelessWidget {
           title: const Text('Manage servers'),
           actions: [
             TextButton(
-              onPressed: () => store.dispatch(NavigatorPushAction('/login')),
+              onPressed: () => showLoginDialog(context),
               child: Text(
                 "Add new server",
                 style: TextStyle(color: getColorScheme(context).onBackground),
@@ -46,7 +47,7 @@ class ServerManagementDialog extends StatelessWidget {
                   onDelete: () {
                     if (otherClients.isEmpty) {
                       store.dispatch(NavigatorPopAction());
-                      store.dispatch(NavigatorPopAndPushAction('/login'));
+                      showLoginDialog(context, disposable: false, transparentBarrier: false);
                     } else {
                       store.dispatch(UseClientAction(otherClients.first));
                     }
