@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myoo/myoo/src/widgets/detail_page/icon_button.dart';
+import 'package:myoo/myoo/src/widgets/icon_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// Icon button to download an item

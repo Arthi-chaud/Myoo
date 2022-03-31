@@ -7,12 +7,10 @@ import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/expandable_overview.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
-import 'package:myoo/myoo/src/widgets/detail_page/icon_button.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/show_info.dart';
 import 'package:myoo/myoo/src/widgets/download_button.dart';
 import 'package:myoo/myoo/src/widgets/trailer_button.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 /// View to display cuurentMovie of [AppState]
 class MoviePage extends StatelessWidget {

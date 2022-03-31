@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:myoo/kyoo_api/src/kyoo_client.dart';
 import 'package:myoo/myoo/src/actions/client_actions.dart';
-import 'package:myoo/myoo/src/actions/library_actions.dart';
 import 'package:myoo/myoo/src/actions/navigation_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
