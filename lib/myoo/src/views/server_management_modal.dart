@@ -5,6 +5,7 @@ import 'package:myoo/myoo/src/actions/client_actions.dart';
 import 'package:myoo/myoo/src/actions/library_actions.dart';
 import 'package:myoo/myoo/src/actions/navigation_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
+import 'package:myoo/myoo/src/theme_data.dart';
 
 
 /// Dialog to manage (delete, connect, add new one) connected server(s)
@@ -22,18 +23,23 @@ class ServerManagementDialog extends StatelessWidget {
         List<KyooClient> otherClients = List.from(store.state.clients!)..remove(currentClient);
         var screenSize = MediaQuery.of(context).size;
         return AlertDialog(
+          backgroundColor: getColorScheme(context).background,
           scrollable: true,
           title: const Text('Manage servers'),
           actions: [
             TextButton(
-              onPressed: () {},
-              child: const Text("Add new server"),
+              onPressed: () => store.dispatch(NavigatorPushAction('/login')),
+              child: Text(
+                "Add new server",
+                style: TextStyle(color: getColorScheme(context).onBackground),
+              ),
             )
           ],
           content: SizedBox(
             width: screenSize.width * 0.7,
-            height: screenSize.height * 0.5,
+            height: screenSize.height * 0.3,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ClientTile(
                   serverURL: currentClient.serverURL,
@@ -82,12 +88,10 @@ class ClientTile extends StatelessWidget {
           flex: 4,
           child: Row(
             children: [
-              if (onDelete != null)
               IconButton(
-                icon: const Icon(Icons.delete),
+                icon: const Icon(Icons.delete, color: Colors.red),
                 onPressed: onDelete,
               ),
-              if (onConnect != null)
               IconButton(
                 icon: const Icon(Icons.electrical_services),
                 onPressed: onConnect,
