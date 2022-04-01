@@ -1,11 +1,9 @@
 import 'package:chewie/chewie.dart';
-import 'package:decorated_icon/decorated_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/kyoo_api/src/kyoo_client.dart';
 import 'package:myoo/myoo/src/actions/loading_actions.dart';
-import 'package:myoo/myoo/src/actions/navigation_actions.dart';
 import 'package:myoo/myoo/src/actions/video_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
@@ -13,7 +11,7 @@ import 'package:myoo/myoo/src/widgets/hide_on_tap.dart';
 import 'package:myoo/myoo/src/widgets/loading_widget.dart';
 import 'package:myoo/myoo/src/widgets/poster.dart';
 import 'package:myoo/myoo/src/widgets/safe_scaffold.dart';
-import 'package:redux/redux.dart';
+import 'package:timer_builder/timer_builder.dart';
 import 'package:video_player/video_player.dart';
 
 class PlayPage extends StatefulWidget {
@@ -54,14 +52,80 @@ class _PlayPageState extends State<PlayPage> {
     return null;
   }
 
+  ChewieController getChewieController(VideoPlayerController videoController, {required bool autoplay, Widget? controls}) {
+    return ChewieController(
+      videoPlayerController: videoController,
+      allowFullScreen: false,
+      autoPlay: autoplay,
+      customControls: controls ?? Container(),
+      showControlsOnInitialize: false,
+      allowPlaybackSpeedChanging: false,
+    );
+  }
+
+  Widget getControls(String? poster, String title, String? secondTitle, bool isPlaying, {Duration position = Duration.zero, Duration duration = Duration.zero}) {
+    return HideOnTap(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const BackButton(),
+          Expanded(child: Container()),
+          Expanded(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: 100,
+                color: getColorScheme(context).background.withOpacity(0.5),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Poster(posterURL: poster, height: 80),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(title),
+                                if (secondTitle != null)
+                                Text(
+                                  secondTitle,
+                                  style: const TextStyle(fontSize: 12),
+                                ),
+                                Text(
+                                  "${formatDuration(position)} - ${formatDuration(duration)}",
+                                  style: const TextStyle(fontSize: 10),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                      IconButton(
+                        icon: Icon(isPlaying ? Icons.pause : Icons.play_arrow),
+                        onPressed: () => chewieController!.togglePause(),
+                      ),
+                    ],
+                  ),
+                )
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return StoreBuilder<AppState>(
       onInit: ((store) async {
         Video currentVideo = store.state.currentVideo!;
-        TVSeries? tvSeries = store.state.currentTVSeries;
-        Season? season = store.state.currentSeason;
         KyooClient currentClient = store.state.currentClient!;
 
         store.dispatch(LoadingAction());
@@ -69,57 +133,7 @@ class _PlayPageState extends State<PlayPage> {
           currentClient.getStreamingLink(currentVideo.slug, StreamingMethod.transmux)
         );
         await videoController!.initialize();
-        chewieController = ChewieController(
-          videoPlayerController: videoController!,
-          allowFullScreen: false,
-          autoPlay: true,
-          customControls: HideOnTap(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const BackButton(),
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      height: 100,
-                      color: getColorScheme(context).background.withOpacity(0.5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Poster(posterURL: getVideoPoster(currentVideo, tvSeries, season), height: 80),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    getVideoTitle(currentVideo, tvSeries, season),
-                                  ),
-                                  Text(
-                                    "${formatDuration(videoController!.value.position)} - ${formatDuration(videoController!.value.duration)}",
-                                    style: const TextStyle(fontSize: 10),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.play_arrow),
-                            onPressed: () => chewieController!.togglePause(),
-                          ),
-                        ],
-                      )
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          showControlsOnInitialize: false,
-          allowPlaybackSpeedChanging: false,
-        );
+        chewieController = getChewieController(videoController!, autoplay: true);
         store.dispatch(LoadedAction());
       }),
       onDispose: ((store) {
@@ -129,6 +143,9 @@ class _PlayPageState extends State<PlayPage> {
         store.dispatch(UnloadVideoAction());
       }),
       builder: (context, store) {
+        Video currentVideo = store.state.currentVideo!;
+        TVSeries? tvSeries = store.state.currentTVSeries;
+        Season? season = store.state.currentSeason;
         return SafeScaffold(
           bottom: true,
           backgroundColor: Colors.black,
@@ -138,10 +155,28 @@ class _PlayPageState extends State<PlayPage> {
               backgroundColor: Colors.transparent,
             ) : null,
             backgroundColor: Colors.black,
-            body: store.state.isLoading ?
-              const Center(
+            body: store.state.isLoading
+              ? const Center(
                 child: LoadingWidget(),
-              ) : Chewie(controller: chewieController!),
+              )
+              : TimerBuilder.periodic(
+                const Duration(seconds: 1),
+                builder: (context) {
+                  return Chewie(
+                    controller: getChewieController(
+                      videoController!,
+                      autoplay: false,
+                      controls: getControls(
+                        getVideoPoster(currentVideo, tvSeries, season),
+                        getVideoTitle(currentVideo, tvSeries, season),
+                        currentVideo is Episode ? currentVideo.name : null,
+                        videoController!.value.isPlaying,
+                        position: videoController!.value.position, duration: videoController!.value.duration
+                      ),
+                    ),
+                  );
+                }
+              ),
           ),
         );
       },

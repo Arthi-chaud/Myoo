@@ -52,7 +52,6 @@ class KyooClient {
         path = '/videos/transmux/$videoSlug/master.m3u8';
         break;
     }
-    print(Uri.http(serverURL, path).toString());
     return Uri.http(serverURL, path).toString();
   }
 

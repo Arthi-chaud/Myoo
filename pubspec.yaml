@@ -61,6 +61,7 @@ dependencies:
   swipeable_page_route: ^0.2.6
   expandable: ^5.0.1
   flutter_native_splash: ^2.1.2+1
+  timer_builder: ^2.0.0
 
 dev_dependencies:
   flutter_test:
