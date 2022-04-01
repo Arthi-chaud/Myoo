@@ -18,11 +18,12 @@ class _HideOnTapState extends State<HideOnTap> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: () => setState(() => isVisible = !isVisible),
       child: AnimatedOpacity(
         opacity: isVisible ? 1.0 : 0.0,
         duration: const Duration(milliseconds: 200),
-        child: widget.child,
+        child: isVisible ? widget.child : IgnorePointer(child: widget.child),
       )
     );
   }
