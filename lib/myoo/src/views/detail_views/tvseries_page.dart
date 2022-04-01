@@ -4,7 +4,7 @@ import 'package:myoo/myoo/src/actions/season_actions.dart';
 import 'package:myoo/myoo/src/actions/tv_series_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
-import 'package:myoo/myoo/src/views/staff_list.dart';
+import 'package:myoo/myoo/src/widgets/detail_page/staff_list.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/episode_tile.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/expandable_overview.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
