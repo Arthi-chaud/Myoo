@@ -20,6 +20,8 @@ jobs:
         run: flutter pub get
       - name: Generate JSON Serialization
         run: flutter pub run build_runner build
+      - name: Generate Splashscreen
+        run: flutter pub run flutter_native_splash:create
       - run: flutter build apk --release
       - name: Move Build
         run: mv build/app/outputs/flutter-apk/app-release.apk myoo.apk
