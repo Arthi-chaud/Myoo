@@ -40,6 +40,7 @@ class Poster extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
     Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         posterURL != null ? Container(
           decoration: BoxDecoration(
@@ -63,10 +64,11 @@ class Poster extends StatelessWidget {
             )
           )
         ) : _emptyPoster(context),
+        if (title != null)
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 7),
           child: Text(
-            title ?? '',
+            title!,
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
             textAlign: TextAlign.center,

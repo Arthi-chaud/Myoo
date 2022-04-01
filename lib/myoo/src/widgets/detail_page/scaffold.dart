@@ -40,21 +40,7 @@ class DetailPageScaffold extends StatelessWidget {
                       AppBar(
                         elevation: 0,
                         backgroundColor: Colors.transparent,
-                        leading: IconButton(
-                          splashRadius: 25,
-                          icon: DecoratedIcon(
-                            Icons.arrow_back,
-                            color: getColorScheme(context).onBackground,
-                            shadows: [
-                              BoxShadow(
-                                blurRadius: 10.0,
-                                spreadRadius: 30,
-                                color: getColorScheme(context).background,
-                              ),
-                            ],
-                          ),
-                          onPressed: () => store.dispatch(NavigatorPopAction())
-                        ),
+                        leading: const BackButton(),
                       ),
                     ]
                   )
@@ -66,3 +52,4 @@ class DetailPageScaffold extends StatelessWidget {
       )
     );
 }
+
