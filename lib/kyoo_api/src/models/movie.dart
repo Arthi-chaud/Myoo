@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:myoo/kyoo_api/src/models/genre.dart';
+import 'package:myoo/kyoo_api/src/models/staff.dart';
 import 'package:myoo/kyoo_api/src/models/studio.dart';
 import 'package:myoo/kyoo_api/src/models/trailer_url.dart';
 import 'package:myoo/kyoo_api/src/models/video.dart';
@@ -23,8 +24,12 @@ class Movie extends Video {
   @JsonKey(fromJson: StudioParsing.fromJson, defaultValue: null)
   final String? studio;
 
+  /// The [Staff] involved in the making of the [Movie]
+  @JsonKey(defaultValue: [])
+  Staff staff;
+
   /// Default constructor
-  const Movie({
+  Movie({
     required int id,
     required String slug,
     required String name,
@@ -33,6 +38,7 @@ class Movie extends Video {
     String? poster,
     String? thumbnail,
     required this.studio,
+    required this.staff,
     required this.genres,
     required this.trailer,
   }) : super(

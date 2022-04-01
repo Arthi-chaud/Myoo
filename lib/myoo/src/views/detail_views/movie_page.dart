@@ -1,3 +1,4 @@
+import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/myoo/src/actions/movie_actions.dart';
@@ -5,11 +6,13 @@ import 'package:myoo/myoo/src/actions/navigation_actions.dart';
 import 'package:myoo/myoo/src/actions/video_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
+import 'package:myoo/myoo/src/views/staff_list.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/expandable_overview.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/show_info.dart';
 import 'package:myoo/myoo/src/widgets/download_button.dart';
+import 'package:myoo/myoo/src/widgets/poster.dart';
 import 'package:myoo/myoo/src/widgets/trailer_button.dart';
 
 /// View to display cuurentMovie of [AppState]
@@ -24,6 +27,7 @@ class MoviePage extends StatelessWidget {
       builder: (context, store) {
         Movie movie = store.state.currentMovie!;
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             DetailPageHeader(
               thumbnailURL: movie.thumbnail,
@@ -80,10 +84,11 @@ class MoviePage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 30),
                     child: ExpandableOverview(movie.overview, maxLines: 5),
-                  )
-                ]
+                  ),
+                ],
               )
-            )
+            ),
+            ExpandableStaffList(movie.staff),
           ],
         );
       }

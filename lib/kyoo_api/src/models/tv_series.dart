@@ -4,6 +4,7 @@ import 'package:myoo/kyoo_api/src/models/illustrated_resource.dart';
 import 'package:myoo/kyoo_api/src/models/resource.dart';
 import 'package:myoo/kyoo_api/src/models/json.dart';
 import 'package:myoo/kyoo_api/src/models/season.dart';
+import 'package:myoo/kyoo_api/src/models/staff.dart';
 import 'package:myoo/kyoo_api/src/models/studio.dart';
 import 'package:myoo/kyoo_api/src/models/trailer_url.dart';
 
@@ -36,8 +37,12 @@ class TVSeries extends IllustratedResource {
   @JsonKey(name: 'endAir')
   final DateTime? endDate;
 
+  /// The [Staff] involved in the making of the [TVSeries]
+  @JsonKey(defaultValue: [])
+  Staff staff;
+
   /// Default Constructor
-  const TVSeries({
+  TVSeries({
     required this.genres,
     required this.trailer,
     required this.seasons,
@@ -48,6 +53,7 @@ class TVSeries extends IllustratedResource {
     required this.studio,
     required this.releaseDate,
     required this.endDate,
+    required this.staff,
     String? poster,
     String? thumbnail,
   }) : super(

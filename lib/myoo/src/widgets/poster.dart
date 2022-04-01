@@ -63,28 +63,25 @@ class Poster extends StatelessWidget {
             )
           )
         ) : _emptyPoster(context),
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.8,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 7),
-            child: Text(
-              title ?? '',
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: titleSize,
-                color: getColorScheme(context).onPrimary
-              ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 7),
+          child: Text(
+            title ?? '',
+            overflow: TextOverflow.ellipsis,
+            maxLines: 2,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: titleSize,
+              color: getColorScheme(context).onPrimary
             ),
           ),
         ),
         if (subtitle != null)
         Text(
           subtitle!,
+          textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: titleSize * 0.8,
-            overflow: TextOverflow.ellipsis,
             color: getColorScheme(context).onPrimary,
             fontWeight: FontWeight.w200
           ),

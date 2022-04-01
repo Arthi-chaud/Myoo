@@ -18,16 +18,15 @@ class IllustratedResource extends Resource {
   final IllustrationURL? thumbnail;
 
   /// Default constructor
-  const IllustratedResource(
-      {required int id,
-      required String slug,
-      required String name,
-      required String overview,
-      required this.poster,
-      required this.thumbnail})
-      : super(id: id, slug: slug, name: name, overview: overview);
+  const IllustratedResource({
+    required int id,
+    required String slug,
+    required String name,
+    required String overview,
+    required this.poster,
+    required this.thumbnail
+  }) : super(id: id, slug: slug, name: name, overview: overview);
 
   /// Unserialize [IllustratedResource] from [JSONData]
-  factory IllustratedResource.fromJson(JSONData input) =>
-      _$IllustratedResourceFromJson(input);
+  factory IllustratedResource.fromJson(JSONData input) => _$IllustratedResourceFromJson(input);
 }

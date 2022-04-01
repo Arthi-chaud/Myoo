@@ -6,6 +6,7 @@ import 'package:myoo/kyoo_api/src/models/library.dart';
 import 'package:http/http.dart' as http;
 import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
 import 'package:myoo/kyoo_api/src/models/slug.dart';
+import 'package:myoo/kyoo_api/src/models/staff.dart';
 
 part 'kyoo_client.g.dart';
 
@@ -77,12 +78,20 @@ class KyooClient {
       .toList();
   }
 
+  Future<Staff> getStaff (Slug slug) async {
+    JSONData responseBody = await _request(
+      RequestType.get, '/show/$slug/staff', params: {'limit': '0'});
+    return (responseBody['items'] as List)
+      .map((e) => StaffMember.fromJson(e as JSONData))
+      .toList();
+  }
+
   /// Retrieves a [Movie] (with its [Genre]s) from current server using its [Slug]
   Future<Movie> getMovie(Slug movieSlug) async {
     JSONData responseBody = await _request(
       RequestType.get, '/shows/$movieSlug',
       params: {'fields': 'genres,studio'});
-    return Movie.fromJson(responseBody);
+    return Movie.fromJson(responseBody)..staff = await getStaff(movieSlug);
   }
 
   /// Retrieves a [TVSeries] (with its [Genre]s and [Season]s) from current server using [TVSeries]'s [Slug]
@@ -90,7 +99,7 @@ class KyooClient {
     JSONData responseBody = await _request(
       RequestType.get, '/shows/$seriesSlug',
       params: {'fields': 'genres,seasons,studio'});
-    return TVSeries.fromJson(responseBody);
+    return TVSeries.fromJson(responseBody)..staff = await getStaff(seriesSlug);
   }
 
   /// Retrieves a [Season] with its [Episode]s from current server using [Season]'s [Slug]
