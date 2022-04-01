@@ -1,6 +1,5 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:myoo/kyoo_api/src/models/staff.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/poster.dart';

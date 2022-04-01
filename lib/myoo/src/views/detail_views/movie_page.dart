@@ -1,4 +1,3 @@
-import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/myoo/src/actions/movie_actions.dart';
@@ -12,7 +11,6 @@ import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/show_info.dart';
 import 'package:myoo/myoo/src/widgets/download_button.dart';
-import 'package:myoo/myoo/src/widgets/poster.dart';
 import 'package:myoo/myoo/src/widgets/trailer_button.dart';
 
 /// View to display cuurentMovie of [AppState]
