@@ -16,6 +16,7 @@ class StaffList extends StatelessWidget {
       height: 200,
       child: Scrollbar(
         child: ListView.builder(
+          shrinkWrap: true,
             scrollDirection: Axis.horizontal,
             itemCount: staff.length,
             itemBuilder: (context, index) {
@@ -47,14 +48,13 @@ class ExpandableStaffList extends StatelessWidget {
       child: ScrollOnExpand(
         child: ExpandablePanel(
           theme: ExpandableThemeData(
+            useInkWell: false,
+            iconPadding: const EdgeInsets.only(left: 20, right :20, top: 10, bottom: 10),
             iconColor: getColorScheme(context).onBackground,
             headerAlignment: ExpandablePanelHeaderAlignment.center,
-            iconPlacement: ExpandablePanelIconPlacement.right,
+            iconPlacement: ExpandablePanelIconPlacement.left,
           ),
-          header: const Align(
-            child: Text("Staff"),
-            alignment: Alignment.centerRight
-          ),
+          header: const Text("Staff"),
           collapsed: Container(),
           expanded: Padding(
             padding: const EdgeInsets.only(top: 10),

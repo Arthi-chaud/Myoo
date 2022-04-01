@@ -80,6 +80,8 @@ class Poster extends StatelessWidget {
         Text(
           subtitle!,
           textAlign: TextAlign.center,
+          maxLines: 3,
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(
             fontSize: titleSize * 0.8,
             color: getColorScheme(context).onPrimary,

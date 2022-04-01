@@ -73,7 +73,10 @@ class TVSeriesPage extends StatelessWidget {
                 ],
               ),
             ),
-            ExpandableStaffList(tvSeries.staff),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: ExpandableStaffList(tvSeries.staff),
+            ),
             if (tvSeries.seasons.length == 1)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
