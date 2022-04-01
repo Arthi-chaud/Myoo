@@ -4,6 +4,7 @@ import 'package:myoo/myoo/src/actions/season_actions.dart';
 import 'package:myoo/myoo/src/actions/tv_series_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
+import 'package:myoo/myoo/src/views/staff_list.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/episode_tile.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/expandable_overview.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
@@ -54,7 +55,7 @@ class TVSeriesPage extends StatelessWidget {
               )
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 25, right: 25, top: 20, bottom: 10),
+              padding: const EdgeInsets.only(left: 25, right: 25, top: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -66,13 +67,17 @@ class TVSeriesPage extends StatelessWidget {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 20, bottom: 30),
+                    padding: const EdgeInsets.only(top: 20, bottom: 10),
                     child: ExpandableOverview(tvSeries.overview, maxLines: 5),
                   ),
-                  if (tvSeries.seasons.length == 1)
-                  Text(tvSeries.seasons.first.name),
                 ],
               ),
+            ),
+            ExpandableStaffList(tvSeries.staff),
+            if (tvSeries.seasons.length == 1)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Text(tvSeries.seasons.first.name),
             ),
             if (tvSeries.seasons.length > 1)
             DefaultTabController(
