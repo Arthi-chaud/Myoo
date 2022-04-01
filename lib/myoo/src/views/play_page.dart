@@ -101,7 +101,11 @@ class _PlayPageState extends State<PlayPage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(title),
+                                    Text(
+                                      title,
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 2
+                                    ),
                                     if (secondTitle != null)
                                     Text(
                                       secondTitle,
@@ -116,10 +120,13 @@ class _PlayPageState extends State<PlayPage> {
                               )
                             ],
                           ),
-                          IconButton(
-                            icon: Icon(isPlaying ? Icons.pause : Icons.play_arrow),
-                            onPressed: () => chewieController!.togglePause(),
+                          Expanded(
+                            child: IconButton(
+                              icon: Icon(isPlaying ? Icons.pause : Icons.play_arrow),
+                              onPressed: () => chewieController!.togglePause(),
+                            ),
                           ),
+                          ///TODO Manage subtitles
                         ],
                       ),
                     )
