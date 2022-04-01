@@ -25,8 +25,8 @@ class PlayPage extends StatefulWidget {
 }
 
 class _PlayPageState extends State<PlayPage> {
-  late VideoPlayerController videoController;
-  late ChewieController chewieController;
+  VideoPlayerController? videoController;
+  ChewieController? chewieController;
 
   String formatDuration(Duration duration) {
     String timeString = duration.toString().split('.').first;
@@ -57,21 +57,21 @@ class _PlayPageState extends State<PlayPage> {
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, Video>(
-      converter: (store) => store.state.currentVideo!,
+    return StoreBuilder<AppState>(
       onInit: ((store) async {
         Video currentVideo = store.state.currentVideo!;
         TVSeries? tvSeries = store.state.currentTVSeries;
         Season? season = store.state.currentSeason;
         KyooClient currentClient = store.state.currentClient!;
 
+        store.dispatch(LoadingAction());
         videoController = VideoPlayerController.network(
           currentClient.getStreamingLink(currentVideo.slug, StreamingMethod.transmux)
         );
+        await videoController!.initialize();
         chewieController = ChewieController(
-          videoPlayerController: videoController,
+          videoPlayerController: videoController!,
           allowFullScreen: false,
-          autoInitialize: true,
           autoPlay: true,
           customControls: HideOnTap(
             child: Column(
@@ -98,7 +98,7 @@ class _PlayPageState extends State<PlayPage> {
                                     getVideoTitle(currentVideo, tvSeries, season),
                                   ),
                                   Text(
-                                    "${formatDuration(videoController.value.position)} - ${formatDuration(videoController.value.duration)}",
+                                    "${formatDuration(videoController!.value.position)} - ${formatDuration(videoController!.value.duration)}",
                                     style: const TextStyle(fontSize: 10),
                                   )
                                 ],
@@ -107,7 +107,7 @@ class _PlayPageState extends State<PlayPage> {
                           ),
                           IconButton(
                             icon: const Icon(Icons.play_arrow),
-                            onPressed: () => chewieController.togglePause(),
+                            onPressed: () => chewieController!.togglePause(),
                           ),
                         ],
                       )
@@ -120,20 +120,28 @@ class _PlayPageState extends State<PlayPage> {
           showControlsOnInitialize: false,
           allowPlaybackSpeedChanging: false,
         );
+        store.dispatch(LoadedAction());
       }),
       onDispose: ((store) {
-        chewieController.pause();
-        videoController.dispose();
-        chewieController.dispose();
+        chewieController?.pause();
+        videoController?.dispose();
+        chewieController?.dispose();
         store.dispatch(UnloadVideoAction());
       }),
-      builder: (context, video) {
+      builder: (context, store) {
         return SafeScaffold(
           bottom: true,
           backgroundColor: Colors.black,
           scaffold: Scaffold(
+            appBar: store.state.isLoading ? AppBar(
+              leading: const BackButton(),
+              backgroundColor: Colors.transparent,
+            ) : null,
             backgroundColor: Colors.black,
-            body: Chewie(controller: chewieController),
+            body: store.state.isLoading ?
+              const Center(
+                child: LoadingWidget(),
+              ) : Chewie(controller: chewieController!),
           ),
         );
       },
