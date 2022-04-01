@@ -73,45 +73,58 @@ class _PlayPageState extends State<PlayPage> {
           Expanded(
             child: Align(
               alignment: Alignment.bottomCenter,
-              child: Container(
-                height: 100,
-                color: getColorScheme(context).background.withOpacity(0.5),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Slider.adaptive(
+                    activeColor: getColorScheme(context).secondary,
+                    value: position.inSeconds.toDouble(),
+                    max: duration.inSeconds.toDouble(),
+                    onChanged: (newPosition) {
+                      chewieController!.seekTo(Duration(seconds: newPosition.toInt()));
+                    },
+                  ),
+                  Container(
+                    height: 100,
+                    color: getColorScheme(context).background.withOpacity(0.5),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Poster(posterURL: poster, height: 80),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(title),
-                                if (secondTitle != null)
-                                Text(
-                                  secondTitle,
-                                  style: const TextStyle(fontSize: 12),
+                          Row(
+                            children: [
+                              Poster(posterURL: poster, height: 80),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(title),
+                                    if (secondTitle != null)
+                                    Text(
+                                      secondTitle,
+                                      style: const TextStyle(fontSize: 12),
+                                    ),
+                                    Text(
+                                      "${formatDuration(position)} - ${formatDuration(duration)}",
+                                      style: const TextStyle(fontSize: 10),
+                                    )
+                                  ],
                                 ),
-                                Text(
-                                  "${formatDuration(position)} - ${formatDuration(duration)}",
-                                  style: const TextStyle(fontSize: 10),
-                                )
-                              ],
-                            ),
-                          )
+                              )
+                            ],
+                          ),
+                          IconButton(
+                            icon: Icon(isPlaying ? Icons.pause : Icons.play_arrow),
+                            onPressed: () => chewieController!.togglePause(),
+                          ),
                         ],
                       ),
-                      IconButton(
-                        icon: Icon(isPlaying ? Icons.pause : Icons.play_arrow),
-                        onPressed: () => chewieController!.togglePause(),
-                      ),
-                    ],
+                    )
                   ),
-                )
+                ],
               ),
             ),
           ),
