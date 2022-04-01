@@ -49,7 +49,7 @@ class ExpandableStaffList extends StatelessWidget {
         child: ExpandablePanel(
           theme: ExpandableThemeData(
             useInkWell: false,
-            iconPadding: const EdgeInsets.only(left: 20, right :20, top: 10, bottom: 10),
+            iconPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             iconColor: getColorScheme(context).onBackground,
             headerAlignment: ExpandablePanelHeaderAlignment.center,
             iconPlacement: ExpandablePanelIconPlacement.left,
