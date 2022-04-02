@@ -18,7 +18,9 @@ class InitializationPage extends StatelessWidget {
         if (store.state.currentClient != null) {
           store.dispatch(NavigatorPopAndPushAction('/list'));
         } else {
-          showLoginDialog(context, disposable: false);
+          showLoginDialog(context, disposable: false).then(
+            (value) => store.dispatch(NavigatorPopAndPushAction('/list'))
+          );
         }
       });
   }

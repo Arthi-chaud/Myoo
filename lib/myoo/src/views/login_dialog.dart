@@ -68,12 +68,12 @@ class _LoginDialogState extends State<LoginDialog> {
                   title: 'Server URL',
                   validators: [
                     (serverURL) {
-                      if (store.state.clients?.map((e) => e.serverURL).contains(serverURL) ?? false) {
+                      if (serverExists == true) {
+                        return null;
+                      }
+                      if ((store.state.clients?.map((e) => e.serverURL).contains(serverURL) ?? false)) {
                         setState(() => serverExists = null);
                         return 'Server already connected';
-                      }
-                      if (serverExists == false) {
-                        return null;
                       }
                       KyooClient clientAttempt = KyooClient(serverURL: serverURL!);
                       clientAttempt.getItemsFrom(count: 1).then(
@@ -81,12 +81,13 @@ class _LoginDialogState extends State<LoginDialog> {
                           serverExists = true;
                           validateForm(store);
                         }),
-                      ).catchError((error) =>
-                        setState(() {
-                          serverExists = false;
-                          validateForm(store);
-                        })
-                      );
+                      ).catchError((error) {
+                        if (mounted) {
+                          setState(() {
+                            serverExists = false;
+                          });
+                        }
+                      });
                       return null;
                     }
                   ],
