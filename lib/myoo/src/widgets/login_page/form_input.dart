@@ -23,7 +23,7 @@ class FormInput extends StatelessWidget {
 
   /// Field validators.
   /// A [FormInput] value is required by default
-  final List<String? Function(String?)> validators;
+  final List<FormFieldValidator> validators;
 
   @override
   Widget build(BuildContext context) =>
