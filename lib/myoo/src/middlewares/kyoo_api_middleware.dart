@@ -32,6 +32,7 @@ List<Middleware<AppState>> createKyooAPIMiddleware() => [
 Middleware<AppState> loadVideo() =>
   (Store<AppState> store, action, NextDispatcher next) {
     next(action);
+    print(action.content);
     store.state.currentClient!
       .getWatchItem((action as ContainerAction<Slug>).content)
       .then((item) => store.dispatch(LoadedVideoAction(item)));

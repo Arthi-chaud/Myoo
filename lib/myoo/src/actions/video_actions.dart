@@ -2,11 +2,6 @@ import 'package:myoo/kyoo_api/src/models/slug.dart';
 import 'package:myoo/kyoo_api/src/models/watch_item.dart';
 import 'package:myoo/myoo/src/actions/action.dart';
 
-/// Action to set [WatchItem] as [AppState]'s current [WatchItem]
-class SetCurrentVideo extends ContainerAction<WatchItem> {
-  SetCurrentVideo(WatchItem video) : super(content: video);
-}
-
 /// Action to unload [AppState]'s current [Video]
 class UnloadVideoAction extends Action {}
 

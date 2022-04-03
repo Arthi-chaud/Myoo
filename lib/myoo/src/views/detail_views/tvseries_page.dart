@@ -109,10 +109,8 @@ class TVSeriesPage extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 7),
                       child: InkWell(
                         child: EpisodeTile(episode: episode),
-                        onTap: () {
-                          store.dispatch(LoadVideoAction(episode.slug));
-                          store.dispatch(NavigatorPushAction('/play'));
-                        },
+                        onTap: () =>
+                          store.dispatch(NavigatorPushAction('/play/${episode.slug}')),
                       ),
                     ),
                   ) ?? [],

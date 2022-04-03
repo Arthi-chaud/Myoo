@@ -31,7 +31,7 @@ final currentSeasonReducers = combineReducers<Season?>([
 ]);
 
 final currentVideoReducers = combineReducers<WatchItem?>([
-  TypedReducer<WatchItem?, SetCurrentVideo>(setResource<WatchItem>),
+  TypedReducer<WatchItem?, LoadedVideoAction>(setResource<WatchItem>),
   TypedReducer<WatchItem?, UnloadVideoAction>(unsetResource<WatchItem>),
   TypedReducer<WatchItem?, UseClientAction>((_, __) => null),
   

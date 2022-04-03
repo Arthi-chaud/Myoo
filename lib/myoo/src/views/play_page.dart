@@ -2,7 +2,8 @@ import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:myoo/kyoo_api/kyoo_api.dart';
-import 'package:myoo/kyoo_api/src/kyoo_client.dart';
+import 'package:myoo/kyoo_api/src/models/slug.dart';
+import 'package:myoo/kyoo_api/src/models/watch_item.dart';
 import 'package:myoo/myoo/src/actions/loading_actions.dart';
 import 'package:myoo/myoo/src/actions/video_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
@@ -34,22 +35,11 @@ class _PlayPageState extends State<PlayPage> {
     return timeString;
   }
 
-  String getVideoTitle(Video video, TVSeries? tvSeries, Season? season) {
-    if (video is Movie) {
-      return video.name;
-    } else if (video is Episode) {
-      return "${tvSeries!.name}: S${season!.index} - E${video.index}";
+  String getVideoTitle(WatchItem video) {
+    if (video.parentSeasonIndex != null && video.index != null) {
+      return "${video.parentName}: S${video.parentSeasonIndex} - E${video.index}";
     }
-    throw Exception("Unknown video type");
-  }
-
-  String? getVideoPoster(Video video, TVSeries? tvSeries, Season? season) {
-    if (video is Movie) {
-      return video.poster;
-    } else if (video is Episode) {
-      return season!.poster ?? tvSeries!.poster;
-    }
-    return null;
+    return video.parentName;
   }
 
   ChewieController getChewieController(VideoPlayerController videoController, {required bool autoplay, Widget? controls}) {
@@ -63,7 +53,10 @@ class _PlayPageState extends State<PlayPage> {
     );
   }
 
-  Widget getControls(String? poster, String title, String? secondTitle, bool isPlaying, {Duration position = Duration.zero, Duration duration = Duration.zero}) {
+  Widget getControls(String? poster, String title, String? secondTitle, bool isPlaying, {Duration position = Duration.zero, Duration? duration}) {
+    if (duration == Duration.zero || duration == null) {
+      duration = const Duration(seconds: 42);
+    }
     return HideOnTap(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,7 +74,7 @@ class _PlayPageState extends State<PlayPage> {
                     value: position.inSeconds.toDouble(),
                     max: duration.inSeconds.toDouble(),
                     onChanged: (newPosition) {
-                      chewieController!.seekTo(Duration(seconds: newPosition.toInt()));
+                      chewieController?.seekTo(Duration(seconds: newPosition.toInt()));
                     },
                   ),
                   Container(
@@ -144,17 +137,19 @@ class _PlayPageState extends State<PlayPage> {
   @override
   Widget build(BuildContext context) {
     return StoreBuilder<AppState>(
-      onInit: ((store) async {
-        Video currentVideo = store.state.currentVideo!;
-        KyooClient currentClient = store.state.currentClient!;
-
-        store.dispatch(LoadingAction());
+      onInit: ((store) {
+        Slug slug = ModalRoute.of(context)!.settings.name!.replaceAll('/play/', '');
+        print(slug);
+        store.dispatch(LoadVideoAction(slug));
         videoController = VideoPlayerController.network(
-          currentClient.getStreamingLink(currentVideo.slug, StreamingMethod.transmux)
+          store.state.currentClient!.getStreamingLink(slug, StreamingMethod.transmux)
         );
-        await videoController!.initialize();
-        chewieController = getChewieController(videoController!, autoplay: true);
-        store.dispatch(LoadedAction());
+        videoController!.initialize().then(
+          (_) {
+            chewieController = getChewieController(videoController!, autoplay: true);
+            store.dispatch(LoadedAction());
+          }
+        );
       }),
       onDispose: ((store) {
         chewieController?.pause();
@@ -163,14 +158,11 @@ class _PlayPageState extends State<PlayPage> {
         store.dispatch(UnloadVideoAction());
       }),
       builder: (context, store) {
-        Video currentVideo = store.state.currentVideo!;
-        TVSeries? tvSeries = store.state.currentTVSeries;
-        Season? season = store.state.currentSeason;
         return SafeScaffold(
           bottom: true,
           backgroundColor: Colors.black,
           scaffold: Scaffold(
-            appBar: store.state.isLoading ? AppBar(
+            appBar: store.state.isLoading || store.state.currentVideo == null ? AppBar(
               leading: const BackButton(),
               backgroundColor: Colors.transparent,
             ) : null,
@@ -182,14 +174,15 @@ class _PlayPageState extends State<PlayPage> {
               : TimerBuilder.periodic(
                 const Duration(seconds: 1),
                 builder: (context) {
+                  WatchItem currentVideo = store.state.currentVideo!;
                   return Chewie(
                     controller: getChewieController(
                       videoController!,
                       autoplay: false,
                       controls: getControls(
-                        getVideoPoster(currentVideo, tvSeries, season),
-                        getVideoTitle(currentVideo, tvSeries, season),
-                        currentVideo is Episode ? currentVideo.name : null,
+                        currentVideo.poster,
+                        getVideoTitle(currentVideo),
+                        currentVideo.name,
                         videoController!.value.isPlaying,
                         position: videoController!.value.position, duration: videoController!.value.duration
                       ),
