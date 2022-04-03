@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
 import 'package:myoo/kyoo_api/src/models/slug.dart';
 import 'package:myoo/kyoo_api/src/models/staff.dart';
+import 'package:myoo/kyoo_api/src/models/watch_item.dart';
 
 part 'kyoo_client.g.dart';
 
@@ -120,6 +121,12 @@ class KyooClient {
       ..content = (collectionContent['items'] as List).map(
         (e) => ResourcePreview.fromJson(e)
       ).toList();
+  }
+
+  /// Elevates a [Video] to a [WatchItem] using its [Slug]
+  Future<WatchItem> getWatchItem(Slug videoSlug) async {
+    JSONData responseBody = await _request(RequestType.get, '/watch/$videoSlug');
+    return WatchItem.fromJson(responseBody);
   }
 
   /// Retrieves the server's [Librarie]s
