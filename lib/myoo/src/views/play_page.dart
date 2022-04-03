@@ -139,7 +139,6 @@ class _PlayPageState extends State<PlayPage> {
     return StoreBuilder<AppState>(
       onInit: ((store) {
         Slug slug = ModalRoute.of(context)!.settings.name!.replaceAll('/play/', '');
-        print(slug);
         store.dispatch(LoadVideoAction(slug));
         videoController = VideoPlayerController.network(
           store.state.currentClient!.getStreamingLink(slug, StreamingMethod.transmux)
