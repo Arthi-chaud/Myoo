@@ -3,6 +3,7 @@ import 'package:myoo/kyoo_api/src/kyoo_client.dart';
 import 'package:myoo/kyoo_api/src/models/collection.dart';
 import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
 import 'package:myoo/kyoo_api/src/models/library.dart';
+import 'package:myoo/kyoo_api/src/models/watch_item.dart';
 import 'package:myoo/myoo/src/models/library_content.dart';
 import 'package:myoo/myoo/src/models/streaming_parameters.dart';
 
@@ -29,8 +30,8 @@ class AppState {
   /// Current [Movie]
   final Movie? currentMovie;
 
-  /// Current [Video] that is being played
-  final Video? currentVideo;
+  /// Current [WatchItem] that is being played
+  final WatchItem? currentVideo;
 
   /// Loading state
   final bool isLoading;
@@ -81,7 +82,7 @@ class AppState {
     Season? currentSeason,
     Movie? currentMovie,
     Collection? currentCollection,
-    Video? currentVideo,
+    WatchItem? currentVideo,
     StreamingParameters? streamingParams,
     bool? isLoading,
   }) => AppState(

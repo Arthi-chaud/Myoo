@@ -49,7 +49,7 @@ class MoviePage extends StatelessWidget {
                       child: ElevatedButton.icon(
                           icon: const Icon(Icons.play_arrow),
                           onPressed: () {
-                            store.dispatch(SetCurrentVideo(movie));
+                            store.dispatch(LoadVideoAction(movie.slug));
                             store.dispatch(NavigatorPushAction('/play'));
                           },
                           label: const Padding(

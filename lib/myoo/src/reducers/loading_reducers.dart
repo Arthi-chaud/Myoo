@@ -5,6 +5,7 @@ import 'package:myoo/myoo/src/actions/loading_actions.dart';
 import 'package:myoo/myoo/src/actions/movie_actions.dart';
 import 'package:myoo/myoo/src/actions/season_actions.dart';
 import 'package:myoo/myoo/src/actions/tv_series_actions.dart';
+import 'package:myoo/myoo/src/actions/video_actions.dart';
 import 'package:redux/redux.dart';
 
 /// List of reducers for loading State ([bool]) of [AppState]
@@ -12,11 +13,13 @@ final loadingReducers = combineReducers<bool>([
   TypedReducer<bool, LoadingAction>(toTrue),
   TypedReducer<bool, LoadedAction>(toFalse),
   TypedReducer<bool, LoadedMovieAction>(toFalse),
+  TypedReducer<bool, LoadedVideoAction>(toFalse),
   TypedReducer<bool, LoadedTVSeriesAction>(toFalse),
   TypedReducer<bool, LoadedCollectionAction>(toFalse),
   TypedReducer<bool, LoadedSeasonAction>(toFalse),
   TypedReducer<bool, LoadStoredClientsAction>(toTrue),
   TypedReducer<bool, LoadMovieAction>(toTrue),
+  TypedReducer<bool, LoadVideoAction>(toTrue),
   TypedReducer<bool, LoadTVSeriesAction>(toTrue),
   TypedReducer<bool, LoadCollectionAction>(toTrue),
   TypedReducer<bool, LoadSeasonAction>(toTrue),

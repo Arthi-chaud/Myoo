@@ -110,9 +110,9 @@ class TVSeriesPage extends StatelessWidget {
                       child: InkWell(
                         child: EpisodeTile(episode: episode),
                         onTap: () {
-                          store.dispatch(SetCurrentVideo(episode));
+                          store.dispatch(LoadVideoAction(episode.slug));
                           store.dispatch(NavigatorPushAction('/play'));
-                        }, /// TODO Play screen
+                        },
                       ),
                     ),
                   ) ?? [],

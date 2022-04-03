@@ -8,12 +8,14 @@ import 'package:myoo/myoo/src/actions/library_actions.dart';
 import 'package:myoo/myoo/src/actions/movie_actions.dart';
 import 'package:myoo/myoo/src/actions/season_actions.dart';
 import 'package:myoo/myoo/src/actions/tv_series_actions.dart';
+import 'package:myoo/myoo/src/actions/video_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/models/library_content.dart';
 import 'package:redux/redux.dart';
 
 /// Returns list of middlewares related to [KyooAPI]
 List<Middleware<AppState>> createKyooAPIMiddleware() => [
+  TypedMiddleware<AppState, LoadVideoAction>(loadVideo()),
   TypedMiddleware<AppState, LoadMovieAction>(loadMovie()),
   TypedMiddleware<AppState, LoadSeasonAction>(loadSeason()),
   TypedMiddleware<AppState, LoadTVSeriesAction>(loadTVSeries()),
@@ -25,6 +27,15 @@ List<Middleware<AppState>> createKyooAPIMiddleware() => [
   TypedMiddleware<AppState, NewClientConnectedAction>(loadItems()),
   TypedMiddleware<AppState, NewClientConnectedAction>(loadLibraries()),
 ];
+
+/// Retrieve [WatchItem] from [AppState]'s current [KyooClient] and dispatches it using [LoadedVideoAction]
+Middleware<AppState> loadVideo() =>
+  (Store<AppState> store, action, NextDispatcher next) {
+    next(action);
+    store.state.currentClient!
+      .getWatchItem((action as ContainerAction<Slug>).content)
+      .then((item) => store.dispatch(LoadedVideoAction(item)));
+  };
 
 /// Retrieve [Movie] from [AppState]'s current [KyooClient] and dispatches it using [LoadedMovieAction]
 Middleware<AppState> loadMovie() =>

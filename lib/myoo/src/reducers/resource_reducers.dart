@@ -1,5 +1,6 @@
 import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/kyoo_api/src/models/collection.dart';
+import 'package:myoo/kyoo_api/src/models/watch_item.dart';
 import 'package:myoo/myoo/src/actions/action.dart';
 import 'package:myoo/myoo/src/actions/client_actions.dart';
 import 'package:myoo/myoo/src/actions/collection_actions.dart';
@@ -29,10 +30,10 @@ final currentSeasonReducers = combineReducers<Season?>([
   TypedReducer<Season?, UseClientAction>((_, __) => null),
 ]);
 
-final currentVideoReducers = combineReducers<Video?>([
-  TypedReducer<Video?, SetCurrentVideo>(setResource<Video>),
-  TypedReducer<Video?, UnloadVideoAction>(unsetResource<Video>),
-  TypedReducer<Video?, UseClientAction>((_, __) => null),
+final currentVideoReducers = combineReducers<WatchItem?>([
+  TypedReducer<WatchItem?, SetCurrentVideo>(setResource<WatchItem>),
+  TypedReducer<WatchItem?, UnloadVideoAction>(unsetResource<WatchItem>),
+  TypedReducer<WatchItem?, UseClientAction>((_, __) => null),
   
 ]);
 
