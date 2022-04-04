@@ -29,12 +29,13 @@ class WatchItem extends Video {
     required this.next,
     required this.parentName,
     required this.parentSeasonIndex,
-    required this.index, 
+    required this.index,
+    required String? poster,
     required DateTime? releaseDate,
     required String slug,
     required String name,
     required String overview
-  }) : super(releaseDate: releaseDate, id: 0, slug: slug, name: name, overview: overview);
+  }) : super(releaseDate: releaseDate, id: 0, slug: slug, name: name, overview: overview, poster: poster);
 
   /// Unserialize [WatchItem] from [JSONData]
   factory WatchItem.fromJson(JSONData input) => _$WatchItemFromJson(input);
