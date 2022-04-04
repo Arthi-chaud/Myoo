@@ -46,6 +46,9 @@ class ListPage extends StatelessWidget {
                   ).toList()..insert(0, const DropdownMenuItem(value: null, child: Text('All'))),
                   underline: Container(),
                   onChanged: (selectedLib) {
+                    if (selectedLib == store.state.currentLibrary?.library?.name) {
+                      return;
+                    }
                     store.dispatch(ResetCurrentLibraryAction());
                     if (selectedLib != null) {
                       store.dispatch(SetCurrentLibraryAction(
