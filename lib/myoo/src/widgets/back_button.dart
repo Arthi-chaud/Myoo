@@ -1,4 +1,3 @@
-
 import 'package:decorated_icon/decorated_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -7,8 +6,8 @@ import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
 
 /// Back button to pop current page
-class BackButton extends StatelessWidget {
-  const BackButton({Key? key}) : super(key: key);
+class GoBackButton extends StatelessWidget {
+  const GoBackButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

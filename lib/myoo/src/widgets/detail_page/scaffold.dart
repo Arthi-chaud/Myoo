@@ -1,9 +1,8 @@
-import 'package:decorated_icon/decorated_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:myoo/myoo/src/actions/navigation_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
+import 'package:myoo/myoo/src/widgets/back_button.dart';
 import 'package:myoo/myoo/src/widgets/loading_widget.dart';
 import 'package:myoo/myoo/src/widgets/safe_scaffold.dart';
 import 'package:redux/redux.dart';
@@ -40,7 +39,7 @@ class DetailPageScaffold extends StatelessWidget {
                       AppBar(
                         elevation: 0,
                         backgroundColor: Colors.transparent,
-                        leading: const BackButton(),
+                        leading: const GoBackButton(),
                       ),
                     ]
                   )

@@ -8,6 +8,7 @@ import 'package:myoo/myoo/src/actions/loading_actions.dart';
 import 'package:myoo/myoo/src/actions/video_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
+import 'package:myoo/myoo/src/widgets/back_button.dart';
 import 'package:myoo/myoo/src/widgets/hide_on_tap.dart';
 import 'package:myoo/myoo/src/widgets/loading_widget.dart';
 import 'package:myoo/myoo/src/widgets/poster.dart';
@@ -61,7 +62,7 @@ class _PlayPageState extends State<PlayPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const BackButton(),
+          const GoBackButton(),
           Expanded(child: Container()),
           Expanded(
             child: Align(
@@ -162,7 +163,7 @@ class _PlayPageState extends State<PlayPage> {
           backgroundColor: Colors.black,
           scaffold: Scaffold(
             appBar: store.state.isLoading || store.state.currentVideo == null ? AppBar(
-              leading: const BackButton(),
+              leading: const GoBackButton(),
               backgroundColor: Colors.transparent,
             ) : null,
             backgroundColor: Colors.black,
