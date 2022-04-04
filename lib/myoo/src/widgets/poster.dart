@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
+import 'package:myoo/myoo/src/widgets/image.dart';
 
 /// Widget to display a poster, with optional title
 class Poster extends StatelessWidget {
@@ -54,13 +55,11 @@ class Poster extends StatelessWidget {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(_roundedEdges),
-            child: CachedNetworkImage(
-              imageUrl: posterURL!,
+            child: MyooImage(
+              posterURL!,
               height: height,
               width: width,
-              fit: BoxFit.cover,
-              placeholder: (_, __) => _emptyPoster(context),
-              errorWidget: (_, __, ___) => _emptyPoster(context)
+              placeholder: (context) => _emptyPoster(context),
             )
           )
         ) : _emptyPoster(context),
