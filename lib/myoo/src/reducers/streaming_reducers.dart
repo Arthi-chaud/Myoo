@@ -10,6 +10,7 @@ final streamingReducers = combineReducers<StreamingParameters?>([
   TypedReducer<StreamingParameters?, SetStreamingMethodAction>(setStreamingMethod),
   TypedReducer<StreamingParameters?, PlayAction>(play),
   TypedReducer<StreamingParameters?, PauseAction>(pause),
+  TypedReducer<StreamingParameters?, TogglePlayAction>(togglePlay),
 
   TypedReducer<StreamingParameters?, SetTotalDurationAction>(setTotalDuration),
   TypedReducer<StreamingParameters?, SetCurrentPositionAction>(setCurrentPosition),
@@ -31,6 +32,9 @@ StreamingParameters play(StreamingParameters? old, action) =>
 
 StreamingParameters pause(StreamingParameters? old, action) =>
   old!.withParams(isPlaying: false);
+
+StreamingParameters togglePlay(StreamingParameters? old, action) =>
+  old!.withParams(isPlaying: !(old.isPlaying));
 
 StreamingParameters setTotalDuration(StreamingParameters? old, action) =>
   old!.withParams(totalDuration: (action as ContainerAction<Duration>).content);

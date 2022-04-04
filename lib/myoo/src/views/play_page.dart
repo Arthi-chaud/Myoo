@@ -5,6 +5,7 @@ import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/kyoo_api/src/models/slug.dart';
 import 'package:myoo/kyoo_api/src/models/watch_item.dart';
 import 'package:myoo/myoo/src/actions/loading_actions.dart';
+import 'package:myoo/myoo/src/actions/streaming_actions.dart';
 import 'package:myoo/myoo/src/actions/video_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
@@ -13,6 +14,7 @@ import 'package:myoo/myoo/src/widgets/hide_on_tap.dart';
 import 'package:myoo/myoo/src/widgets/loading_widget.dart';
 import 'package:myoo/myoo/src/widgets/poster.dart';
 import 'package:myoo/myoo/src/widgets/safe_scaffold.dart';
+import 'package:redux/redux.dart';
 import 'package:timer_builder/timer_builder.dart';
 import 'package:video_player/video_player.dart';
 
@@ -54,8 +56,12 @@ class _PlayPageState extends State<PlayPage> {
     );
   }
 
-  Widget getControls(String? poster, String title, String? secondTitle, bool isPlaying, {Duration position = Duration.zero, Duration? duration}) {
-    if (duration == Duration.zero || duration == null) {
+  Widget getControls(Store<AppState> store, {Duration position = Duration.zero, Duration? duration}) {
+    AppState state = store.state;
+    if (position == Duration.zero) {
+      position = const Duration(milliseconds: 1);
+    }
+    if (duration == Duration.zero || duration == null || duration.inSeconds < position.inSeconds) {
       duration = const Duration(seconds: 42);
     }
     return HideOnTap(
@@ -70,7 +76,7 @@ class _PlayPageState extends State<PlayPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Slider.adaptive(
+                  Slider(
                     activeColor: getColorScheme(context).secondary,
                     value: position.inSeconds.toDouble(),
                     max: duration.inSeconds.toDouble(),
@@ -88,7 +94,7 @@ class _PlayPageState extends State<PlayPage> {
                         children: [
                           Row(
                             children: [
-                              Poster(posterURL: poster, height: 80),
+                              Poster(posterURL: state.currentVideo!.poster, height: 80),
                               Padding(
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: Column(
@@ -96,13 +102,13 @@ class _PlayPageState extends State<PlayPage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      title,
+                                      getVideoTitle(state.currentVideo!),
                                       overflow: TextOverflow.ellipsis,
                                       maxLines: 2
                                     ),
-                                    if (secondTitle != null)
+                                    if (state.currentVideo!.name != state.currentVideo!.parentName)
                                     Text(
-                                      secondTitle,
+                                      state.currentVideo!.name,
                                       style: const TextStyle(fontSize: 12),
                                     ),
                                     Text(
@@ -116,8 +122,11 @@ class _PlayPageState extends State<PlayPage> {
                           ),
                           Expanded(
                             child: IconButton(
-                              icon: Icon(isPlaying ? Icons.pause : Icons.play_arrow),
-                              onPressed: () => chewieController!.togglePause(),
+                              icon: Icon(state.streamingParams!.isPlaying ? Icons.pause : Icons.play_arrow),
+                              onPressed: () {
+                                store.dispatch(TogglePlayAction());
+                                chewieController!.togglePause();
+                              }
                             ),
                           ),
                           ///TODO Manage subtitles
@@ -141,6 +150,7 @@ class _PlayPageState extends State<PlayPage> {
       onInit: ((store) {
         Slug slug = ModalRoute.of(context)!.settings.name!.replaceAll('/play/', '');
         store.dispatch(LoadVideoAction(slug));
+        store.dispatch(InitStreamingParametersAction());
         videoController = VideoPlayerController.network(
           store.state.currentClient!.getStreamingLink(slug, StreamingMethod.transmux)
         );
@@ -156,35 +166,35 @@ class _PlayPageState extends State<PlayPage> {
         videoController?.dispose();
         chewieController?.dispose();
         store.dispatch(UnloadVideoAction());
+        store.dispatch(UnsetStreamingParametersAction());
       }),
       builder: (context, store) {
+        bool isLoading = store.state.isLoading || store.state.currentVideo == null || chewieController == null;
         return SafeScaffold(
           bottom: true,
           backgroundColor: Colors.black,
           scaffold: Scaffold(
-            appBar: store.state.isLoading || store.state.currentVideo == null ? AppBar(
+            appBar: isLoading
+            ? AppBar(
               leading: const GoBackButton(),
               backgroundColor: Colors.transparent,
             ) : null,
             backgroundColor: Colors.black,
-            body: store.state.isLoading
+            body: isLoading
               ? const Center(
                 child: LoadingWidget(),
               )
               : TimerBuilder.periodic(
                 const Duration(seconds: 1),
                 builder: (context) {
-                  WatchItem currentVideo = store.state.currentVideo!;
                   return Chewie(
                     controller: getChewieController(
                       videoController!,
                       autoplay: false,
                       controls: getControls(
-                        currentVideo.poster,
-                        getVideoTitle(currentVideo),
-                        currentVideo.name,
-                        videoController!.value.isPlaying,
-                        position: videoController!.value.position, duration: videoController!.value.duration
+                        store,
+                        position: videoController!.value.position,
+                        duration: videoController!.value.duration
                       ),
                     ),
                   );

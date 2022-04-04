@@ -15,6 +15,9 @@ class PlayAction extends Action {}
 /// Action to set playing state to false
 class PauseAction extends Action {}
 
+/// Action to toggle playing state
+class TogglePlayAction extends Action {}
+
 /// Action to set current play posittion
 class SetCurrentPositionAction extends ContainerAction<Duration> {
   SetCurrentPositionAction(Duration position) : super(content: position);
