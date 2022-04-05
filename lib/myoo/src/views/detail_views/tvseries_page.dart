@@ -12,6 +12,7 @@ import 'package:myoo/myoo/src/widgets/detail_page/expandable_overview.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/show_info.dart';
+import 'package:myoo/myoo/src/widgets/info_button.dart';
 import 'package:myoo/myoo/src/widgets/trailer_button.dart';
 
 /// View to display cuurentMovie of [AppState]
@@ -62,10 +63,12 @@ class TVSeriesPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       if (tvSeries.trailer != null)
-                      TrailerButton(tvSeries.trailer!)
+                      TrailerButton(tvSeries.trailer!),
+                      if (tvSeries.externalIDs.isNotEmpty)
+                      InfoButton(externalIDs: tvSeries.externalIDs)
                     ],
                   ),
                   if (tvSeries.overview != null)
