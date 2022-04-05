@@ -34,8 +34,7 @@ class WatchItem extends Video {
     required DateTime? releaseDate,
     required String slug,
     required String name,
-    required String overview
-  }) : super(releaseDate: releaseDate, id: 0, slug: slug, name: name, overview: overview, poster: poster);
+  }) : super(releaseDate: releaseDate, id: 0, slug: slug, name: name, overview: null, poster: poster);
 
   /// Unserialize [WatchItem] from [JSONData]
   factory WatchItem.fromJson(JSONData input) => _$WatchItemFromJson(input);
