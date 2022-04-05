@@ -15,9 +15,8 @@ class Library extends Resource {
     required int id,
     required String slug,
     required String name,
-    required String overview,
     required this.content,
-  }) : super(id: id, slug: slug, name: name, overview: overview);
+  }) : super(id: id, slug: slug, name: name, overview: null);
 
   /// Unserialize [Library] from [JSONData]
   factory Library.fromJson(JSONData input) => _$LibraryFromJson(input);

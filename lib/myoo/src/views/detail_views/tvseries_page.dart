@@ -68,9 +68,10 @@ class TVSeriesPage extends StatelessWidget {
                       TrailerButton(tvSeries.trailer!)
                     ],
                   ),
+                  if (tvSeries.overview != null)
                   Padding(
                     padding: const EdgeInsets.only(top: 20, bottom: 10),
-                    child: ExpandableOverview(tvSeries.overview, maxLines: 5),
+                    child: ExpandableOverview(tvSeries.overview!, maxLines: 5),
                   ),
                 ],
               ),

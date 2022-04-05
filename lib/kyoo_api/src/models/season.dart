@@ -24,7 +24,7 @@ class Season extends IllustratedResource {
     required int id,
     required String slug,
     required String name,
-    required String overview,
+    required String? overview,
     String? poster,
     String? thumbnail,
   }) : super(

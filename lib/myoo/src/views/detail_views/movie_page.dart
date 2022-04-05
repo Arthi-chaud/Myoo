@@ -77,9 +77,10 @@ class MoviePage extends StatelessWidget {
                       ),
                     ],
                   ),
+                  if (movie.overview != null)
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 30),
-                    child: ExpandableOverview(movie.overview, maxLines: 5),
+                    child: ExpandableOverview(movie.overview!, maxLines: 5),
                   ),
                 ],
               )

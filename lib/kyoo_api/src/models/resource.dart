@@ -18,8 +18,7 @@ class Resource {
   final String name;
 
   /// A description of the Resource
-  @JsonKey(defaultValue: "")
-  final String overview;
+  final String? overview;
 
   /// Default constructor
   const Resource({

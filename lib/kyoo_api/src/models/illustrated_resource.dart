@@ -22,7 +22,7 @@ class IllustratedResource extends Resource {
     required int id,
     required String slug,
     required String name,
-    required String overview,
+    required String? overview,
     required this.poster,
     required this.thumbnail
   }) : super(id: id, slug: slug, name: name, overview: overview);
