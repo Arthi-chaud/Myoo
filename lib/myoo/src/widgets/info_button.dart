@@ -14,6 +14,13 @@ class InfoButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (externalIDs.length == 1) {
+      return DetailPageIconButton(
+        label: 'Info',
+        icon: Icons.info,
+        onTap: () => launch(externalIDs.first.externalURL),
+      );
+    }
     return PopupMenuButton<String>(
       child: const DetailPageIconButton(
         label: 'Info',
