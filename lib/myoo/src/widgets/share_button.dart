@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myoo/kyoo_api/src/models/external_id.dart';
+import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/icon_button.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -14,10 +15,25 @@ class ShareButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DetailPageIconButton(
-      label: 'Share',
-      icon: Icons.share,
-      onTap: () => Share.share(downloadLink!),
+    return PopupMenuButton(
+      child: const DetailPageIconButton(
+        label: 'Share',
+        icon: Icons.share,
+        onTap: null
+      ),
+      color: getColorScheme(context).background,
+      itemBuilder: (context) => [
+        if (downloadLink != null)
+        PopupMenuItem(
+          child: const Text('Download'),
+          value: downloadLink!
+        ),
+        for (var externalID in externalIDs)
+        PopupMenuItem(
+          child: Text(externalID.provider.name),
+          value: externalID.externalURL
+        )
+      ],
     );
   }
 }

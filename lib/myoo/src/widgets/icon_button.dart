@@ -8,7 +8,7 @@ class DetailPageIconButton extends StatelessWidget {
   /// The icon to display
   final IconData icon;
   /// Callback on button tap
-  final void Function() onTap;
+  final void Function()? onTap;
 
   const DetailPageIconButton({Key? key, required this.label, required this.icon, required this.onTap}) : super(key: key);
 
