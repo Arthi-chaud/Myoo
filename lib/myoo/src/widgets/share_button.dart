@@ -15,13 +15,14 @@ class ShareButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PopupMenuButton(
+    return PopupMenuButton<String>(
       child: const DetailPageIconButton(
         label: 'Share',
         icon: Icons.share,
         onTap: null
       ),
       color: getColorScheme(context).background,
+      onSelected: (value) => Share.share(value),
       itemBuilder: (context) => [
         if (downloadLink != null)
         PopupMenuItem(
