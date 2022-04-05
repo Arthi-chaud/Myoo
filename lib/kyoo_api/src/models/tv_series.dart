@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:myoo/kyoo_api/src/models/external_id.dart';
 import 'package:myoo/kyoo_api/src/models/genre.dart';
 import 'package:myoo/kyoo_api/src/models/illustrated_resource.dart';
 import 'package:myoo/kyoo_api/src/models/resource.dart';
@@ -41,6 +42,10 @@ class TVSeries extends IllustratedResource {
   @JsonKey(defaultValue: [])
   Staff staff;
 
+  /// A list of [ExternalID]s to the [TVSeries]
+  @JsonKey(defaultValue: [])
+  List<ExternalID> externalIDs;
+
   /// Default Constructor
   TVSeries({
     required this.genres,
@@ -49,7 +54,8 @@ class TVSeries extends IllustratedResource {
     required int id,
     required String slug,
     required String name,
-    required String overview,
+    required String? overview,
+    required this.externalIDs,
     required this.studio,
     required this.releaseDate,
     required this.endDate,

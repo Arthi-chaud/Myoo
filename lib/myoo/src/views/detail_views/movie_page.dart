@@ -11,6 +11,7 @@ import 'package:myoo/myoo/src/widgets/detail_page/header.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/scaffold.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/show_info.dart';
 import 'package:myoo/myoo/src/widgets/download_button.dart';
+import 'package:myoo/myoo/src/widgets/share_button.dart';
 import 'package:myoo/myoo/src/widgets/trailer_button.dart';
 
 /// View to display cuurentMovie of [AppState]
@@ -72,6 +73,10 @@ class MoviePage extends StatelessWidget {
                             DownloadButton(
                               store.state.currentClient!.getDownloadLink(movie.slug)
                             ),
+                            ShareButton(
+                              downloadLink: store.state.currentClient!.getDownloadLink(movie.slug),
+                              externalIDs: movie.externalIDs
+                            )
                           ],
                         )
                       ),

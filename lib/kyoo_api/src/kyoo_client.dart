@@ -91,7 +91,7 @@ class KyooClient {
   Future<Movie> getMovie(Slug movieSlug) async {
     JSONData responseBody = await _request(
       RequestType.get, '/shows/$movieSlug',
-      params: {'fields': 'genres,studio'});
+      params: {'fields': 'genres,studio,externalIDs'});
     return Movie.fromJson(responseBody)..staff = await getStaff(movieSlug);
   }
 
@@ -99,7 +99,7 @@ class KyooClient {
   Future<TVSeries> getTVSeries(Slug seriesSlug) async {
     JSONData responseBody = await _request(
       RequestType.get, '/shows/$seriesSlug',
-      params: {'fields': 'genres,seasons,studio'});
+      params: {'fields': 'genres,seasons,studio,externalIDs'});
     return TVSeries.fromJson(responseBody)..staff = await getStaff(seriesSlug);
   }
 

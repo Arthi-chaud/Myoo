@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:myoo/kyoo_api/src/models/external_id.dart';
 import 'package:myoo/kyoo_api/src/models/genre.dart';
 import 'package:myoo/kyoo_api/src/models/staff.dart';
 import 'package:myoo/kyoo_api/src/models/studio.dart';
@@ -28,15 +29,20 @@ class Movie extends Video {
   @JsonKey(defaultValue: [])
   Staff staff;
 
+  /// A list of [ExternalID]s to the [Movie]
+  @JsonKey(defaultValue: [])
+  List<ExternalID> externalIDs;
+
   /// Default constructor
   Movie({
     required int id,
     required String slug,
     required String name,
-    required String overview,
+    required String? overview,
     required DateTime? releaseDate,
     String? poster,
     String? thumbnail,
+    required this.externalIDs,
     required this.studio,
     required this.staff,
     required this.genres,
