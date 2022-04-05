@@ -13,7 +13,7 @@ class TrailerButton extends StatelessWidget {
   Widget build(BuildContext context) =>
     DetailPageIconButton(
       onTap: () => launch(Uri.parse(trailerUrl).toString()),
-      icon: const Icon(Icons.local_movies),
+      icon: Icons.local_movies,
       label: "Trailer"
     );
 }

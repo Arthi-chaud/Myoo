@@ -16,7 +16,7 @@ class ShareButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return DetailPageIconButton(
       label: 'Share',
-      icon: const Icon(Icons.share),
+      icon: Icons.share,
       onTap: () => Share.share(downloadLink!),
     );
   }

@@ -23,7 +23,7 @@ class DownloadButton extends StatelessWidget {
           forceSafariVC: false,
         );
       },
-      icon: const Icon(Icons.download),
+      icon: Icons.download,
       label: "Download"
     );
 }

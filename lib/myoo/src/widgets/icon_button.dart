@@ -6,7 +6,7 @@ class DetailPageIconButton extends StatelessWidget {
   /// The text below the icon
   final String label;
   /// The icon to display
-  final Widget icon;
+  final IconData icon;
   /// Callback on button tap
   final void Function() onTap;
 
@@ -20,7 +20,7 @@ class DetailPageIconButton extends StatelessWidget {
       highlightColor: Colors.transparent,
       child: Column(
         children: [
-          icon,
+          Icon(icon, size: 20),
           Text(label)
         ],
       )
