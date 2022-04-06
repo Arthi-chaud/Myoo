@@ -121,12 +121,20 @@ class _PlayPageState extends State<PlayPage> {
                             ],
                           ),
                           Expanded(
+                            flex: 8,
                             child: IconButton(
                               icon: Icon(state.streamingParams!.isPlaying ? Icons.pause : Icons.play_arrow),
                               onPressed: () {
                                 store.dispatch(TogglePlayAction());
                                 chewieController!.togglePause();
                               }
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: IconButton(
+                              icon: const Icon(Icons.settings),
+                              onPressed: () {}
                             ),
                           ),
                           ///TODO Manage subtitles
