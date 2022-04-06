@@ -29,22 +29,11 @@
 		</array>
 		<key>LSRequiresIPhoneOS</key>
 		<true/>
-		<key>LSSupportsOpeningDocumentsInPlace</key>
-		<true/>
 		<key>NSAppTransportSecurity</key>
 		<dict>
 			<key>NSAllowsArbitraryLoads</key>
 			<true/>
 		</dict>
-		<key>UIBackgroundModes</key>
-		<array>
-			<string>audio</string>
-			<string>fetch</string>
-			<string>processing</string>
-			<string>remote-notification</string>
-		</array>
-		<key>UIFileSharingEnabled</key>
-		<true/>
 		<key>UILaunchStoryboardName</key>
 		<string>LaunchScreen</string>
 		<key>UIMainStoryboardFile</key>
@@ -63,13 +52,6 @@
 			<string>UIInterfaceOrientationLandscapeRight</string>
 		</array>
 		<key>UIViewControllerBasedStatusBarAppearance</key>
-		<false/>
-		<key>NSAppTransportSecurity</key>
-		<dict>
-			<key>NSAllowsArbitraryLoads</key>
-			<true/>
-		</dict>
-		<key>UIStatusBarHidden</key>
 		<false/>
 	</dict>
 </plist>
