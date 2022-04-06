@@ -13,7 +13,6 @@ import 'package:myoo/myoo/src/widgets/hide_on_tap.dart';
 import 'package:myoo/myoo/src/widgets/loading_widget.dart';
 import 'package:myoo/myoo/src/widgets/play_page/video_controls.dart';
 import 'package:myoo/myoo/src/widgets/safe_scaffold.dart';
-import 'package:timer_builder/timer_builder.dart';
 import 'package:video_player/video_player.dart';
 
 class PlayPage extends StatefulWidget {
@@ -28,6 +27,7 @@ class _PlayPageState extends State<PlayPage> {
   VideoPlayerController? videoController;
   ChewieController? chewieController;
   Timer? positionTimer;
+  late Slug videoSlug;
 
   ChewieController getChewieController(VideoPlayerController videoController, {required bool autoplay, Widget? controls}) {
     return ChewieController(
@@ -42,19 +42,21 @@ class _PlayPageState extends State<PlayPage> {
     );
   }
 
+  void buildVideoController(String videoURL, void Function() onLoaded) {
+    videoController = VideoPlayerController.network(videoURL);
+    videoController!.initialize().then((value) => onLoaded());
+  }
+
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, bool>(
-      converter: (store) => store.state.isLoading,
+    return StoreBuilder<AppState>(
       onInit: ((store) {
-        Slug slug = ModalRoute.of(context)!.settings.name!.replaceAll('/play/', '');
-        store.dispatch(LoadVideoAction(slug));
+        videoSlug = ModalRoute.of(context)!.settings.name!.replaceAll('/play/', '');
+        store.dispatch(LoadVideoAction(videoSlug));
         store.dispatch(InitStreamingParametersAction());
-        videoController = VideoPlayerController.network(
-          store.state.currentClient!.getStreamingLink(slug, store.state.streamingParams!.method), ///TODO rebuild on method change
-        );
-        videoController!.initialize().then(
-          (_) {
+        buildVideoController(
+          store.state.currentClient!.getStreamingLink(videoSlug, store.state.streamingParams!.method),
+          () {
             chewieController = getChewieController(videoController!, autoplay: true);
             positionTimer = Timer.periodic(
               const Duration(seconds: 1),
@@ -75,20 +77,20 @@ class _PlayPageState extends State<PlayPage> {
         store.dispatch(UnloadVideoAction());
         store.dispatch(UnsetStreamingParametersAction());
       }),
-      ignoreChange: (state) => state.streamingParams!.totalDuration != null,
-      builder: (context, isLoading) {
+      //ignoreChange: (state) => state.streamingParams!.totalDuration != null,
+      builder: (context, store) {
         bool controllerIsLoading = chewieController == null;
         return SafeScaffold(
           bottom: true,
           backgroundColor: Colors.black,
           scaffold: Scaffold(
-            appBar: isLoading || controllerIsLoading
+            appBar: store.state.isLoading || controllerIsLoading
             ? AppBar(
               leading: const GoBackButton(),
               backgroundColor: Colors.transparent,
             ) : null,
             backgroundColor: Colors.black,
-            body: isLoading || controllerIsLoading
+            body: store.state.isLoading || controllerIsLoading
             ? const Center(
               child: LoadingWidget(),
             )
@@ -97,7 +99,22 @@ class _PlayPageState extends State<PlayPage> {
                 videoController!,
                 autoplay: false,
                 controls: VideoControls(
-                  onMethodSelect: (_) {},
+                  onMethodSelect: (newMethod) {
+                    store.dispatch(SetStreamingMethodAction(newMethod));
+                    setState(() {
+                      videoController?.dispose();
+                      chewieController?.dispose();
+                      videoController = null;
+                      chewieController = null;
+                    });
+                    buildVideoController(
+                      store.state.currentClient!.getStreamingLink(videoSlug, newMethod),
+                      () {
+                        chewieController = getChewieController(videoController!, autoplay: true);
+                        store.dispatch(LoadedAction());
+                      }
+                    );
+                  },
                   onPlayToggle: () => chewieController!.togglePause(),
                   onSlide: (position) => chewieController!.seekTo(position),
                 ),

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:myoo/kyoo_api/kyoo_api.dart';
@@ -60,7 +62,7 @@ class _VideoParametersState extends State<VideoParameters> {
             for (var method in StreamingMethod.values)
               C2Choice<StreamingMethod>(
                 value: method,
-                disabled: /*Platform.isIOS && method == StreamingMethod.direct*/ false, ///TODO
+                disabled: Platform.isIOS && method == StreamingMethod.direct, ///TODO
                 label: ReCase(method.name).titleCase,
               ),
           ],
