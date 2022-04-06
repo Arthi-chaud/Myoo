@@ -3,7 +3,6 @@ import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/myoo/src/actions/navigation_actions.dart';
 import 'package:myoo/myoo/src/actions/season_actions.dart';
 import 'package:myoo/myoo/src/actions/tv_series_actions.dart';
-import 'package:myoo/myoo/src/actions/video_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/detail_page/staff_list.dart';

@@ -51,4 +51,3 @@ class DetailPageScaffold extends StatelessWidget {
       )
     );
 }
-

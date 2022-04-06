@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:myoo/kyoo_api/src/models/external_id.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/icon_button.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// A Clickable Button to access a [Movie]/[TVSeries]'s [ExternalID]s
