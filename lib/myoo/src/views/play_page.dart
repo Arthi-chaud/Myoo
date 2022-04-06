@@ -15,6 +15,7 @@ import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/back_button.dart';
 import 'package:myoo/myoo/src/widgets/hide_on_tap.dart';
 import 'package:myoo/myoo/src/widgets/loading_widget.dart';
+import 'package:myoo/myoo/src/widgets/play_page/video_slider.dart';
 import 'package:myoo/myoo/src/widgets/poster.dart';
 import 'package:myoo/myoo/src/widgets/safe_scaffold.dart';
 import 'package:recase/recase.dart';
@@ -92,7 +93,7 @@ class _PlayPageState extends State<PlayPage> {
                     for (var method in StreamingMethod.values)
                       C2Choice<StreamingMethod>(
                         value: method,
-                        disabled: Platform.isIOS && method == StreamingMethod.direct,
+                        disabled: /*Platform.isIOS && method == StreamingMethod.direct*/ false,
                         label: ReCase(method.name).titleCase,
                       ),
                   ],
@@ -125,13 +126,10 @@ class _PlayPageState extends State<PlayPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Slider(
-                    activeColor: getColorScheme(context).secondary,
-                    value: position.inSeconds.toDouble(),
-                    max: duration.inSeconds.toDouble(),
-                    onChanged: (newPosition) {
-                      chewieController?.seekTo(Duration(seconds: newPosition.toInt()));
-                    },
+                  VideoSlider(
+                    position: position,
+                    duration: duration,
+                    onSlide: (newPosition) => chewieController!.seekTo(newPosition)
                   ),
                   Container(
                     height: 100,
@@ -209,7 +207,7 @@ class _PlayPageState extends State<PlayPage> {
         store.dispatch(LoadVideoAction(slug));
         store.dispatch(InitStreamingParametersAction());
         videoController = VideoPlayerController.network(
-          store.state.currentClient!.getStreamingLink(slug, StreamingMethod.transmux)
+          store.state.currentClient!.getStreamingLink(slug, store.state.streamingParams!.method),
         );
         videoController!.initialize().then(
           (_) {
