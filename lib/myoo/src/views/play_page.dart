@@ -44,7 +44,10 @@ class _PlayPageState extends State<PlayPage> {
 
   void buildVideoController(String videoURL, void Function() onLoaded) {
     videoController = VideoPlayerController.network(videoURL);
-    videoController!.initialize().then((value) => onLoaded());
+    videoController!.initialize().then((value) {
+      chewieController = getChewieController(videoController!, autoplay: true);
+      onLoaded();
+    });
   }
 
   @override
@@ -57,7 +60,6 @@ class _PlayPageState extends State<PlayPage> {
         buildVideoController(
           store.state.currentClient!.getStreamingLink(videoSlug, store.state.streamingParams!.method),
           () {
-            chewieController = getChewieController(videoController!, autoplay: true);
             positionTimer = Timer.periodic(
               const Duration(seconds: 1),
               (_) {
@@ -109,10 +111,7 @@ class _PlayPageState extends State<PlayPage> {
                     });
                     buildVideoController(
                       store.state.currentClient!.getStreamingLink(videoSlug, newMethod),
-                      () {
-                        chewieController = getChewieController(videoController!, autoplay: true);
-                        store.dispatch(LoadedAction());
-                      }
+                      () => store.dispatch(LoadedAction()),
                     );
                   },
                   onPlayToggle: () => chewieController!.togglePause(),
