@@ -1,10 +1,13 @@
+import 'dart:io';
 import 'package:chewie/chewie.dart';
+import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/kyoo_api/src/models/slug.dart';
 import 'package:myoo/kyoo_api/src/models/watch_item.dart';
 import 'package:myoo/myoo/src/actions/loading_actions.dart';
+import 'package:myoo/myoo/src/actions/navigation_actions.dart';
 import 'package:myoo/myoo/src/actions/streaming_actions.dart';
 import 'package:myoo/myoo/src/actions/video_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
@@ -14,6 +17,7 @@ import 'package:myoo/myoo/src/widgets/hide_on_tap.dart';
 import 'package:myoo/myoo/src/widgets/loading_widget.dart';
 import 'package:myoo/myoo/src/widgets/poster.dart';
 import 'package:myoo/myoo/src/widgets/safe_scaffold.dart';
+import 'package:recase/recase.dart';
 import 'package:redux/redux.dart';
 import 'package:timer_builder/timer_builder.dart';
 import 'package:video_player/video_player.dart';
@@ -55,6 +59,51 @@ class _PlayPageState extends State<PlayPage> {
       allowPlaybackSpeedChanging: false,
     );
   }
+
+  void showStreamingParamControl(BuildContext context, Store<AppState> store) {
+    showModalBottomSheet(
+      backgroundColor: getColorScheme(context).background,
+      context: context,
+      builder: (context) {
+        C2ChoiceStyle choiceStyle =  C2ChoiceStyle(
+          borderColor: getColorScheme(context).secondary,
+          color: getColorScheme(context).secondary,
+          backgroundColor: getColorScheme(context).background,
+        );
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Wrap(
+              direction: Axis.vertical,
+              children: [
+                const Text("Streaming Method"),
+                ChipsChoice<StreamingMethod>.single(
+                  choiceStyle: choiceStyle,
+                  choiceActiveStyle: choiceStyle.copyWith(
+                    backgroundColor: getColorScheme(context).secondary,
+                    color: getColorScheme(context).onSecondary,
+                  ),
+                  value: store.state.streamingParams!.method,
+                  onChanged: (selected) {
+                    store.dispatch(SetStreamingMethodAction(selected));
+                    store.dispatch(NavigatorPopAction());
+                  },
+                  choiceItems: [
+                    for (var method in StreamingMethod.values)
+                      C2Choice<StreamingMethod>(
+                        value: method,
+                        disabled: Platform.isIOS && method == StreamingMethod.direct,
+                        label: ReCase(method.name).titleCase,
+                      ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      }
+    );
+  }   
 
   Widget getControls(Store<AppState> store, {Duration position = Duration.zero, Duration? duration}) {
     AppState state = store.state;
@@ -134,7 +183,7 @@ class _PlayPageState extends State<PlayPage> {
                             flex: 2,
                             child: IconButton(
                               icon: const Icon(Icons.settings),
-                              onPressed: () {}
+                              onPressed: () => showStreamingParamControl(context, store)
                             ),
                           ),
                           ///TODO Manage subtitles
