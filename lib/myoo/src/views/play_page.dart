@@ -34,7 +34,7 @@ class _PlayPageState extends State<PlayPage> {
       videoPlayerController: videoController,
       allowFullScreen: false,
       autoPlay: autoplay,
-      customControls: controls != null ?HideOnTap(
+      customControls: controls != null ? HideOnTap(
         child: controls
       ) : null,
       showControlsOnInitialize: false,
@@ -44,25 +44,26 @@ class _PlayPageState extends State<PlayPage> {
 
   @override
   Widget build(BuildContext context) {
-    return StoreBuilder<AppState>(
+    return StoreConnector<AppState, bool>(
+      converter: (store) => store.state.isLoading,
       onInit: ((store) {
         Slug slug = ModalRoute.of(context)!.settings.name!.replaceAll('/play/', '');
         store.dispatch(LoadVideoAction(slug));
         store.dispatch(InitStreamingParametersAction());
         videoController = VideoPlayerController.network(
-          store.state.currentClient!.getStreamingLink(slug, store.state.streamingParams!.method),
+          store.state.currentClient!.getStreamingLink(slug, store.state.streamingParams!.method), ///TODO rebuild on method change
         );
         videoController!.initialize().then(
           (_) {
             chewieController = getChewieController(videoController!, autoplay: true);
+            positionTimer = Timer.periodic(
+              const Duration(seconds: 1),
+              (_) {
+                store.dispatch(SetCurrentPositionAction(videoController!.value.position));
+                store.dispatch(SetTotalDurationAction(videoController!.value.duration));
+              }
+            );
             store.dispatch(LoadedAction());
-          }
-        );
-        positionTimer = Timer.periodic(
-          const Duration(seconds: 1),
-          (_) {
-            store.dispatch(SetCurrentPositionAction(videoController!.value.position));
-            store.dispatch(SetTotalDurationAction(videoController!.value.duration));
           }
         );
       }),
@@ -74,19 +75,20 @@ class _PlayPageState extends State<PlayPage> {
         store.dispatch(UnloadVideoAction());
         store.dispatch(UnsetStreamingParametersAction());
       }),
-      builder: (context, store) {
-        bool isLoading = store.state.isLoading || store.state.currentVideo == null || chewieController == null;
+      ignoreChange: (state) => state.streamingParams!.totalDuration != null,
+      builder: (context, isLoading) {
+        bool controllerIsLoading = chewieController == null;
         return SafeScaffold(
           bottom: true,
           backgroundColor: Colors.black,
           scaffold: Scaffold(
-            appBar: isLoading
+            appBar: isLoading || controllerIsLoading
             ? AppBar(
               leading: const GoBackButton(),
               backgroundColor: Colors.transparent,
             ) : null,
             backgroundColor: Colors.black,
-            body: isLoading
+            body: isLoading || controllerIsLoading
             ? const Center(
               child: LoadingWidget(),
             )
