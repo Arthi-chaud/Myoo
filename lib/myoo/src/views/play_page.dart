@@ -1,13 +1,8 @@
-import 'dart:io';
 import 'package:chewie/chewie.dart';
-import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/kyoo_api/src/models/slug.dart';
-import 'package:myoo/kyoo_api/src/models/watch_item.dart';
 import 'package:myoo/myoo/src/actions/loading_actions.dart';
-import 'package:myoo/myoo/src/actions/navigation_actions.dart';
 import 'package:myoo/myoo/src/actions/streaming_actions.dart';
 import 'package:myoo/myoo/src/actions/video_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
@@ -15,10 +10,10 @@ import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:myoo/myoo/src/widgets/back_button.dart';
 import 'package:myoo/myoo/src/widgets/hide_on_tap.dart';
 import 'package:myoo/myoo/src/widgets/loading_widget.dart';
+import 'package:myoo/myoo/src/widgets/play_page/video_detail.dart';
+import 'package:myoo/myoo/src/widgets/play_page/video_parameters.dart';
 import 'package:myoo/myoo/src/widgets/play_page/video_slider.dart';
-import 'package:myoo/myoo/src/widgets/poster.dart';
 import 'package:myoo/myoo/src/widgets/safe_scaffold.dart';
-import 'package:recase/recase.dart';
 import 'package:redux/redux.dart';
 import 'package:timer_builder/timer_builder.dart';
 import 'package:video_player/video_player.dart';
@@ -35,21 +30,6 @@ class _PlayPageState extends State<PlayPage> {
   VideoPlayerController? videoController;
   ChewieController? chewieController;
 
-  String formatDuration(Duration duration) {
-    String timeString = duration.toString().split('.').first;
-    if (timeString.startsWith('0:')) {
-      timeString = timeString.substring(2);
-    }
-    return timeString;
-  }
-
-  String getVideoTitle(WatchItem video) {
-    if (video.parentSeasonIndex != null && video.index != null) {
-      return "${video.parentName}: S${video.parentSeasonIndex} - E${video.index}";
-    }
-    return video.parentName;
-  }
-
   ChewieController getChewieController(VideoPlayerController videoController, {required bool autoplay, Widget? controls}) {
     return ChewieController(
       videoPlayerController: videoController,
@@ -60,51 +40,6 @@ class _PlayPageState extends State<PlayPage> {
       allowPlaybackSpeedChanging: false,
     );
   }
-
-  void showStreamingParamControl(BuildContext context, Store<AppState> store) {
-    showModalBottomSheet(
-      backgroundColor: getColorScheme(context).background,
-      context: context,
-      builder: (context) {
-        C2ChoiceStyle choiceStyle =  C2ChoiceStyle(
-          borderColor: getColorScheme(context).secondary,
-          color: getColorScheme(context).secondary,
-          backgroundColor: getColorScheme(context).background,
-        );
-        return SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Wrap(
-              direction: Axis.vertical,
-              children: [
-                const Text("Streaming Method"),
-                ChipsChoice<StreamingMethod>.single(
-                  choiceStyle: choiceStyle,
-                  choiceActiveStyle: choiceStyle.copyWith(
-                    backgroundColor: getColorScheme(context).secondary,
-                    color: getColorScheme(context).onSecondary,
-                  ),
-                  value: store.state.streamingParams!.method,
-                  onChanged: (selected) {
-                    store.dispatch(SetStreamingMethodAction(selected));
-                    store.dispatch(NavigatorPopAction());
-                  },
-                  choiceItems: [
-                    for (var method in StreamingMethod.values)
-                      C2Choice<StreamingMethod>(
-                        value: method,
-                        disabled: /*Platform.isIOS && method == StreamingMethod.direct*/ false,
-                        label: ReCase(method.name).titleCase,
-                      ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        );
-      }
-    );
-  }   
 
   Widget getControls(Store<AppState> store, {Duration position = Duration.zero, Duration? duration}) {
     AppState state = store.state;
@@ -139,33 +74,10 @@ class _PlayPageState extends State<PlayPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            children: [
-                              Poster(posterURL: state.currentVideo!.poster, height: 80),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      getVideoTitle(state.currentVideo!),
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 2
-                                    ),
-                                    if (state.currentVideo!.name != state.currentVideo!.parentName)
-                                    Text(
-                                      state.currentVideo!.name,
-                                      style: const TextStyle(fontSize: 12),
-                                    ),
-                                    Text(
-                                      "${formatDuration(position)} - ${formatDuration(duration)}",
-                                      style: const TextStyle(fontSize: 10),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
+                          VideoDetail(
+                            video: store.state.currentVideo!,
+                            position: position,
+                            duration: duration,
                           ),
                           Expanded(
                             flex: 8,
@@ -181,7 +93,22 @@ class _PlayPageState extends State<PlayPage> {
                             flex: 2,
                             child: IconButton(
                               icon: const Icon(Icons.settings),
-                              onPressed: () => showStreamingParamControl(context, store)
+                              onPressed: () => showModalBottomSheet(
+                                backgroundColor: getColorScheme(context).background,
+                                context: context,
+                                builder: (context) {
+                                  return SafeArea(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(20),
+                                      child: VideoParameters(
+                                        streamingParameters: state.streamingParams!,
+                                        onMethodSelect: (method) => store.dispatch(SetStreamingMethodAction(method)),
+                                        onSubtitleTrackSelect: () {}, ///TODO
+                                      ),
+                                    )
+                                  );
+                                }
+                              ),
                             ),
                           ),
                           ///TODO Manage subtitles
