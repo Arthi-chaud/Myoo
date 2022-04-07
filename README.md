@@ -1,6 +1,6 @@
 # Myoo: Mobile Client for your [Kyoo](https://github.com/AnonymusRaccoon/Kyoo) server
 
-[![Build]](https://github.com/Arthi-chaud/Myoo/actions/workflows/build.yml/badge.svg?branch=master)]
+[![Build]](https://github.com/Arthi-chaud/Myoo/actions/workflows/build.yml/badge.svg?branch=master)
 
 Watch your favorite movies & TV Series on the go with your personnal [Kyoo](https://github.com/AnonymusRaccoon/Kyoo) server
 
