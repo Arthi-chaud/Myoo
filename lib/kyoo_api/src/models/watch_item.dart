@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:myoo/kyoo_api/kyoo_api.dart';
+import 'package:myoo/kyoo_api/src/models/track.dart';
 
 part 'watch_item.g.dart';
 
@@ -24,12 +25,16 @@ class WatchItem extends Video {
   @JsonKey(name: 'episodeNumber')
   final int? index;
 
+  @JsonKey(name: 'subtitles', defaultValue: [])
+  final List<Track> subtitleTracks;
+
   const WatchItem({
     required this.previous,
     required this.next,
     required this.parentName,
     required this.parentSeasonIndex,
     required this.index,
+    required this.subtitleTracks,
     required String? poster,
     required DateTime? releaseDate,
     required String slug,

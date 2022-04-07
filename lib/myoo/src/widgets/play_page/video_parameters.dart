@@ -62,7 +62,7 @@ class _VideoParametersState extends State<VideoParameters> {
             for (var method in StreamingMethod.values)
               C2Choice<StreamingMethod>(
                 value: method,
-                disabled: Platform.isIOS && method == StreamingMethod.direct, ///TODO
+                disabled: Platform.isIOS && method == StreamingMethod.direct,
                 label: ReCase(method.name).titleCase,
               ),
           ],
