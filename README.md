@@ -20,6 +20,6 @@ Look over [here](https://docs.kyoo.moe/start/setting_up.html)!
 
 ## Quick views
 
-<img src="images/list_page.png" height="200px"><img src="images/collection_page.png" height="200px"><img src="images/movie_page.png" height="200px">
-<img src="images/play_page.png" height="200px">
-<img src="images/select_server.png" height="200px">
+<img src="images/list_page.png" height="400px"><img src="images/collection_page.png" height="400px"><img src="images/movie_page.png" height="400px">
+<img src="images/play_page.png" height="400px">
+<img src="images/select_server.png" height="400px">
