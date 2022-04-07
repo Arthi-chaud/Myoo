@@ -1,16 +1,21 @@
-# myoo
+# Myoo: Mobile Client for your [Kyoo](https://github.com/AnonymusRaccoon/Kyoo) server
 
-A new Flutter project.
+[![Build]](https://github.com/Arthi-chaud/Myoo/actions/workflows/build.yml/badge.svg?branch=master)]
 
-## Getting Started
+Watch your favorite movies & TV Series on the go with your personnal [Kyoo](https://github.com/AnonymusRaccoon/Kyoo) server
 
-This project is a starting point for a Flutter application.
+Working Android and iOS
 
-A few resources to get you started if this is your first Flutter project:
+## Features
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- Watch Movie and TV Series
+- Library sorting
+- View trailer, download link and external ID
+- Choose subtitles and streaming method
+- Watch videos from multiple servers
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## How to setup your server
+
+Look over [here](https://docs.kyoo.moe/start/setting_up.html)!
+
+## Quick views
