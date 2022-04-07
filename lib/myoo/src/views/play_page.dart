@@ -92,7 +92,7 @@ class _PlayPageState extends State<PlayPage> {
               backgroundColor: Colors.transparent,
             ) : null,
             backgroundColor: Colors.black,
-            body: store.state.isLoading || controllerIsLoading
+            body: store.state.isLoading || controllerIsLoading || store.state.currentVideo == null
             ? const Center(
               child: LoadingWidget(),
             )

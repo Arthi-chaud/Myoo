@@ -5,6 +5,7 @@ import 'package:myoo/myoo/src/theme_data.dart';
 class VideoSlider extends StatelessWidget {
   /// Current position of the video
   final Duration position;
+
   /// Total duration of the video
   final Duration duration;
 
@@ -20,10 +21,14 @@ class VideoSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Duration safeDuration = duration;
+    if (position > duration) {
+      safeDuration = position;
+    }
     return Slider(
       activeColor: getColorScheme(context).secondary,
       value: position.inSeconds.toDouble(),
-      max: duration.inSeconds.toDouble(),
+      max: safeDuration.inSeconds.toDouble(),
       onChanged: (newSeconds) => onSlide(Duration(seconds: newSeconds.toInt()))
     );
   }
