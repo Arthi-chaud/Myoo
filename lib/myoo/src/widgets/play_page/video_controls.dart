@@ -85,12 +85,8 @@ class VideoControls extends StatelessWidget {
                                     child: Padding(
                                       padding: const EdgeInsets.all(20),
                                       child: VideoParameters(
-                                        streamingParameters: store.state.streamingParams!,
-                                        onMethodSelect: (newMethod) {
-                                          store.dispatch(SetStreamingMethodAction(newMethod));
-                                          onMethodSelect(newMethod);
-                                        },
-                                        onSubtitleTrackSelect: () {}, ///TODO
+                                        onMethodSelect: (newMethod) => onMethodSelect(newMethod),
+                                        onSubtitleTrackSelect: (_) {}, ///TODO
                                       ),
                                     )
                                   );

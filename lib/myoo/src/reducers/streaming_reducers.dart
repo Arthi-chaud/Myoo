@@ -1,4 +1,5 @@
 import 'package:myoo/kyoo_api/kyoo_api.dart';
+import 'package:myoo/kyoo_api/src/models/track.dart';
 import 'package:myoo/myoo/src/actions/action.dart';
 import 'package:myoo/myoo/src/actions/client_actions.dart';
 import 'package:myoo/myoo/src/actions/streaming_actions.dart';
@@ -15,7 +16,6 @@ final streamingReducers = combineReducers<StreamingParameters?>([
   TypedReducer<StreamingParameters?, SetTotalDurationAction>(setTotalDuration),
   TypedReducer<StreamingParameters?, SetCurrentPositionAction>(setCurrentPosition),
 
-  TypedReducer<StreamingParameters?, SetSubtitlesTracksAction>(setSubtitlesTracksAction),
   TypedReducer<StreamingParameters?, SetSubtitlesTrackAction>(setSubtitlesTrackAction),
 
   TypedReducer<StreamingParameters?, UnsetStreamingParametersAction>((_, __) => null),
@@ -46,4 +46,4 @@ StreamingParameters setSubtitlesTracksAction(StreamingParameters? old, action) =
   old!.withParams(subtitlesTracks: (action as ContainerAction<List<String>>).content);
 
 StreamingParameters setSubtitlesTrackAction(StreamingParameters? old, action) =>
-  old!.withParams(currentSubtitlesTrack: (action as ContainerAction<String>).content);
+  old!.withParams(currentSubtitlesTrack: (action as ContainerAction<Track>).content);

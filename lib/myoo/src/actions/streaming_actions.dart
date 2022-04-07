@@ -1,4 +1,5 @@
 import 'package:myoo/kyoo_api/kyoo_api.dart';
+import 'package:myoo/kyoo_api/src/models/track.dart';
 import 'package:myoo/myoo/src/actions/action.dart';
 
 /// Action to set [AppState]'s current [StreamingParameters] with default values
@@ -31,12 +32,7 @@ class SetTotalDurationAction extends ContainerAction<Duration> {
 /// Action to remove streaming parameters from state
 class UnsetStreamingParametersAction extends Action {}
 
-/// Action to set available subtitles tracks
-class SetSubtitlesTracksAction extends ContainerAction<List<String>> {
-  SetSubtitlesTracksAction(List<String> tracks) : super(content: tracks);
-}
-
 /// Action to select current subtitle track
-class SetSubtitlesTrackAction extends ContainerAction<String> {
-  SetSubtitlesTrackAction(String track) : super(content: track);
+class SetSubtitlesTrackAction extends ContainerAction<Track> {
+  SetSubtitlesTrackAction(Track track) : super(content: track);
 }
