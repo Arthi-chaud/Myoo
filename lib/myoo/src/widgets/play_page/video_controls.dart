@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:myoo/kyoo_api/src/models/track.dart';
 import 'package:myoo/kyoo_api/src/models/video.dart';
 import 'package:myoo/myoo/src/actions/streaming_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
@@ -10,6 +11,7 @@ import 'package:myoo/myoo/src/widgets/play_page/video_parameters.dart';
 import 'package:myoo/myoo/src/widgets/play_page/video_slider.dart';
 
 /// Controls for [PlayPage]
+/// Callabck don't have to manage state
 class VideoControls extends StatelessWidget {
 
   /// Callback when video slider is moved
@@ -18,6 +20,8 @@ class VideoControls extends StatelessWidget {
   /// Callback when [StreamingMethod] is selected
   final void Function(StreamingMethod) onMethodSelect;
 
+  final void Function(Track) onSubtitleTrackSelect;
+
   /// Callabck when play/pause button is pressed
   final void Function() onPlayToggle;
 
@@ -25,7 +29,8 @@ class VideoControls extends StatelessWidget {
     Key? key,
     required this.onMethodSelect,
     required this.onPlayToggle,
-    required this.onSlide
+    required this.onSlide,
+    required this.onSubtitleTrackSelect,
   }) : super(key: key);
 
   @override
@@ -86,7 +91,7 @@ class VideoControls extends StatelessWidget {
                                       padding: const EdgeInsets.all(20),
                                       child: VideoParameters(
                                         onMethodSelect: (newMethod) => onMethodSelect(newMethod),
-                                        onSubtitleTrackSelect: (_) {}, ///TODO
+                                        onSubtitleTrackSelect: (track) => onSubtitleTrackSelect(track),
                                       ),
                                     )
                                   );

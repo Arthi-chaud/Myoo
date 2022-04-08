@@ -70,7 +70,7 @@ class MoviePage extends StatelessWidget {
                             if (movie.trailer != null)
                             TrailerButton(movie.trailer!),
                             DownloadButton(
-                              store.state.currentClient!.getDownloadLink(movie.slug)
+                              store.state.currentClient!.getVideoDownloadLink(movie.slug)
                             ),
                             if (movie.externalIDs.isNotEmpty)
                             InfoButton(

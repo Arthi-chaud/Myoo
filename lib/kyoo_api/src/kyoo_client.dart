@@ -39,7 +39,16 @@ class KyooClient {
 
   /// Retrieves full download link for [Video], using client's [serverURL]
   /// The slug must be from a [Video]
-  String getDownloadLink(Slug videoSlug) => Uri.http(serverURL, 'video/$videoSlug').toString();
+  String getVideoDownloadLink(Slug videoSlug) => Uri.http(serverURL, 'video/$videoSlug').toString();
+
+  /// Retrieves full download link for subtitle [Track], using client's [serverURL]
+  /// The slug must be from a subtitle [Track]
+  String getSubtitleTrackDownloadLink(Slug subSlug, String codec) {
+    if (codec == 'subrip') {
+      codec = 'srt';
+    }
+    return Uri.http(serverURL, 'subtitles/$subSlug.$codec').toString();
+  }
   
   /// Retrieves streaming link for resource, using client's [serverURL] and a [StreamingMethod]
   /// The slug must be from a [Video]

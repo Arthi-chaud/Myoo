@@ -8,11 +8,14 @@ import 'package:myoo/myoo/src/actions/loading_actions.dart';
 import 'package:myoo/myoo/src/actions/streaming_actions.dart';
 import 'package:myoo/myoo/src/actions/video_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
+import 'package:myoo/myoo/src/models/subtitle_track.dart';
 import 'package:myoo/myoo/src/widgets/back_button.dart';
 import 'package:myoo/myoo/src/widgets/hide_on_tap.dart';
 import 'package:myoo/myoo/src/widgets/loading_widget.dart';
 import 'package:myoo/myoo/src/widgets/play_page/video_controls.dart';
 import 'package:myoo/myoo/src/widgets/safe_scaffold.dart';
+import 'package:redux/redux.dart';
+import 'package:subtitle/subtitle.dart';
 import 'package:video_player/video_player.dart';
 
 class PlayPage extends StatefulWidget {
@@ -29,25 +32,56 @@ class _PlayPageState extends State<PlayPage> {
   Timer? positionTimer;
   late Slug videoSlug;
 
-  ChewieController getChewieController(VideoPlayerController videoController, {required bool autoplay, Widget? controls}) {
+  ChewieController getChewieController(VideoPlayerController videoController, {required bool autoplay, Widget? controls, Duration? position}) {
     return ChewieController(
       videoPlayerController: videoController,
       allowFullScreen: false,
       autoPlay: autoplay,
-      customControls: controls != null ? HideOnTap(
-        child: controls
-      ) : null,
+      startAt: position,
+      customControls: controls != null
+        ? HideOnTap(
+          child: controls
+        )
+        : null,
       showControlsOnInitialize: false,
       allowPlaybackSpeedChanging: false,
     );
   }
 
-  void buildVideoController(String videoURL, void Function() onLoaded) {
-    videoController = VideoPlayerController.network(videoURL);
+  void buildVideoController(String videoURL, void Function() onLoaded, {String? subtitleURL, Duration? startPosition}) {
+    videoController = VideoPlayerController.network(
+      videoURL,
+      closedCaptionFile: subtitleURL != null ? SubtitleTrack.fromURL(subtitleURL) : null,
+    );
     videoController!.initialize().then((value) {
-      chewieController = getChewieController(videoController!, autoplay: true);
+      chewieController = getChewieController(
+        videoController!,
+        autoplay: true,
+        position: startPosition
+      );
       onLoaded();
     });
+  }
+
+  void rebuildVideoController(Store<AppState> store) {
+    setState(() {
+      videoController?.dispose();
+      chewieController?.dispose();
+      videoController = null;
+      chewieController = null;
+    });
+    buildVideoController(
+      store.state.currentClient!.getStreamingLink(videoSlug, store.state.streamingParams!.method),
+      () => store.dispatch(LoadedAction()),
+      startPosition: store.state.streamingParams!.currentPosition,
+      subtitleURL: store.state.streamingParams?.currentSubtitlesTrack != null
+        ? store.state.currentClient!
+          .getSubtitleTrackDownloadLink(
+            store.state.streamingParams!.currentSubtitlesTrack!.slug,
+            store.state.streamingParams!.currentSubtitlesTrack!.codec
+          )
+        : null,
+    );
   }
 
   @override
@@ -101,19 +135,8 @@ class _PlayPageState extends State<PlayPage> {
                 videoController!,
                 autoplay: false,
                 controls: VideoControls(
-                  onMethodSelect: (newMethod) {
-                    store.dispatch(SetStreamingMethodAction(newMethod));
-                    setState(() {
-                      videoController?.dispose();
-                      chewieController?.dispose();
-                      videoController = null;
-                      chewieController = null;
-                    });
-                    buildVideoController(
-                      store.state.currentClient!.getStreamingLink(videoSlug, newMethod),
-                      () => store.dispatch(LoadedAction()),
-                    );
-                  },
+                  onSubtitleTrackSelect: (_) => rebuildVideoController(store),
+                  onMethodSelect: (newMethod) => rebuildVideoController(store),
                   onPlayToggle: () => chewieController!.togglePause(),
                   onSlide: (position) => chewieController!.seekTo(position),
                 ),
