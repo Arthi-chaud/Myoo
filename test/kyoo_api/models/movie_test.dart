@@ -1,86 +1,34 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:myoo/kyoo_api/src/models/external_id.dart';
 import 'package:myoo/kyoo_api/src/models/json.dart';
+import 'package:myoo/kyoo_api/src/models/metadata_provider.dart';
 import 'package:test/test.dart';
 import 'package:myoo/kyoo_api/src/models/movie.dart';
 
 void main() {
-  var now = DateTime.now();
-  var genres = ['Action', 'Adventure', "Express"];
   group('Movie', () {
-    test('Default constructor', () {
-      Movie resource = Movie(
-          id: 1,
-          slug: 'slug',
-          name: 'name',
-          overview: 'overview',
-          poster: 'poster',
-          thumbnail: 'thumbnail',
-          releaseDate: now,
-          genres: genres,
-          studio: 'Pixar',
-          trailer: "trailer");
-      expect(resource.id, 1);
-      expect(resource.slug, 'slug');
-      expect(resource.name, 'name');
-      expect(resource.overview, 'overview');
-      expect(resource.poster, 'poster');
-      expect(resource.thumbnail, 'thumbnail');
-      expect(resource.releaseDate, now);
-      expect(resource.genres, genres);
-      expect(resource.trailer, 'trailer');
-      expect(resource.studio, 'Pixar');
-    });
+    test('From JSON', () async {
+      JSONData jsonMovie = jsonDecode(await File('test/kyoo_api/assets/movie.json').readAsString());
+      Movie movie = Movie.fromJson(jsonMovie);
 
-    test('Unserialize: All fields set', () {
-      JSONData input = {
-        'id': 12345,
-        'slug': 'mySlug2',
-        'name': 'myResource2',
-        'poster': 'poster',
-        'thumbnail': 'thumbnail',
-        'overview': 'overview',
-        'trailer': 'trailer',
-        'studio': 'studio',
-        'releaseDate': now.toIso8601String(),
-        'genres': [
-          {'id': 1, 'name': 'Action'},
-          {'id': 2, 'name': 'Adventure'},
-          {'id': 3, 'name': 'Express'}
-        ]
-      };
-      Movie resource = Movie.fromJson(input);
-      expect(resource.id, 12345);
-      expect(resource.slug, 'mySlug2');
-      expect(resource.name, 'myResource2');
-      expect(resource.overview, 'overview');
-      expect(resource.poster, 'poster');
-      expect(resource.thumbnail, 'thumbnail');
-      expect(resource.releaseDate, now);
-      expect(resource.genres, genres);
-      expect(resource.trailer, 'trailer');
-      expect(resource.studio, 'studio');
-    });
-
-    test('Unserialize: Undefined "genres", "trailer" and "stdio', () {
-      JSONData input = {
-        'id': 12345,
-        'slug': 'mySlug2',
-        'name': 'myResource2',
-        'poster': 'poster',
-        'thumbnail': 'thumbnail',
-        'overview': 'overview',
-        'releaseDate': now.toIso8601String(),
-      };
-      Movie resource = Movie.fromJson(input);
-      expect(resource.id, 12345);
-      expect(resource.slug, 'mySlug2');
-      expect(resource.name, 'myResource2');
-      expect(resource.overview, 'overview');
-      expect(resource.poster, 'poster');
-      expect(resource.thumbnail, 'thumbnail');
-      expect(resource.releaseDate, now);
-      expect(resource.genres, []);
-      expect(resource.trailer, null);
-      expect(resource.studio, null);
+      expect(movie.id, 2);
+      expect(movie.slug, 'big-buck-bunny');
+      expect(movie.name, "Big Buck Bunny");
+      expect(movie.overview,  "Follow a day of the life of Big Buck Bunny when he meets three bullying rodents: Frank, Rinky, and Gamera. The rodents amuse themselves by harassing helpless creatures by throwing fruits, nuts and rocks at them. After the deaths of two of Bunny's favorite butterflies, and an offensive attack on Bunny himself, Bunny sets aside his gentle nature and orchestrates a complex plan for revenge.");
+      expect(movie.releaseDate, DateTime(2008, 4, 10));
+      expect(movie.poster, '/api/show/big-buck-bunny/poster');
+      expect(movie.thumbnail, "/api/show/big-buck-bunny/thumbnail");
+      expect(movie.trailer, "https://www.youtube.com/watch?v=yUQM7H4Swgw");
+      expect(movie.studio, 'Blender Foundation');
+      expect(movie.staff, []);
+      expect(movie.externalIDs.length, 1);
+      expect(movie.externalIDs.first.externalURL, 'https://www.themoviedb.org/movie/10378');
+      expect(movie.externalIDs.first.provider.id, 2);
+      expect(movie.externalIDs.first.provider.slug, 'the-moviedb');
+      expect(movie.externalIDs.first.provider.name, 'TheMovieDB');
+      expect(movie.externalIDs.first.provider.logo, "/api/provider/the-moviedb/logo");
     });
   });
 }

@@ -21,4 +21,6 @@ class ExternalID {
   });
 
   factory ExternalID.fromJson(JSONData input) => _$ExternalIDFromJson(input);
+
+  JSONData toJSON() => _$ExternalIDToJson(this);
 }

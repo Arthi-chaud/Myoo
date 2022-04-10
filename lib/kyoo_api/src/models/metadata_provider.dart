@@ -18,4 +18,6 @@ class MetadataProvider extends Resource {
   }) : super(id: id, slug: slug, name: name, overview: null);
   
   factory MetadataProvider.fromJson(JSONData input) => _$MetadataProviderFromJson(input);
+
+  JSONData toJSON() => _$MetadataProviderToJson(this);
 }
