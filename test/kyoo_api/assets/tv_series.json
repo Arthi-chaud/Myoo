@@ -1,0 +1,54 @@
+{
+	"id": 3,
+	"slug": "pioneer-one",
+	"title": "Pioneer One",
+	"aliases": [
+	  "Пионер-1"
+	],
+	"overview": "Pioneer One is a 2010 American web series produced by Josh Bernhard and Bracey Smith. It has been funded purely through donations, and is the first series created for and released on BitTorrent networks.",
+	"status": 1,
+	"trailerUrl": "https://www.youtube.com/watch?v=icLQqVDk86Y",
+	"startAir": "2010-06-16T00:00:00",
+	"endAir": "2011-12-13T00:00:00",
+	"images": {
+	  "0": "https://image.tmdb.org/t/p/original/p53wbsukyhJ8TieisoeU1zZr9iA.jpg",
+	  "1": "https://www.thetvdb.com/banners/fanart/original/170551-2.jpg",
+	  "3": "https://www.youtube.com/watch?v=icLQqVDk86Y"
+	},
+	"isMovie": false,
+	"externalIDs": [
+	  {
+		"provider": {
+		  "id": 1,
+		  "slug": "the-tvdb",
+		  "name": "TheTVDB",
+		  "images": {
+			"2": "https://www.thetvdb.com/images/logo.png"
+		  },
+		  "logo": "/api/provider/the-tvdb/logo"
+		},
+		"dataID": "170551",
+		"link": "https://www.thetvdb.com/series/pioneer-one"
+	  }
+	],
+	"studio": {
+	  "id": 3,
+	  "slug": "lastsat-productions",
+	  "name": "lastsat productions"
+	},
+	"genres": [
+	  {
+		"id": 6,
+		"slug": "drama",
+		"name": "Drama"
+	  },
+	  {
+		"id": 7,
+		"slug": "science-fiction",
+		"name": "Science Fiction"
+	  }
+	],
+	"poster": "/api/show/pioneer-one/poster",
+	"thumbnail": "/api/show/pioneer-one/thumbnail",
+	"trailer": "/api/show/pioneer-one/trailer"
+  }
