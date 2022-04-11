@@ -1,0 +1,14 @@
+{
+	"id": 7,
+	"slug": "pioneer-one-s1e1",
+	"seasonNumber": 1,
+	"episodeNumber": 1,
+	"absoluteNumber": null,
+	"images": {
+	  "1": "https://www.thetvdb.com/banners/episodes/170551/2375761.jpg"
+	},
+	"title": "Earthfall",
+	"overview": "An object from space spreads radiation over North America. Fearing terrorism, U.S. Homeland Security agents are dispatched to investigate and contain the damage. What they discover is a forgotten relic of the old Soviet space program, whose return to Earth will have implications for the entire world.",
+	"releaseDate": "2010-06-16T00:00:00",
+	"thumbnail": "/api/episode/pioneer-one-s1e1/thumbnail"
+}
