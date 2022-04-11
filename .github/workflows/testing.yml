@@ -1,0 +1,23 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - '*'
+  workflow_dispatch:
+
+jobs:
+  build_apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '2.10.4'
+          channel: 'stable'
+      - name: Get dependencies
+        run: flutter pub get
+      - name: Generate JSON Serialization
+        run: flutter pub run build_runner build
+      - name: Run test
+        run: flutter test --coverage
