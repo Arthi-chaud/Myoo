@@ -1,0 +1,67 @@
+{
+	"id": 1,
+	"slug": "george-melies",
+	"name": "George Melies",
+	"images": {
+	  "0": "https://www.themoviedb.org/t/p/original/ep8nPMDeKE01jss7mzEKDzgYQdr.jpg"
+	},
+	"overview": null,
+	"shows": [
+	  {
+		"id": 5,
+		"slug": "a-trip-to-the-moon",
+		"title": "A Trip To The Moon",
+		"aliases": [
+		  "Rejsen til Månen",
+		  "Matka Kuuhun",
+		  "Put na mesec",
+		  "Resan till månen",
+		  "Viagem à Lua",
+		  "A Viagem à Lua",
+		  "달세계 여행",
+		  "달나라 여행",
+		  "A Trip to Mars"
+		],
+		"overview": "Professor Barbenfouillis and five of his colleagues from the Academy of Astronomy travel to the Moon aboard a rocket propelled by a giant cannon. Once on the lunar surface, the bold explorers face the many perils hidden in the caves of the mysterious satellite.",
+		"status": 1,
+		"trailerUrl": "https://www.youtube.com/watch?v=JEGIyo-dKmA",
+		"startAir": "1902-01-01T00:00:00",
+		"endAir": "1902-04-17T00:00:00",
+		"images": {
+		  "0": "https://image.tmdb.org/t/p/original/9o0v5LLFk51nyTBHZSre6OB37n2.jpg",
+		  "1": "https://image.tmdb.org/t/p/original/kJSnhBQZyCcbqxMZJuDby8ULcfS.jpg",
+		  "3": "https://www.youtube.com/watch?v=JEGIyo-dKmA"
+		},
+		"isMovie": true,
+		"poster": "/api/show/a-trip-to-the-moon/poster",
+		"thumbnail": "/api/show/a-trip-to-the-moon/thumbnail",
+		"trailer": "/api/show/a-trip-to-the-moon/trailer"
+	  },
+	  {
+		"id": 6,
+		"slug": "cinderella",
+		"title": "Cinderella",
+		"aliases": [
+		  "Cinderella",
+		  "Cendrillom",
+		  "Cenicienta",
+		  "Cendrillon (1899)"
+		],
+		"overview": "A fairy godmother magically turns Cinderella's rags to a beautiful dress, and a pumpkin into a coach. Cinderella goes to the ball, where she meets the Prince - but will she remember to leave before the magic runs out?  Méliès based the art direction on engravings by Gustave Doré. First known example of a fairy-tale adapted to film, and the first film to use dissolves to go from one scene to another.",
+		"status": 1,
+		"trailerUrl": null,
+		"startAir": "1899-01-01T00:00:00",
+		"endAir": "1899-10-01T00:00:00",
+		"images": {
+		  "0": "https://image.tmdb.org/t/p/original/sxdOhYS7jOlorsumgcLjgnQFoGH.jpg",
+		  "1": null,
+		  "3": null
+		},
+		"isMovie": true,
+		"poster": "/api/show/cinderella/poster",
+		"thumbnail": null,
+		"trailer": null
+	  }
+	],
+	"poster": "/api/collection/george-melies/poster"
+  }
