@@ -1,0 +1,13 @@
+{
+	"id": 285,
+	"slug": "aggretsuko-s1",
+	"seasonNumber": 1,
+	"title": "Season 1",
+	"overview": "Frustrated with her thankless office job, Retsuko the Red Panda copes with her daily struggles by belting out death metal karaoke after work.",
+	"startDate": "2018-04-20T00:00:00",
+	"endDate": null,
+	"images": {
+	  "0": "https://image.tmdb.org/t/p/original/y6dcOVx2BEOFxbWgOZTYKNd7qYj.jpg"
+	},
+	"poster": "/api/season/aggretsuko-s1/poster"
+}
