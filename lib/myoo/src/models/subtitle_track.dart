@@ -11,29 +11,33 @@ class SubtitleTrack implements ClosedCaptionFile {
   List<Caption> get captions => _captions;
 
   static Future<SubtitleTrack> fromURL(String subURL) {
-    return SubtitleProvider
-    .fromNetwork(Uri.parse(subURL))
-    .getSubtitle()
-    .then(
-      (value) {
-        try {
-          var a = SubtitleTrack(
-            SubtitleParser(value)
-            .parsing()
-            .map(
-              (subtitle) => Caption(
-                number: subtitle.index,
-                start: subtitle.start,
-                end: subtitle.end,
-                text: subtitle.data
-              )
-            ).toList()
-          );
-          return a;
-        } catch (e) {
-          return const SubtitleTrack([]);
+    try {
+      return SubtitleProvider
+      .fromNetwork(Uri.parse(subURL))
+      .getSubtitle()
+      .then(
+        (value) {
+          try {
+            var a = SubtitleTrack(
+              SubtitleParser(value)
+              .parsing()
+              .map(
+                (subtitle) => Caption(
+                  number: subtitle.index,
+                  start: subtitle.start,
+                  end: subtitle.end,
+                  text: subtitle.data
+                )
+              ).toList()
+            );
+            return a;
+          } catch (e) {
+            return const SubtitleTrack([]);
+          }
         }
-      }
-    ).onError((error, stackTrace) => const SubtitleTrack([]));
+      ).onError((error, stackTrace) => const SubtitleTrack([]));
+    } catch (e) {
+      return Future.value(const SubtitleTrack([]));
+    }
   }
 }

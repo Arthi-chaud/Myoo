@@ -38,11 +38,20 @@ class _PlayPageState extends State<PlayPage> {
       allowFullScreen: false,
       autoPlay: autoplay,
       startAt: position,
-      customControls: controls != null
-        ? HideOnTap(
-          child: controls
-        )
-        : null,
+      customControls: Stack(
+        children: [
+          ClosedCaption(
+            text: videoController.value.caption.text,
+            textStyle: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          HideOnTap(
+            child: controls ?? Container()
+          )
+        ]
+      ),
       showControlsOnInitialize: false,
       allowPlaybackSpeedChanging: false,
     );
