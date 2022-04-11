@@ -24,12 +24,5 @@ void main() {
       expect(iconFinder, findsOneWidget);
       expect(labelFinder, findsOneWidget);
     });
-    testWidgets('Open brower on tap', (WidgetTester tester) async {
-      await buildTrailerButton(tester);
-
-      await tester.tap(find.byType(InkWell));
-      await tester.pump(const Duration(seconds: 2));
-print(tester.layers.last.toStringDeep());
-    });
   });
 }
