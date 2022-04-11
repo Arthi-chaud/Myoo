@@ -63,10 +63,11 @@ class _VideoParametersState extends State<VideoParameters> {
                   ),
               ],
             ),
-            const Text("Subtitle"),
             if (store.state.currentVideo!.subtitleTracks.isEmpty)
               const Text("No subtitles available...")
             else
+            ...[
+              const Text("Subtitle"),
               ChipsChoice<Track?>.single(
                 choiceStyle: choiceStyle,
                 value: store.state.streamingParams?.currentSubtitlesTrack,
@@ -83,6 +84,7 @@ class _VideoParametersState extends State<VideoParameters> {
                     ),
                 ],
               ),
+            ]
           ],
         );
       }

@@ -16,20 +16,23 @@ class SubtitleTrack implements ClosedCaptionFile {
     .getSubtitle()
     .then(
       (value) {
-        var a = SubtitleTrack(
-          SubtitleParser(value)
-          .parsing()
-          .map(
-            (subtitle) => Caption(
-              number: subtitle.index,
-              start: subtitle.start,
-              end: subtitle.end,
-              text: subtitle.data
-            )
-          ).toList()
-        );
-        print(a.captions.length);
-        return a;
+        try {
+          var a = SubtitleTrack(
+            SubtitleParser(value)
+            .parsing()
+            .map(
+              (subtitle) => Caption(
+                number: subtitle.index,
+                start: subtitle.start,
+                end: subtitle.end,
+                text: subtitle.data
+              )
+            ).toList()
+          );
+          return a;
+        } catch (e) {
+          return const SubtitleTrack([]);
+        }
       }
     ).onError((error, stackTrace) => const SubtitleTrack([]));
   }
