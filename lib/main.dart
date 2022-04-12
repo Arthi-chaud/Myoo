@@ -3,12 +3,9 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:myoo/myoo/src/app_state.dart';
-import 'package:myoo/myoo/src/middlewares/kyoo_api_middleware.dart';
-import 'package:myoo/myoo/src/middlewares/local_storage_middleware.dart';
-import 'package:myoo/myoo/src/middlewares/navigation_middleware.dart';
 import 'package:myoo/myoo/src/navigation.dart';
-import 'package:myoo/myoo/src/reducers/reducers.dart';
 import 'package:myoo/myoo/src/routes.dart';
+import 'package:myoo/myoo/src/store.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
 import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,15 +16,7 @@ void main() async {
   FlutterNativeSplash.remove();
 
   runApp(MyooApp(
-    store: Store<AppState>(
-      appReducer,
-      middleware: [
-        ...createLocalStorageMiddleware(prefs),
-        ...createKyooAPIMiddleware(),
-        ...createNavigationMiddleware()
-      ],
-      initialState: AppState.initState()
-    ),
+    store: createStore(prefs)
   ));
 }
 

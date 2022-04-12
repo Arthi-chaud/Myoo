@@ -4,20 +4,17 @@ import 'package:myoo/kyoo_api/src/models/external_id.dart';
 import 'package:myoo/kyoo_api/src/models/metadata_provider.dart';
 import 'package:myoo/myoo/src/widgets/info_button.dart';
 
+import '../../widget_builder.dart';
+
 Future<void> buildInfoButton(WidgetTester tester) async {
   await tester.pumpWidget(
-    MaterialApp(
-      home: Directionality(
-        textDirection: TextDirection.ltr,
-        child: Material(
-          child: InfoButton(
-            externalIDs: [
-              ExternalID(provider: MetadataProvider(id: 1, slug: '', name: 'TheTVDB', logo: ''), externalURL: ''),
-              ExternalID(provider: MetadataProvider(id: 1, slug: '', name: 'TheMovieDB', logo: ''), externalURL: '')
-            ]
-          )
-        ),
-      ),
+    await build(
+      InfoButton(
+        externalIDs: [
+          ExternalID(provider: MetadataProvider(id: 1, slug: '', name: 'TheTVDB', logo: ''), externalURL: ''),
+          ExternalID(provider: MetadataProvider(id: 1, slug: '', name: 'TheMovieDB', logo: ''), externalURL: '')
+        ]
+      )
     )
   );
 }

@@ -81,6 +81,7 @@ dev_dependencies:
   json_serializable: ^6.1.5
   build_runner: ^2.1.7
   flutter_launcher_icons_maker: "^0.10.1"
+  mockito: ^5.1.0
 
 flutter_icons:
   android: true
