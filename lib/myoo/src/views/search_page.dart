@@ -6,6 +6,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:myoo/myoo/myoo_api.dart';
 import 'package:myoo/myoo/src/actions/search_actions.dart';
+import 'package:myoo/myoo/src/models/search_result.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -28,8 +29,9 @@ class _SearchPageState extends State<SearchPage> {
           backgroundColor: getColorScheme(context).background,
           leading: const GoBackButton(),
         ),
-        body: StoreBuilder<AppState>(
-          onInitialBuild: (store) {
+        body: StoreConnector<AppState, SearchResult?>(
+          converter: (store) => store.state.searchResult,
+          onInit: (store) {
             searchTimer = Timer.periodic(const Duration(seconds: 3), (_) {
               if (store.state.isLoading) {
                 return;
@@ -43,8 +45,12 @@ class _SearchPageState extends State<SearchPage> {
               }
             });
           },
-          onDispose: (_) => searchTimer?.cancel(),
-          builder: (context, store) {
+          onDispose: (store) {
+            searchTimer?.cancel();
+            store.dispatch(ClearSearch());
+          },
+          builder: (context, searchResult) {
+            
             return FormBuilder(
               key: formKey,
               initialValue: {
@@ -57,11 +63,28 @@ class _SearchPageState extends State<SearchPage> {
                     padding: const EdgeInsets.all(20),
                     child: FormInput(name: searchFieldKey, title: searchFieldKey),
                   ),
-                  if (store.state.isLoading)
-                    const Center(child: LoadingWidget()),
-                  if (store.state.searchResult != null)
+                  if (searchResult != null)
                   ...[
-                    
+                    if (searchResult.movies.isNotEmpty)
+                    ...[
+                      const Text("Movies"),
+                      SizedBox(
+                        height: 300,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: searchResult.movies.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return SizedBox(
+                              width: 140,
+                              child: ClickablePoster(
+                                resource: searchResult.movies[index],
+                              ),
+                            );
+                          }
+                        ),
+                      ),
+                    ]
                   ]
                 ],
               )
