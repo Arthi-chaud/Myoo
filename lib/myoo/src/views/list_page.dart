@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
+import 'package:myoo/myoo/myoo_api.dart';
 import 'package:myoo/myoo/src/actions/client_actions.dart';
 import 'package:myoo/myoo/src/actions/library_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
@@ -62,7 +63,10 @@ class ListPage extends StatelessWidget {
                     store.dispatch(LoadContentFromLibrary(store.state.currentLibrary));
                   }
                 ),
-                const IconButton(onPressed: null, icon: Icon(Icons.search)),
+                IconButton(
+                  icon: const Icon(Icons.search),
+                  onPressed: () => store.dispatch(NavigatorPushAction('/search')),
+                ),
                 IconButton(
                   onPressed: () => showDialog(
                     context: context,

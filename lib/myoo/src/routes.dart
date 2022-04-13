@@ -5,6 +5,7 @@ import 'package:myoo/myoo/src/views/list_page.dart';
 import 'package:myoo/myoo/src/views/detail_views/movie_page.dart';
 import 'package:myoo/myoo/src/views/detail_views/tvseries_page.dart';
 import 'package:myoo/myoo/src/views/play_page.dart';
+import 'package:myoo/myoo/src/views/search_page.dart';
 
 /// Routes with names that must match completely to createRoute
 Map<String, Widget Function()> routes = {
@@ -13,6 +14,7 @@ Map<String, Widget Function()> routes = {
   '/collection': () => const CollectionPage(),
   '/movie': () => const MoviePage(),
   '/series': () => const TVSeriesPage(),
+  '/search': () => const SearchPage(),
 };
 
 /// Map of routes that might be followed by a parameter

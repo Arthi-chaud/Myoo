@@ -1,16 +1,20 @@
 import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/kyoo_api/src/kyoo_client.dart';
+import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
 import 'package:myoo/kyoo_api/src/models/slug.dart';
+import 'package:myoo/kyoo_api/src/models/staff.dart';
 import 'package:myoo/myoo/src/actions/action.dart';
 import 'package:myoo/myoo/src/actions/client_actions.dart';
 import 'package:myoo/myoo/src/actions/collection_actions.dart';
 import 'package:myoo/myoo/src/actions/library_actions.dart';
 import 'package:myoo/myoo/src/actions/movie_actions.dart';
+import 'package:myoo/myoo/src/actions/search_actions.dart';
 import 'package:myoo/myoo/src/actions/season_actions.dart';
 import 'package:myoo/myoo/src/actions/tv_series_actions.dart';
 import 'package:myoo/myoo/src/actions/video_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/models/library_content.dart';
+import 'package:myoo/myoo/src/models/search_result.dart';
 import 'package:redux/redux.dart';
 
 /// Returns list of middlewares related to [KyooAPI]
@@ -26,6 +30,7 @@ List<Middleware<AppState>> createKyooAPIMiddleware() => [
   TypedMiddleware<AppState, UseClientAction>(loadLibraries()),
   TypedMiddleware<AppState, NewClientConnectedAction>(loadItems()),
   TypedMiddleware<AppState, NewClientConnectedAction>(loadLibraries()),
+  TypedMiddleware<AppState, SearchItems>(searchItems()),
 ];
 
 /// Retrieve [WatchItem] from [AppState]'s current [KyooClient] and dispatches it using [LoadedVideoAction]
@@ -102,4 +107,24 @@ Middleware<AppState> loadItems() =>
         }
         store.dispatch(LoadedContentFromLibraryAction(items));
       });
+  };
+
+Middleware<AppState> searchItems() =>
+  (Store<AppState> store, action, NextDispatcher next) {
+    next(action);
+    String query = (action as ContainerAction<String>).content;
+    store.state.currentClient!
+      .searchItems(query)
+      .then((searchResult) => store.dispatch(
+        SearchedItems(
+          SearchResult(
+            movies: searchResult['movies'] as List<ResourcePreview>,
+            tvSeries: searchResult['tvSeries'] as List<ResourcePreview>,
+            episodes: searchResult['episodes'] as List<Episode>,
+            collections: searchResult['collections'] as List<ResourcePreview>,
+            staff: searchResult['staff'] as List<StaffMember>,
+            query: query
+          )
+        )
+      ));
   };

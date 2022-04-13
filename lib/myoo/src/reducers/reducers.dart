@@ -3,6 +3,7 @@ import 'package:myoo/myoo/src/reducers/clients_reducers.dart';
 import 'package:myoo/myoo/src/reducers/library_reducers.dart';
 import 'package:myoo/myoo/src/reducers/loading_reducers.dart';
 import 'package:myoo/myoo/src/reducers/resource_reducers.dart';
+import 'package:myoo/myoo/src/reducers/search_reducers.dart';
 import 'package:myoo/myoo/src/reducers/streaming_reducers.dart';
 
 AppState appReducer(AppState oldState, action) => AppState(
@@ -16,4 +17,5 @@ AppState appReducer(AppState oldState, action) => AppState(
   currentSeason: currentSeasonReducers(oldState.currentSeason, action),
   currentVideo: currentVideoReducers(oldState.currentVideo, action),
   streamingParams: streamingReducers(oldState.streamingParams, action),
+  searchResult: searchReducers(oldState.searchResult, action),
 );

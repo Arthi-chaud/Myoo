@@ -31,7 +31,7 @@ class _PlayPageState extends State<PlayPage> {
   ChewieController? chewieController;
   Timer? positionTimer;
   late Slug videoSlug;
-
+  ///TODO Make the page not refresh every second
   ChewieController getChewieController(VideoPlayerController videoController, {required bool autoplay, Widget? controls, Duration? position}) {
     return ChewieController(
       videoPlayerController: videoController,

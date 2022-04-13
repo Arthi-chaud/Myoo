@@ -146,6 +146,23 @@ class KyooClient {
       .toList();
   }
 
+  Future<Map<String, List>> searchItems(String query) async {
+    JSONData responseBody = await _request(RequestType.get, '/search/$query');
+    List<ResourcePreview> shows = (responseBody['shows'] as List)
+      .map((e) => ResourcePreview.fromJson(e))
+      .toList();
+    return {
+      'movies': shows.where((element) => element.type == ResourcePreviewType.movie).toList(),
+      'tvSeries': shows.where((element) => element.type == ResourcePreviewType.series).toList(),
+      'collections': shows.where((element) => element.type == ResourcePreviewType.collection).toList(),
+      'episodes': (responseBody['episodes'] as List)
+        .map((e) => Episode.fromJson(e))
+        .toList(),
+      'staff': (responseBody['people'] as List)
+        .map((e) => StaffMember.fromJson(e))
+        .toList()
+    };
+  }
   /// Request Kyoo's API, the route must not start with '/api'
   Future<JSONData> _request(RequestType type, String route, {Map<String, dynamic>? body, Map<String, dynamic>? params}) async {
     body ??= {};

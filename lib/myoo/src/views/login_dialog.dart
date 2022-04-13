@@ -56,7 +56,6 @@ class _LoginDialogState extends State<LoginDialog> {
       content: SizedBox(
         height: MediaQuery.of(context).size.height * 0.5,
         child: FormBuilder(
-          autovalidateMode: AutovalidateMode.disabled,
           key: formKey,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),

@@ -5,6 +5,7 @@ import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
 import 'package:myoo/kyoo_api/src/models/library.dart';
 import 'package:myoo/kyoo_api/src/models/watch_item.dart';
 import 'package:myoo/myoo/src/models/library_content.dart';
+import 'package:myoo/myoo/src/models/search_result.dart';
 import 'package:myoo/myoo/src/models/streaming_parameters.dart';
 
 /// State of the Myoo App
@@ -38,6 +39,8 @@ class AppState {
 
   /// The parameters of the current stream
   final StreamingParameters? streamingParams;
+  /// The result of the current search
+  final SearchResult? searchResult;
 
   /// Default constructor
   AppState({
@@ -50,6 +53,7 @@ class AppState {
     required this.currentTVSeries,
     required this.currentCollection,
     required this.streamingParams,
+    required this.searchResult,
     required this.currentSeason}) {
     assert(
       (clients != null && currentClient == null && clients!.isEmpty) ||
@@ -70,6 +74,7 @@ class AppState {
     currentTVSeries = null,
     currentCollection = null,
     streamingParams = null,
+    searchResult = null,
     currentSeason = null;
 
   /// Copy constructor for easier copies
@@ -84,6 +89,7 @@ class AppState {
     Collection? currentCollection,
     WatchItem? currentVideo,
     StreamingParameters? streamingParams,
+    SearchResult? searchResult,
     bool? isLoading,
   }) => AppState(
     currentClient: currentClient ?? this.currentClient,
@@ -95,6 +101,7 @@ class AppState {
     currentTVSeries: currentTVSeries ?? this.currentTVSeries,
     currentSeason: currentSeason ?? this.currentSeason,
     currentVideo: currentVideo ?? this.currentVideo,
+    searchResult: searchResult ?? this.searchResult,
     currentCollection: currentCollection ?? this.currentCollection
   );
 
@@ -110,6 +117,7 @@ class AppState {
     currentTVSeries.hashCode ^
     currentCollection.hashCode ^
     currentVideo.hashCode ^
+    searchResult.hashCode ^
     currentSeason.hashCode;
 
   @override
@@ -123,6 +131,7 @@ class AppState {
     currentClient == other.currentClient &&
     currentMovie == other.currentMovie &&
     currentVideo == other.currentVideo &&
+    searchResult == other.searchResult &&
     currentTVSeries == other.currentTVSeries &&
     currentCollection == other.currentCollection &&
     currentSeason == other.currentSeason;
