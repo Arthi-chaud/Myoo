@@ -32,6 +32,7 @@ class KyooClient {
 
   /// HTTP Client interface to manage requests
   /// If none provided, a default instance will be used
+  @JsonKey(ignore: true)
   http.Client client;
 
   /// Default constructor
@@ -178,7 +179,7 @@ class KyooClient {
   /// Uses [client]
   Future<JSONData> _request(RequestType type, String route, {Map<String, dynamic>? body, Map<String, dynamic>? params}) async {
     body ??= {};
-    params ?? {};
+    params ?? {}; ///TODO ??
     http.Response response;
     Uri fullRoute = Uri.http(serverURL, 'api$route', params);
     final Map<String, String> headers = {
