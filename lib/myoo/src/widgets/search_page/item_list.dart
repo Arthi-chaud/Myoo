@@ -22,22 +22,19 @@ class SearchItemList<T> extends StatelessWidget {
           padding: const EdgeInsets.only(left: 20),
           child: Text(label),
         ),
-        SizedBox(
-          height: 250,
-          child: Scrollbar(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: items.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return SizedBox(
+        Scrollbar(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: items.map(
+                (e) => SizedBox(
                   width: 140,
-                  child: itemBuilder(items[index]),
-                );
-              }
+                  child: itemBuilder(e)
+                )
+              ).toList(),
             ),
           ),
-        ),
+        )
       ]
     );
   }
