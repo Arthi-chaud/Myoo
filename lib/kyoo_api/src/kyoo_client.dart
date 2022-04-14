@@ -154,7 +154,9 @@ class KyooClient {
     return {
       'movies': shows.where((element) => element.type == ResourcePreviewType.movie).toList(),
       'tvSeries': shows.where((element) => element.type == ResourcePreviewType.series).toList(),
-      'collections': shows.where((element) => element.type == ResourcePreviewType.collection).toList(),
+      'collections': (responseBody['collections'] as List)
+        .map((e) => IllustratedResource.fromJson(e))
+        .toList(),
       'episodes': (responseBody['episodes'] as List)
         .map((e) => Episode.fromJson(e))
         .toList(),
