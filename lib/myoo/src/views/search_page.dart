@@ -34,7 +34,7 @@ class _SearchPageState extends State<SearchPage> {
         body: StoreConnector<AppState, SearchResult?>(
           converter: (store) => store.state.searchResult,
           onInit: (store) {
-            searchTimer = Timer.periodic(const Duration(seconds: 3), (_) {
+            searchTimer = Timer.periodic(const Duration(seconds: 1), (_) {
               if (store.state.isLoading) {
                 return;
               }
