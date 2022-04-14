@@ -1,9 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-
-import 'package:myoo/kyoo_api/src/models/external_id.dart';
 import 'package:myoo/kyoo_api/src/models/json.dart';
-import 'package:myoo/kyoo_api/src/models/metadata_provider.dart';
 import 'package:test/test.dart';
 import 'package:myoo/kyoo_api/src/models/movie.dart';
 

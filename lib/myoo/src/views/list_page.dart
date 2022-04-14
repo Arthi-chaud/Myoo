@@ -2,15 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:myoo/myoo/myoo_api.dart';
-import 'package:myoo/myoo/src/actions/client_actions.dart';
-import 'package:myoo/myoo/src/actions/library_actions.dart';
-import 'package:myoo/myoo/src/app_state.dart';
-import 'package:myoo/myoo/src/models/library_content.dart';
-import 'package:myoo/myoo/src/theme_data.dart';
-import 'package:myoo/myoo/src/views/server_management_dialog.dart';
-import 'package:myoo/myoo/src/widgets/clickable_poster.dart';
-import 'package:myoo/myoo/src/widgets/loading_widget.dart';
-import 'package:myoo/myoo/src/widgets/safe_scaffold.dart';
 import 'package:responsive_grid/responsive_grid.dart';
 
 /// Page to list all libraries and their content from a server

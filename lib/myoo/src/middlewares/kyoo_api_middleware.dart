@@ -121,7 +121,17 @@ Middleware<AppState> searchItems() =>
             movies: searchResult['movies'] as List<ResourcePreview>,
             tvSeries: searchResult['tvSeries'] as List<ResourcePreview>,
             episodes: searchResult['episodes'] as List<Episode>,
-            collections: searchResult['collections'] as List<ResourcePreview>,
+            collections: (searchResult['collections'] as List<IllustratedResource>)
+              .map((resource) => ResourcePreview(
+                type: ResourcePreviewType.collection,
+                id: resource.id,
+                slug: resource.slug,
+                name: resource.name,
+                overview: resource.overview,
+                poster: resource.poster,
+                thumbnail: resource.poster
+              ))
+              .toList(),
             staff: searchResult['staff'] as List<StaffMember>,
             query: query
           )

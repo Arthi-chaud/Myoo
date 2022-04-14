@@ -15,7 +15,6 @@ import 'package:myoo/myoo/src/widgets/loading_widget.dart';
 import 'package:myoo/myoo/src/widgets/play_page/video_controls.dart';
 import 'package:myoo/myoo/src/widgets/safe_scaffold.dart';
 import 'package:redux/redux.dart';
-import 'package:subtitle/subtitle.dart';
 import 'package:video_player/video_player.dart';
 
 class PlayPage extends StatefulWidget {

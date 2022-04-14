@@ -99,7 +99,6 @@ class VideoControls extends StatelessWidget {
                               ),
                             ),
                           ),
-                          ///TODO Manage subtitles
                         ],
                       ),
                     )

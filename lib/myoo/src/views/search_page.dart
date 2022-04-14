@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
+import 'package:myoo/kyoo_api/src/models/staff.dart';
 import 'package:myoo/myoo/myoo_api.dart';
 import 'package:myoo/myoo/src/actions/search_actions.dart';
 import 'package:myoo/myoo/src/models/search_result.dart';
+import 'package:myoo/myoo/src/widgets/search_page/item_list.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -50,7 +52,6 @@ class _SearchPageState extends State<SearchPage> {
             store.dispatch(ClearSearch());
           },
           builder: (context, searchResult) {
-            
             return FormBuilder(
               key: formKey,
               initialValue: {
@@ -66,25 +67,40 @@ class _SearchPageState extends State<SearchPage> {
                   if (searchResult != null)
                   ...[
                     if (searchResult.movies.isNotEmpty)
-                    ...[
-                      const Text("Movies"),
-                      SizedBox(
-                        height: 300,
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: searchResult.movies.length,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return SizedBox(
-                              width: 140,
-                              child: ClickablePoster(
-                                resource: searchResult.movies[index],
-                              ),
-                            );
-                          }
-                        ),
+                    SearchItemList<ResourcePreview>(
+                      label: "Movies",
+                      items: searchResult.movies,
+                      itemBuilder: (item) => ClickablePoster(
+                        resource: item
                       ),
-                    ]
+                    ),
+                    if (searchResult.tvSeries.isNotEmpty)
+                    SearchItemList<ResourcePreview>(
+                      label: "TV Shows",
+                      items: searchResult.tvSeries,
+                      itemBuilder: (item) => ClickablePoster(
+                        resource: item
+                      ),
+                    ),
+                    if (searchResult.collections.isNotEmpty)
+                    SearchItemList<ResourcePreview>(
+                      label: "Collections",
+                      items: searchResult.collections,
+                      itemBuilder: (item) => ClickablePoster(
+                        resource: item
+                      ),
+                    ),
+                    ///TODO EPISODES
+                    if (searchResult.staff.isNotEmpty)
+                    ///TODO Make it clickable
+                    SearchItemList<StaffMember>(
+                      label: "Staff",
+                      items: searchResult.staff,
+                      itemBuilder: (staffMember) => Poster(
+                        posterURL: staffMember.poster,
+                        title: staffMember.name,
+                      ),
+                    )
                   ]
                 ],
               )
