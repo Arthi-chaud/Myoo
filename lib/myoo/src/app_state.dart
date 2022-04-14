@@ -56,7 +56,7 @@ class AppState {
     required this.searchResult,
     required this.currentSeason}) {
     assert(
-      (clients != null && currentClient == null && clients!.isEmpty) ||
+      (clients != null && currentClient != null && clients!.isEmpty) ||
       (clients?.map((client) => client.serverURL).toList().contains(currentClient?.serverURL) ?? true),
       'The current client is not known'
     );
