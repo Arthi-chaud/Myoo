@@ -24,6 +24,7 @@ class SearchItemList<T> extends StatelessWidget {
         ),
         Scrollbar(
           child: SingleChildScrollView(
+            padding: const EdgeInsets.only(top: 20, bottom: 10),
             scrollDirection: Axis.horizontal,
             child: Row(
               children: items.map(

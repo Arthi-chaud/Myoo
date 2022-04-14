@@ -101,7 +101,12 @@ class _SearchPageState extends State<SearchPage> {
                         title: staffMember.name,
                       ),
                     )
-                  ]
+                  ].map(
+                    (widget) => Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: widget,
+                    )
+                  )
                 ],
               )
             );
