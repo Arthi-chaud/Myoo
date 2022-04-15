@@ -122,7 +122,6 @@ class _PlayPageState extends State<PlayPage> {
         store.dispatch(UnloadVideoAction());
         store.dispatch(UnsetStreamingParametersAction());
       }),
-      //ignoreChange: (state) => state.streamingParams!.totalDuration != null,
       builder: (context, store) {
         bool controllerIsLoading = chewieController == null;
         return SafeScaffold(
