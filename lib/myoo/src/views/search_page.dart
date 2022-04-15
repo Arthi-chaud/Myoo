@@ -3,12 +3,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/kyoo_api/src/kyoo_client.dart';
 import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
 import 'package:myoo/kyoo_api/src/models/staff.dart';
 import 'package:myoo/myoo/myoo_api.dart';
 import 'package:myoo/myoo/src/actions/search_actions.dart';
 import 'package:myoo/myoo/src/models/search_result.dart';
+import 'package:myoo/myoo/src/widgets/episode_vertical_tile.dart';
 import 'package:myoo/myoo/src/widgets/search_page/item_list.dart';
 
 class SearchPage extends StatefulWidget {
@@ -114,7 +116,19 @@ class _SearchPageState extends State<SearchPage> {
                         resource: item
                       ),
                     ),
-                    ///TODO EPISODES
+                    if (searchResult.episodes.isNotEmpty)
+                    SearchItemList<Episode>(
+                      label: "Episodes",
+                      items: searchResult.episodes,
+                      itemBuilder: (episode) => Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: EpisodeVerticalTile(
+                          title: episode.name,
+                          overview: episode.overview ?? "",
+                          thumbnailURL: episode.thumbnail,
+                        ),
+                      ),
+                    ),
                     if (searchResult.staff.isNotEmpty)
                     ///TODO Make it clickable
                     SearchItemList<StaffMember>(
@@ -131,8 +145,6 @@ class _SearchPageState extends State<SearchPage> {
                       child: widget,
                     )
                   )
-                  else if (store.state.isLoading)
-                    Center(child: const LoadingWidget())
                 ],
               )
             );
