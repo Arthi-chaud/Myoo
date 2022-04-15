@@ -120,12 +120,15 @@ class _SearchPageState extends State<SearchPage> {
                     SearchItemList<Episode>(
                       label: "Episodes",
                       items: searchResult.episodes,
-                      itemBuilder: (episode) => Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: EpisodeVerticalTile(
-                          title: episode.name,
-                          overview: episode.overview ?? "",
-                          thumbnailURL: episode.thumbnail,
+                      itemBuilder: (episode) => InkWell(
+                        onTap: () => store.dispatch(NavigatorPushAction('/play/${episode.slug}')),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: EpisodeVerticalTile(
+                            title: episode.name,
+                            overview: episode.overview ?? "",
+                            thumbnailURL: episode.thumbnail,
+                          ),
                         ),
                       ),
                     ),
