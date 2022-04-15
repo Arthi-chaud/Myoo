@@ -24,6 +24,7 @@ class UseClientAction extends ContainerAction<KyooClient> {
 }
 
 /// Action to delete a client
+/// WARNING: if toRemove is the curretn client, an error is thrown
 class DeleteClientAction extends ContainerAction<KyooClient> {
   DeleteClientAction(KyooClient toRemove) : super(content: toRemove);
 }

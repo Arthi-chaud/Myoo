@@ -23,6 +23,12 @@ class DetailPageScaffold extends StatelessWidget {
   Widget build(BuildContext context) =>
     SafeScaffold(
       scaffold: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          leading: const GoBackButton(),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
         body: DefaultTextStyle(
           style: TextStyle(fontSize: 12, color: getColorScheme(context).onBackground, height: 1.5),
           child: StoreBuilder<AppState>(
@@ -31,19 +37,8 @@ class DetailPageScaffold extends StatelessWidget {
               if (store.state.isLoading && isLoading(store)) {
                 return const LoadingWidget();
               }
-              return ListView(
-                children: [
-                  Stack(
-                    children: [
-                      builder(context, store),
-                      AppBar(
-                        elevation: 0,
-                        backgroundColor: Colors.transparent,
-                        leading: const GoBackButton(),
-                      ),
-                    ]
-                  )
-                ]
+              return SingleChildScrollView(
+                child: builder(context, store),
               );
             }
           ),

@@ -1,23 +1,19 @@
 import 'dart:async';
-
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:myoo/kyoo_api/src/models/slug.dart';
-import 'package:myoo/myoo/src/actions/loading_actions.dart';
-import 'package:myoo/myoo/src/actions/streaming_actions.dart';
-import 'package:myoo/myoo/src/actions/video_actions.dart';
-import 'package:myoo/myoo/src/app_state.dart';
-import 'package:myoo/myoo/src/models/subtitle_track.dart';
-import 'package:myoo/myoo/src/widgets/back_button.dart';
-import 'package:myoo/myoo/src/widgets/hide_on_tap.dart';
-import 'package:myoo/myoo/src/widgets/loading_widget.dart';
-import 'package:myoo/myoo/src/widgets/play_page/video_controls.dart';
-import 'package:myoo/myoo/src/widgets/safe_scaffold.dart';
+import 'package:myoo/myoo/myoo_api.dart';
+import 'package:myoo/myoo/src/widgets/play_page/error_widget.dart';
 import 'package:redux/redux.dart';
 import 'package:video_player/video_player.dart';
 
 class PlayPage extends StatefulWidget {
+
+  /// Error message if the video takes too long to load
+  static String loadTimeoutMessage = 'The video is taking too long to load. Please try again later. Its format might be incompatible with the player';
+  /// Duration in seconds to wait before showing the error widget
+  static int loadTimeout = 10;
 
   const PlayPage({Key? key}) : super(key: key);
 
@@ -99,6 +95,11 @@ class _PlayPageState extends State<PlayPage> {
         videoSlug = ModalRoute.of(context)!.settings.name!.replaceAll('/play/', '');
         store.dispatch(LoadVideoAction(videoSlug));
         store.dispatch(InitStreamingParametersAction());
+        Future.delayed(const Duration(seconds: 10), () {
+          if (chewieController == null) {
+            showPlayErrorWidget(context, PlayPage.loadTimeoutMessage);
+          }
+        });
         buildVideoController(
           store.state.currentClient!.getStreamingLink(videoSlug, store.state.streamingParams!.method),
           () {
@@ -121,7 +122,6 @@ class _PlayPageState extends State<PlayPage> {
         store.dispatch(UnloadVideoAction());
         store.dispatch(UnsetStreamingParametersAction());
       }),
-      //ignoreChange: (state) => state.streamingParams!.totalDuration != null,
       builder: (context, store) {
         bool controllerIsLoading = chewieController == null;
         return SafeScaffold(
@@ -135,8 +135,21 @@ class _PlayPageState extends State<PlayPage> {
             ) : null,
             backgroundColor: Colors.black,
             body: store.state.isLoading || controllerIsLoading || store.state.currentVideo == null
-            ? const Center(
-              child: LoadingWidget(),
+            ? Stack(
+              alignment: Alignment.center,
+              children: [
+                DecoratedBox(
+                  position: DecorationPosition.foreground,
+                  decoration: BoxDecoration(
+                    color: getColorScheme(context).background.withAlpha(200)
+                  ),
+                  child: Thumbnail(
+                    thumbnailURL: store.state.currentVideo?.thumbnail,
+                    width: MediaQuery.of(context).size.width,
+                  ),
+                ),
+                const LoadingWidget(),
+              ],
             )
             : Chewie(
               controller: getChewieController(

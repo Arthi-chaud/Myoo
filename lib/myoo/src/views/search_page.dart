@@ -3,11 +3,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:myoo/kyoo_api/kyoo_api.dart';
+import 'package:myoo/kyoo_api/src/kyoo_client.dart';
 import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
 import 'package:myoo/kyoo_api/src/models/staff.dart';
 import 'package:myoo/myoo/myoo_api.dart';
 import 'package:myoo/myoo/src/actions/search_actions.dart';
 import 'package:myoo/myoo/src/models/search_result.dart';
+import 'package:myoo/myoo/src/widgets/episode_vertical_tile.dart';
 import 'package:myoo/myoo/src/widgets/search_page/item_list.dart';
 
 class SearchPage extends StatefulWidget {
@@ -20,7 +23,11 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   final String searchFieldKey = 'Search';
   final formKey = GlobalKey<FormBuilderState>();
+  /// The time that manage search callback periodically
   Timer? searchTimer;
+  /// When we switch client in search tab bar, the [currentClient] from state is changed
+  /// To recover initial client on dispose, we store it in a variable
+  late KyooClient backupClient;
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +38,9 @@ class _SearchPageState extends State<SearchPage> {
           backgroundColor: getColorScheme(context).background,
           leading: const GoBackButton(),
         ),
-        body: StoreConnector<AppState, SearchResult?>(
-          converter: (store) => store.state.searchResult,
+        body: StoreBuilder<AppState>(
           onInit: (store) {
+            backupClient = store.state.currentClient!;
             searchTimer = Timer.periodic(const Duration(seconds: 1), (_) {
               if (store.state.isLoading) {
                 return;
@@ -48,10 +55,12 @@ class _SearchPageState extends State<SearchPage> {
             });
           },
           onDispose: (store) {
-            searchTimer?.cancel();
             store.dispatch(ClearSearch());
+            store.dispatch(UseClientAction(backupClient));
+            searchTimer?.cancel();
           },
-          builder: (context, searchResult) {
+          builder: (context, store) {
+            SearchResult? searchResult = store.state.searchResult;
             return FormBuilder(
               key: formKey,
               initialValue: {
@@ -63,6 +72,23 @@ class _SearchPageState extends State<SearchPage> {
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: FormInput(name: searchFieldKey, title: searchFieldKey),
+                  ),
+                  if (store.state.clients!.length > 1)
+                  DefaultTabController(
+                    length: store.state.clients!.length,
+                    child: TabBar(
+                      ///TODO isScrollable: true,
+                      onTap: (index) {
+                        store.dispatch(UseClientAction(store.state.clients![index]));
+                        store.dispatch(ClearSearch());
+                      },
+                      indicatorColor: getColorScheme(context).secondary,
+                      tabs: store.state.clients!.map(
+                        (client) => Tab(
+                          text: client.serverURL,
+                        ),
+                      ).toList()
+                    ),
                   ),
                   if (searchResult != null)
                   ...[
@@ -90,7 +116,22 @@ class _SearchPageState extends State<SearchPage> {
                         resource: item
                       ),
                     ),
-                    ///TODO EPISODES
+                    if (searchResult.episodes.isNotEmpty)
+                    SearchItemList<Episode>(
+                      label: "Episodes",
+                      items: searchResult.episodes,
+                      itemBuilder: (episode) => InkWell(
+                        onTap: () => store.dispatch(NavigatorPushAction('/play/${episode.slug}')),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: EpisodeVerticalTile(
+                            title: episode.name,
+                            overview: episode.overview ?? "",
+                            thumbnailURL: episode.thumbnail,
+                          ),
+                        ),
+                      ),
+                    ),
                     if (searchResult.staff.isNotEmpty)
                     ///TODO Make it clickable
                     SearchItemList<StaffMember>(

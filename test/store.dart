@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 Future<Store<AppState>> createTestStore() async {
   SharedPreferences.setMockInitialValues({});
-  Store<AppState>(
+  return Store<AppState>(
     appReducer,
     middleware: [
       ...createLocalStorageMiddleware(await SharedPreferences.getInstance()),

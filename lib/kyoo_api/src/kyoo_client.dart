@@ -30,8 +30,18 @@ class KyooClient {
   @JsonKey(ignore: true)
   List<Library> serverLibraries;
 
+  /// HTTP Client interface to manage requests
+  /// If none provided, a default instance will be used
+  @JsonKey(ignore: true)
+  http.Client client;
+
   /// Default constructor
-  KyooClient({required this.serverURL, this.jwt, this.serverLibraries = const []});
+  KyooClient({
+    required this.serverURL,
+    this.jwt,
+    this.serverLibraries = const [],
+    http.Client? client
+  }) : client = client ?? http.Client();
 
   factory KyooClient.fromJson(JSONData input) => _$KyooClientFromJson(input);
 
@@ -166,9 +176,10 @@ class KyooClient {
     };
   }
   /// Request Kyoo's API, the route must not start with '/api'
+  /// Uses [client]
   Future<JSONData> _request(RequestType type, String route, {Map<String, dynamic>? body, Map<String, dynamic>? params}) async {
     body ??= {};
-    params ?? {};
+    params ?? {}; ///TODO ??
     http.Response response;
     Uri fullRoute = Uri.http(serverURL, 'api$route', params);
     final Map<String, String> headers = {
@@ -180,16 +191,16 @@ class KyooClient {
     }
     switch (type) {
       case RequestType.get:
-        response = await http.get(fullRoute);
+        response = await client.get(fullRoute);
         break;
       case RequestType.post:
-        response = await http.post(fullRoute, body: body, headers: headers);
+        response = await client.post(fullRoute, body: body, headers: headers);
         break;
       case RequestType.put:
-        response = await http.put(fullRoute, body: body, headers: headers);
+        response = await client.put(fullRoute, body: body, headers: headers);
         break;
       case RequestType.delete:
-        response = await http.delete(fullRoute, body: body, headers: headers);
+        response = await client.delete(fullRoute, body: body, headers: headers);
         break;
     }
     return jsonDecode(response.body);

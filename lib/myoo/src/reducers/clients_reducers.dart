@@ -57,6 +57,7 @@ KyooClient? _setLibraries(KyooClient? old, ContainerAction<List<Library>> action
   return KyooClient(
     serverURL: old!.serverURL,
     jwt: old.jwt,
-    serverLibraries: action.content
+    serverLibraries: action.content,
+    client: old.client
   );
 }
