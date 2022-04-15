@@ -23,8 +23,10 @@ void main() async {
   group('Movie Reducers', () {
     test('Load Movie', () async {
       store.dispatch(LoadMovieAction('bla'));
+      expect(store.state.isLoading, true);
       await Future.delayed(const Duration(seconds: 1));
       expect(store.state.currentMovie!.name, movieJSON['name']);
+      expect(store.state.isLoading, false);
     });
     test('Set Movie', () {
       store.dispatch(SetCurrentMovie(Movie.fromJson(movieJSON)));
