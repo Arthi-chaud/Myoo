@@ -1,9 +1,11 @@
 import 'dart:async';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:myoo/kyoo_api/src/models/slug.dart';
+import 'package:myoo/myoo/myoo_api.dart';
 import 'package:myoo/myoo/src/actions/loading_actions.dart';
 import 'package:myoo/myoo/src/actions/streaming_actions.dart';
 import 'package:myoo/myoo/src/actions/video_actions.dart';
@@ -135,8 +137,21 @@ class _PlayPageState extends State<PlayPage> {
             ) : null,
             backgroundColor: Colors.black,
             body: store.state.isLoading || controllerIsLoading || store.state.currentVideo == null
-            ? const Center(
-              child: LoadingWidget(),
+            ? Stack(
+              alignment: Alignment.center,
+              children: [
+                DecoratedBox(
+                  position: DecorationPosition.foreground,
+                  decoration: BoxDecoration(
+                    color: getColorScheme(context).background.withAlpha(200)
+                  ),
+                  child: Thumbnail(
+                    thumbnailURL: store.state.currentVideo?.thumbnail,
+                    width: MediaQuery.of(context).size.width,
+                  ),
+                ),
+                const LoadingWidget(),
+              ],
             )
             : Chewie(
               controller: getChewieController(
