@@ -86,12 +86,13 @@ class VideoControls extends StatelessWidget {
                             child: IconButton(
                               icon: const Icon(Icons.settings),
                               onPressed: () => showModalBottomSheet(
+                                isScrollControlled: true,
                                 backgroundColor: getColorScheme(context).background,
                                 context: context,
                                 builder: (context) {
                                   return SafeArea(
                                     child: Padding(
-                                      padding: const EdgeInsets.all(20),
+                                      padding: const EdgeInsets.symmetric(vertical: 20),
                                       child: VideoParameters(
                                         onMethodSelect: (newMethod) => onMethodSelect(newMethod),
                                         onSubtitleTrackSelect: (track) => onSubtitleTrackSelect(track),

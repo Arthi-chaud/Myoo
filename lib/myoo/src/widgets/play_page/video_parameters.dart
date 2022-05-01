@@ -29,6 +29,11 @@ class VideoParameters extends StatefulWidget {
 
 class _VideoParametersState extends State<VideoParameters> {
 
+  Widget paddedTitle(String title) => Padding(
+    padding: const EdgeInsets.only(left: 20),
+    child: Text(title),
+  );
+
   @override
   Widget build(BuildContext context) {
     C2ChoiceStyle choiceStyle = C2ChoiceStyle(
@@ -46,7 +51,7 @@ class _VideoParametersState extends State<VideoParameters> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Streaming Method"),
+            paddedTitle("Streaming Method"),
             ChipsChoice<StreamingMethod>.single(
               wrapped: true,
               choiceStyle: choiceStyle,
@@ -65,30 +70,33 @@ class _VideoParametersState extends State<VideoParameters> {
               ],
             ),
             if (store.state.currentVideo!.subtitleTracks.isEmpty)
-              const Text("No subtitles available...")
+              paddedTitle("No subtitles available...")
             else
             ...[
-              const Text("Subtitle"),
-              ChipsChoice<Track?>.single(
-                choiceStyle: choiceStyle,
-                value: store.state.streamingParams?.currentSubtitlesTrack,
-                choiceActiveStyle: selectedChoiseStyle,
-                onChanged: (newTrack) {
-                  store.dispatch(SetSubtitlesTrackAction(newTrack));
-                  widget.onSubtitleTrackSelect(newTrack);
-                },
-                choiceItems: [
-                  C2Choice<Track?>(
-                    value: null,
-                    label: "None",
-                    selected: store.state.streamingParams?.currentSubtitlesTrack == null
-                  ),
-                  for (Track subtitleTrack in store.state.currentVideo!.subtitleTracks)
-                    C2Choice<Track>(
-                      value: subtitleTrack,
-                      label: "${subtitleTrack.displayName} (${subtitleTrack.isForced ? 'Forced ' : '' }${ReCase(subtitleTrack.codec).titleCase})",
+              paddedTitle("Subtitle"),
+              SingleChildScrollView(
+                child: ChipsChoice<Track?>.single(
+                  wrapped: true,
+                  choiceStyle: choiceStyle,
+                  value: store.state.streamingParams?.currentSubtitlesTrack,
+                  choiceActiveStyle: selectedChoiseStyle,
+                  onChanged: (newTrack) {
+                    store.dispatch(SetSubtitlesTrackAction(newTrack));
+                    widget.onSubtitleTrackSelect(newTrack);
+                  },
+                  choiceItems: [
+                    C2Choice<Track?>(
+                      value: null,
+                      label: "None",
+                      selected: store.state.streamingParams?.currentSubtitlesTrack == null
                     ),
-                ],
+                    for (Track subtitleTrack in store.state.currentVideo!.subtitleTracks)
+                      C2Choice<Track>(
+                        value: subtitleTrack,
+                        label: "${subtitleTrack.displayName} (${subtitleTrack.isForced ? 'Forced ' : '' }${ReCase(subtitleTrack.codec).titleCase})",
+                      ),
+                  ],
+                ),
               ),
             ]
           ],
