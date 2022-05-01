@@ -128,7 +128,6 @@ class _PlayPageState extends State<PlayPage> {
                         );
                       },
                       onPlayToggle: () {
-                        print(store.state.streamingParams!.isPlaying);
                         if (store.state.streamingParams!.isPlaying) {
                           videoController!.pause();
                         } else {
