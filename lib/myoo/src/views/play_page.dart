@@ -5,8 +5,6 @@ import 'package:flutter_vlc_player/flutter_vlc_player.dart';
 import 'package:myoo/kyoo_api/src/models/slug.dart';
 import 'package:myoo/myoo/myoo_api.dart';
 import 'package:myoo/myoo/src/widgets/play_page/error_widget.dart';
-import 'package:redux/redux.dart';
-import 'package:video_player/video_player.dart';
 
 class PlayPage extends StatefulWidget {
 
@@ -104,11 +102,16 @@ class _PlayPageState extends State<PlayPage> {
                     child: VideoControls(
                       onMethodSelect: (newMethod) {
                         setState(() {
-                          videoController!.pause();
+                          print(store.state.currentClient!.getStreamingLink(videoSlug, newMethod));
                           store.dispatch(LoadingAction());
+                          videoController!.pause();
                           videoController!.setMediaFromNetwork(
                             store.state.currentClient!.getStreamingLink(videoSlug, newMethod)
-                          ).then((value) => store.dispatch(LoadedAction()));
+                          ).then(
+                            (value) {
+                              store.dispatch(LoadedAction());
+                            }
+                          );
                         });
                       },
                       onSlide: (position) {

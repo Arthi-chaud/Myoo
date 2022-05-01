@@ -31,7 +31,7 @@ class StreamingParameters {
   });
 
   StreamingParameters.init():
-    method = Platform.isIOS ? StreamingMethod.transmux : StreamingMethod.direct,
+    method = StreamingMethod.direct,
     isPlaying = true,
     currentPosition = Duration.zero,
     totalDuration = null,
