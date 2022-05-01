@@ -7,7 +7,6 @@ import 'package:myoo/myoo/src/actions/streaming_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
 import 'package:myoo/myoo/src/models/streaming_parameters.dart';
 import 'package:myoo/myoo/src/theme_data.dart';
-import 'package:recase/recase.dart';
 
 /// Widget to choose the video's streaming method & the subtitles
 /// It uses the [StreamingParameters] of the [AppState] to get choices
@@ -16,10 +15,13 @@ class VideoParameters extends StatefulWidget {
   /// Callback on [StreamingMethod] change
   final void Function(StreamingMethod) onMethodSelect;
 
-  /// Callback on [StreamingMethod] change
+  /// Callback on subtitles [Track] change
   final void Function(Track?) onSubtitleTrackSelect;
 
-  const VideoParameters({Key? key, required this.onMethodSelect, required this.onSubtitleTrackSelect}) : super(key: key);
+  /// Callback on audio [Track] change
+  final void Function(Track) onAudioTrackSelect;
+
+  const VideoParameters({Key? key, required this.onMethodSelect, required this.onSubtitleTrackSelect, required this.onAudioTrackSelect}) : super(key: key);
 
   @override
   State<VideoParameters> createState() => _VideoParametersState();
@@ -72,29 +74,47 @@ class _VideoParametersState extends State<VideoParameters> {
             else
             ...[
               paddedTitle("Subtitles"),
-              SingleChildScrollView(
-                child: ChipsChoice<Track?>.single(
-                  wrapped: true,
-                  choiceStyle: choiceStyle,
-                  value: store.state.streamingParams?.currentSubtitlesTrack,
-                  choiceActiveStyle: selectedChoiseStyle,
-                  onChanged: (newTrack) {
-                    store.dispatch(SetSubtitlesTrackAction(newTrack));
-                    widget.onSubtitleTrackSelect(newTrack);
-                  },
-                  choiceItems: [
-                    C2Choice<Track?>(
-                      value: null,
-                      label: "None",
-                      selected: store.state.streamingParams?.currentSubtitlesTrack == null
+              ChipsChoice<Track?>.single(
+                wrapped: true,
+                choiceStyle: choiceStyle,
+                value: store.state.streamingParams?.currentSubtitlesTrack,
+                choiceActiveStyle: selectedChoiseStyle,
+                onChanged: (newTrack) {
+                  store.dispatch(SetSubtitlesTrackAction(newTrack));
+                  widget.onSubtitleTrackSelect(newTrack);
+                },
+                choiceItems: [
+                  C2Choice<Track?>(
+                    value: null,
+                    label: "None",
+                    selected: store.state.streamingParams?.currentSubtitlesTrack == null
+                  ),
+                  for (Track subtitleTrack in store.state.currentVideo!.subtitleTracks)
+                    C2Choice<Track>(
+                      value: subtitleTrack,
+                      label: subtitleTrack.displayName,
                     ),
-                    for (Track subtitleTrack in store.state.currentVideo!.subtitleTracks)
-                      C2Choice<Track>(
-                        value: subtitleTrack,
-                        label: subtitleTrack.displayName,
-                      ),
-                  ],
-                ),
+                ],
+              ),
+            ],
+            ...[
+              paddedTitle("Audio"),
+              ChipsChoice<Track?>.single(
+                wrapped: true,
+                choiceStyle: choiceStyle,
+                value: store.state.streamingParams!.currentAudioTrack,
+                choiceActiveStyle: selectedChoiseStyle,
+                onChanged: (newTrack) {
+                  store.dispatch(SetAudioTrackAction(newTrack!));
+                  widget.onAudioTrackSelect(newTrack);
+                },
+                choiceItems: [
+                  for (Track subtitleTrack in store.state.currentVideo!.audioTracks)
+                    C2Choice<Track>(
+                      value: subtitleTrack,
+                      label: subtitleTrack.displayName,
+                    ),
+                ],
               ),
             ]
           ],

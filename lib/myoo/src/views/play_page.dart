@@ -55,6 +55,20 @@ class _PlayPageState extends State<PlayPage> {
     });
   }
 
+  /// Build tracks from VLC's API values & run clalbakcs on build (store dispatch)
+  void buildTracksFromVLC(Map<int, String> tracks, int currIndex, void Function(List<Track>) onBuild, void Function(Track) onCurrentTrackBuild) {
+    List<Track> kyooTracks = [];
+    tracks.forEach((key, value) {
+      Track newtrack = buildFromVLCTrack(key, value);
+      kyooTracks.add(newtrack);
+      if (currIndex == key) {
+        onCurrentTrackBuild(newtrack);
+      }
+    });
+    kyooTracks.sort((t1, t2) => t1.displayName.compareTo(t2.displayName));
+    onBuild(kyooTracks);
+  }
+
   @override
   Widget build(BuildContext context) {
     return StoreBuilder<AppState>(
@@ -77,23 +91,32 @@ class _PlayPageState extends State<PlayPage> {
                 store.dispatch(SetTotalDurationAction(videoController!.value.duration));
               }
             );
-            Future.delayed(const Duration(seconds: 1), () {
+            Future.delayed(const Duration(seconds: 2)).then((_) {
               Future.wait([
                 videoController!.getSpuTracks(),
                 videoController!.getSpuTrack()
               ]).then((value) {
                   Map<int, String> sTracks = value.first as Map<int, String>;
                   int currentTrack = value.last as int;
-                  List<Track> actionContent = [];
-                  sTracks.forEach((key, value) {
-                    Track newtrack = buildFromVLCTrack(key, value);
-                    actionContent.add(newtrack);
-                    if (key == currentTrack) {
-                      store.dispatch(SetSubtitlesTrackAction(newtrack));
-                    }
-                  });
-                  actionContent.sort((t1, t2) => t1.displayName.compareTo(t2.displayName));
-                  store.dispatch(VideoSetSubtitlesTracksAction(actionContent));
+                  buildTracksFromVLC(
+                    sTracks,
+                    currentTrack,
+                    (tracks) => store.dispatch(VideoSetSubtitlesTracksAction(tracks)),
+                    (currentTrack) => store.dispatch(SetSubtitlesTrackAction(currentTrack))
+                  );
+              });
+              Future.wait([
+                videoController!.getAudioTracks(),
+                videoController!.getAudioTrack()
+              ]).then((value) {
+                  Map<int, String> aTracks = value.first as Map<int, String>;
+                  int currentTrack = value.last as int;
+                  buildTracksFromVLC(
+                    aTracks,
+                    currentTrack,
+                    (tracks) => store.dispatch(VideoSetAudioTracksAction(tracks)),
+                    (currentTrack) => store.dispatch(SetAudioTrackAction(currentTrack))
+                  );
               });
             });
             store.dispatch(LoadedAction());
@@ -148,6 +171,7 @@ class _PlayPageState extends State<PlayPage> {
                         videoController!.seekTo(position);
                       },
                       onSubtitleTrackSelect: (newTrack) => videoControllerSetSubtitleTrack(newTrack),
+                      onAudioTrackSelect: (newTrack) => videoController!.setAudioTrack(newTrack.index),
                       onPlayToggle: () {
                         if (store.state.streamingParams!.isPlaying) {
                           videoController!.pause();

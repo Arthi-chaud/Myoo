@@ -21,6 +21,7 @@ class VideoControls extends StatelessWidget {
   final void Function(StreamingMethod) onMethodSelect;
 
   final void Function(Track?) onSubtitleTrackSelect;
+  final void Function(Track) onAudioTrackSelect;
 
   /// Callabck when play/pause button is pressed
   final void Function() onPlayToggle;
@@ -31,6 +32,7 @@ class VideoControls extends StatelessWidget {
     required this.onPlayToggle,
     required this.onSlide,
     required this.onSubtitleTrackSelect,
+    required this.onAudioTrackSelect,
   }) : super(key: key);
 
   @override
@@ -96,6 +98,7 @@ class VideoControls extends StatelessWidget {
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 20),
                                           child: VideoParameters(
+                                            onAudioTrackSelect: (newTrack) => onAudioTrackSelect(newTrack),
                                             onMethodSelect: (newMethod) => onMethodSelect(newMethod),
                                             onSubtitleTrackSelect: (track) => onSubtitleTrackSelect(track),
                                           ),

@@ -36,3 +36,8 @@ class UnsetStreamingParametersAction extends Action {}
 class SetSubtitlesTrackAction extends ContainerAction<Track?> {
   SetSubtitlesTrackAction(Track? track) : super(content: track);
 }
+
+/// Action to select current audio track
+class SetAudioTrackAction extends ContainerAction<Track> {
+  SetAudioTrackAction(Track track) : super(content: track);
+}
