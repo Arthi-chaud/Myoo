@@ -35,7 +35,7 @@ class EpisodeTile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(episode.name),
+                  Text("Episode ${episode.index} - ${episode.name}"),
                   if (episode.overview != null)
                   ExpandableOverview(episode.overview!, maxLines: 3)
                 ],

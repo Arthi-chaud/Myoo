@@ -7,7 +7,6 @@ part 'track.g.dart';
 /// A [Track] is a 'layer' of a [WatchItem], it can be visual like subtitles or audio
 @JsonSerializable()
 class Track extends Resource {
-
   /// A name the user can understand to identify the track
   /// Same as [name]
   final String displayName;
@@ -24,12 +23,17 @@ class Track extends Resource {
   /// Is the track forced
   final bool isForced;
 
+  /// Index of the track, useful if some tracks are similar
+  @JsonKey(name: 'trackIndex')
+  final int index;
+
   Track({
     required this.displayName,
     required this.language,
     required this.codec,
     required this.isDefault,
-    required this.isForced, 
+    required this.isForced,
+    required this.index,
     required int id,
     required Slug slug,
   }) : super(id: id, slug: slug, name: displayName, overview: null);

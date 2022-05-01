@@ -81,7 +81,7 @@ class _VideoParametersState extends State<VideoParameters> {
                   for (Track subtitleTrack in store.state.currentVideo!.subtitleTracks)
                     C2Choice<Track>(
                       value: subtitleTrack,
-                      label: "${subtitleTrack.displayName} (${ReCase(subtitleTrack.codec).titleCase})",
+                      label: "${subtitleTrack.displayName} (${subtitleTrack.isForced ? 'Forced ' : '' }${ReCase(subtitleTrack.codec).titleCase})",
                     ),
                 ],
               ),

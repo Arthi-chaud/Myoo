@@ -27,6 +27,7 @@ class _PlayPageState extends State<PlayPage> {
 
 
   void buildVideoController(String videoURL, void Function() onLoaded) {
+    print(videoURL);
     videoController = VlcPlayerController.network(
       videoURL,
     )..addOnInitListener(() {
@@ -107,14 +108,19 @@ class _PlayPageState extends State<PlayPage> {
                       onSlide: (position) {
                         videoController!.seekTo(position);
                       },
-                      onSubtitleTrackSelect: (_) {
-                        videoController!.addSubtitleFromNetwork(
-                          store.state.currentClient!
-                          .getSubtitleTrackDownloadLink(
-                            store.state.streamingParams!.currentSubtitlesTrack!.slug,
-                            store.state.streamingParams!.currentSubtitlesTrack!.codec
-                          ),
-                          isSelected: true
+                      onSubtitleTrackSelect: (newTrack) {
+                        if (newTrack == null) {
+                          videoController!.setSpuTrack(-1);
+                          return;
+                        }
+                        videoController!.getSpuTracks().then(
+                          (tracks) {
+                            tracks.removeWhere((key, value) => !value.contains(newTrack.displayName));
+                            if (tracks.isNotEmpty) {
+                              List<int> keys = tracks.keys.toList()..sort();
+                              videoController!.setSpuTrack(keys[newTrack.index - 1]);
+                            }
+                          }
                         );
                       },
                       onPlayToggle: () {
