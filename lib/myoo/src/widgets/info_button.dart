@@ -13,13 +13,6 @@ class InfoButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (externalIDs.length == 1) {
-      return DetailPageIconButton(
-        label: 'Info',
-        icon: Icons.info,
-        onTap: () => launch(externalIDs.first.externalURL),
-      );
-    }
     return PopupMenuButton<String>(
       child: const DetailPageIconButton(
         label: 'Info',
@@ -27,6 +20,11 @@ class InfoButton extends StatelessWidget {
         onTap: null
       ),
       color: getColorScheme(context).background,
+      shape: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: getColorScheme(context).secondary
+        )
+      ),
       onSelected: (value) => launch(value),
       itemBuilder: (context) => [
         for (var externalID in externalIDs)
