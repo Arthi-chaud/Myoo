@@ -42,11 +42,13 @@ class _VideoParametersState extends State<VideoParameters> {
     );
     return StoreBuilder<AppState>(
       builder: (context, store) {
-        return Wrap(
-          direction: Axis.vertical,
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text("Streaming Method"),
             ChipsChoice<StreamingMethod>.single(
+              wrapped: true,
               choiceStyle: choiceStyle,
               choiceActiveStyle: selectedChoiseStyle,
               value: store.state.streamingParams!.method,
