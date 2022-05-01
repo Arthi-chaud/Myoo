@@ -5,6 +5,7 @@ import 'package:flutter_vlc_player/flutter_vlc_player.dart';
 import 'package:myoo/kyoo_api/src/models/slug.dart';
 import 'package:myoo/myoo/myoo_api.dart';
 import 'package:myoo/myoo/src/widgets/play_page/error_widget.dart';
+import 'package:myoo/myoo/src/widgets/play_page/video_loading.dart';
 
 class PlayPage extends StatefulWidget {
 
@@ -61,8 +62,7 @@ class _PlayPageState extends State<PlayPage> {
       }),
       onDispose: ((store) {
         positionTimer?.cancel();
-        videoController?.pause();
-        videoController?.dispose();
+        videoController?.dispose().onError((error, stackTrace) {});
         store.dispatch(UnloadVideoAction());
         store.dispatch(UnsetStreamingParametersAction());
       }),
@@ -77,28 +77,19 @@ class _PlayPageState extends State<PlayPage> {
               backgroundColor: Colors.transparent,
             ) : null,
             backgroundColor: Colors.black,
-            body: Stack(
-              alignment: Alignment.center,
-              children: store.state.isLoading || store.state.currentVideo == null
-                ? [
-                  DecoratedBox(
-                    position: DecorationPosition.foreground,
-                    decoration: BoxDecoration(
-                      color: getColorScheme(context).background.withAlpha(200)
-                    ),
-                    child: Thumbnail(
-                      thumbnailURL: store.state.currentVideo?.thumbnail,
-                      width: MediaQuery.of(context).size.width,
-                    ),
-                  ),
-                  const LoadingWidget(),
-                ]
-              : [
+            body: store.state.isLoading || store.state.currentVideo == null
+              ? VideoLoadingWidget(
+                thumbnailURL: store.state.currentVideo?.thumbnail,
+              )
+              : Stack(
+                alignment: Alignment.center,
+                children: [
                   VlcPlayer(
                     aspectRatio: 16 / 9,
-                    controller: videoController!
+                    controller: videoController!,
                   ),
-                  HideOnTap(
+                  (store.state.streamingParams?.totalDuration?.inSeconds ?? 0) > 2
+                  ? HideOnTap(
                     child: VideoControls(
                       onMethodSelect: (newMethod) {
                         setState(() {
@@ -134,6 +125,9 @@ class _PlayPageState extends State<PlayPage> {
                         }
                       },
                     ),
+                  )
+                  : VideoLoadingWidget(
+                    thumbnailURL: store.state.currentVideo?.thumbnail,
                   )
                 ],
             )
