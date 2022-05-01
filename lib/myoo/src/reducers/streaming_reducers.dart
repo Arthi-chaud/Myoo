@@ -17,6 +17,7 @@ final streamingReducers = combineReducers<StreamingParameters?>([
   TypedReducer<StreamingParameters?, SetCurrentPositionAction>(setCurrentPosition),
 
   TypedReducer<StreamingParameters?, SetSubtitlesTrackAction>(setSubtitlesTrackAction),
+  TypedReducer<StreamingParameters?, SetAudioTrackAction>(setAudioTrackAction),
 
   TypedReducer<StreamingParameters?, UnsetStreamingParametersAction>((_, __) => null),
   TypedReducer<StreamingParameters?, UseClientAction>((_, __) => null),
@@ -42,8 +43,15 @@ StreamingParameters setTotalDuration(StreamingParameters? old, action) =>
 StreamingParameters setCurrentPosition(StreamingParameters? old, action) =>
   old!.withParams(currentPosition: (action as ContainerAction<Duration>).content);
 
-StreamingParameters setSubtitlesTracksAction(StreamingParameters? old, action) =>
-  old!.withParams(subtitlesTracks: (action as ContainerAction<List<String>>).content);
+StreamingParameters setAudioTrackAction(StreamingParameters? old, action) =>
+  old!.withParams(currentAudioTrack: (action as ContainerAction<Track>).content);
 
 StreamingParameters setSubtitlesTrackAction(StreamingParameters? old, action) =>
-  old!.withParams(currentSubtitlesTrack: (action as ContainerAction<Track>).content);
+  StreamingParameters(
+    method: old!.method,
+    currentAudioTrack: old.currentAudioTrack,
+    currentSubtitlesTrack: (action as ContainerAction<Track?>).content,
+    currentPosition: old.currentPosition,
+    isPlaying: old.isPlaying,
+    totalDuration: old.totalDuration,
+  );

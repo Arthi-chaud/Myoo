@@ -1,5 +1,6 @@
 import 'package:myoo/kyoo_api/kyoo_api.dart';
 import 'package:myoo/kyoo_api/src/models/collection.dart';
+import 'package:myoo/kyoo_api/src/models/track.dart';
 import 'package:myoo/kyoo_api/src/models/watch_item.dart';
 import 'package:myoo/myoo/src/actions/action.dart';
 import 'package:myoo/myoo/src/actions/client_actions.dart';
@@ -33,8 +34,9 @@ final currentSeasonReducers = combineReducers<Season?>([
 final currentVideoReducers = combineReducers<WatchItem?>([
   TypedReducer<WatchItem?, LoadedVideoAction>(setResource<WatchItem>),
   TypedReducer<WatchItem?, UnloadVideoAction>(unsetResource<WatchItem>),
+  TypedReducer<WatchItem?, VideoSetAudioTracksAction>(setAudioTracks),
+  TypedReducer<WatchItem?, VideoSetSubtitlesTracksAction>(setSubTracks),
   TypedReducer<WatchItem?, UseClientAction>((_, __) => null),
-  
 ]);
 
 final currentCollectionReducers = combineReducers<Collection?>([
@@ -46,3 +48,11 @@ final currentCollectionReducers = combineReducers<Collection?>([
 
 T? setResource<T>(T? oldValue, action) => (action as ContainerAction<T?>).content;
 T? unsetResource<T>(T? oldValue, action) => null;
+
+WatchItem setSubTracks(WatchItem? oldValue, action) {
+  return oldValue!.withTracks(subtitleTracks: (action as ContainerAction<List<Track>>).content);
+}
+
+WatchItem setAudioTracks(WatchItem? oldValue, action) {
+  return oldValue!.withTracks(audioTracks: (action as ContainerAction<List<Track>>).content);
+}

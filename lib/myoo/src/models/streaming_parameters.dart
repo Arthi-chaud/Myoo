@@ -1,5 +1,4 @@
 import 'package:myoo/kyoo_api/kyoo_api.dart';
-import 'dart:io' show Platform;
 
 import 'package:myoo/kyoo_api/src/models/track.dart';
 
@@ -21,20 +20,24 @@ class StreamingParameters {
   /// The subtitle track to use
   final Track? currentSubtitlesTrack;
 
-  /// TODO Manage audio tracks
+  /// The audio track to use
+  final Track? currentAudioTrack;
+
   const StreamingParameters({
     required this.method,
     required this.isPlaying,
     required this.currentPosition,
     required this.totalDuration,
     required this.currentSubtitlesTrack,
+    required this.currentAudioTrack
   });
 
   StreamingParameters.init():
-    method = Platform.isIOS ? StreamingMethod.transmux : StreamingMethod.direct,
+    method = StreamingMethod.direct,
     isPlaying = true,
     currentPosition = Duration.zero,
     totalDuration = null,
+    currentAudioTrack = null,
     currentSubtitlesTrack = null;
 
   /// Creates new instance of [StreamingParameters], and overriding fields with given values
@@ -45,7 +48,9 @@ class StreamingParameters {
     Duration? currentPosition,
     Duration? totalDuration,
     Track? currentSubtitlesTrack,
+    Track? currentAudioTrack,
   }) => StreamingParameters(
+    currentAudioTrack: currentAudioTrack ?? this.currentAudioTrack,
     method: method ?? this.method,
     isPlaying: isPlaying ?? this.isPlaying,
     currentPosition: currentPosition ?? this.currentPosition,

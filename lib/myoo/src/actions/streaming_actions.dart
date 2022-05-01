@@ -33,6 +33,11 @@ class SetTotalDurationAction extends ContainerAction<Duration> {
 class UnsetStreamingParametersAction extends Action {}
 
 /// Action to select current subtitle track
-class SetSubtitlesTrackAction extends ContainerAction<Track> {
-  SetSubtitlesTrackAction(Track track) : super(content: track);
+class SetSubtitlesTrackAction extends ContainerAction<Track?> {
+  SetSubtitlesTrackAction(Track? track) : super(content: track);
+}
+
+/// Action to select current audio track
+class SetAudioTrackAction extends ContainerAction<Track> {
+  SetAudioTrackAction(Track track) : super(content: track);
 }

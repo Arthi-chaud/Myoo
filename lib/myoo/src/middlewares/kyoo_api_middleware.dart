@@ -39,7 +39,9 @@ Middleware<AppState> loadVideo() =>
     next(action);
     store.state.currentClient!
       .getWatchItem((action as ContainerAction<Slug>).content)
-      .then((item) => store.dispatch(LoadedVideoAction(item)));
+      .then((item) {
+        store.dispatch(LoadedVideoAction(item));
+      });
   };
 
 /// Retrieve [Movie] from [AppState]'s current [KyooClient] and dispatches it using [LoadedMovieAction]

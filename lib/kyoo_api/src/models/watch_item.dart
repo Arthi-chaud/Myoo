@@ -28,6 +28,9 @@ class WatchItem extends Video {
   @JsonKey(name: 'subtitles', defaultValue: [])
   final List<Track> subtitleTracks;
 
+  @JsonKey(name: 'audios', defaultValue: [])
+  final List<Track> audioTracks;
+
   const WatchItem({
     required this.previous,
     required this.next,
@@ -35,6 +38,7 @@ class WatchItem extends Video {
     required this.parentSeasonIndex,
     required this.index,
     required this.subtitleTracks,
+    required this.audioTracks,
     required String? poster,
     required String? thumbnail,
     required DateTime? releaseDate,
@@ -44,4 +48,23 @@ class WatchItem extends Video {
 
   /// Unserialize [WatchItem] from [JSONData]
   factory WatchItem.fromJson(JSONData input) => _$WatchItemFromJson(input);
+
+  WatchItem withTracks({
+    List<Track>? audioTracks,
+    List<Track>? subtitleTracks,
+  }) {
+    return WatchItem(
+      previous: previous,
+      next: next,
+      parentName: parentName,
+      parentSeasonIndex: parentSeasonIndex,
+      index: index,
+      subtitleTracks: subtitleTracks ?? this.subtitleTracks,
+      audioTracks: audioTracks ?? this.audioTracks,
+      poster: poster, thumbnail: thumbnail,
+      releaseDate: releaseDate,
+      slug: slug,
+      name: name
+    );
+  }
 }

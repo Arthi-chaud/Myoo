@@ -20,7 +20,8 @@ class VideoControls extends StatelessWidget {
   /// Callback when [StreamingMethod] is selected
   final void Function(StreamingMethod) onMethodSelect;
 
-  final void Function(Track) onSubtitleTrackSelect;
+  final void Function(Track?) onSubtitleTrackSelect;
+  final void Function(Track) onAudioTrackSelect;
 
   /// Callabck when play/pause button is pressed
   final void Function() onPlayToggle;
@@ -31,6 +32,7 @@ class VideoControls extends StatelessWidget {
     required this.onPlayToggle,
     required this.onSlide,
     required this.onSubtitleTrackSelect,
+    required this.onAudioTrackSelect,
   }) : super(key: key);
 
   @override
@@ -57,24 +59,27 @@ class VideoControls extends StatelessWidget {
                   ),
                   Container(
                     height: 100,
+                    width: MediaQuery.of(context).size.width,
                     color: getColorScheme(context).background.withOpacity(0.5),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          VideoDetail(
-                            video: store.state.currentVideo!,
-                            position: store.state.streamingParams!.currentPosition,
-                            duration: store.state.streamingParams!.totalDuration ?? Duration.zero,
+                          Expanded(
+                            flex: 10,
+                            child: VideoDetail(
+                              video: store.state.currentVideo!,
+                              position: store.state.streamingParams!.currentPosition,
+                              duration: store.state.streamingParams!.totalDuration ?? Duration.zero,
+                            ),
                           ),
                           Expanded(
-                            flex: 8,
+                            flex: 5,
                             child: IconButton(
                               icon: Icon(store.state.streamingParams!.isPlaying ? Icons.pause : Icons.play_arrow),
                               onPressed: () {
-                                store.dispatch(TogglePlayAction());
                                 onPlayToggle();
+                                store.dispatch(TogglePlayAction());
                               }
                             ),
                           ),
@@ -86,14 +91,20 @@ class VideoControls extends StatelessWidget {
                                 backgroundColor: getColorScheme(context).background,
                                 context: context,
                                 builder: (context) {
-                                  return SafeArea(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(20),
-                                      child: VideoParameters(
-                                        onMethodSelect: (newMethod) => onMethodSelect(newMethod),
-                                        onSubtitleTrackSelect: (track) => onSubtitleTrackSelect(track),
-                                      ),
-                                    )
+                                  return SizedBox(
+                                    height: MediaQuery.of(context).size.height / 2,
+                                    child: SafeArea(
+                                      child: SingleChildScrollView(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(vertical: 20),
+                                          child: VideoParameters(
+                                            onAudioTrackSelect: (newTrack) => onAudioTrackSelect(newTrack),
+                                            onMethodSelect: (newMethod) => onMethodSelect(newMethod),
+                                            onSubtitleTrackSelect: (track) => onSubtitleTrackSelect(track),
+                                          ),
+                                        ),
+                                      )
+                                    ),
                                   );
                                 }
                               ),
