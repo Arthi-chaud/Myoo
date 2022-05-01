@@ -73,8 +73,8 @@ class VideoControls extends StatelessWidget {
                             child: IconButton(
                               icon: Icon(store.state.streamingParams!.isPlaying ? Icons.pause : Icons.play_arrow),
                               onPressed: () {
-                                store.dispatch(TogglePlayAction());
                                 onPlayToggle();
+                                store.dispatch(TogglePlayAction());
                               }
                             ),
                           ),

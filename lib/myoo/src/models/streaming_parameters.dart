@@ -21,7 +21,6 @@ class StreamingParameters {
   /// The subtitle track to use
   final Track? currentSubtitlesTrack;
 
-  /// TODO Manage audio tracks
   const StreamingParameters({
     required this.method,
     required this.isPlaying,
