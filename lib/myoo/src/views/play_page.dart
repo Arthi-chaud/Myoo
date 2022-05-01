@@ -102,7 +102,6 @@ class _PlayPageState extends State<PlayPage> {
                     child: VideoControls(
                       onMethodSelect: (newMethod) {
                         setState(() {
-                          print(store.state.currentClient!.getStreamingLink(videoSlug, newMethod));
                           store.dispatch(LoadingAction());
                           videoController!.pause();
                           videoController!.setMediaFromNetwork(
