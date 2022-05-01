@@ -49,7 +49,7 @@ class _VideoParametersState extends State<VideoParameters> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            paddedTitle("Streaming Method"),
+            /*paddedTitle("Streaming Method"),
             ChipsChoice<StreamingMethod>.single(
               wrapped: true,
               choiceStyle: choiceStyle,
@@ -66,12 +66,12 @@ class _VideoParametersState extends State<VideoParameters> {
                     label: ReCase(method.name).titleCase,
                   ),
               ],
-            ),
+            ),*/
             if (store.state.currentVideo!.subtitleTracks.isEmpty)
               paddedTitle("No subtitles available...")
             else
             ...[
-              paddedTitle("Subtitle"),
+              paddedTitle("Subtitles"),
               SingleChildScrollView(
                 child: ChipsChoice<Track?>.single(
                   wrapped: true,
@@ -91,7 +91,7 @@ class _VideoParametersState extends State<VideoParameters> {
                     for (Track subtitleTrack in store.state.currentVideo!.subtitleTracks)
                       C2Choice<Track>(
                         value: subtitleTrack,
-                        label: "${subtitleTrack.displayName} (${subtitleTrack.isForced ? 'Forced ' : '' }${ReCase(subtitleTrack.codec).titleCase})",
+                        label: subtitleTrack.displayName,
                       ),
                   ],
                 ),

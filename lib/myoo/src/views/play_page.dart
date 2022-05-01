@@ -31,18 +31,21 @@ class _PlayPageState extends State<PlayPage> {
       videoController!.setSpuTrack(-1);
       return;
     }
-    videoController!.getSpuTracks().then(
-      (tracks) {
-        tracks.removeWhere((key, value) => !value.contains(newTrack.displayName));
-        tracks.removeWhere((key, value) => newTrack.isForced ^ value.contains("Forced"));
-        if (tracks.isNotEmpty) {
-          List<int> keys = tracks.keys.toList()..sort();
-          videoController!.setSpuTrack(keys[newTrack.index - 1]);
-        }
-      }
-    );
+    videoController!.setSpuTrack(newTrack.index);
   }
 
+  Track buildFromVLCTrack(int key, String value) {
+    return Track(
+      displayName: value,
+      isDefault: false,
+      codec: '',
+      id: key,
+      slug: value,
+      language: value,
+      isForced: value.contains("Forced"),
+      index: key,
+    );
+  }
 
   void buildVideoController(String videoURL, void Function() onLoaded) {
     videoController = VlcPlayerController.network(
@@ -74,6 +77,25 @@ class _PlayPageState extends State<PlayPage> {
                 store.dispatch(SetTotalDurationAction(videoController!.value.duration));
               }
             );
+            Future.delayed(const Duration(seconds: 1), () {
+              Future.wait([
+                videoController!.getSpuTracks(),
+                videoController!.getSpuTrack()
+              ]).then((value) {
+                  Map<int, String> sTracks = value.first as Map<int, String>;
+                  int currentTrack = value.last as int;
+                  List<Track> actionContent = [];
+                  sTracks.forEach((key, value) {
+                    Track newtrack = buildFromVLCTrack(key, value);
+                    actionContent.add(newtrack);
+                    if (key == currentTrack) {
+                      store.dispatch(SetSubtitlesTrackAction(newtrack));
+                    }
+                  });
+                  actionContent.sort((t1, t2) => t1.displayName.compareTo(t2.displayName));
+                  store.dispatch(VideoSetSubtitlesTracksAction(actionContent));
+              });
+            });
             store.dispatch(LoadedAction());
           }
         );

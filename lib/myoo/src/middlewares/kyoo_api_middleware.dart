@@ -43,14 +43,6 @@ Middleware<AppState> loadVideo() =>
       .getWatchItem((action as ContainerAction<Slug>).content)
       .then((item) {
         store.dispatch(LoadedVideoAction(item));
-        if (store.state.streamingParams != null) {
-          List<Track> subs = item.subtitleTracks.where(
-            (element) => element.isDefault
-          ).toList();
-          if (subs.isNotEmpty) {
-            store.dispatch(SetSubtitlesTrackAction(subs.first));
-          }
-        }
       });
   };
 

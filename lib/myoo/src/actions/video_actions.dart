@@ -1,4 +1,5 @@
 import 'package:myoo/kyoo_api/src/models/slug.dart';
+import 'package:myoo/kyoo_api/src/models/track.dart';
 import 'package:myoo/kyoo_api/src/models/watch_item.dart';
 import 'package:myoo/myoo/src/actions/action.dart';
 
@@ -13,4 +14,14 @@ class LoadVideoAction extends ContainerAction<Slug> {
 /// Action when a [WatchItem] is loaded
 class LoadedVideoAction extends ContainerAction<WatchItem> {
   LoadedVideoAction(WatchItem watchItem) : super(content: watchItem);
+}
+
+/// Action to set subtitles tracks
+class VideoSetSubtitlesTracksAction extends ContainerAction<List<Track>> {
+  VideoSetSubtitlesTracksAction(List<Track> subs) : super(content: subs);
+}
+
+/// Action to set subtitles tracks
+class VideoSetAudioTracksAction extends ContainerAction<List<Track>> {
+  VideoSetAudioTracksAction(List<Track> audio) : super(content: audio);
 }
