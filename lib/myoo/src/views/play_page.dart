@@ -91,33 +91,35 @@ class _PlayPageState extends State<PlayPage> {
                 store.dispatch(SetTotalDurationAction(videoController!.value.duration));
               }
             );
-            Future.delayed(const Duration(seconds: 2)).then((_) {
-              Future.wait([
-                videoController!.getSpuTracks(),
+            Future.doWhile(() async {
+              List<int?> indexes = await Future.wait([
+                videoController!.getAudioTrack(),
                 videoController!.getSpuTrack()
-              ]).then((value) {
-                  Map<int, String> sTracks = value.first as Map<int, String>;
-                  int currentTrack = value.last as int;
-                  buildTracksFromVLC(
-                    sTracks,
-                    currentTrack,
-                    (tracks) => store.dispatch(VideoSetSubtitlesTracksAction(tracks)),
-                    (currentTrack) => store.dispatch(SetSubtitlesTrackAction(currentTrack))
-                  );
+              ]);
+              for (int? index in indexes) {
+                if (index == null || index < 0) {
+                  return true;
+                }
+              }
+              int audioCurrentTrackIndex = indexes.first!;
+              int subCurrentTrackIndex = indexes.last!;
+              videoController!.getSpuTracks().then((sTracks) {
+                buildTracksFromVLC(
+                  sTracks,
+                  subCurrentTrackIndex,
+                  (tracks) => store.dispatch(VideoSetSubtitlesTracksAction(tracks)),
+                  (currentTrack) => store.dispatch(SetSubtitlesTrackAction(currentTrack))
+                );
               });
-              Future.wait([
-                videoController!.getAudioTracks(),
-                videoController!.getAudioTrack()
-              ]).then((value) {
-                  Map<int, String> aTracks = value.first as Map<int, String>;
-                  int currentTrack = value.last as int;
-                  buildTracksFromVLC(
-                    aTracks,
-                    currentTrack,
-                    (tracks) => store.dispatch(VideoSetAudioTracksAction(tracks)),
-                    (currentTrack) => store.dispatch(SetAudioTrackAction(currentTrack))
-                  );
+              videoController!.getAudioTracks().then((aTracks) {
+                buildTracksFromVLC(
+                  aTracks,
+                  audioCurrentTrackIndex,
+                  (tracks) => store.dispatch(VideoSetAudioTracksAction(tracks)),
+                  (currentTrack) => store.dispatch(SetAudioTrackAction(currentTrack))
+                );
               });
+              return false;
             });
             store.dispatch(LoadedAction());
           }
