@@ -34,26 +34,28 @@ class VideoDetail extends StatelessWidget {
     return Row(
       children: [
         Poster(posterURL: video.poster, height: 80),
-        Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                getVideoTitle(),
-                overflow: TextOverflow.ellipsis, maxLines: 2
-              ),
-              if (video.name != video.parentName)
-              Text(
-                video.name,
-                style: const TextStyle(fontSize: 12),
-              ),
-              Text(
-                "${formatDuration(position)} - ${formatDuration(duration)}",
-                style: const TextStyle(fontSize: 10),
-              ),
-            ],
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  getVideoTitle(),
+                  overflow: TextOverflow.ellipsis, maxLines: 2
+                ),
+                if (video.name != video.parentName)
+                Text(
+                  video.name,
+                  style: const TextStyle(fontSize: 12),
+                ),
+                Text(
+                  "${formatDuration(position)} - ${formatDuration(duration)}",
+                  style: const TextStyle(fontSize: 10),
+                ),
+              ],
+            ),
           ),
         ),
       ],

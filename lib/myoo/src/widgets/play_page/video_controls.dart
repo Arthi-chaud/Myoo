@@ -57,19 +57,22 @@ class VideoControls extends StatelessWidget {
                   ),
                   Container(
                     height: 100,
+                    width: MediaQuery.of(context).size.width,
                     color: getColorScheme(context).background.withOpacity(0.5),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          VideoDetail(
-                            video: store.state.currentVideo!,
-                            position: store.state.streamingParams!.currentPosition,
-                            duration: store.state.streamingParams!.totalDuration ?? Duration.zero,
+                          Expanded(
+                            flex: 10,
+                            child: VideoDetail(
+                              video: store.state.currentVideo!,
+                              position: store.state.streamingParams!.currentPosition,
+                              duration: store.state.streamingParams!.totalDuration ?? Duration.zero,
+                            ),
                           ),
                           Expanded(
-                            flex: 8,
+                            flex: 5,
                             child: IconButton(
                               icon: Icon(store.state.streamingParams!.isPlaying ? Icons.pause : Icons.play_arrow),
                               onPressed: () {
