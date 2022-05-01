@@ -117,6 +117,7 @@ class _PlayPageState extends State<PlayPage> {
                         videoController!.getSpuTracks().then(
                           (tracks) {
                             tracks.removeWhere((key, value) => !value.contains(newTrack.displayName));
+                            tracks.removeWhere((key, value) => newTrack.isForced ^ value.contains("Forced"));
                             if (tracks.isNotEmpty) {
                               List<int> keys = tracks.keys.toList()..sort();
                               videoController!.setSpuTrack(keys[newTrack.index - 1]);
