@@ -98,7 +98,7 @@ class _PlayPageState extends State<PlayPage> {
               ]);
               for (int? index in indexes) {
                 if (index == null || index < 0) {
-                  return false;
+                  return true;
                 }
               }
               int audioCurrentTrackIndex = indexes.first!;
@@ -119,7 +119,7 @@ class _PlayPageState extends State<PlayPage> {
                   (currentTrack) => store.dispatch(SetAudioTrackAction(currentTrack))
                 );
               });
-              return true;
+              return false;
             });
             store.dispatch(LoadedAction());
           }
