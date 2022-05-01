@@ -45,7 +45,6 @@ class _PlayPageState extends State<PlayPage> {
 
 
   void buildVideoController(String videoURL, void Function() onLoaded) {
-    print(videoURL);
     videoController = VlcPlayerController.network(
       videoURL,
     )..addOnInitListener(() {

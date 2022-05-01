@@ -77,7 +77,6 @@ class _SearchPageState extends State<SearchPage> {
                   DefaultTabController(
                     length: store.state.clients!.length,
                     child: TabBar(
-                      ///TODO isScrollable: true,
                       onTap: (index) {
                         store.dispatch(UseClientAction(store.state.clients![index]));
                         store.dispatch(ClearSearch());
@@ -133,7 +132,6 @@ class _SearchPageState extends State<SearchPage> {
                       ),
                     ),
                     if (searchResult.staff.isNotEmpty)
-                    ///TODO Make it clickable
                     SearchItemList<StaffMember>(
                       label: "Staff",
                       items: searchResult.staff,

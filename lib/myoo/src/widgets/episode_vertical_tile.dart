@@ -44,5 +44,4 @@ class EpisodeVerticalTile extends StatelessWidget {
       ],
     );
   }
-  
 }

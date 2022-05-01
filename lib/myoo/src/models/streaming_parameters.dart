@@ -1,5 +1,4 @@
 import 'package:myoo/kyoo_api/kyoo_api.dart';
-import 'dart:io' show Platform;
 
 import 'package:myoo/kyoo_api/src/models/track.dart';
 
