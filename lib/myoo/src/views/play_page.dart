@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_vlc_player/flutter_vlc_player.dart';
 import 'package:myoo/kyoo_api/src/models/slug.dart';
+import 'package:myoo/kyoo_api/src/models/track.dart';
 import 'package:myoo/myoo/myoo_api.dart';
 import 'package:myoo/myoo/src/widgets/play_page/error_widget.dart';
 import 'package:myoo/myoo/src/widgets/play_page/video_loading.dart';
@@ -40,8 +41,8 @@ class _PlayPageState extends State<PlayPage> {
     return StoreBuilder<AppState>(
       onInit: ((store) {
         videoSlug = ModalRoute.of(context)!.settings.name!.replaceAll('/play/', '');
-        store.dispatch(LoadVideoAction(videoSlug));
         store.dispatch(InitStreamingParametersAction());
+        store.dispatch(LoadVideoAction(videoSlug));
         Future.delayed(const Duration(seconds: 10), () {
           if (store.state.isLoading) {
             showPlayErrorWidget(context, PlayPage.loadTimeoutMessage);

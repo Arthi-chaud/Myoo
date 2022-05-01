@@ -3,6 +3,7 @@ import 'package:myoo/kyoo_api/src/kyoo_client.dart';
 import 'package:myoo/kyoo_api/src/models/resource_preview.dart';
 import 'package:myoo/kyoo_api/src/models/slug.dart';
 import 'package:myoo/kyoo_api/src/models/staff.dart';
+import 'package:myoo/kyoo_api/src/models/track.dart';
 import 'package:myoo/myoo/src/actions/action.dart';
 import 'package:myoo/myoo/src/actions/client_actions.dart';
 import 'package:myoo/myoo/src/actions/collection_actions.dart';
@@ -10,6 +11,7 @@ import 'package:myoo/myoo/src/actions/library_actions.dart';
 import 'package:myoo/myoo/src/actions/movie_actions.dart';
 import 'package:myoo/myoo/src/actions/search_actions.dart';
 import 'package:myoo/myoo/src/actions/season_actions.dart';
+import 'package:myoo/myoo/src/actions/streaming_actions.dart';
 import 'package:myoo/myoo/src/actions/tv_series_actions.dart';
 import 'package:myoo/myoo/src/actions/video_actions.dart';
 import 'package:myoo/myoo/src/app_state.dart';
@@ -39,7 +41,17 @@ Middleware<AppState> loadVideo() =>
     next(action);
     store.state.currentClient!
       .getWatchItem((action as ContainerAction<Slug>).content)
-      .then((item) => store.dispatch(LoadedVideoAction(item)));
+      .then((item) {
+        store.dispatch(LoadedVideoAction(item));
+        if (store.state.streamingParams != null) {
+          List<Track> subs = item.subtitleTracks.where(
+            (element) => element.isDefault
+          ).toList();
+          if (subs.isNotEmpty) {
+            store.dispatch(SetSubtitlesTrackAction(subs.first));
+          }
+        }
+      });
   };
 
 /// Retrieve [Movie] from [AppState]'s current [KyooClient] and dispatches it using [LoadedMovieAction]

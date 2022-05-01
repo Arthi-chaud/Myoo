@@ -78,6 +78,10 @@ class _VideoParametersState extends State<VideoParameters> {
                   widget.onSubtitleTrackSelect(newTrack);
                 },
                 choiceItems: [
+                  const C2Choice<Track?>(
+                    value: null,
+                    label: "None",
+                  ),
                   for (Track subtitleTrack in store.state.currentVideo!.subtitleTracks)
                     C2Choice<Track>(
                       value: subtitleTrack,
