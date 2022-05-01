@@ -20,7 +20,7 @@ class VideoControls extends StatelessWidget {
   /// Callback when [StreamingMethod] is selected
   final void Function(StreamingMethod) onMethodSelect;
 
-  final void Function(Track) onSubtitleTrackSelect;
+  final void Function(Track?) onSubtitleTrackSelect;
 
   /// Callabck when play/pause button is pressed
   final void Function() onPlayToggle;

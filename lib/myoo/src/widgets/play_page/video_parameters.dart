@@ -19,7 +19,7 @@ class VideoParameters extends StatefulWidget {
   final void Function(StreamingMethod) onMethodSelect;
 
   /// Callback on [StreamingMethod] change
-  final void Function(Track) onSubtitleTrackSelect;
+  final void Function(Track?) onSubtitleTrackSelect;
 
   const VideoParameters({Key? key, required this.onMethodSelect, required this.onSubtitleTrackSelect}) : super(key: key);
 
@@ -74,14 +74,14 @@ class _VideoParametersState extends State<VideoParameters> {
                 value: store.state.streamingParams?.currentSubtitlesTrack,
                 choiceActiveStyle: selectedChoiseStyle,
                 onChanged: (newTrack) {
-                  store.dispatch(SetSubtitlesTrackAction(newTrack!));
+                  store.dispatch(SetSubtitlesTrackAction(newTrack));
                   widget.onSubtitleTrackSelect(newTrack);
                 },
                 choiceItems: [
                   for (Track subtitleTrack in store.state.currentVideo!.subtitleTracks)
                     C2Choice<Track>(
                       value: subtitleTrack,
-                      label: "${subtitleTrack.displayName} (${subtitleTrack.codec})",
+                      label: "${subtitleTrack.displayName} (${ReCase(subtitleTrack.codec).titleCase})",
                     ),
                 ],
               ),
