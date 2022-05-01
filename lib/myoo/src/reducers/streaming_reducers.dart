@@ -46,4 +46,10 @@ StreamingParameters setSubtitlesTracksAction(StreamingParameters? old, action) =
   old!.withParams(subtitlesTracks: (action as ContainerAction<List<String>>).content);
 
 StreamingParameters setSubtitlesTrackAction(StreamingParameters? old, action) =>
-  old!.withParams(currentSubtitlesTrack: (action as ContainerAction<Track?>).content);
+  StreamingParameters(
+    method: old!.method,
+    currentSubtitlesTrack: (action as ContainerAction<Track?>).content,
+    currentPosition: old.currentPosition,
+    isPlaying: old.isPlaying,
+    totalDuration: old.totalDuration,
+  );
