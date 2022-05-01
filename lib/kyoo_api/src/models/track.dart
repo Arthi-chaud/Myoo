@@ -12,7 +12,8 @@ class Track extends Resource {
   final String displayName;
 
   /// A 3-char string to identify the track's language
-  final String language;
+  @JsonKey(defaultValue: 'Undefined')
+  final String? language;
 
   /// Identifier of the [Track]'s codec
   final String codec;

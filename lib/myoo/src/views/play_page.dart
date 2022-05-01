@@ -26,6 +26,23 @@ class _PlayPageState extends State<PlayPage> {
   Timer? positionTimer;
   late Slug videoSlug;
 
+  void videoControllerSetSubtitleTrack(Track? newTrack) {
+    if (newTrack == null) {
+      videoController!.setSpuTrack(-1);
+      return;
+    }
+    videoController!.getSpuTracks().then(
+      (tracks) {
+        tracks.removeWhere((key, value) => !value.contains(newTrack.displayName));
+        tracks.removeWhere((key, value) => newTrack.isForced ^ value.contains("Forced"));
+        if (tracks.isNotEmpty) {
+          List<int> keys = tracks.keys.toList()..sort();
+          videoController!.setSpuTrack(keys[newTrack.index - 1]);
+        }
+      }
+    );
+  }
+
 
   void buildVideoController(String videoURL, void Function() onLoaded) {
     print(videoURL);
@@ -90,7 +107,7 @@ class _PlayPageState extends State<PlayPage> {
                     aspectRatio: 16 / 9,
                     controller: videoController!,
                   ),
-                  (store.state.streamingParams?.totalDuration?.inSeconds ?? 0) > 2
+                  (videoController?.value.position.inMicroseconds ?? 0) > 0
                   ? HideOnTap(
                     child: VideoControls(
                       onMethodSelect: (newMethod) {
@@ -109,22 +126,7 @@ class _PlayPageState extends State<PlayPage> {
                       onSlide: (position) {
                         videoController!.seekTo(position);
                       },
-                      onSubtitleTrackSelect: (newTrack) {
-                        if (newTrack == null) {
-                          videoController!.setSpuTrack(-1);
-                          return;
-                        }
-                        videoController!.getSpuTracks().then(
-                          (tracks) {
-                            tracks.removeWhere((key, value) => !value.contains(newTrack.displayName));
-                            tracks.removeWhere((key, value) => newTrack.isForced ^ value.contains("Forced"));
-                            if (tracks.isNotEmpty) {
-                              List<int> keys = tracks.keys.toList()..sort();
-                              videoController!.setSpuTrack(keys[newTrack.index - 1]);
-                            }
-                          }
-                        );
-                      },
+                      onSubtitleTrackSelect: (newTrack) => videoControllerSetSubtitleTrack(newTrack),
                       onPlayToggle: () {
                         if (store.state.streamingParams!.isPlaying) {
                           videoController!.pause();
