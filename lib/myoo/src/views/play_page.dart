@@ -164,19 +164,7 @@ class _PlayPageState extends State<PlayPage> {
                   (videoController?.value.position.inMicroseconds ?? 0) > 0
                   ? HideOnTap(
                     child: VideoControls(
-                      onMethodSelect: (newMethod) {
-                        setState(() {
-                          store.dispatch(LoadingAction());
-                          videoController!.pause();
-                          videoController!.setMediaFromNetwork(
-                            store.state.currentClient!.getStreamingLink(videoSlug, newMethod)
-                          ).then(
-                            (value) {
-                              store.dispatch(LoadedAction());
-                            }
-                          );
-                        });
-                      },
+                      onMethodSelect: (_) {},
                       onSlide: (position) {
                         videoController!.seekTo(position);
                       },
