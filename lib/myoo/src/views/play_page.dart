@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_vlc_player/flutter_vlc_player.dart';
 import 'package:myoo/kyoo_api/src/models/slug.dart';
@@ -26,6 +27,7 @@ class _PlayPageState extends State<PlayPage> {
   Timer? positionTimer;
   late Slug videoSlug;
 
+  /// Assing a subtitle [Track] to VLC Player, using its [index]
   void videoControllerSetSubtitleTrack(Track? newTrack) {
     if (newTrack == null) {
       videoController!.setSpuTrack(-1);
@@ -34,6 +36,7 @@ class _PlayPageState extends State<PlayPage> {
     videoController!.setSpuTrack(newTrack.index);
   }
 
+  /// From a VLC Player's track, build a Kyoo's [Track]
   Track buildFromVLCTrack(int key, String value) {
     return Track(
       displayName: value,
@@ -73,6 +76,7 @@ class _PlayPageState extends State<PlayPage> {
   Widget build(BuildContext context) {
     return StoreBuilder<AppState>(
       onInit: ((store) {
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive); 
         videoSlug = ModalRoute.of(context)!.settings.name!.replaceAll('/play/', '');
         store.dispatch(InitStreamingParametersAction());
         store.dispatch(LoadVideoAction(videoSlug));
@@ -92,25 +96,10 @@ class _PlayPageState extends State<PlayPage> {
               }
             );
             Future.doWhile(() async {
-              List<int?> indexes = await Future.wait([
-                videoController!.getAudioTrack(),
-                videoController!.getSpuTrack()
-              ]);
-              for (int? index in indexes) {
-                if (index == null || index < 0) {
-                  return true;
-                }
+              int? audioCurrentTrackIndex = await videoController!.getAudioTrack();
+              if (audioCurrentTrackIndex == null || audioCurrentTrackIndex < 0) {
+                return true;
               }
-              int audioCurrentTrackIndex = indexes.first!;
-              int subCurrentTrackIndex = indexes.last!;
-              videoController!.getSpuTracks().then((sTracks) {
-                buildTracksFromVLC(
-                  sTracks,
-                  subCurrentTrackIndex,
-                  (tracks) => store.dispatch(VideoSetSubtitlesTracksAction(tracks)),
-                  (currentTrack) => store.dispatch(SetSubtitlesTrackAction(currentTrack))
-                );
-              });
               videoController!.getAudioTracks().then((aTracks) {
                 buildTracksFromVLC(
                   aTracks,
@@ -121,11 +110,30 @@ class _PlayPageState extends State<PlayPage> {
               });
               return false;
             });
+            Future.doWhile(() async {
+              int? subCurrentTrackIndex = await videoController!.getSpuTrack();
+              if (subCurrentTrackIndex == null || subCurrentTrackIndex < 0) {
+                if (store.state.streamingParams!.currentAudioTrack != null) {
+                  return false;
+                }
+                return true;
+              }
+              videoController!.getSpuTracks().then((sTracks) {
+                buildTracksFromVLC(
+                  sTracks,
+                  subCurrentTrackIndex,
+                  (tracks) => store.dispatch(VideoSetSubtitlesTracksAction(tracks)),
+                  (currentTrack) => store.dispatch(SetSubtitlesTrackAction(currentTrack))
+                );
+              });
+              return false;
+            });
             store.dispatch(LoadedAction());
           }
         );
       }),
       onDispose: ((store) {
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
         positionTimer?.cancel();
         videoController?.dispose().onError((error, stackTrace) {});
         store.dispatch(UnloadVideoAction());
@@ -156,19 +164,7 @@ class _PlayPageState extends State<PlayPage> {
                   (videoController?.value.position.inMicroseconds ?? 0) > 0
                   ? HideOnTap(
                     child: VideoControls(
-                      onMethodSelect: (newMethod) {
-                        setState(() {
-                          store.dispatch(LoadingAction());
-                          videoController!.pause();
-                          videoController!.setMediaFromNetwork(
-                            store.state.currentClient!.getStreamingLink(videoSlug, newMethod)
-                          ).then(
-                            (value) {
-                              store.dispatch(LoadedAction());
-                            }
-                          );
-                        });
-                      },
+                      onMethodSelect: (_) {},
                       onSlide: (position) {
                         videoController!.seekTo(position);
                       },
