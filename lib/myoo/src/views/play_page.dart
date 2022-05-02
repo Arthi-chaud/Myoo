@@ -27,6 +27,7 @@ class _PlayPageState extends State<PlayPage> {
   Timer? positionTimer;
   late Slug videoSlug;
 
+  /// Assing a subtitle [Track] to VLC Player, using its [index]
   void videoControllerSetSubtitleTrack(Track? newTrack) {
     if (newTrack == null) {
       videoController!.setSpuTrack(-1);
@@ -35,6 +36,7 @@ class _PlayPageState extends State<PlayPage> {
     videoController!.setSpuTrack(newTrack.index);
   }
 
+  /// From a VLC Player's track, build a Kyoo's [Track]
   Track buildFromVLCTrack(int key, String value) {
     return Track(
       displayName: value,
@@ -94,31 +96,34 @@ class _PlayPageState extends State<PlayPage> {
               }
             );
             Future.doWhile(() async {
-              List<int?> indexes = await Future.wait([
-                videoController!.getAudioTrack(),
-                videoController!.getSpuTrack()
-              ]);
-              for (int? index in indexes) {
-                if (index == null || index < 0) {
-                  return true;
-                }
+              int? audioCurrentTrackIndex = await videoController!.getAudioTrack();
+              if (audioCurrentTrackIndex == null || audioCurrentTrackIndex < 0) {
+                return true;
               }
-              int audioCurrentTrackIndex = indexes.first!;
-              int subCurrentTrackIndex = indexes.last!;
-              videoController!.getSpuTracks().then((sTracks) {
-                buildTracksFromVLC(
-                  sTracks,
-                  subCurrentTrackIndex,
-                  (tracks) => store.dispatch(VideoSetSubtitlesTracksAction(tracks)),
-                  (currentTrack) => store.dispatch(SetSubtitlesTrackAction(currentTrack))
-                );
-              });
               videoController!.getAudioTracks().then((aTracks) {
                 buildTracksFromVLC(
                   aTracks,
                   audioCurrentTrackIndex,
                   (tracks) => store.dispatch(VideoSetAudioTracksAction(tracks)),
                   (currentTrack) => store.dispatch(SetAudioTrackAction(currentTrack))
+                );
+              });
+              return false;
+            });
+            Future.doWhile(() async {
+              int? subCurrentTrackIndex = await videoController!.getSpuTrack();
+              if (subCurrentTrackIndex == null || subCurrentTrackIndex < 0) {
+                if (store.state.streamingParams!.currentAudioTrack != null) {
+                  return false;
+                }
+                return true;
+              }
+              videoController!.getSpuTracks().then((sTracks) {
+                buildTracksFromVLC(
+                  sTracks,
+                  subCurrentTrackIndex,
+                  (tracks) => store.dispatch(VideoSetSubtitlesTracksAction(tracks)),
+                  (currentTrack) => store.dispatch(SetSubtitlesTrackAction(currentTrack))
                 );
               });
               return false;
