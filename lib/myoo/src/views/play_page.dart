@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_vlc_player/flutter_vlc_player.dart';
 import 'package:myoo/kyoo_api/src/models/slug.dart';
@@ -73,6 +74,7 @@ class _PlayPageState extends State<PlayPage> {
   Widget build(BuildContext context) {
     return StoreBuilder<AppState>(
       onInit: ((store) {
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive); 
         videoSlug = ModalRoute.of(context)!.settings.name!.replaceAll('/play/', '');
         store.dispatch(InitStreamingParametersAction());
         store.dispatch(LoadVideoAction(videoSlug));
@@ -126,6 +128,7 @@ class _PlayPageState extends State<PlayPage> {
         );
       }),
       onDispose: ((store) {
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
         positionTimer?.cancel();
         videoController?.dispose().onError((error, stackTrace) {});
         store.dispatch(UnloadVideoAction());
