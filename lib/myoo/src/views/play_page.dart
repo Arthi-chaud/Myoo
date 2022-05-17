@@ -154,7 +154,7 @@ class _PlayPageState extends State<PlayPage> {
                 alignment: Alignment.center,
                 children: [
                   VlcPlayer(
-                    key: const Key(""),
+                    key: const Key("Video Controller"),
                     aspectRatio: 16 / 9,
                     controller: videoController!,
                   ),
