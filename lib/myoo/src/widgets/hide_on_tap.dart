@@ -13,34 +13,38 @@ class HideOnTap extends StatefulWidget {
 }
 
 class _HideOnTapState extends State<HideOnTap> {
-  bool isVisible;
-  Timer? hideTimer;
-
-  _HideOnTapState(): isVisible = true;
-
-  @override
-  void initState() {
-    hideTimer = Timer.periodic(
-      const Duration(seconds: 5), (_) {
-        if (isVisible) {
-          setState(() => isVisible = false);
-        }
-      }
-    );
-    super.initState();
-  }
+  Timer? visibleTimer;
 
   @override
   void dispose() {
-    hideTimer?.cancel();
+    visibleTimer?.cancel();
     super.dispose();
+  }
+
+  void unsetTimer() {
+    visibleTimer?.cancel();
+    visibleTimer = null;
+  }
+
+  void setTimer() {
+    visibleTimer = Timer.periodic(
+      const Duration(seconds: 5),
+      (timer) => unsetTimer()
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    bool isVisible = visibleTimer != null;
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: () => setState(() => isVisible = !isVisible),
+      onTap: () => setState(() {
+        if (visibleTimer == null) {
+          setTimer();
+        } else {
+          unsetTimer();
+        }
+      }),
       child: AnimatedOpacity(
         opacity: isVisible ? 1.0 : 0.0,
         duration: const Duration(milliseconds: 200),
