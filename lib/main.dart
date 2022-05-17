@@ -16,8 +16,8 @@ void main() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   FlutterNativeSplash.remove();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-   statusBarColor: Colors.white,
-   statusBarBrightness: Brightness.dark
+   statusBarBrightness: Brightness.dark,
+   statusBarIconBrightness: Brightness.light
   ));
 
   runApp(MyooApp(
