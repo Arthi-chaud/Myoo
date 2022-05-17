@@ -26,6 +26,7 @@ class _PlayPageState extends State<PlayPage> {
   VlcPlayerController? videoController;
   Timer? positionTimer;
   late Slug videoSlug;
+  Timer? systemBarTimer;
 
   /// From a VLC Player's track, build a Kyoo's [Track]
   Track buildFromVLCTrack(int key, String value) {
@@ -67,10 +68,13 @@ class _PlayPageState extends State<PlayPage> {
   Widget build(BuildContext context) {
     return StoreBuilder<AppState>(
       onInit: ((store) {
-        SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive); 
         videoSlug = ModalRoute.of(context)!.settings.name!.replaceAll('/play/', '');
         store.dispatch(InitStreamingParametersAction());
         store.dispatch(LoadVideoAction(videoSlug));
+        systemBarTimer = Timer.periodic(
+          const Duration(seconds: 5),
+          (_) => SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive)
+        );
         Future.delayed(const Duration(seconds: 10), () {
           if (store.state.isLoading) {
             showPlayErrorWidget(context, PlayPage.loadTimeoutMessage);
@@ -126,6 +130,7 @@ class _PlayPageState extends State<PlayPage> {
       onDispose: ((store) {
         SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
         positionTimer?.cancel();
+        systemBarTimer?.cancel();
         videoController?.dispose().onError((error, stackTrace) {});
         store.dispatch(UnloadVideoAction());
         store.dispatch(UnsetStreamingParametersAction());
