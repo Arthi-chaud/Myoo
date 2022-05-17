@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 /// Widget that appears/fades on tap
@@ -12,8 +14,27 @@ class HideOnTap extends StatefulWidget {
 
 class _HideOnTapState extends State<HideOnTap> {
   bool isVisible;
+  Timer? hideTimer;
 
   _HideOnTapState(): isVisible = true;
+
+  @override
+  void initState() {
+    hideTimer = Timer.periodic(
+      const Duration(seconds: 5), (_) {
+        if (isVisible) {
+          setState(() => isVisible = false);
+        }
+      }
+    );
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    hideTimer?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
