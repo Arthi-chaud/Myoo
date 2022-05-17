@@ -27,15 +27,6 @@ class _PlayPageState extends State<PlayPage> {
   Timer? positionTimer;
   late Slug videoSlug;
 
-  /// Assing a subtitle [Track] to VLC Player, using its [index]
-  void videoControllerSetSubtitleTrack(Track? newTrack) {
-    if (newTrack == null) {
-      videoController!.setSpuTrack(-1);
-      return;
-    }
-    videoController!.setSpuTrack(newTrack.index);
-  }
-
   /// From a VLC Player's track, build a Kyoo's [Track]
   Track buildFromVLCTrack(int key, String value) {
     return Track(
@@ -168,7 +159,7 @@ class _PlayPageState extends State<PlayPage> {
                       onSlide: (position) {
                         videoController!.seekTo(position);
                       },
-                      onSubtitleTrackSelect: (newTrack) => videoControllerSetSubtitleTrack(newTrack),
+                      onSubtitleTrackSelect: (newTrack) => videoController!.setSpuTrack(newTrack?.index ?? -1),
                       onAudioTrackSelect: (newTrack) => videoController!.setAudioTrack(newTrack.index),
                       onPlayToggle: () {
                         if (store.state.streamingParams!.isPlaying) {
