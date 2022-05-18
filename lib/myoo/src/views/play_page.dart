@@ -75,6 +75,13 @@ class _PlayPageState extends State<PlayPage> {
           const Duration(seconds: 5),
           (_) => SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive)
         );
+        Timer(
+          transitionDuration,
+          () => SystemChrome.setPreferredOrientations([
+            DeviceOrientation.landscapeRight,
+            DeviceOrientation.landscapeLeft,
+          ])
+        );
         Future.delayed(const Duration(seconds: 10), () {
           if (store.state.isLoading) {
             showPlayErrorWidget(context, PlayPage.loadTimeoutMessage);
@@ -128,6 +135,9 @@ class _PlayPageState extends State<PlayPage> {
         );
       }),
       onDispose: ((store) {
+        SystemChrome.setPreferredOrientations(
+          DeviceOrientation.values,
+        );
         SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
         positionTimer?.cancel();
         systemBarTimer?.cancel();
