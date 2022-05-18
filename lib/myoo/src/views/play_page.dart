@@ -137,7 +137,6 @@ class _PlayPageState extends State<PlayPage> {
       }),
       builder: (context, store) {
         return SafeScaffold(
-          bottom: true,
           backgroundColor: Colors.black,
           scaffold: Scaffold(
             appBar: store.state.isLoading
