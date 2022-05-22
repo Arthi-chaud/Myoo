@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the storageRemoveClientMiddleWare function from the local_storage_middleware library, for the Dart programming language.">
+  <title>storageRemoveClientMiddleWare function - local_storage_middleware library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../" data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">myoo</a></li>
+    <li><a href="../myoo_src_middlewares_local_storage_middleware/myoo_src_middlewares_local_storage_middleware-library.html">local_storage_middleware</a></li>
+    <li class="self-crumb">storageRemoveClientMiddleWare function</li>
+  </ol>
+  <div class="self-name">storageRemoveClientMiddleWare</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-function">storageRemoveClientMiddleWare</span> function 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+ 
+</h1></div>
+
+    <section class="multi-line-signature">
+        
+
+<span class="returntype"><a href="https://pub.dev/documentation/redux/5.0.0/redux/Middleware.html">Middleware</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../myoo_src_app_state/AppState-class.html">AppState</a></span>&gt;</span></span>
+<span class="name ">storageRemoveClientMiddleWare</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="storageRemoveClientMiddleWare-param-localStorage"><span class="type-annotation"><a href="../myoo_src_middlewares_local_storage_middleware/LocalStorage.html">LocalStorage</a></span> <span class="parameter-name">localStorage</span></span></li>
+</ol>)
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Middleware to remove a <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a> from <a href="../myoo_src_middlewares_local_storage_middleware/LocalStorage.html">LocalStorage</a>.The action must be <a href="../myoo_src_actions_action/ContainerAction-class.html">ContainerAction&lt;KyooClient&gt;</a></p>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">Middleware&lt;AppState&gt; storageRemoveClientMiddleWare(LocalStorage localStorage) {
+  return (Store&lt;AppState&gt; store, action, NextDispatcher next) {
+    KyooClient toRemove = ((action as ContainerAction&lt;KyooClient&gt;).content);
+    List&lt;KyooClient&gt; toStore = List.from(store.state.clients!);
+    toStore.remove(toRemove);
+    if (toStore.isEmpty) {
+      localStorage.remove(clientsDataKey);
+    } else {
+      _setRawClients(localStorage, toStore);
+    }
+    next(action);
+  };
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../index.html">myoo</a></li>
+  <li><a href="../myoo_src_middlewares_local_storage_middleware/myoo_src_middlewares_local_storage_middleware-library.html">local_storage_middleware</a></li>
+  <li class="self-crumb">storageRemoveClientMiddleWare function</li>
+</ol>
+
+
+    <h5>local_storage_middleware library</h5>
+    <ol>
+
+
+
+  <li class="section-title"><a href="../myoo_src_middlewares_local_storage_middleware/myoo_src_middlewares_local_storage_middleware-library.html#constants">Constants</a></li>
+  <li><a href="../myoo_src_middlewares_local_storage_middleware/clientsDataKey-constant.html">clientsDataKey</a></li>
+
+
+  <li class="section-title"><a href="../myoo_src_middlewares_local_storage_middleware/myoo_src_middlewares_local_storage_middleware-library.html#functions">Functions</a></li>
+  <li><a href="../myoo_src_middlewares_local_storage_middleware/createLocalStorageMiddleware.html">createLocalStorageMiddleware</a></li>
+  <li><a href="../myoo_src_middlewares_local_storage_middleware/loadStoredClientsMiddleware.html">loadStoredClientsMiddleware</a></li>
+  <li><a href="../myoo_src_middlewares_local_storage_middleware/storageRemoveClientMiddleWare.html">storageRemoveClientMiddleWare</a></li>
+  <li><a href="../myoo_src_middlewares_local_storage_middleware/storageReorderClients.html">storageReorderClients</a></li>
+  <li><a href="../myoo_src_middlewares_local_storage_middleware/storageSetClientsMiddleWare.html">storageSetClientsMiddleWare</a></li>
+
+
+  <li class="section-title"><a href="../myoo_src_middlewares_local_storage_middleware/myoo_src_middlewares_local_storage_middleware-library.html#typedefs">Typedefs</a></li>
+  <li><a href="../myoo_src_middlewares_local_storage_middleware/LocalStorage.html">LocalStorage</a></li>
+
+</ol>
+
+  </div><!--/.sidebar-offcanvas-left-->
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    myoo
+      1.0.0+1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+
+
+</body>
+
+</html>
+

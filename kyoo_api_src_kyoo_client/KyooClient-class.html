@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the KyooClient class from the kyoo_client library, for the Dart programming language.">
+  <title>KyooClient class - kyoo_client library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../" data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">myoo</a></li>
+    <li><a href="../kyoo_api_src_kyoo_client/kyoo_api_src_kyoo_client-library.html">kyoo_client</a></li>
+    <li class="self-crumb">KyooClient class</li>
+  </ol>
+  <div class="self-name">KyooClient</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-class">KyooClient</span> class 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+ 
+</h1></div>
+
+    
+<section class="desc markdown">
+  <p>Interface of a Kyoo Server, used to make requests to it</p>
+</section>
+
+
+    <section>
+      <dl class="dl-horizontal">
+        
+
+        
+        
+
+
+
+        
+  <dt>Annotations</dt>
+  <dd>
+    <ul class="annotation-list clazz-relationships">
+        <li>@<a href="https://pub.dev/documentation/json_annotation/4.4.0/json_annotation/JsonSerializable-class.html">JsonSerializable</a>()</li>
+    </ul>
+  </dd>
+      </dl>
+    </section>
+
+    
+  <section class="summary offset-anchor" id="constructors">
+    <h2>Constructors</h2>
+
+    <dl class="constructor-summary-list">
+        <dt id="KyooClient" class="callable">
+          <span class="name"><a href="../kyoo_api_src_kyoo_client/KyooClient/KyooClient.html">KyooClient</a></span><span class="signature">(<span class="parameter" id="-param-serverURL">{<span>required</span> <span class="type-annotation"><a href="../kyoo_api_src_kyoo_client/ServerURL.html">ServerURL</a></span> <span class="parameter-name">serverURL</span>, </span><span class="parameter" id="-param-jwt"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">jwt</span>, </span><span class="parameter" id="-param-serverLibraries"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../kyoo_api_src_models_library/Library-class.html">Library</a></span>&gt;</span></span> <span class="parameter-name">serverLibraries</span> = <span class="default-value">const []</span>, </span><span class="parameter" id="-param-client"><span class="type-annotation"><a href="https://pub.dev/documentation/http/0.13.4/http/Client-class.html">Client</a>?</span> <span class="parameter-name">client</span>}</span>)</span>
+        </dt>
+        <dd>
+          Default constructor
+        </dd>
+        <dt id="KyooClient.fromJson" class="callable">
+          <span class="name"><a href="../kyoo_api_src_kyoo_client/KyooClient/KyooClient.fromJson.html">KyooClient.fromJson</a></span><span class="signature">(<span class="parameter" id="fromJson-param-input"><span class="type-annotation"><a href="../kyoo_api_src_models_json/JSONData.html">JSONData</a></span> <span class="parameter-name">input</span></span>)</span>
+        </dt>
+        <dd>
+          
+            <div class="constructor-modifier features">factory</div>
+        </dd>
+    </dl>
+  </section>
+
+    <section class="summary offset-anchor" id="instance-properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        <dt id="client" class="property">
+  <span class="name"><a href="../kyoo_api_src_kyoo_client/KyooClient/client.html">client</a></span>
+  <span class="signature">&#8596; <a href="https://pub.dev/documentation/http/0.13.4/http/Client-class.html">Client</a></span> 
+
+</dt>
+<dd>
+  HTTP Client interface to manage requests
+If none provided, a default instance will be used
+  <div class="features">@<a href="https://pub.dev/documentation/json_annotation/4.4.0/json_annotation/JsonKey-class.html">JsonKey</a>(ignore: true), read / write</div>
+
+</dd>
+
+        <dt id="hashCode" class="property">
+  <span class="name"><a href="../kyoo_api_src_kyoo_client/KyooClient/hashCode.html">hashCode</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> 
+
+</dt>
+<dd>
+  The hash code for this object.
+  <div class="features">read-only, override</div>
+
+</dd>
+
+        <dt id="jwt" class="property">
+  <span class="name"><a href="../kyoo_api_src_kyoo_client/KyooClient/jwt.html">jwt</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> 
+
+</dt>
+<dd>
+  JWT used to make requests to server
+  <div class="features">@<a href="https://pub.dev/documentation/json_annotation/4.4.0/json_annotation/JsonKey-class.html">JsonKey</a>(defaultValue: null), read / write</div>
+
+</dd>
+
+        <dt id="runtimeType" class="property inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Type-class.html">Type</a></span> 
+
+</dt>
+<dd class="inherited">
+  A representation of the runtime type of the object.
+  <div class="features">read-only, inherited</div>
+
+</dd>
+
+        <dt id="serverLibraries" class="property">
+  <span class="name"><a href="../kyoo_api_src_kyoo_client/KyooClient/serverLibraries.html">serverLibraries</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../kyoo_api_src_models_library/Library-class.html">Library</a></span>&gt;</span></span> 
+
+</dt>
+<dd>
+  The server's Libraries
+  <div class="features">@<a href="https://pub.dev/documentation/json_annotation/4.4.0/json_annotation/JsonKey-class.html">JsonKey</a>(ignore: true), read / write</div>
+
+</dd>
+
+        <dt id="serverURL" class="property">
+  <span class="name"><a href="../kyoo_api_src_kyoo_client/KyooClient/serverURL.html">serverURL</a></span>
+  <span class="signature">&#8594; <a href="../kyoo_api_src_kyoo_client/ServerURL.html">ServerURL</a></span> 
+
+</dt>
+<dd>
+  String URL of the Kyoo server
+  <div class="features">@<a href="https://pub.dev/documentation/json_annotation/4.4.0/json_annotation/JsonKey-class.html">JsonKey</a>(name: &#39;url&#39;), final</div>
+
+</dd>
+
+      </dl>
+    </section>
+
+    
+  <section
+      class="summary offset-anchor"
+      id="instance-methods">
+    <h2>Methods</h2>
+    <dl class="callables">
+        <dt id="getCollection" class="callable">
+  <span class="name"><a href="../kyoo_api_src_kyoo_client/KyooClient/getCollection.html">getCollection</a></span><span class="signature">(<wbr><span class="parameter" id="getCollection-param-collectionSlug"><span class="type-annotation"><a href="../kyoo_api_src_models_slug/Slug.html">Slug</a></span> <span class="parameter-name">collectionSlug</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../kyoo_api_src_models_collection/Collection-class.html">Collection</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Retrieves a <code>Collection</code> (including its <a href="../kyoo_api_src_models_resource_preview/ResourcePreview-class.html">ResourcePreview</a>s ) using its <a href="../kyoo_api_src_models_slug/Slug.html">Slug</a>
+  
+
+</dd>
+
+        <dt id="getFileExtension" class="callable">
+  <span class="name"><a href="../kyoo_api_src_kyoo_client/KyooClient/getFileExtension.html">getFileExtension</a></span><span class="signature">(<wbr><span class="parameter" id="getFileExtension-param-resourceSlug"><span class="type-annotation"><a href="../kyoo_api_src_models_slug/Slug.html">Slug</a></span> <span class="parameter-name">resourceSlug</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Retrieves the extension of the source file stored on the server
+  
+
+</dd>
+
+        <dt id="getItemsFrom" class="callable">
+  <span class="name"><a href="../kyoo_api_src_kyoo_client/KyooClient/getItemsFrom.html">getItemsFrom</a></span><span class="signature">(<wbr><span class="parameter" id="getItemsFrom-param-library">{<span class="type-annotation"><a href="../kyoo_api_src_models_library/Library-class.html">Library</a>?</span> <span class="parameter-name">library</span>, </span><span class="parameter" id="getItemsFrom-param-afterID"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">afterID</span>, </span><span class="parameter" id="getItemsFrom-param-count"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">count</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../kyoo_api_src_models_resource_preview/ResourcePreview-class.html">ResourcePreview</a></span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Retrieves a list of $<code>count</code> <a href="../kyoo_api_src_models_resource_preview/ResourcePreview-class.html">ResourcePreview</a>s, starting from <code>afterID</code> from the current server
+If library is <code>null</code>, fetches items from '/api/items', otherwise, fetch items from given collection
+  
+
+</dd>
+
+        <dt id="getLibraries" class="callable">
+  <span class="name"><a href="../kyoo_api_src_kyoo_client/KyooClient/getLibraries.html">getLibraries</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../kyoo_api_src_models_library/Library-class.html">Library</a></span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Retrieves the server's <code>Librarie</code>s
+  
+
+</dd>
+
+        <dt id="getMovie" class="callable">
+  <span class="name"><a href="../kyoo_api_src_kyoo_client/KyooClient/getMovie.html">getMovie</a></span><span class="signature">(<wbr><span class="parameter" id="getMovie-param-movieSlug"><span class="type-annotation"><a href="../kyoo_api_src_models_slug/Slug.html">Slug</a></span> <span class="parameter-name">movieSlug</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../kyoo_api_src_models_movie/Movie-class.html">Movie</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Retrieves a <code>Movie</code> (with its <a href="../kyoo_api_src_models_genre/Genre.html">Genre</a>s) from current server using its <a href="../kyoo_api_src_models_slug/Slug.html">Slug</a>
+  
+
+</dd>
+
+        <dt id="getSeason" class="callable">
+  <span class="name"><a href="../kyoo_api_src_kyoo_client/KyooClient/getSeason.html">getSeason</a></span><span class="signature">(<wbr><span class="parameter" id="getSeason-param-seasonSlug"><span class="type-annotation"><a href="../kyoo_api_src_models_slug/Slug.html">Slug</a></span> <span class="parameter-name">seasonSlug</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../kyoo_api_src_models_season/Season-class.html">Season</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Retrieves a <code>Season</code> with its <a href="../kyoo_api_src_models_episode/Episode-class.html">Episode</a>s from current server using <code>Season</code>'s <a href="../kyoo_api_src_models_slug/Slug.html">Slug</a>
+  
+
+</dd>
+
+        <dt id="getStaff" class="callable">
+  <span class="name"><a href="../kyoo_api_src_kyoo_client/KyooClient/getStaff.html">getStaff</a></span><span class="signature">(<wbr><span class="parameter" id="getStaff-param-slug"><span class="type-annotation"><a href="../kyoo_api_src_models_slug/Slug.html">Slug</a></span> <span class="parameter-name">slug</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../kyoo_api_src_models_staff/Staff.html">Staff</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="getStreamingLink" class="callable">
+  <span class="name"><a href="../kyoo_api_src_kyoo_client/KyooClient/getStreamingLink.html">getStreamingLink</a></span><span class="signature">(<wbr><span class="parameter" id="getStreamingLink-param-videoSlug"><span class="type-annotation"><a href="../kyoo_api_src_models_slug/Slug.html">Slug</a></span> <span class="parameter-name">videoSlug</span>, </span><span class="parameter" id="getStreamingLink-param-method"><span class="type-annotation"><a href="../kyoo_api_src_models_video/StreamingMethod.html">StreamingMethod</a></span> <span class="parameter-name">method</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Retrieves streaming link for resource, using client's <a href="../kyoo_api_src_kyoo_client/KyooClient/serverURL.html">serverURL</a> and a <a href="../kyoo_api_src_models_video/StreamingMethod.html">StreamingMethod</a>
+The slug must be from a <a href="../kyoo_api_src_models_video/Video-class.html">Video</a>
+  
+
+</dd>
+
+        <dt id="getSubtitleTrackDownloadLink" class="callable">
+  <span class="name"><a href="../kyoo_api_src_kyoo_client/KyooClient/getSubtitleTrackDownloadLink.html">getSubtitleTrackDownloadLink</a></span><span class="signature">(<wbr><span class="parameter" id="getSubtitleTrackDownloadLink-param-subSlug"><span class="type-annotation"><a href="../kyoo_api_src_models_slug/Slug.html">Slug</a></span> <span class="parameter-name">subSlug</span>, </span><span class="parameter" id="getSubtitleTrackDownloadLink-param-codec"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">codec</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Retrieves full download link for subtitle <a href="../kyoo_api_src_models_track/Track-class.html">Track</a>, using client's <a href="../kyoo_api_src_kyoo_client/KyooClient/serverURL.html">serverURL</a>
+The slug must be from a subtitle <a href="../kyoo_api_src_models_track/Track-class.html">Track</a>
+  
+
+</dd>
+
+        <dt id="getTVSeries" class="callable">
+  <span class="name"><a href="../kyoo_api_src_kyoo_client/KyooClient/getTVSeries.html">getTVSeries</a></span><span class="signature">(<wbr><span class="parameter" id="getTVSeries-param-seriesSlug"><span class="type-annotation"><a href="../kyoo_api_src_models_slug/Slug.html">Slug</a></span> <span class="parameter-name">seriesSlug</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../kyoo_api_src_models_tv_series/TVSeries-class.html">TVSeries</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Retrieves a <code>TVSeries</code> (with its <a href="../kyoo_api_src_models_genre/Genre.html">Genre</a>s and <a href="../kyoo_api_src_models_season/Season-class.html">Season</a>s) from current server using <code>TVSeries</code>'s <a href="../kyoo_api_src_models_slug/Slug.html">Slug</a>
+  
+
+</dd>
+
+        <dt id="getVideoDownloadLink" class="callable">
+  <span class="name"><a href="../kyoo_api_src_kyoo_client/KyooClient/getVideoDownloadLink.html">getVideoDownloadLink</a></span><span class="signature">(<wbr><span class="parameter" id="getVideoDownloadLink-param-videoSlug"><span class="type-annotation"><a href="../kyoo_api_src_models_slug/Slug.html">Slug</a></span> <span class="parameter-name">videoSlug</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Retrieves full download link for <a href="../kyoo_api_src_models_video/Video-class.html">Video</a>, using client's <a href="../kyoo_api_src_kyoo_client/KyooClient/serverURL.html">serverURL</a>
+The slug must be from a <a href="../kyoo_api_src_models_video/Video-class.html">Video</a>
+  
+
+</dd>
+
+        <dt id="getWatchItem" class="callable">
+  <span class="name"><a href="../kyoo_api_src_kyoo_client/KyooClient/getWatchItem.html">getWatchItem</a></span><span class="signature">(<wbr><span class="parameter" id="getWatchItem-param-videoSlug"><span class="type-annotation"><a href="../kyoo_api_src_models_slug/Slug.html">Slug</a></span> <span class="parameter-name">videoSlug</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../kyoo_api_src_models_watch_item/WatchItem-class.html">WatchItem</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Elevates a <a href="../kyoo_api_src_models_video/Video-class.html">Video</a> to a <code>WatchItem</code> using its <a href="../kyoo_api_src_models_slug/Slug.html">Slug</a>
+  
+
+</dd>
+
+        <dt id="noSuchMethod" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
+    <span class="returntype parameter">&#8594; dynamic</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Invoked when a non-existent method or property is accessed.
+  <div class="features">inherited</div>
+
+</dd>
+
+        <dt id="searchItems" class="callable">
+  <span class="name"><a href="../kyoo_api_src_kyoo_client/KyooClient/searchItems.html">searchItems</a></span><span class="signature">(<wbr><span class="parameter" id="searchItems-param-query"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">query</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a></span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="toJson" class="callable">
+  <span class="name"><a href="../kyoo_api_src_kyoo_client/KyooClient/toJson.html">toJson</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="../kyoo_api_src_models_json/JSONData.html">JSONData</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="toString" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  A string representation of this object.
+  <div class="features">inherited</div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor"
+      id="operators">
+    <h2>Operators</h2>
+    <dl class="callables">
+        <dt id="operator ==" class="callable">
+  <span class="name"><a href="../kyoo_api_src_kyoo_client/KyooClient/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">other</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  The equality operator.
+  <div class="features">override</div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+    
+    
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../index.html">myoo</a></li>
+  <li><a href="../kyoo_api_src_kyoo_client/kyoo_api_src_kyoo_client-library.html">kyoo_client</a></li>
+  <li class="self-crumb">KyooClient class</li>
+</ol>
+
+
+    <h5>kyoo_client library</h5>
+    <ol>
+  <li class="section-title"><a href="../kyoo_api_src_kyoo_client/kyoo_api_src_kyoo_client-library.html#classes">Classes</a></li>
+  <li><a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a></li>
+
+
+
+
+
+
+  <li class="section-title"><a href="../kyoo_api_src_kyoo_client/kyoo_api_src_kyoo_client-library.html#enums">Enums</a></li>
+  <li><a href="../kyoo_api_src_kyoo_client/RequestType.html">RequestType</a></li>
+
+  <li class="section-title"><a href="../kyoo_api_src_kyoo_client/kyoo_api_src_kyoo_client-library.html#typedefs">Typedefs</a></li>
+  <li><a href="../kyoo_api_src_kyoo_client/ServerURL.html">ServerURL</a></li>
+
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+    <ol>
+
+        <li class="section-title"><a href="../kyoo_api_src_kyoo_client/KyooClient-class.html#constructors">Constructors</a></li>
+          <li><a href="../kyoo_api_src_kyoo_client/KyooClient/KyooClient.html">KyooClient</a></li>
+          <li><a href="../kyoo_api_src_kyoo_client/KyooClient/KyooClient.fromJson.html">fromJson</a></li>
+
+
+    <li class="section-title">
+      <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html#instance-properties">Properties</a>
+    </li>
+    <li><a href="../kyoo_api_src_kyoo_client/KyooClient/client.html">client</a></li>
+    <li><a href="../kyoo_api_src_kyoo_client/KyooClient/hashCode.html">hashCode</a></li>
+    <li><a href="../kyoo_api_src_kyoo_client/KyooClient/jwt.html">jwt</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
+    <li><a href="../kyoo_api_src_kyoo_client/KyooClient/serverLibraries.html">serverLibraries</a></li>
+    <li><a href="../kyoo_api_src_kyoo_client/KyooClient/serverURL.html">serverURL</a></li>
+
+    <li class="section-title"><a href="../kyoo_api_src_kyoo_client/KyooClient-class.html#instance-methods">Methods</a></li>
+    <li><a href="../kyoo_api_src_kyoo_client/KyooClient/getCollection.html">getCollection</a></li>
+    <li><a href="../kyoo_api_src_kyoo_client/KyooClient/getFileExtension.html">getFileExtension</a></li>
+    <li><a href="../kyoo_api_src_kyoo_client/KyooClient/getItemsFrom.html">getItemsFrom</a></li>
+    <li><a href="../kyoo_api_src_kyoo_client/KyooClient/getLibraries.html">getLibraries</a></li>
+    <li><a href="../kyoo_api_src_kyoo_client/KyooClient/getMovie.html">getMovie</a></li>
+    <li><a href="../kyoo_api_src_kyoo_client/KyooClient/getSeason.html">getSeason</a></li>
+    <li><a href="../kyoo_api_src_kyoo_client/KyooClient/getStaff.html">getStaff</a></li>
+    <li><a href="../kyoo_api_src_kyoo_client/KyooClient/getStreamingLink.html">getStreamingLink</a></li>
+    <li><a href="../kyoo_api_src_kyoo_client/KyooClient/getSubtitleTrackDownloadLink.html">getSubtitleTrackDownloadLink</a></li>
+    <li><a href="../kyoo_api_src_kyoo_client/KyooClient/getTVSeries.html">getTVSeries</a></li>
+    <li><a href="../kyoo_api_src_kyoo_client/KyooClient/getVideoDownloadLink.html">getVideoDownloadLink</a></li>
+    <li><a href="../kyoo_api_src_kyoo_client/KyooClient/getWatchItem.html">getWatchItem</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+    <li><a href="../kyoo_api_src_kyoo_client/KyooClient/searchItems.html">searchItems</a></li>
+    <li><a href="../kyoo_api_src_kyoo_client/KyooClient/toJson.html">toJson</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></li>
+
+    <li class="section-title"><a href="../kyoo_api_src_kyoo_client/KyooClient-class.html#operators">Operators</a></li>
+    <li><a href="../kyoo_api_src_kyoo_client/KyooClient/operator_equals.html">operator ==</a></li>
+
+
+
+
+</ol>
+
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    myoo
+      1.0.0+1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+
+
+</body>
+
+</html>
+

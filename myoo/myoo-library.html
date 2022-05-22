@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="myoo library API docs, for the Dart programming language.">
+  <title>myoo library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../" data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">myoo</a></li>
+    <li class="self-crumb">myoo library</li>
+  </ol>
+  <div class="self-name">myoo</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-library">myoo</span> library 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+ 
+</h1></div>
+
+    
+<section class="desc markdown">
+  <p>Mobile Client for Kyoo</p>
+</section>
+
+
+    <section class="summary offset-anchor" id="classes">
+      <h2>Classes</h2>
+
+      <dl>
+        <dt id="Action">
+  <span class="name "><a href="../myoo_src_actions_action/Action-class.html">Action</a></span> 
+
+</dt>
+<dd>
+  Template class for actions. This is useless basically
+</dd>
+
+        <dt id="AppState">
+  <span class="name "><a href="../myoo_src_app_state/AppState-class.html">AppState</a></span> 
+
+</dt>
+<dd>
+  State of the Myoo App
+</dd>
+
+        <dt id="ClickablePoster">
+  <span class="name "><a href="../myoo_src_widgets_clickable_poster/ClickablePoster-class.html">ClickablePoster</a></span> 
+
+</dt>
+<dd>
+  Widget to display a <a href="../kyoo_api_src_models_movie/Movie-class.html">Movie</a>/<a href="../kyoo_api_src_models_tv_series/TVSeries-class.html">TVSeries</a>/<a href="../kyoo_api_src_models_collection/Collection-class.html">Collection</a> poster in a list
+It is not used for an item's detail pages
+On tap, change the <a href="../myoo_src_app_state/AppState-class.html">AppState</a> and navigate to detail page
+</dd>
+
+        <dt id="ClientTile">
+  <span class="name "><a href="../myoo_src_views_server_management_dialog/ClientTile-class.html">ClientTile</a></span> 
+
+</dt>
+<dd>
+  
+</dd>
+
+        <dt id="CollectionPage">
+  <span class="name "><a href="../myoo_src_views_detail_views_collection_page/CollectionPage-class.html">CollectionPage</a></span> 
+
+</dt>
+<dd>
+  View to display currentCollection of <a href="../myoo_src_app_state/AppState-class.html">AppState</a>
+</dd>
+
+        <dt id="ContainerAction">
+  <span class="name "><a href="../myoo_src_actions_action/ContainerAction-class.html">ContainerAction</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> 
+
+</dt>
+<dd>
+  Template class for actions that hold a value, make development easier
+</dd>
+
+        <dt id="DeleteClientAction">
+  <span class="name "><a href="../myoo_src_actions_client_actions/DeleteClientAction-class.html">DeleteClientAction</a></span> 
+
+</dt>
+<dd>
+  Action to delete a client
+WARNING: if toRemove is the curretn client, an error is thrown
+</dd>
+
+        <dt id="DetailPageHeader">
+  <span class="name "><a href="../myoo_src_widgets_detail_page_header/DetailPageHeader-class.html">DetailPageHeader</a></span> 
+
+</dt>
+<dd>
+  Widget for the header of a Detail Page
+It displays the thumbnail and the poster
+</dd>
+
+        <dt id="DetailPageIconButton">
+  <span class="name "><a href="../myoo_src_widgets_icon_button/DetailPageIconButton-class.html">DetailPageIconButton</a></span> 
+
+</dt>
+<dd>
+  Buton with tap callback
+Like <a href="https://api.flutter.dev/flutter/material/TextButton-class.html">TextButton</a> with an icon, but disposed as column
+</dd>
+
+        <dt id="DetailPageScaffold">
+  <span class="name "><a href="../myoo_src_widgets_detail_page_scaffold/DetailPageScaffold-class.html">DetailPageScaffold</a></span> 
+
+</dt>
+<dd>
+  Common Scaffold for all detail page (<a href="../myoo_src_views_detail_views_movie_page/MoviePage-class.html">MoviePage</a>, <a href="../myoo_src_views_detail_views_collection_page/CollectionPage-class.html">CollectionPage</a>, <a href="../myoo_src_views_detail_views_tvseries_page/TVSeriesPage-class.html">TVSeriesPage</a>)
+If Store is still loading ressource, display <a href="../myoo_src_widgets_loading_widget/LoadingWidget-class.html">LoadingWidget</a>
+</dd>
+
+        <dt id="DownloadButton">
+  <span class="name "><a href="../myoo_src_widgets_download_button/DownloadButton-class.html">DownloadButton</a></span> 
+
+</dt>
+<dd>
+  Icon button to download an item
+On tap, it opens a browser to download the item
+</dd>
+
+        <dt id="EpisodeTile">
+  <span class="name "><a href="../myoo_src_widgets_detail_page_episode_tile/EpisodeTile-class.html">EpisodeTile</a></span> 
+
+</dt>
+<dd>
+  
+</dd>
+
+        <dt id="ExpandableOverview">
+  <span class="name "><a href="../myoo_src_widgets_detail_page_expandable_overview/ExpandableOverview-class.html">ExpandableOverview</a></span> 
+
+</dt>
+<dd>
+  Widget to display an overview, and make it expandable
+</dd>
+
+        <dt id="ExpandableStaffList">
+  <span class="name "><a href="../myoo_src_widgets_detail_page_staff_list/ExpandableStaffList-class.html">ExpandableStaffList</a></span> 
+
+</dt>
+<dd>
+  Wrapper of <a href="../myoo_src_widgets_detail_page_staff_list/StaffList-class.html">StaffList</a> in an <a href="https://pub.dev/documentation/expandable/5.0.1/expandable/ExpandablePanel-class.html">ExpandablePanel</a> widget
+</dd>
+
+        <dt id="FormButton">
+  <span class="name "><a href="../myoo_src_widgets_login_page_form_button/FormButton-class.html">FormButton</a></span> 
+
+</dt>
+<dd>
+  
+</dd>
+
+        <dt id="FormInput">
+  <span class="name "><a href="../myoo_src_widgets_login_page_form_input/FormInput-class.html">FormInput</a></span> 
+
+</dt>
+<dd>
+  
+</dd>
+
+        <dt id="GoBackButton">
+  <span class="name "><a href="../myoo_src_widgets_back_button/GoBackButton-class.html">GoBackButton</a></span> 
+
+</dt>
+<dd>
+  Back button to pop current page
+</dd>
+
+        <dt id="HideOnTap">
+  <span class="name "><a href="../myoo_src_widgets_hide_on_tap/HideOnTap-class.html">HideOnTap</a></span> 
+
+</dt>
+<dd>
+  Widget that appears/fades on tap
+</dd>
+
+        <dt id="InfoButton">
+  <span class="name "><a href="../myoo_src_widgets_info_button/InfoButton-class.html">InfoButton</a></span> 
+
+</dt>
+<dd>
+  A Clickable Button to access a <a href="../kyoo_api_src_models_movie/Movie-class.html">Movie</a>/<a href="../kyoo_api_src_models_tv_series/TVSeries-class.html">TVSeries</a>'s <a href="../kyoo_api_src_models_external_id/ExternalID-class.html">ExternalID</a>s
+</dd>
+
+        <dt id="InitializationPage">
+  <span class="name "><a href="../myoo_src_views_init_page/InitializationPage-class.html">InitializationPage</a></span> 
+
+</dt>
+<dd>
+  'Lobby' Page while initiating <a href="../myoo_src_app_state/AppState-class.html">AppState</a>
+</dd>
+
+        <dt id="InitStreamingParametersAction">
+  <span class="name "><a href="../myoo_src_actions_streaming_actions/InitStreamingParametersAction-class.html">InitStreamingParametersAction</a></span> 
+
+</dt>
+<dd>
+  Action to set <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a> with default values
+</dd>
+
+        <dt id="LibraryContent">
+  <span class="name "><a href="../myoo_src_models_library_content/LibraryContent-class.html">LibraryContent</a></span> 
+
+</dt>
+<dd>
+  Wrapper for <a href="../kyoo_api_src_models_library/Library-class.html">Library</a> content, make progressing loading easier
+</dd>
+
+        <dt id="LibraryIsFullAction">
+  <span class="name "><a href="../myoo_src_actions_library_actions/LibraryIsFullAction-class.html">LibraryIsFullAction</a></span> 
+
+</dt>
+<dd>
+  Action to set <a href="../myoo_src_models_library_content/LibraryContent-class.html">LibraryContent</a> as fully loaded
+</dd>
+
+        <dt id="ListPage">
+  <span class="name "><a href="../myoo_src_views_list_page/ListPage-class.html">ListPage</a></span> 
+
+</dt>
+<dd>
+  Page to list all libraries and their content from a server
+</dd>
+
+        <dt id="LoadCollectionAction">
+  <span class="name "><a href="../myoo_src_actions_collection_actions/LoadCollectionAction-class.html">LoadCollectionAction</a></span> 
+
+</dt>
+<dd>
+  Action to load <a href="../kyoo_api_src_models_collection/Collection-class.html">Collection</a> as <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../kyoo_api_src_models_collection/Collection-class.html">Collection</a>
+</dd>
+
+        <dt id="LoadContentFromLibrary">
+  <span class="name "><a href="../myoo_src_actions_library_actions/LoadContentFromLibrary-class.html">LoadContentFromLibrary</a></span> 
+
+</dt>
+<dd>
+  Action to set <a href="../myoo_src_models_library_content/LibraryContent-class.html">LibraryContent</a>'s content
+If <a href="../kyoo_api_src_models_library/Library-class.html">Library</a> field is null, fetch all
+</dd>
+
+        <dt id="LoadedAction">
+  <span class="name "><a href="../myoo_src_actions_loading_actions/LoadedAction-class.html">LoadedAction</a></span> 
+
+</dt>
+<dd>
+  Action to set <code>isLoading</code> from <a href="../myoo_src_app_state/AppState-class.html">AppState</a> to false
+</dd>
+
+        <dt id="LoadedCollectionAction">
+  <span class="name "><a href="../myoo_src_actions_collection_actions/LoadedCollectionAction-class.html">LoadedCollectionAction</a></span> 
+
+</dt>
+<dd>
+  Action to set <a href="../kyoo_api_src_models_collection/Collection-class.html">Collection</a> as <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../kyoo_api_src_models_collection/Collection-class.html">Collection</a>
+</dd>
+
+        <dt id="LoadedContentFromLibraryAction">
+  <span class="name "><a href="../myoo_src_actions_library_actions/LoadedContentFromLibraryAction-class.html">LoadedContentFromLibraryAction</a></span> 
+
+</dt>
+<dd>
+  Action to set <a href="../myoo_src_models_library_content/LibraryContent-class.html">LibraryContent</a>s as <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s currentLibrary
+</dd>
+
+        <dt id="LoadedLibraries">
+  <span class="name "><a href="../myoo_src_actions_client_actions/LoadedLibraries-class.html">LoadedLibraries</a></span> 
+
+</dt>
+<dd>
+  Action when <a href="../kyoo_api_src_models_library/Library-class.html">Library</a>es of the current server of <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a> are fetched
+</dd>
+
+        <dt id="LoadedMovieAction">
+  <span class="name "><a href="../myoo_src_actions_movie_actions/LoadedMovieAction-class.html">LoadedMovieAction</a></span> 
+
+</dt>
+<dd>
+  Action to set <a href="../kyoo_api_src_models_movie/Movie-class.html">Movie</a> as <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../kyoo_api_src_models_movie/Movie-class.html">Movie</a>
+</dd>
+
+        <dt id="LoadedSeasonAction">
+  <span class="name "><a href="../myoo_src_actions_season_actions/LoadedSeasonAction-class.html">LoadedSeasonAction</a></span> 
+
+</dt>
+<dd>
+  Action to set <a href="../kyoo_api_src_models_season/Season-class.html">Season</a> as <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../kyoo_api_src_models_season/Season-class.html">Season</a>
+</dd>
+
+        <dt id="LoadedStoredClientsAction">
+  <span class="name "><a href="../myoo_src_actions_client_actions/LoadedStoredClientsAction-class.html">LoadedStoredClientsAction</a></span> 
+
+</dt>
+<dd>
+  Action when <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a>s are successfully (ie at least one) pulled from local storage
+</dd>
+
+        <dt id="LoadedTVSeriesAction">
+  <span class="name "><a href="../myoo_src_actions_tv_series_actions/LoadedTVSeriesAction-class.html">LoadedTVSeriesAction</a></span> 
+
+</dt>
+<dd>
+  Action to set <a href="../kyoo_api_src_models_tv_series/TVSeries-class.html">TVSeries</a> as <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../kyoo_api_src_models_tv_series/TVSeries-class.html">TVSeries</a>
+</dd>
+
+        <dt id="LoadedVideoAction">
+  <span class="name "><a href="../myoo_src_actions_video_actions/LoadedVideoAction-class.html">LoadedVideoAction</a></span> 
+
+</dt>
+<dd>
+  Action when a <a href="../kyoo_api_src_models_watch_item/WatchItem-class.html">WatchItem</a> is loaded
+</dd>
+
+        <dt id="LoadingAction">
+  <span class="name "><a href="../myoo_src_actions_loading_actions/LoadingAction-class.html">LoadingAction</a></span> 
+
+</dt>
+<dd>
+  Action to set <code>isLoading</code> from <a href="../myoo_src_app_state/AppState-class.html">AppState</a> to true
+</dd>
+
+        <dt id="LoadingWidget">
+  <span class="name "><a href="../myoo_src_widgets_loading_widget/LoadingWidget-class.html">LoadingWidget</a></span> 
+
+</dt>
+<dd>
+  Loading animation for all loading processes in <code>Myoo</code>
+The loader will be centered in the parent widget
+</dd>
+
+        <dt id="LoadLibraries">
+  <span class="name "><a href="../myoo_src_actions_client_actions/LoadLibraries-class.html">LoadLibraries</a></span> 
+
+</dt>
+<dd>
+  Action when to fetch <a href="../kyoo_api_src_models_library/Library-class.html">Library</a>es of the current server of <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a>
+</dd>
+
+        <dt id="LoadMovieAction">
+  <span class="name "><a href="../myoo_src_actions_movie_actions/LoadMovieAction-class.html">LoadMovieAction</a></span> 
+
+</dt>
+<dd>
+  Action to load <a href="../kyoo_api_src_models_movie/Movie-class.html">Movie</a> as <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../kyoo_api_src_models_movie/Movie-class.html">Movie</a>
+</dd>
+
+        <dt id="LoadSeasonAction">
+  <span class="name "><a href="../myoo_src_actions_season_actions/LoadSeasonAction-class.html">LoadSeasonAction</a></span> 
+
+</dt>
+<dd>
+  Action to load <a href="../kyoo_api_src_models_season/Season-class.html">Season</a> as <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../kyoo_api_src_models_season/Season-class.html">Season</a>
+</dd>
+
+        <dt id="LoadStoredClientsAction">
+  <span class="name "><a href="../myoo_src_actions_client_actions/LoadStoredClientsAction-class.html">LoadStoredClientsAction</a></span> 
+
+</dt>
+<dd>
+  Action when retrieving <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a>s from storage (<a href="https://pub.dev/documentation/shared_preferences/2.0.13/shared_preferences/SharedPreferences-class.html">SharedPreferences</a>)
+</dd>
+
+        <dt id="LoadTVSeriesAction">
+  <span class="name "><a href="../myoo_src_actions_tv_series_actions/LoadTVSeriesAction-class.html">LoadTVSeriesAction</a></span> 
+
+</dt>
+<dd>
+  Action to load <a href="../kyoo_api_src_models_tv_series/TVSeries-class.html">TVSeries</a> as <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../kyoo_api_src_models_tv_series/TVSeries-class.html">TVSeries</a>
+</dd>
+
+        <dt id="LoadVideoAction">
+  <span class="name "><a href="../myoo_src_actions_video_actions/LoadVideoAction-class.html">LoadVideoAction</a></span> 
+
+</dt>
+<dd>
+  Action to load <a href="../kyoo_api_src_models_watch_item/WatchItem-class.html">WatchItem</a> as <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../kyoo_api_src_models_watch_item/WatchItem-class.html">WatchItem</a>
+</dd>
+
+        <dt id="LoginDialog">
+  <span class="name "><a href="../myoo_src_views_login_dialog/LoginDialog-class.html">LoginDialog</a></span> 
+
+</dt>
+<dd>
+  Form Dialog to Connect a <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a> and add it to <a href="../myoo_src_app_state/AppState-class.html">AppState</a>
+</dd>
+
+        <dt id="MoviePage">
+  <span class="name "><a href="../myoo_src_views_detail_views_movie_page/MoviePage-class.html">MoviePage</a></span> 
+
+</dt>
+<dd>
+  View to display cuurentMovie of <a href="../myoo_src_app_state/AppState-class.html">AppState</a>
+</dd>
+
+        <dt id="MyooImage">
+  <span class="name "><a href="../myoo_src_widgets_image/MyooImage-class.html">MyooImage</a></span> 
+
+</dt>
+<dd>
+  An image that'll be download from a Kyoo Server
+No cache system
+</dd>
+
+        <dt id="NavigationActionContent">
+  <span class="name "><a href="../myoo_src_actions_navigation_actions/NavigationActionContent-class.html">NavigationActionContent</a></span> 
+
+</dt>
+<dd>
+  Parameters of the <a href="https://api.flutter.dev/flutter/dart-html/Navigator-class.html">Navigator</a> related actions
+</dd>
+
+        <dt id="NavigatorPopAction">
+  <span class="name "><a href="../myoo_src_actions_navigation_actions/NavigatorPopAction-class.html">NavigatorPopAction</a></span> 
+
+</dt>
+<dd>
+  Action to pop route
+</dd>
+
+        <dt id="NavigatorPopAndPushAction">
+  <span class="name "><a href="../myoo_src_actions_navigation_actions/NavigatorPopAndPushAction-class.html">NavigatorPopAndPushAction</a></span> 
+
+</dt>
+<dd>
+  Action to push named route, and pop current route
+</dd>
+
+        <dt id="NavigatorPushAction">
+  <span class="name "><a href="../myoo_src_actions_navigation_actions/NavigatorPushAction-class.html">NavigatorPushAction</a></span> 
+
+</dt>
+<dd>
+  Action to push named route
+</dd>
+
+        <dt id="NewClientConnectedAction">
+  <span class="name "><a href="../myoo_src_actions_client_actions/NewClientConnectedAction-class.html">NewClientConnectedAction</a></span> 
+
+</dt>
+<dd>
+  Action when a new <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a> is connected, sets as currentClient in <a href="../myoo_src_app_state/AppState-class.html">AppState</a>
+</dd>
+
+        <dt id="NoLoadedStoredClientsAction">
+  <span class="name "><a href="../myoo_src_actions_client_actions/NoLoadedStoredClientsAction-class.html">NoLoadedStoredClientsAction</a></span> 
+
+</dt>
+<dd>
+  Action when <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a>s pulled from local storage failed (ie no <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a> pulled)
+</dd>
+
+        <dt id="PauseAction">
+  <span class="name "><a href="../myoo_src_actions_streaming_actions/PauseAction-class.html">PauseAction</a></span> 
+
+</dt>
+<dd>
+  Action to set playing state to false
+</dd>
+
+        <dt id="PlayAction">
+  <span class="name "><a href="../myoo_src_actions_streaming_actions/PlayAction-class.html">PlayAction</a></span> 
+
+</dt>
+<dd>
+  Action to set playing state at true
+</dd>
+
+        <dt id="PlayPage">
+  <span class="name "><a href="../myoo_src_views_play_page/PlayPage-class.html">PlayPage</a></span> 
+
+</dt>
+<dd>
+  
+</dd>
+
+        <dt id="Poster">
+  <span class="name "><a href="../myoo_src_widgets_poster/Poster-class.html">Poster</a></span> 
+
+</dt>
+<dd>
+  Widget to display a poster, with optional title
+</dd>
+
+        <dt id="ResetCurrentLibraryAction">
+  <span class="name "><a href="../myoo_src_actions_library_actions/ResetCurrentLibraryAction-class.html">ResetCurrentLibraryAction</a></span> 
+
+</dt>
+<dd>
+  Empty currentLibrary from <a href="../myoo_src_app_state/AppState-class.html">AppState</a>
+</dd>
+
+        <dt id="SafeScaffold">
+  <span class="name "><a href="../myoo_src_widgets_safe_scaffold/SafeScaffold-class.html">SafeScaffold</a></span> 
+
+</dt>
+<dd>
+  Common scaffold wrapperfor every view
+Basically wrapps a given a scaffold in a <a href="https://api.flutter.dev/flutter/widgets/SafeArea-class.html">SafeArea</a>, with a background color
+</dd>
+
+        <dt id="ServerManagementDialog">
+  <span class="name "><a href="../myoo_src_views_server_management_dialog/ServerManagementDialog-class.html">ServerManagementDialog</a></span> 
+
+</dt>
+<dd>
+  Dialog to manage (delete, connect, add new one) connected server(s)
+</dd>
+
+        <dt id="SetAudioTrackAction">
+  <span class="name "><a href="../myoo_src_actions_streaming_actions/SetAudioTrackAction-class.html">SetAudioTrackAction</a></span> 
+
+</dt>
+<dd>
+  Action to select current audio track
+</dd>
+
+        <dt id="SetCurrentCollection">
+  <span class="name "><a href="../myoo_src_actions_collection_actions/SetCurrentCollection-class.html">SetCurrentCollection</a></span> 
+
+</dt>
+<dd>
+  Action to set <a href="../kyoo_api_src_models_collection/Collection-class.html">Collection</a>? as <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../kyoo_api_src_models_collection/Collection-class.html">Collection</a>
+</dd>
+
+        <dt id="SetCurrentLibraryAction">
+  <span class="name "><a href="../myoo_src_actions_library_actions/SetCurrentLibraryAction-class.html">SetCurrentLibraryAction</a></span> 
+
+</dt>
+<dd>
+  Action to set <a href="../myoo_src_models_library_content/LibraryContent-class.html">LibraryContent</a> as currentLibrary from <a href="../myoo_src_app_state/AppState-class.html">AppState</a>
+</dd>
+
+        <dt id="SetCurrentMovie">
+  <span class="name "><a href="../myoo_src_actions_movie_actions/SetCurrentMovie-class.html">SetCurrentMovie</a></span> 
+
+</dt>
+<dd>
+  Action to set <a href="../kyoo_api_src_models_movie/Movie-class.html">Movie</a>? as <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../kyoo_api_src_models_movie/Movie-class.html">Movie</a>
+</dd>
+
+        <dt id="SetCurrentPositionAction">
+  <span class="name "><a href="../myoo_src_actions_streaming_actions/SetCurrentPositionAction-class.html">SetCurrentPositionAction</a></span> 
+
+</dt>
+<dd>
+  Action to set current play posittion
+</dd>
+
+        <dt id="SetCurrentTVSeries">
+  <span class="name "><a href="../myoo_src_actions_tv_series_actions/SetCurrentTVSeries-class.html">SetCurrentTVSeries</a></span> 
+
+</dt>
+<dd>
+  Action to set <a href="../kyoo_api_src_models_tv_series/TVSeries-class.html">TVSeries</a>? as <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../kyoo_api_src_models_tv_series/TVSeries-class.html">TVSeries</a>
+</dd>
+
+        <dt id="SetStreamingMethodAction">
+  <span class="name "><a href="../myoo_src_actions_streaming_actions/SetStreamingMethodAction-class.html">SetStreamingMethodAction</a></span> 
+
+</dt>
+<dd>
+  Action to set streaming method
+</dd>
+
+        <dt id="SetSubtitlesTrackAction">
+  <span class="name "><a href="../myoo_src_actions_streaming_actions/SetSubtitlesTrackAction-class.html">SetSubtitlesTrackAction</a></span> 
+
+</dt>
+<dd>
+  Action to select current subtitle track
+</dd>
+
+        <dt id="SetTotalDurationAction">
+  <span class="name "><a href="../myoo_src_actions_streaming_actions/SetTotalDurationAction-class.html">SetTotalDurationAction</a></span> 
+
+</dt>
+<dd>
+  Action to set total duration
+</dd>
+
+        <dt id="ShowInfo">
+  <span class="name "><a href="../myoo_src_widgets_detail_page_show_info/ShowInfo-class.html">ShowInfo</a></span> 
+
+</dt>
+<dd>
+  A <a href="https://api.flutter.dev/flutter/widgets/Column-class.html">Column</a> to list a <a href="../kyoo_api_src_models_movie/Movie-class.html">Movie</a>'s or <a href="../kyoo_api_src_models_tv_series/TVSeries-class.html">TVSeries</a>'s information
+</dd>
+
+        <dt id="StaffList">
+  <span class="name "><a href="../myoo_src_widgets_detail_page_staff_list/StaffList-class.html">StaffList</a></span> 
+
+</dt>
+<dd>
+  Horizontal, scrollable list of <a href="../kyoo_api_src_models_staff/Staff.html">Staff</a> members
+</dd>
+
+        <dt id="StreamingParameters">
+  <span class="name "><a href="../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a></span> 
+
+</dt>
+<dd>
+  The parameters of the streaming
+</dd>
+
+        <dt id="SubtitleTrack">
+  <span class="name "><a href="../myoo_src_models_subtitle_track/SubtitleTrack-class.html">SubtitleTrack</a></span> 
+
+</dt>
+<dd>
+  Simple class to implement subtitle class for video player
+</dd>
+
+        <dt id="Thumbnail">
+  <span class="name "><a href="../myoo_src_widgets_thumbnail/Thumbnail-class.html">Thumbnail</a></span> 
+
+</dt>
+<dd>
+  Cached Image for a show's thumbnail
+If said thumbnail doesnot exist, display transparent container
+</dd>
+
+        <dt id="TogglePlayAction">
+  <span class="name "><a href="../myoo_src_actions_streaming_actions/TogglePlayAction-class.html">TogglePlayAction</a></span> 
+
+</dt>
+<dd>
+  Action to toggle playing state
+</dd>
+
+        <dt id="TrailerButton">
+  <span class="name "><a href="../myoo_src_widgets_trailer_button/TrailerButton-class.html">TrailerButton</a></span> 
+
+</dt>
+<dd>
+  Icon button to play trailer using its URL an item
+</dd>
+
+        <dt id="TVSeriesPage">
+  <span class="name "><a href="../myoo_src_views_detail_views_tvseries_page/TVSeriesPage-class.html">TVSeriesPage</a></span> 
+
+</dt>
+<dd>
+  View to display cuurentMovie of <a href="../myoo_src_app_state/AppState-class.html">AppState</a>
+</dd>
+
+        <dt id="UnloadCollectionAction">
+  <span class="name "><a href="../myoo_src_actions_collection_actions/UnloadCollectionAction-class.html">UnloadCollectionAction</a></span> 
+
+</dt>
+<dd>
+  Action to unload <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../kyoo_api_src_models_collection/Collection-class.html">Collection</a>
+</dd>
+
+        <dt id="UnloadMovieAction">
+  <span class="name "><a href="../myoo_src_actions_movie_actions/UnloadMovieAction-class.html">UnloadMovieAction</a></span> 
+
+</dt>
+<dd>
+  Action to unload <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../kyoo_api_src_models_movie/Movie-class.html">Movie</a>
+</dd>
+
+        <dt id="UnloadSeasonAction">
+  <span class="name "><a href="../myoo_src_actions_season_actions/UnloadSeasonAction-class.html">UnloadSeasonAction</a></span> 
+
+</dt>
+<dd>
+  Action to unload <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../kyoo_api_src_models_season/Season-class.html">Season</a>
+</dd>
+
+        <dt id="UnloadTVSeriesAction">
+  <span class="name "><a href="../myoo_src_actions_tv_series_actions/UnloadTVSeriesAction-class.html">UnloadTVSeriesAction</a></span> 
+
+</dt>
+<dd>
+  Action to unload <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../kyoo_api_src_models_tv_series/TVSeries-class.html">TVSeries</a>
+</dd>
+
+        <dt id="UnloadVideoAction">
+  <span class="name "><a href="../myoo_src_actions_video_actions/UnloadVideoAction-class.html">UnloadVideoAction</a></span> 
+
+</dt>
+<dd>
+  Action to unload <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../kyoo_api_src_models_video/Video-class.html">Video</a>
+</dd>
+
+        <dt id="UnsetCurrentLibraryAction">
+  <span class="name "><a href="../myoo_src_actions_library_actions/UnsetCurrentLibraryAction-class.html">UnsetCurrentLibraryAction</a></span> 
+
+</dt>
+<dd>
+  Action to set currentLibrary from <a href="../myoo_src_app_state/AppState-class.html">AppState</a> to null
+</dd>
+
+        <dt id="UnsetStreamingParametersAction">
+  <span class="name "><a href="../myoo_src_actions_streaming_actions/UnsetStreamingParametersAction-class.html">UnsetStreamingParametersAction</a></span> 
+
+</dt>
+<dd>
+  Action to remove streaming parameters from state
+</dd>
+
+        <dt id="UseClientAction">
+  <span class="name "><a href="../myoo_src_actions_client_actions/UseClientAction-class.html">UseClientAction</a></span> 
+
+</dt>
+<dd>
+  Action when a <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a> is selected. Client must be in <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a>s list
+</dd>
+
+        <dt id="VideoControls">
+  <span class="name "><a href="../myoo_src_widgets_play_page_video_controls/VideoControls-class.html">VideoControls</a></span> 
+
+</dt>
+<dd>
+  Controls for <a href="../myoo_src_views_play_page/PlayPage-class.html">PlayPage</a>
+Callabck don't have to manage state
+</dd>
+
+        <dt id="VideoDetail">
+  <span class="name "><a href="../myoo_src_widgets_play_page_video_detail/VideoDetail-class.html">VideoDetail</a></span> 
+
+</dt>
+<dd>
+  Widget to display a plyaing <a href="../kyoo_api_src_models_watch_item/WatchItem-class.html">WatchItem</a>'s poster, title, name of episode if applicable, duration and play position
+</dd>
+
+        <dt id="VideoParameters">
+  <span class="name "><a href="../myoo_src_widgets_play_page_video_parameters/VideoParameters-class.html">VideoParameters</a></span> 
+
+</dt>
+<dd>
+  Widget to choose the video's streaming method &amp; the subtitles
+It uses the <a href="../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a> of the <a href="../myoo_src_app_state/AppState-class.html">AppState</a> to get choices
+onSelect callbacks don't have to change state
+</dd>
+
+        <dt id="VideoSetAudioTracksAction">
+  <span class="name "><a href="../myoo_src_actions_video_actions/VideoSetAudioTracksAction-class.html">VideoSetAudioTracksAction</a></span> 
+
+</dt>
+<dd>
+  Action to set subtitles tracks
+</dd>
+
+        <dt id="VideoSetSubtitlesTracksAction">
+  <span class="name "><a href="../myoo_src_actions_video_actions/VideoSetSubtitlesTracksAction-class.html">VideoSetSubtitlesTracksAction</a></span> 
+
+</dt>
+<dd>
+  Action to set subtitles tracks
+</dd>
+
+        <dt id="VideoSlider">
+  <span class="name "><a href="../myoo_src_widgets_play_page_video_slider/VideoSlider-class.html">VideoSlider</a></span> 
+
+</dt>
+<dd>
+  Slider to view/controller video position in <a href="../myoo_src_views_play_page/PlayPage-class.html">PlayPage</a>
+</dd>
+
+      </dl>
+    </section>
+
+
+
+    <section class="summary offset-anchor" id="constants">
+      <h2>Constants</h2>
+
+      <dl class="properties">
+        <dt id="clientsDataKey" class="constant">
+    <span class="name "><a href="../myoo_src_middlewares_local_storage_middleware/clientsDataKey-constant.html">clientsDataKey</a></span>
+  <span class="signature">&#8594; const <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  
+
+</dt>
+<dd>
+  Key for <a href="https://pub.dev/documentation/shared_preferences/2.0.13/shared_preferences/SharedPreferences-class.html">SharedPreferences</a> to located serialized <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a>'s in <a href="../myoo_src_middlewares_local_storage_middleware/LocalStorage.html">LocalStorage</a>
+  
+
+  <div>
+    <span class="signature"><code>&#39;clients&#39;</code></span>
+  </div>
+</dd>
+
+        <dt id="colorScheme" class="constant">
+    <span class="name "><a href="../myoo_src_theme_data/colorScheme-constant.html">colorScheme</a></span>
+  <span class="signature">&#8594; const <a href="https://api.flutter.dev/flutter/material/ColorScheme-class.html">ColorScheme</a></span>
+  
+
+</dt>
+<dd>
+  
+  
+
+  <div>
+    <span class="signature"><code><a href="https://api.flutter.dev/flutter/material/ColorScheme/ColorScheme.html">ColorScheme</a>(primary: primaryColor, secondary: Color.fromARGB(255, 226, 60, 0), background: primaryColor, brightness: Brightness.dark, onError: Colors.red, error: Colors.red, onPrimary: Colors.white, o…</code></span>
+  </div>
+</dd>
+
+        <dt id="primaryColor" class="constant">
+    <span class="name "><a href="../myoo_src_theme_data/primaryColor-constant.html">primaryColor</a></span>
+  <span class="signature">&#8594; const <a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a></span>
+  
+
+</dt>
+<dd>
+  
+  
+
+  <div>
+    <span class="signature"><code>Color.fromARGB(255, 13, 19, 35)</code></span>
+  </div>
+</dd>
+
+        <dt id="transitionDuration" class="constant">
+    <span class="name "><a href="../myoo_src_routes/transitionDuration-constant.html">transitionDuration</a></span>
+  <span class="signature">&#8594; const <a href="https://api.flutter.dev/flutter/dart-core/Duration-class.html">Duration</a></span>
+  
+
+</dt>
+<dd>
+  
+  
+
+  <div>
+    <span class="signature"><code><a href="https://api.flutter.dev/flutter/dart-core/Duration/Duration.html">Duration</a>(milliseconds: 350)</code></span>
+  </div>
+</dd>
+
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        <dt id="clientsReducers" class="property">
+  <span class="name"><a href="../myoo_src_reducers_clients_reducers/clientsReducers.html">clientsReducers</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Reducer.html">Reducer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a></span>&gt;</span>?</span>&gt;</span></span> 
+
+</dt>
+<dd>
+  List of reducers related to <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a>s from <a href="../myoo_src_app_state/AppState-class.html">AppState</a>
+  <div class="features">final</div>
+
+</dd>
+
+        <dt id="currentClientReducers" class="property">
+  <span class="name"><a href="../myoo_src_reducers_clients_reducers/currentClientReducers.html">currentClientReducers</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Reducer.html">Reducer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a>?</span>&gt;</span></span> 
+
+</dt>
+<dd>
+  List of reducers related to <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a>
+  <div class="features">final</div>
+
+</dd>
+
+        <dt id="currentCollectionReducers" class="property">
+  <span class="name"><a href="../myoo_src_reducers_resource_reducers/currentCollectionReducers.html">currentCollectionReducers</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Reducer.html">Reducer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../kyoo_api_src_models_collection/Collection-class.html">Collection</a>?</span>&gt;</span></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">final</div>
+
+</dd>
+
+        <dt id="currentLibraryReducers" class="property">
+  <span class="name"><a href="../myoo_src_reducers_library_reducers/currentLibraryReducers.html">currentLibraryReducers</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Reducer.html">Reducer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../myoo_src_models_library_content/LibraryContent-class.html">LibraryContent</a>?</span>&gt;</span></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">final</div>
+
+</dd>
+
+        <dt id="currentMovieReducers" class="property">
+  <span class="name"><a href="../myoo_src_reducers_resource_reducers/currentMovieReducers.html">currentMovieReducers</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Reducer.html">Reducer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../kyoo_api_src_models_movie/Movie-class.html">Movie</a>?</span>&gt;</span></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">final</div>
+
+</dd>
+
+        <dt id="currentSeasonReducers" class="property">
+  <span class="name"><a href="../myoo_src_reducers_resource_reducers/currentSeasonReducers.html">currentSeasonReducers</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Reducer.html">Reducer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../kyoo_api_src_models_season/Season-class.html">Season</a>?</span>&gt;</span></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">final</div>
+
+</dd>
+
+        <dt id="currentTVSeriesReducers" class="property">
+  <span class="name"><a href="../myoo_src_reducers_resource_reducers/currentTVSeriesReducers.html">currentTVSeriesReducers</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Reducer.html">Reducer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../kyoo_api_src_models_tv_series/TVSeries-class.html">TVSeries</a>?</span>&gt;</span></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">final</div>
+
+</dd>
+
+        <dt id="currentVideoReducers" class="property">
+  <span class="name"><a href="../myoo_src_reducers_resource_reducers/currentVideoReducers.html">currentVideoReducers</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Reducer.html">Reducer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../kyoo_api_src_models_watch_item/WatchItem-class.html">WatchItem</a>?</span>&gt;</span></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">final</div>
+
+</dd>
+
+        <dt id="loadingReducers" class="property">
+  <span class="name"><a href="../myoo_src_reducers_loading_reducers/loadingReducers.html">loadingReducers</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Reducer.html">Reducer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>&gt;</span></span> 
+
+</dt>
+<dd>
+  List of reducers for loading State (<a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>) of <a href="../myoo_src_app_state/AppState-class.html">AppState</a>
+  <div class="features">final</div>
+
+</dd>
+
+        <dt id="navigatorKey" class="property">
+  <span class="name"><a href="../myoo_src_navigation/navigatorKey.html">navigatorKey</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/widgets/GlobalKey-class.html">GlobalKey</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/widgets/NavigatorState-class.html">NavigatorState</a></span>&gt;</span></span> 
+
+</dt>
+<dd>
+  Global key to access <a href="https://api.flutter.dev/flutter/widgets/Navigator-class.html">Navigator</a> outisde build context
+Used primarily for Navigation <a href="https://api.flutter.dev/flutter/widgets/Action-class.html">Action</a>s
+  <div class="features">final</div>
+
+</dd>
+
+        <dt id="parameteredRoutes" class="property">
+  <span class="name"><a href="../myoo_src_routes/parameteredRoutes.html">parameteredRoutes</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a> Function<span class="signature">()</span></span>&gt;</span></span> 
+
+</dt>
+<dd>
+  Map of routes that might be followed by a parameter
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="routes" class="property">
+  <span class="name"><a href="../myoo_src_routes/routes.html">routes</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a> Function<span class="signature">()</span></span>&gt;</span></span> 
+
+</dt>
+<dd>
+  Routes with names that must match completely to createRoute
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="streamingReducers" class="property">
+  <span class="name"><a href="../myoo_src_reducers_streaming_reducers/streamingReducers.html">streamingReducers</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Reducer.html">Reducer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a>?</span>&gt;</span></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">final</div>
+
+</dd>
+
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="functions">
+      <h2>Functions</h2>
+
+      <dl class="callables">
+        <dt id="appReducer" class="callable">
+  <span class="name"><a href="../myoo_src_reducers_reducers/appReducer.html">appReducer</a></span><span class="signature">(<wbr><span class="parameter" id="appReducer-param-oldState"><span class="type-annotation"><a href="../myoo_src_app_state/AppState-class.html">AppState</a></span> <span class="parameter-name">oldState</span>, </span><span class="parameter" id="appReducer-param-action"><span class="type-annotation">dynamic</span> <span class="parameter-name">action</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../myoo_src_app_state/AppState-class.html">AppState</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="createKyooAPIMiddleware" class="callable">
+  <span class="name"><a href="../myoo_src_middlewares_kyoo_api_middleware/createKyooAPIMiddleware.html">createKyooAPIMiddleware</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/redux/5.0.0/redux/Middleware.html">Middleware</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../myoo_src_app_state/AppState-class.html">AppState</a></span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns list of middlewares related to <code>KyooAPI</code>
+  
+
+</dd>
+
+        <dt id="createLocalStorageMiddleware" class="callable">
+  <span class="name"><a href="../myoo_src_middlewares_local_storage_middleware/createLocalStorageMiddleware.html">createLocalStorageMiddleware</a></span><span class="signature">(<wbr><span class="parameter" id="createLocalStorageMiddleware-param-localStorage"><span class="type-annotation"><a href="https://pub.dev/documentation/shared_preferences/2.0.13/shared_preferences/SharedPreferences-class.html">SharedPreferences</a></span> <span class="parameter-name">localStorage</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/redux/5.0.0/redux/Middleware.html">Middleware</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../myoo_src_app_state/AppState-class.html">AppState</a></span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns list of middlewares related to <a href="../myoo_src_middlewares_local_storage_middleware/LocalStorage.html">LocalStorage</a>
+  
+
+</dd>
+
+        <dt id="createNavigationMiddleware" class="callable">
+  <span class="name"><a href="../myoo_src_middlewares_navigation_middleware/createNavigationMiddleware.html">createNavigationMiddleware</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/redux/5.0.0/redux/Middleware.html">Middleware</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../myoo_src_app_state/AppState-class.html">AppState</a></span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns list of middlewares related to navigation
+  
+
+</dd>
+
+        <dt id="generateRoutes" class="callable">
+  <span class="name"><a href="../myoo_src_routes/generateRoutes.html">generateRoutes</a></span><span class="signature">(<wbr><span class="parameter" id="generateRoutes-param-settings"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/RouteSettings-class.html">RouteSettings</a></span> <span class="parameter-name">settings</span></span>)
+    <span class="returntype parameter">&#8594; dynamic</span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="getColorScheme" class="callable">
+  <span class="name"><a href="../myoo_src_theme_data/getColorScheme.html">getColorScheme</a></span><span class="signature">(<wbr><span class="parameter" id="getColorScheme-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/material/ColorScheme-class.html">ColorScheme</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Retrieves color scheme from current context
+  
+
+</dd>
+
+        <dt id="initStreamingParameters" class="callable">
+  <span class="name"><a href="../myoo_src_reducers_streaming_reducers/initStreamingParameters.html">initStreamingParameters</a></span><span class="signature">(<wbr><span class="parameter" id="initStreamingParameters-param-old"><span class="type-annotation"><a href="../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a>?</span> <span class="parameter-name">old</span>, </span><span class="parameter" id="initStreamingParameters-param-action"><span class="type-annotation">dynamic</span> <span class="parameter-name">action</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="loadCollection" class="callable">
+  <span class="name"><a href="../myoo_src_middlewares_kyoo_api_middleware/loadCollection.html">loadCollection</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Middleware.html">Middleware</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../myoo_src_app_state/AppState-class.html">AppState</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Retrieve <a href="../kyoo_api_src_models_collection/Collection-class.html">Collection</a> from <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a> and dispatches it using <a href="../myoo_src_actions_collection_actions/LoadedCollectionAction-class.html">LoadedCollectionAction</a>
+  
+
+</dd>
+
+        <dt id="loadItems" class="callable">
+  <span class="name"><a href="../myoo_src_middlewares_kyoo_api_middleware/loadItems.html">loadItems</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Middleware.html">Middleware</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../myoo_src_app_state/AppState-class.html">AppState</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Retrieves <a href="../kyoo_api_src_models_resource_preview/ResourcePreview-class.html">ResourcePreview</a>s from given <a href="../kyoo_api_src_models_library/Library-class.html">Library</a>
+  
+
+</dd>
+
+        <dt id="loadLibraries" class="callable">
+  <span class="name"><a href="../myoo_src_middlewares_kyoo_api_middleware/loadLibraries.html">loadLibraries</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Middleware.html">Middleware</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../myoo_src_app_state/AppState-class.html">AppState</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Retrieves <a href="../kyoo_api_src_models_library/Library-class.html">Library</a>es from currently connected <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a> in <a href="../myoo_src_app_state/AppState-class.html">AppState</a>
+  
+
+</dd>
+
+        <dt id="loadMovie" class="callable">
+  <span class="name"><a href="../myoo_src_middlewares_kyoo_api_middleware/loadMovie.html">loadMovie</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Middleware.html">Middleware</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../myoo_src_app_state/AppState-class.html">AppState</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Retrieve <a href="../kyoo_api_src_models_movie/Movie-class.html">Movie</a> from <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a> and dispatches it using <a href="../myoo_src_actions_movie_actions/LoadedMovieAction-class.html">LoadedMovieAction</a>
+  
+
+</dd>
+
+        <dt id="loadSeason" class="callable">
+  <span class="name"><a href="../myoo_src_middlewares_kyoo_api_middleware/loadSeason.html">loadSeason</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Middleware.html">Middleware</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../myoo_src_app_state/AppState-class.html">AppState</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Retrieve <a href="../kyoo_api_src_models_season/Season-class.html">Season</a> from <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a> and dispatches it using <a href="../myoo_src_actions_season_actions/LoadedSeasonAction-class.html">LoadedSeasonAction</a>
+  
+
+</dd>
+
+        <dt id="loadStoredClientsMiddleware" class="callable">
+  <span class="name"><a href="../myoo_src_middlewares_local_storage_middleware/loadStoredClientsMiddleware.html">loadStoredClientsMiddleware</a></span><span class="signature">(<wbr><span class="parameter" id="loadStoredClientsMiddleware-param-localStorage"><span class="type-annotation"><a href="../myoo_src_middlewares_local_storage_middleware/LocalStorage.html">LocalStorage</a></span> <span class="parameter-name">localStorage</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Middleware.html">Middleware</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../myoo_src_app_state/AppState-class.html">AppState</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Middleware to load <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a>s from <a href="../myoo_src_middlewares_local_storage_middleware/LocalStorage.html">LocalStorage</a>.
+  
+
+</dd>
+
+        <dt id="loadTVSeries" class="callable">
+  <span class="name"><a href="../myoo_src_middlewares_kyoo_api_middleware/loadTVSeries.html">loadTVSeries</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Middleware.html">Middleware</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../myoo_src_app_state/AppState-class.html">AppState</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Retrieve <a href="../kyoo_api_src_models_tv_series/TVSeries-class.html">TVSeries</a> from <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a> and dispatches it using <a href="../myoo_src_actions_tv_series_actions/LoadedTVSeriesAction-class.html">LoadedTVSeriesAction</a>
+  
+
+</dd>
+
+        <dt id="loadVideo" class="callable">
+  <span class="name"><a href="../myoo_src_middlewares_kyoo_api_middleware/loadVideo.html">loadVideo</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Middleware.html">Middleware</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../myoo_src_app_state/AppState-class.html">AppState</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Retrieve <a href="../kyoo_api_src_models_watch_item/WatchItem-class.html">WatchItem</a> from <a href="../myoo_src_app_state/AppState-class.html">AppState</a>'s current <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a> and dispatches it using <a href="../myoo_src_actions_video_actions/LoadedVideoAction-class.html">LoadedVideoAction</a>
+  
+
+</dd>
+
+        <dt id="pause" class="callable">
+  <span class="name"><a href="../myoo_src_reducers_streaming_reducers/pause.html">pause</a></span><span class="signature">(<wbr><span class="parameter" id="pause-param-old"><span class="type-annotation"><a href="../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a>?</span> <span class="parameter-name">old</span>, </span><span class="parameter" id="pause-param-action"><span class="type-annotation">dynamic</span> <span class="parameter-name">action</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="play" class="callable">
+  <span class="name"><a href="../myoo_src_reducers_streaming_reducers/play.html">play</a></span><span class="signature">(<wbr><span class="parameter" id="play-param-old"><span class="type-annotation"><a href="../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a>?</span> <span class="parameter-name">old</span>, </span><span class="parameter" id="play-param-action"><span class="type-annotation">dynamic</span> <span class="parameter-name">action</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="pop" class="callable">
+  <span class="name"><a href="../myoo_src_middlewares_navigation_middleware/pop.html">pop</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Middleware.html">Middleware</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../myoo_src_app_state/AppState-class.html">AppState</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="popAndPush" class="callable">
+  <span class="name"><a href="../myoo_src_middlewares_navigation_middleware/popAndPush.html">popAndPush</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Middleware.html">Middleware</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../myoo_src_app_state/AppState-class.html">AppState</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Pops all previous routes below new one
+  
+
+</dd>
+
+        <dt id="push" class="callable">
+  <span class="name"><a href="../myoo_src_middlewares_navigation_middleware/push.html">push</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Middleware.html">Middleware</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../myoo_src_app_state/AppState-class.html">AppState</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Push named route, and calls push function from given action
+On pop, will call the pop callback
+  
+
+</dd>
+
+        <dt id="searchItems" class="callable">
+  <span class="name"><a href="../myoo_src_middlewares_kyoo_api_middleware/searchItems.html">searchItems</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Middleware.html">Middleware</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../myoo_src_app_state/AppState-class.html">AppState</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="setAudioTrackAction" class="callable">
+  <span class="name"><a href="../myoo_src_reducers_streaming_reducers/setAudioTrackAction.html">setAudioTrackAction</a></span><span class="signature">(<wbr><span class="parameter" id="setAudioTrackAction-param-old"><span class="type-annotation"><a href="../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a>?</span> <span class="parameter-name">old</span>, </span><span class="parameter" id="setAudioTrackAction-param-action"><span class="type-annotation">dynamic</span> <span class="parameter-name">action</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="setAudioTracks" class="callable">
+  <span class="name"><a href="../myoo_src_reducers_resource_reducers/setAudioTracks.html">setAudioTracks</a></span><span class="signature">(<wbr><span class="parameter" id="setAudioTracks-param-oldValue"><span class="type-annotation"><a href="../kyoo_api_src_models_watch_item/WatchItem-class.html">WatchItem</a>?</span> <span class="parameter-name">oldValue</span>, </span><span class="parameter" id="setAudioTracks-param-action"><span class="type-annotation">dynamic</span> <span class="parameter-name">action</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../kyoo_api_src_models_watch_item/WatchItem-class.html">WatchItem</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="setCurrentPosition" class="callable">
+  <span class="name"><a href="../myoo_src_reducers_streaming_reducers/setCurrentPosition.html">setCurrentPosition</a></span><span class="signature">(<wbr><span class="parameter" id="setCurrentPosition-param-old"><span class="type-annotation"><a href="../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a>?</span> <span class="parameter-name">old</span>, </span><span class="parameter" id="setCurrentPosition-param-action"><span class="type-annotation">dynamic</span> <span class="parameter-name">action</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="setItems" class="callable">
+  <span class="name"><a href="../myoo_src_reducers_library_reducers/setItems.html">setItems</a></span><span class="signature">(<wbr><span class="parameter" id="setItems-param-old"><span class="type-annotation"><a href="../myoo_src_models_library_content/LibraryContent-class.html">LibraryContent</a>?</span> <span class="parameter-name">old</span>, </span><span class="parameter" id="setItems-param-action"><span class="type-annotation"><a href="../myoo_src_actions_library_actions/LoadedContentFromLibraryAction-class.html">LoadedContentFromLibraryAction</a></span> <span class="parameter-name">action</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../myoo_src_models_library_content/LibraryContent-class.html">LibraryContent</a>?</span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="setLibrary" class="callable">
+  <span class="name"><a href="../myoo_src_reducers_library_reducers/setLibrary.html">setLibrary</a></span><span class="signature">(<wbr><span class="parameter" id="setLibrary-param-old"><span class="type-annotation"><a href="../myoo_src_models_library_content/LibraryContent-class.html">LibraryContent</a>?</span> <span class="parameter-name">old</span>, </span><span class="parameter" id="setLibrary-param-action"><span class="type-annotation"><a href="../myoo_src_actions_action/ContainerAction-class.html">ContainerAction</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../myoo_src_models_library_content/LibraryContent-class.html">LibraryContent</a></span>&gt;</span></span> <span class="parameter-name">action</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../myoo_src_models_library_content/LibraryContent-class.html">LibraryContent</a>?</span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="setLibraryAsFull" class="callable">
+  <span class="name"><a href="../myoo_src_reducers_library_reducers/setLibraryAsFull.html">setLibraryAsFull</a></span><span class="signature">(<wbr><span class="parameter" id="setLibraryAsFull-param-old"><span class="type-annotation"><a href="../myoo_src_models_library_content/LibraryContent-class.html">LibraryContent</a>?</span> <span class="parameter-name">old</span>, </span><span class="parameter" id="setLibraryAsFull-param-action"><span class="type-annotation">dynamic</span> <span class="parameter-name">action</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../myoo_src_models_library_content/LibraryContent-class.html">LibraryContent</a>?</span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="setResource" class="callable">
+  <span class="name"><a href="../myoo_src_reducers_resource_reducers/setResource.html">setResource</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="setResource-param-oldValue"><span class="type-annotation">T?</span> <span class="parameter-name">oldValue</span>, </span><span class="parameter" id="setResource-param-action"><span class="type-annotation">dynamic</span> <span class="parameter-name">action</span></span>)
+    <span class="returntype parameter">&#8594; T?</span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="setStreamingMethod" class="callable">
+  <span class="name"><a href="../myoo_src_reducers_streaming_reducers/setStreamingMethod.html">setStreamingMethod</a></span><span class="signature">(<wbr><span class="parameter" id="setStreamingMethod-param-old"><span class="type-annotation"><a href="../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a>?</span> <span class="parameter-name">old</span>, </span><span class="parameter" id="setStreamingMethod-param-action"><span class="type-annotation">dynamic</span> <span class="parameter-name">action</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="setSubtitlesTrackAction" class="callable">
+  <span class="name"><a href="../myoo_src_reducers_streaming_reducers/setSubtitlesTrackAction.html">setSubtitlesTrackAction</a></span><span class="signature">(<wbr><span class="parameter" id="setSubtitlesTrackAction-param-old"><span class="type-annotation"><a href="../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a>?</span> <span class="parameter-name">old</span>, </span><span class="parameter" id="setSubtitlesTrackAction-param-action"><span class="type-annotation">dynamic</span> <span class="parameter-name">action</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="setSubTracks" class="callable">
+  <span class="name"><a href="../myoo_src_reducers_resource_reducers/setSubTracks.html">setSubTracks</a></span><span class="signature">(<wbr><span class="parameter" id="setSubTracks-param-oldValue"><span class="type-annotation"><a href="../kyoo_api_src_models_watch_item/WatchItem-class.html">WatchItem</a>?</span> <span class="parameter-name">oldValue</span>, </span><span class="parameter" id="setSubTracks-param-action"><span class="type-annotation">dynamic</span> <span class="parameter-name">action</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../kyoo_api_src_models_watch_item/WatchItem-class.html">WatchItem</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="setTotalDuration" class="callable">
+  <span class="name"><a href="../myoo_src_reducers_streaming_reducers/setTotalDuration.html">setTotalDuration</a></span><span class="signature">(<wbr><span class="parameter" id="setTotalDuration-param-old"><span class="type-annotation"><a href="../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a>?</span> <span class="parameter-name">old</span>, </span><span class="parameter" id="setTotalDuration-param-action"><span class="type-annotation">dynamic</span> <span class="parameter-name">action</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="showLoginDialog" class="callable">
+  <span class="name"><a href="../myoo_src_views_login_dialog/showLoginDialog.html">showLoginDialog</a></span><span class="signature">(<wbr><span class="parameter" id="showLoginDialog-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, </span><span class="parameter" id="showLoginDialog-param-disposable">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">disposable</span> = <span class="default-value">true</span>, </span><span class="parameter" id="showLoginDialog-param-transparentBarrier"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">transparentBarrier</span> = <span class="default-value">true</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="storageRemoveClientMiddleWare" class="callable">
+  <span class="name"><a href="../myoo_src_middlewares_local_storage_middleware/storageRemoveClientMiddleWare.html">storageRemoveClientMiddleWare</a></span><span class="signature">(<wbr><span class="parameter" id="storageRemoveClientMiddleWare-param-localStorage"><span class="type-annotation"><a href="../myoo_src_middlewares_local_storage_middleware/LocalStorage.html">LocalStorage</a></span> <span class="parameter-name">localStorage</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Middleware.html">Middleware</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../myoo_src_app_state/AppState-class.html">AppState</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Middleware to remove a <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a> from <a href="../myoo_src_middlewares_local_storage_middleware/LocalStorage.html">LocalStorage</a>.The action must be <a href="../myoo_src_actions_action/ContainerAction-class.html">ContainerAction&lt;KyooClient&gt;</a>
+  
+
+</dd>
+
+        <dt id="storageReorderClients" class="callable">
+  <span class="name"><a href="../myoo_src_middlewares_local_storage_middleware/storageReorderClients.html">storageReorderClients</a></span><span class="signature">(<wbr><span class="parameter" id="storageReorderClients-param-localStorage"><span class="type-annotation"><a href="../myoo_src_middlewares_local_storage_middleware/LocalStorage.html">LocalStorage</a></span> <span class="parameter-name">localStorage</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Middleware.html">Middleware</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../myoo_src_app_state/AppState-class.html">AppState</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Middleware to reorder <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a>s to <a href="../myoo_src_middlewares_local_storage_middleware/LocalStorage.html">LocalStorage</a>. The action must be <a href="../myoo_src_actions_action/ContainerAction-class.html">ContainerAction&lt;KyooClient&gt;</a>
+Te action's content will be put first in the list
+  
+
+</dd>
+
+        <dt id="storageSetClientsMiddleWare" class="callable">
+  <span class="name"><a href="../myoo_src_middlewares_local_storage_middleware/storageSetClientsMiddleWare.html">storageSetClientsMiddleWare</a></span><span class="signature">(<wbr><span class="parameter" id="storageSetClientsMiddleWare-param-localStorage"><span class="type-annotation"><a href="../myoo_src_middlewares_local_storage_middleware/LocalStorage.html">LocalStorage</a></span> <span class="parameter-name">localStorage</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/redux/5.0.0/redux/Middleware.html">Middleware</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../myoo_src_app_state/AppState-class.html">AppState</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Middleware to set <a href="../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a>s to <a href="../myoo_src_middlewares_local_storage_middleware/LocalStorage.html">LocalStorage</a>.The action must be <a href="../myoo_src_actions_action/ContainerAction-class.html">ContainerAction&lt;KyooClient&gt;</a>
+  
+
+</dd>
+
+        <dt id="toFalse" class="callable">
+  <span class="name"><a href="../myoo_src_reducers_loading_reducers/toFalse.html">toFalse</a></span><span class="signature">(<wbr><span class="parameter" id="toFalse-param-_"><span class="type-annotation">dynamic</span> <span class="parameter-name">_</span>, </span><span class="parameter" id="toFalse-param-__"><span class="type-annotation">dynamic</span> <span class="parameter-name">__</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="togglePlay" class="callable">
+  <span class="name"><a href="../myoo_src_reducers_streaming_reducers/togglePlay.html">togglePlay</a></span><span class="signature">(<wbr><span class="parameter" id="togglePlay-param-old"><span class="type-annotation"><a href="../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a>?</span> <span class="parameter-name">old</span>, </span><span class="parameter" id="togglePlay-param-action"><span class="type-annotation">dynamic</span> <span class="parameter-name">action</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="toTrue" class="callable">
+  <span class="name"><a href="../myoo_src_reducers_loading_reducers/toTrue.html">toTrue</a></span><span class="signature">(<wbr><span class="parameter" id="toTrue-param-_"><span class="type-annotation">dynamic</span> <span class="parameter-name">_</span>, </span><span class="parameter" id="toTrue-param-__"><span class="type-annotation">dynamic</span> <span class="parameter-name">__</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+        <dt id="unsetResource" class="callable">
+  <span class="name"><a href="../myoo_src_reducers_resource_reducers/unsetResource.html">unsetResource</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="unsetResource-param-oldValue"><span class="type-annotation">T?</span> <span class="parameter-name">oldValue</span>, </span><span class="parameter" id="unsetResource-param-action"><span class="type-annotation">dynamic</span> <span class="parameter-name">action</span></span>)
+    <span class="returntype parameter">&#8594; T?</span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+      </dl>
+    </section>
+
+
+    <section class="summary offset-anchor" id="typedefs">
+      <h2>Typedefs</h2>
+
+      <dl>
+          
+  <dt id="LocalStorage" class="">
+  <span class="name"><a href="../myoo_src_middlewares_local_storage_middleware/LocalStorage.html">LocalStorage</a></span>
+    = <a href="https://pub.dev/documentation/shared_preferences/2.0.13/shared_preferences/SharedPreferences-class.html">SharedPreferences</a>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+
+      </dl>
+    </section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../index.html">myoo</a></li>
+  <li class="self-crumb">myoo library</li>
+</ol>
+
+
+    <h5><span class="package-name">myoo</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="../myoo_src_actions_action/myoo_src_actions_action-library.html">action</a></li>
+      <li><a href="../myoo_src_app_state/myoo_src_app_state-library.html">app_state</a></li>
+      <li><a href="../myoo_src_widgets_back_button/myoo_src_widgets_back_button-library.html">back_button</a></li>
+      <li><a href="../myoo_src_widgets_clickable_poster/myoo_src_widgets_clickable_poster-library.html">clickable_poster</a></li>
+      <li><a href="../myoo_src_actions_client_actions/myoo_src_actions_client_actions-library.html">client_actions</a></li>
+      <li><a href="../myoo_src_reducers_clients_reducers/myoo_src_reducers_clients_reducers-library.html">clients_reducers</a></li>
+      <li><a href="../kyoo_api_src_models_collection/kyoo_api_src_models_collection-library.html">collection</a></li>
+      <li><a href="../myoo_src_actions_collection_actions/myoo_src_actions_collection_actions-library.html">collection_actions</a></li>
+      <li><a href="../myoo_src_views_detail_views_collection_page/myoo_src_views_detail_views_collection_page-library.html">collection_page</a></li>
+      <li><a href="../myoo_src_widgets_download_button/myoo_src_widgets_download_button-library.html">download_button</a></li>
+      <li><a href="../kyoo_api_src_models_episode/kyoo_api_src_models_episode-library.html">episode</a></li>
+      <li><a href="../myoo_src_widgets_detail_page_episode_tile/myoo_src_widgets_detail_page_episode_tile-library.html">episode_tile</a></li>
+      <li><a href="../myoo_src_widgets_episode_vertical_tile/myoo_src_widgets_episode_vertical_tile-library.html">episode_vertical_tile</a></li>
+      <li><a href="../myoo_src_widgets_play_page_error_widget/myoo_src_widgets_play_page_error_widget-library.html">error_widget</a></li>
+      <li><a href="../myoo_src_widgets_detail_page_expandable_overview/myoo_src_widgets_detail_page_expandable_overview-library.html">expandable_overview</a></li>
+      <li><a href="../kyoo_api_src_models_external_id/kyoo_api_src_models_external_id-library.html">external_id</a></li>
+      <li><a href="../myoo_src_widgets_login_page_form_button/myoo_src_widgets_login_page_form_button-library.html">form_button</a></li>
+      <li><a href="../myoo_src_widgets_login_page_form_input/myoo_src_widgets_login_page_form_input-library.html">form_input</a></li>
+      <li><a href="../kyoo_api_src_models_genre/kyoo_api_src_models_genre-library.html">genre</a></li>
+      <li><a href="../myoo_src_widgets_detail_page_header/myoo_src_widgets_detail_page_header-library.html">header</a></li>
+      <li><a href="../myoo_src_widgets_hide_on_tap/myoo_src_widgets_hide_on_tap-library.html">hide_on_tap</a></li>
+      <li><a href="../myoo_src_widgets_icon_button/myoo_src_widgets_icon_button-library.html">icon_button</a></li>
+      <li><a href="../kyoo_api_src_models_illustrated_resource/kyoo_api_src_models_illustrated_resource-library.html">illustrated_resource</a></li>
+      <li><a href="../myoo_src_widgets_image/myoo_src_widgets_image-library.html">image</a></li>
+      <li><a href="../myoo_src_widgets_info_button/myoo_src_widgets_info_button-library.html">info_button</a></li>
+      <li><a href="../myoo_src_views_init_page/myoo_src_views_init_page-library.html">init_page</a></li>
+      <li><a href="../myoo_src_widgets_search_page_item_list/myoo_src_widgets_search_page_item_list-library.html">item_list</a></li>
+      <li><a href="../kyoo_api_src_models_json/kyoo_api_src_models_json-library.html">json</a></li>
+      <li><a href="../kyoo_api/kyoo_api-library.html">kyoo_api</a></li>
+      <li><a href="../myoo_src_middlewares_kyoo_api_middleware/myoo_src_middlewares_kyoo_api_middleware-library.html">kyoo_api_middleware</a></li>
+      <li><a href="../kyoo_api_src_kyoo_client/kyoo_api_src_kyoo_client-library.html">kyoo_client</a></li>
+      <li><a href="../kyoo_api_src_models_library/kyoo_api_src_models_library-library.html">library</a></li>
+      <li><a href="../myoo_src_actions_library_actions/myoo_src_actions_library_actions-library.html">library_actions</a></li>
+      <li><a href="../myoo_src_models_library_content/myoo_src_models_library_content-library.html">library_content</a></li>
+      <li><a href="../myoo_src_reducers_library_reducers/myoo_src_reducers_library_reducers-library.html">library_reducers</a></li>
+      <li><a href="../myoo_src_views_list_page/myoo_src_views_list_page-library.html">list_page</a></li>
+      <li><a href="../myoo_src_actions_loading_actions/myoo_src_actions_loading_actions-library.html">loading_actions</a></li>
+      <li><a href="../myoo_src_reducers_loading_reducers/myoo_src_reducers_loading_reducers-library.html">loading_reducers</a></li>
+      <li><a href="../myoo_src_widgets_loading_widget/myoo_src_widgets_loading_widget-library.html">loading_widget</a></li>
+      <li><a href="../myoo_src_middlewares_local_storage_middleware/myoo_src_middlewares_local_storage_middleware-library.html">local_storage_middleware</a></li>
+      <li><a href="../myoo_src_views_login_dialog/myoo_src_views_login_dialog-library.html">login_dialog</a></li>
+      <li><a href="../main/main-library.html">main</a></li>
+      <li><a href="../kyoo_api_src_models_metadata_provider/kyoo_api_src_models_metadata_provider-library.html">metadata_provider</a></li>
+      <li><a href="../kyoo_api_src_models_movie/kyoo_api_src_models_movie-library.html">movie</a></li>
+      <li><a href="../myoo_src_actions_movie_actions/myoo_src_actions_movie_actions-library.html">movie_actions</a></li>
+      <li><a href="../myoo_src_views_detail_views_movie_page/myoo_src_views_detail_views_movie_page-library.html">movie_page</a></li>
+      <li><a href="../myoo/myoo-library.html">myoo</a></li>
+      <li><a href="../myoo_src_navigation/myoo_src_navigation-library.html">navigation</a></li>
+      <li><a href="../myoo_src_actions_navigation_actions/myoo_src_actions_navigation_actions-library.html">navigation_actions</a></li>
+      <li><a href="../myoo_src_middlewares_navigation_middleware/myoo_src_middlewares_navigation_middleware-library.html">navigation_middleware</a></li>
+      <li><a href="../myoo_src_views_play_page/myoo_src_views_play_page-library.html">play_page</a></li>
+      <li><a href="../myoo_src_widgets_poster/myoo_src_widgets_poster-library.html">poster</a></li>
+      <li><a href="../myoo_src_reducers_reducers/myoo_src_reducers_reducers-library.html">reducers</a></li>
+      <li><a href="../kyoo_api_src_models_resource/kyoo_api_src_models_resource-library.html">resource</a></li>
+      <li><a href="../kyoo_api_src_models_resource_preview/kyoo_api_src_models_resource_preview-library.html">resource_preview</a></li>
+      <li><a href="../myoo_src_reducers_resource_reducers/myoo_src_reducers_resource_reducers-library.html">resource_reducers</a></li>
+      <li><a href="../myoo_src_routes/myoo_src_routes-library.html">routes</a></li>
+      <li><a href="../myoo_src_widgets_safe_scaffold/myoo_src_widgets_safe_scaffold-library.html">safe_scaffold</a></li>
+      <li><a href="../myoo_src_widgets_detail_page_scaffold/myoo_src_widgets_detail_page_scaffold-library.html">scaffold</a></li>
+      <li><a href="../myoo_src_actions_search_actions/myoo_src_actions_search_actions-library.html">search_actions</a></li>
+      <li><a href="../myoo_src_views_search_page/myoo_src_views_search_page-library.html">search_page</a></li>
+      <li><a href="../myoo_src_reducers_search_reducers/myoo_src_reducers_search_reducers-library.html">search_reducers</a></li>
+      <li><a href="../myoo_src_models_search_result/myoo_src_models_search_result-library.html">search_result</a></li>
+      <li><a href="../kyoo_api_src_models_season/kyoo_api_src_models_season-library.html">season</a></li>
+      <li><a href="../myoo_src_actions_season_actions/myoo_src_actions_season_actions-library.html">season_actions</a></li>
+      <li><a href="../myoo_src_views_server_management_dialog/myoo_src_views_server_management_dialog-library.html">server_management_dialog</a></li>
+      <li><a href="../myoo_src_widgets_detail_page_show_info/myoo_src_widgets_detail_page_show_info-library.html">show_info</a></li>
+      <li><a href="../kyoo_api_src_models_slug/kyoo_api_src_models_slug-library.html">slug</a></li>
+      <li><a href="../kyoo_api_src_models_staff/kyoo_api_src_models_staff-library.html">staff</a></li>
+      <li><a href="../myoo_src_widgets_detail_page_staff_list/myoo_src_widgets_detail_page_staff_list-library.html">staff_list</a></li>
+      <li><a href="../myoo_src_store/myoo_src_store-library.html">store</a></li>
+      <li><a href="../myoo_src_actions_streaming_actions/myoo_src_actions_streaming_actions-library.html">streaming_actions</a></li>
+      <li><a href="../myoo_src_models_streaming_parameters/myoo_src_models_streaming_parameters-library.html">streaming_parameters</a></li>
+      <li><a href="../myoo_src_reducers_streaming_reducers/myoo_src_reducers_streaming_reducers-library.html">streaming_reducers</a></li>
+      <li><a href="../kyoo_api_src_models_studio/kyoo_api_src_models_studio-library.html">studio</a></li>
+      <li><a href="../myoo_src_models_subtitle_track/myoo_src_models_subtitle_track-library.html">subtitle_track</a></li>
+      <li><a href="../myoo_src_theme_data/myoo_src_theme_data-library.html">theme_data</a></li>
+      <li><a href="../myoo_src_widgets_thumbnail/myoo_src_widgets_thumbnail-library.html">thumbnail</a></li>
+      <li><a href="../kyoo_api_src_models_track/kyoo_api_src_models_track-library.html">track</a></li>
+      <li><a href="../myoo_src_widgets_trailer_button/myoo_src_widgets_trailer_button-library.html">trailer_button</a></li>
+      <li><a href="../kyoo_api_src_models_trailer_url/kyoo_api_src_models_trailer_url-library.html">trailer_url</a></li>
+      <li><a href="../kyoo_api_src_models_tv_series/kyoo_api_src_models_tv_series-library.html">tv_series</a></li>
+      <li><a href="../myoo_src_actions_tv_series_actions/myoo_src_actions_tv_series_actions-library.html">tv_series_actions</a></li>
+      <li><a href="../myoo_src_views_detail_views_tvseries_page/myoo_src_views_detail_views_tvseries_page-library.html">tvseries_page</a></li>
+      <li><a href="../kyoo_api_src_models_video/kyoo_api_src_models_video-library.html">video</a></li>
+      <li><a href="../myoo_src_actions_video_actions/myoo_src_actions_video_actions-library.html">video_actions</a></li>
+      <li><a href="../myoo_src_widgets_play_page_video_controls/myoo_src_widgets_play_page_video_controls-library.html">video_controls</a></li>
+      <li><a href="../myoo_src_widgets_play_page_video_detail/myoo_src_widgets_play_page_video_detail-library.html">video_detail</a></li>
+      <li><a href="../myoo_src_widgets_play_page_video_loading/myoo_src_widgets_play_page_video_loading-library.html">video_loading</a></li>
+      <li><a href="../myoo_src_widgets_play_page_video_parameters/myoo_src_widgets_play_page_video_parameters-library.html">video_parameters</a></li>
+      <li><a href="../myoo_src_widgets_play_page_video_slider/myoo_src_widgets_play_page_video_slider-library.html">video_slider</a></li>
+      <li><a href="../kyoo_api_src_models_watch_item/kyoo_api_src_models_watch_item-library.html">watch_item</a></li>
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+    <h5>myoo library</h5>
+    <ol>
+  <li class="section-title"><a href="../myoo/myoo-library.html#classes">Classes</a></li>
+  <li><a href="../myoo_src_actions_action/Action-class.html">Action</a></li>
+  <li><a href="../myoo_src_app_state/AppState-class.html">AppState</a></li>
+  <li><a href="../myoo_src_widgets_clickable_poster/ClickablePoster-class.html">ClickablePoster</a></li>
+  <li><a href="../myoo_src_views_server_management_dialog/ClientTile-class.html">ClientTile</a></li>
+  <li><a href="../myoo_src_views_detail_views_collection_page/CollectionPage-class.html">CollectionPage</a></li>
+  <li><a href="../myoo_src_actions_action/ContainerAction-class.html">ContainerAction</a></li>
+  <li><a href="../myoo_src_actions_client_actions/DeleteClientAction-class.html">DeleteClientAction</a></li>
+  <li><a href="../myoo_src_widgets_detail_page_header/DetailPageHeader-class.html">DetailPageHeader</a></li>
+  <li><a href="../myoo_src_widgets_icon_button/DetailPageIconButton-class.html">DetailPageIconButton</a></li>
+  <li><a href="../myoo_src_widgets_detail_page_scaffold/DetailPageScaffold-class.html">DetailPageScaffold</a></li>
+  <li><a href="../myoo_src_widgets_download_button/DownloadButton-class.html">DownloadButton</a></li>
+  <li><a href="../myoo_src_widgets_detail_page_episode_tile/EpisodeTile-class.html">EpisodeTile</a></li>
+  <li><a href="../myoo_src_widgets_detail_page_expandable_overview/ExpandableOverview-class.html">ExpandableOverview</a></li>
+  <li><a href="../myoo_src_widgets_detail_page_staff_list/ExpandableStaffList-class.html">ExpandableStaffList</a></li>
+  <li><a href="../myoo_src_widgets_login_page_form_button/FormButton-class.html">FormButton</a></li>
+  <li><a href="../myoo_src_widgets_login_page_form_input/FormInput-class.html">FormInput</a></li>
+  <li><a href="../myoo_src_widgets_back_button/GoBackButton-class.html">GoBackButton</a></li>
+  <li><a href="../myoo_src_widgets_hide_on_tap/HideOnTap-class.html">HideOnTap</a></li>
+  <li><a href="../myoo_src_widgets_info_button/InfoButton-class.html">InfoButton</a></li>
+  <li><a href="../myoo_src_views_init_page/InitializationPage-class.html">InitializationPage</a></li>
+  <li><a href="../myoo_src_actions_streaming_actions/InitStreamingParametersAction-class.html">InitStreamingParametersAction</a></li>
+  <li><a href="../myoo_src_models_library_content/LibraryContent-class.html">LibraryContent</a></li>
+  <li><a href="../myoo_src_actions_library_actions/LibraryIsFullAction-class.html">LibraryIsFullAction</a></li>
+  <li><a href="../myoo_src_views_list_page/ListPage-class.html">ListPage</a></li>
+  <li><a href="../myoo_src_actions_collection_actions/LoadCollectionAction-class.html">LoadCollectionAction</a></li>
+  <li><a href="../myoo_src_actions_library_actions/LoadContentFromLibrary-class.html">LoadContentFromLibrary</a></li>
+  <li><a href="../myoo_src_actions_loading_actions/LoadedAction-class.html">LoadedAction</a></li>
+  <li><a href="../myoo_src_actions_collection_actions/LoadedCollectionAction-class.html">LoadedCollectionAction</a></li>
+  <li><a href="../myoo_src_actions_library_actions/LoadedContentFromLibraryAction-class.html">LoadedContentFromLibraryAction</a></li>
+  <li><a href="../myoo_src_actions_client_actions/LoadedLibraries-class.html">LoadedLibraries</a></li>
+  <li><a href="../myoo_src_actions_movie_actions/LoadedMovieAction-class.html">LoadedMovieAction</a></li>
+  <li><a href="../myoo_src_actions_season_actions/LoadedSeasonAction-class.html">LoadedSeasonAction</a></li>
+  <li><a href="../myoo_src_actions_client_actions/LoadedStoredClientsAction-class.html">LoadedStoredClientsAction</a></li>
+  <li><a href="../myoo_src_actions_tv_series_actions/LoadedTVSeriesAction-class.html">LoadedTVSeriesAction</a></li>
+  <li><a href="../myoo_src_actions_video_actions/LoadedVideoAction-class.html">LoadedVideoAction</a></li>
+  <li><a href="../myoo_src_actions_loading_actions/LoadingAction-class.html">LoadingAction</a></li>
+  <li><a href="../myoo_src_widgets_loading_widget/LoadingWidget-class.html">LoadingWidget</a></li>
+  <li><a href="../myoo_src_actions_client_actions/LoadLibraries-class.html">LoadLibraries</a></li>
+  <li><a href="../myoo_src_actions_movie_actions/LoadMovieAction-class.html">LoadMovieAction</a></li>
+  <li><a href="../myoo_src_actions_season_actions/LoadSeasonAction-class.html">LoadSeasonAction</a></li>
+  <li><a href="../myoo_src_actions_client_actions/LoadStoredClientsAction-class.html">LoadStoredClientsAction</a></li>
+  <li><a href="../myoo_src_actions_tv_series_actions/LoadTVSeriesAction-class.html">LoadTVSeriesAction</a></li>
+  <li><a href="../myoo_src_actions_video_actions/LoadVideoAction-class.html">LoadVideoAction</a></li>
+  <li><a href="../myoo_src_views_login_dialog/LoginDialog-class.html">LoginDialog</a></li>
+  <li><a href="../myoo_src_views_detail_views_movie_page/MoviePage-class.html">MoviePage</a></li>
+  <li><a href="../myoo_src_widgets_image/MyooImage-class.html">MyooImage</a></li>
+  <li><a href="../myoo_src_actions_navigation_actions/NavigationActionContent-class.html">NavigationActionContent</a></li>
+  <li><a href="../myoo_src_actions_navigation_actions/NavigatorPopAction-class.html">NavigatorPopAction</a></li>
+  <li><a href="../myoo_src_actions_navigation_actions/NavigatorPopAndPushAction-class.html">NavigatorPopAndPushAction</a></li>
+  <li><a href="../myoo_src_actions_navigation_actions/NavigatorPushAction-class.html">NavigatorPushAction</a></li>
+  <li><a href="../myoo_src_actions_client_actions/NewClientConnectedAction-class.html">NewClientConnectedAction</a></li>
+  <li><a href="../myoo_src_actions_client_actions/NoLoadedStoredClientsAction-class.html">NoLoadedStoredClientsAction</a></li>
+  <li><a href="../myoo_src_actions_streaming_actions/PauseAction-class.html">PauseAction</a></li>
+  <li><a href="../myoo_src_actions_streaming_actions/PlayAction-class.html">PlayAction</a></li>
+  <li><a href="../myoo_src_views_play_page/PlayPage-class.html">PlayPage</a></li>
+  <li><a href="../myoo_src_widgets_poster/Poster-class.html">Poster</a></li>
+  <li><a href="../myoo_src_actions_library_actions/ResetCurrentLibraryAction-class.html">ResetCurrentLibraryAction</a></li>
+  <li><a href="../myoo_src_widgets_safe_scaffold/SafeScaffold-class.html">SafeScaffold</a></li>
+  <li><a href="../myoo_src_views_server_management_dialog/ServerManagementDialog-class.html">ServerManagementDialog</a></li>
+  <li><a href="../myoo_src_actions_streaming_actions/SetAudioTrackAction-class.html">SetAudioTrackAction</a></li>
+  <li><a href="../myoo_src_actions_collection_actions/SetCurrentCollection-class.html">SetCurrentCollection</a></li>
+  <li><a href="../myoo_src_actions_library_actions/SetCurrentLibraryAction-class.html">SetCurrentLibraryAction</a></li>
+  <li><a href="../myoo_src_actions_movie_actions/SetCurrentMovie-class.html">SetCurrentMovie</a></li>
+  <li><a href="../myoo_src_actions_streaming_actions/SetCurrentPositionAction-class.html">SetCurrentPositionAction</a></li>
+  <li><a href="../myoo_src_actions_tv_series_actions/SetCurrentTVSeries-class.html">SetCurrentTVSeries</a></li>
+  <li><a href="../myoo_src_actions_streaming_actions/SetStreamingMethodAction-class.html">SetStreamingMethodAction</a></li>
+  <li><a href="../myoo_src_actions_streaming_actions/SetSubtitlesTrackAction-class.html">SetSubtitlesTrackAction</a></li>
+  <li><a href="../myoo_src_actions_streaming_actions/SetTotalDurationAction-class.html">SetTotalDurationAction</a></li>
+  <li><a href="../myoo_src_widgets_detail_page_show_info/ShowInfo-class.html">ShowInfo</a></li>
+  <li><a href="../myoo_src_widgets_detail_page_staff_list/StaffList-class.html">StaffList</a></li>
+  <li><a href="../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a></li>
+  <li><a href="../myoo_src_models_subtitle_track/SubtitleTrack-class.html">SubtitleTrack</a></li>
+  <li><a href="../myoo_src_widgets_thumbnail/Thumbnail-class.html">Thumbnail</a></li>
+  <li><a href="../myoo_src_actions_streaming_actions/TogglePlayAction-class.html">TogglePlayAction</a></li>
+  <li><a href="../myoo_src_widgets_trailer_button/TrailerButton-class.html">TrailerButton</a></li>
+  <li><a href="../myoo_src_views_detail_views_tvseries_page/TVSeriesPage-class.html">TVSeriesPage</a></li>
+  <li><a href="../myoo_src_actions_collection_actions/UnloadCollectionAction-class.html">UnloadCollectionAction</a></li>
+  <li><a href="../myoo_src_actions_movie_actions/UnloadMovieAction-class.html">UnloadMovieAction</a></li>
+  <li><a href="../myoo_src_actions_season_actions/UnloadSeasonAction-class.html">UnloadSeasonAction</a></li>
+  <li><a href="../myoo_src_actions_tv_series_actions/UnloadTVSeriesAction-class.html">UnloadTVSeriesAction</a></li>
+  <li><a href="../myoo_src_actions_video_actions/UnloadVideoAction-class.html">UnloadVideoAction</a></li>
+  <li><a href="../myoo_src_actions_library_actions/UnsetCurrentLibraryAction-class.html">UnsetCurrentLibraryAction</a></li>
+  <li><a href="../myoo_src_actions_streaming_actions/UnsetStreamingParametersAction-class.html">UnsetStreamingParametersAction</a></li>
+  <li><a href="../myoo_src_actions_client_actions/UseClientAction-class.html">UseClientAction</a></li>
+  <li><a href="../myoo_src_widgets_play_page_video_controls/VideoControls-class.html">VideoControls</a></li>
+  <li><a href="../myoo_src_widgets_play_page_video_detail/VideoDetail-class.html">VideoDetail</a></li>
+  <li><a href="../myoo_src_widgets_play_page_video_parameters/VideoParameters-class.html">VideoParameters</a></li>
+  <li><a href="../myoo_src_actions_video_actions/VideoSetAudioTracksAction-class.html">VideoSetAudioTracksAction</a></li>
+  <li><a href="../myoo_src_actions_video_actions/VideoSetSubtitlesTracksAction-class.html">VideoSetSubtitlesTracksAction</a></li>
+  <li><a href="../myoo_src_widgets_play_page_video_slider/VideoSlider-class.html">VideoSlider</a></li>
+
+
+
+  <li class="section-title"><a href="../myoo/myoo-library.html#constants">Constants</a></li>
+  <li><a href="../myoo_src_middlewares_local_storage_middleware/clientsDataKey-constant.html">clientsDataKey</a></li>
+  <li><a href="../myoo_src_theme_data/colorScheme-constant.html">colorScheme</a></li>
+  <li><a href="../myoo_src_theme_data/primaryColor-constant.html">primaryColor</a></li>
+  <li><a href="../myoo_src_routes/transitionDuration-constant.html">transitionDuration</a></li>
+
+  <li class="section-title"><a href="../myoo/myoo-library.html#properties">Properties</a></li>
+  <li><a href="../myoo_src_reducers_clients_reducers/clientsReducers.html">clientsReducers</a></li>
+  <li><a href="../myoo_src_reducers_clients_reducers/currentClientReducers.html">currentClientReducers</a></li>
+  <li><a href="../myoo_src_reducers_resource_reducers/currentCollectionReducers.html">currentCollectionReducers</a></li>
+  <li><a href="../myoo_src_reducers_library_reducers/currentLibraryReducers.html">currentLibraryReducers</a></li>
+  <li><a href="../myoo_src_reducers_resource_reducers/currentMovieReducers.html">currentMovieReducers</a></li>
+  <li><a href="../myoo_src_reducers_resource_reducers/currentSeasonReducers.html">currentSeasonReducers</a></li>
+  <li><a href="../myoo_src_reducers_resource_reducers/currentTVSeriesReducers.html">currentTVSeriesReducers</a></li>
+  <li><a href="../myoo_src_reducers_resource_reducers/currentVideoReducers.html">currentVideoReducers</a></li>
+  <li><a href="../myoo_src_reducers_loading_reducers/loadingReducers.html">loadingReducers</a></li>
+  <li><a href="../myoo_src_navigation/navigatorKey.html">navigatorKey</a></li>
+  <li><a href="../myoo_src_routes/parameteredRoutes.html">parameteredRoutes</a></li>
+  <li><a href="../myoo_src_routes/routes.html">routes</a></li>
+  <li><a href="../myoo_src_reducers_streaming_reducers/streamingReducers.html">streamingReducers</a></li>
+
+  <li class="section-title"><a href="../myoo/myoo-library.html#functions">Functions</a></li>
+  <li><a href="../myoo_src_reducers_reducers/appReducer.html">appReducer</a></li>
+  <li><a href="../myoo_src_middlewares_kyoo_api_middleware/createKyooAPIMiddleware.html">createKyooAPIMiddleware</a></li>
+  <li><a href="../myoo_src_middlewares_local_storage_middleware/createLocalStorageMiddleware.html">createLocalStorageMiddleware</a></li>
+  <li><a href="../myoo_src_middlewares_navigation_middleware/createNavigationMiddleware.html">createNavigationMiddleware</a></li>
+  <li><a href="../myoo_src_routes/generateRoutes.html">generateRoutes</a></li>
+  <li><a href="../myoo_src_theme_data/getColorScheme.html">getColorScheme</a></li>
+  <li><a href="../myoo_src_reducers_streaming_reducers/initStreamingParameters.html">initStreamingParameters</a></li>
+  <li><a href="../myoo_src_middlewares_kyoo_api_middleware/loadCollection.html">loadCollection</a></li>
+  <li><a href="../myoo_src_middlewares_kyoo_api_middleware/loadItems.html">loadItems</a></li>
+  <li><a href="../myoo_src_middlewares_kyoo_api_middleware/loadLibraries.html">loadLibraries</a></li>
+  <li><a href="../myoo_src_middlewares_kyoo_api_middleware/loadMovie.html">loadMovie</a></li>
+  <li><a href="../myoo_src_middlewares_kyoo_api_middleware/loadSeason.html">loadSeason</a></li>
+  <li><a href="../myoo_src_middlewares_local_storage_middleware/loadStoredClientsMiddleware.html">loadStoredClientsMiddleware</a></li>
+  <li><a href="../myoo_src_middlewares_kyoo_api_middleware/loadTVSeries.html">loadTVSeries</a></li>
+  <li><a href="../myoo_src_middlewares_kyoo_api_middleware/loadVideo.html">loadVideo</a></li>
+  <li><a href="../myoo_src_reducers_streaming_reducers/pause.html">pause</a></li>
+  <li><a href="../myoo_src_reducers_streaming_reducers/play.html">play</a></li>
+  <li><a href="../myoo_src_middlewares_navigation_middleware/pop.html">pop</a></li>
+  <li><a href="../myoo_src_middlewares_navigation_middleware/popAndPush.html">popAndPush</a></li>
+  <li><a href="../myoo_src_middlewares_navigation_middleware/push.html">push</a></li>
+  <li><a href="../myoo_src_middlewares_kyoo_api_middleware/searchItems.html">searchItems</a></li>
+  <li><a href="../myoo_src_reducers_streaming_reducers/setAudioTrackAction.html">setAudioTrackAction</a></li>
+  <li><a href="../myoo_src_reducers_resource_reducers/setAudioTracks.html">setAudioTracks</a></li>
+  <li><a href="../myoo_src_reducers_streaming_reducers/setCurrentPosition.html">setCurrentPosition</a></li>
+  <li><a href="../myoo_src_reducers_library_reducers/setItems.html">setItems</a></li>
+  <li><a href="../myoo_src_reducers_library_reducers/setLibrary.html">setLibrary</a></li>
+  <li><a href="../myoo_src_reducers_library_reducers/setLibraryAsFull.html">setLibraryAsFull</a></li>
+  <li><a href="../myoo_src_reducers_resource_reducers/setResource.html">setResource</a></li>
+  <li><a href="../myoo_src_reducers_streaming_reducers/setStreamingMethod.html">setStreamingMethod</a></li>
+  <li><a href="../myoo_src_reducers_streaming_reducers/setSubtitlesTrackAction.html">setSubtitlesTrackAction</a></li>
+  <li><a href="../myoo_src_reducers_resource_reducers/setSubTracks.html">setSubTracks</a></li>
+  <li><a href="../myoo_src_reducers_streaming_reducers/setTotalDuration.html">setTotalDuration</a></li>
+  <li><a href="../myoo_src_views_login_dialog/showLoginDialog.html">showLoginDialog</a></li>
+  <li><a href="../myoo_src_middlewares_local_storage_middleware/storageRemoveClientMiddleWare.html">storageRemoveClientMiddleWare</a></li>
+  <li><a href="../myoo_src_middlewares_local_storage_middleware/storageReorderClients.html">storageReorderClients</a></li>
+  <li><a href="../myoo_src_middlewares_local_storage_middleware/storageSetClientsMiddleWare.html">storageSetClientsMiddleWare</a></li>
+  <li><a href="../myoo_src_reducers_loading_reducers/toFalse.html">toFalse</a></li>
+  <li><a href="../myoo_src_reducers_streaming_reducers/togglePlay.html">togglePlay</a></li>
+  <li><a href="../myoo_src_reducers_loading_reducers/toTrue.html">toTrue</a></li>
+  <li><a href="../myoo_src_reducers_resource_reducers/unsetResource.html">unsetResource</a></li>
+
+
+  <li class="section-title"><a href="../myoo/myoo-library.html#typedefs">Typedefs</a></li>
+  <li><a href="../myoo_src_middlewares_local_storage_middleware/LocalStorage.html">LocalStorage</a></li>
+
+</ol>
+
+  </div><!--/sidebar-offcanvas-right-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    myoo
+      1.0.0+1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+
+
+</body>
+
+</html>
+

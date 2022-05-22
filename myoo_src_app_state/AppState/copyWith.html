@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the copyWith method from the AppState class, for the Dart programming language.">
+  <title>copyWith method - AppState class - app_state library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../../" data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">myoo</a></li>
+    <li><a href="../../myoo_src_app_state/myoo_src_app_state-library.html">app_state</a></li>
+    <li><a href="../../myoo_src_app_state/AppState-class.html">AppState</a></li>
+    <li class="self-crumb">copyWith method</li>
+  </ol>
+  <div class="self-name">copyWith</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-method">copyWith</span> method 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+
+<span class="returntype"><a href="../../myoo_src_app_state/AppState-class.html">AppState</a></span>
+<span class="name ">copyWith</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="copyWith-param-clients">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a></span>&gt;</span>?</span> <span class="parameter-name">clients</span>, </span></li>
+<li><span class="parameter" id="copyWith-param-currentClient"><span class="type-annotation"><a href="../../kyoo_api_src_kyoo_client/KyooClient-class.html">KyooClient</a>?</span> <span class="parameter-name">currentClient</span>, </span></li>
+<li><span class="parameter" id="copyWith-param-previews"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../kyoo_api_src_models_resource_preview/ResourcePreview-class.html">ResourcePreview</a></span>&gt;</span>?</span> <span class="parameter-name">previews</span>, </span></li>
+<li><span class="parameter" id="copyWith-param-currentLibrary"><span class="type-annotation"><a href="../../myoo_src_models_library_content/LibraryContent-class.html">LibraryContent</a>?</span> <span class="parameter-name">currentLibrary</span>, </span></li>
+<li><span class="parameter" id="copyWith-param-currentTVSeries"><span class="type-annotation"><a href="../../kyoo_api_src_models_tv_series/TVSeries-class.html">TVSeries</a>?</span> <span class="parameter-name">currentTVSeries</span>, </span></li>
+<li><span class="parameter" id="copyWith-param-currentSeason"><span class="type-annotation"><a href="../../kyoo_api_src_models_season/Season-class.html">Season</a>?</span> <span class="parameter-name">currentSeason</span>, </span></li>
+<li><span class="parameter" id="copyWith-param-currentMovie"><span class="type-annotation"><a href="../../kyoo_api_src_models_movie/Movie-class.html">Movie</a>?</span> <span class="parameter-name">currentMovie</span>, </span></li>
+<li><span class="parameter" id="copyWith-param-currentCollection"><span class="type-annotation"><a href="../../kyoo_api_src_models_collection/Collection-class.html">Collection</a>?</span> <span class="parameter-name">currentCollection</span>, </span></li>
+<li><span class="parameter" id="copyWith-param-currentVideo"><span class="type-annotation"><a href="../../kyoo_api_src_models_watch_item/WatchItem-class.html">WatchItem</a>?</span> <span class="parameter-name">currentVideo</span>, </span></li>
+<li><span class="parameter" id="copyWith-param-streamingParams"><span class="type-annotation"><a href="../../myoo_src_models_streaming_parameters/StreamingParameters-class.html">StreamingParameters</a>?</span> <span class="parameter-name">streamingParams</span>, </span></li>
+<li><span class="parameter" id="copyWith-param-searchResult"><span class="type-annotation"><a href="../../myoo_src_models_search_result/SearchResult-class.html">SearchResult</a>?</span> <span class="parameter-name">searchResult</span>, </span></li>
+<li><span class="parameter" id="copyWith-param-isLoading"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">isLoading</span>}</span></li>
+</ol>)
+
+      
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Copy constructor for easier copies</p>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">AppState copyWith({
+  List&lt;KyooClient&gt;? clients,
+  KyooClient? currentClient,
+  List&lt;ResourcePreview&gt;? previews,
+  LibraryContent? currentLibrary,
+  TVSeries? currentTVSeries,
+  Season? currentSeason,
+  Movie? currentMovie,
+  Collection? currentCollection,
+  WatchItem? currentVideo,
+  StreamingParameters? streamingParams,
+  SearchResult? searchResult,
+  bool? isLoading,
+}) =&gt; AppState(
+  currentClient: currentClient ?? this.currentClient,
+  isLoading: isLoading ?? this.isLoading,
+  clients: clients ?? this.clients,
+  streamingParams: streamingParams ?? this.streamingParams,
+  currentLibrary: currentLibrary ?? this.currentLibrary,
+  currentMovie: currentMovie ?? this.currentMovie,
+  currentTVSeries: currentTVSeries ?? this.currentTVSeries,
+  currentSeason: currentSeason ?? this.currentSeason,
+  currentVideo: currentVideo ?? this.currentVideo,
+  searchResult: searchResult ?? this.searchResult,
+  currentCollection: currentCollection ?? this.currentCollection
+);</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../../index.html">myoo</a></li>
+  <li><a href="../../myoo_src_app_state/myoo_src_app_state-library.html">app_state</a></li>
+  <li><a href="../../myoo_src_app_state/AppState-class.html">AppState</a></li>
+  <li class="self-crumb">copyWith method</li>
+</ol>
+
+
+    <h5>AppState class</h5>
+    <ol>
+
+        <li class="section-title"><a href="../../myoo_src_app_state/AppState-class.html#constructors">Constructors</a></li>
+          <li><a href="../../myoo_src_app_state/AppState/AppState.html">AppState</a></li>
+          <li><a href="../../myoo_src_app_state/AppState/AppState.initState.html">initState</a></li>
+
+
+    <li class="section-title">
+      <a href="../../myoo_src_app_state/AppState-class.html#instance-properties">Properties</a>
+    </li>
+    <li><a href="../../myoo_src_app_state/AppState/clients.html">clients</a></li>
+    <li><a href="../../myoo_src_app_state/AppState/currentClient.html">currentClient</a></li>
+    <li><a href="../../myoo_src_app_state/AppState/currentCollection.html">currentCollection</a></li>
+    <li><a href="../../myoo_src_app_state/AppState/currentLibrary.html">currentLibrary</a></li>
+    <li><a href="../../myoo_src_app_state/AppState/currentMovie.html">currentMovie</a></li>
+    <li><a href="../../myoo_src_app_state/AppState/currentSeason.html">currentSeason</a></li>
+    <li><a href="../../myoo_src_app_state/AppState/currentTVSeries.html">currentTVSeries</a></li>
+    <li><a href="../../myoo_src_app_state/AppState/currentVideo.html">currentVideo</a></li>
+    <li><a href="../../myoo_src_app_state/AppState/hashCode.html">hashCode</a></li>
+    <li><a href="../../myoo_src_app_state/AppState/isLoading.html">isLoading</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
+    <li><a href="../../myoo_src_app_state/AppState/searchResult.html">searchResult</a></li>
+    <li><a href="../../myoo_src_app_state/AppState/streamingParams.html">streamingParams</a></li>
+
+    <li class="section-title"><a href="../../myoo_src_app_state/AppState-class.html#instance-methods">Methods</a></li>
+    <li><a href="../../myoo_src_app_state/AppState/copyWith.html">copyWith</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></li>
+
+    <li class="section-title"><a href="../../myoo_src_app_state/AppState-class.html#operators">Operators</a></li>
+    <li><a href="../../myoo_src_app_state/AppState/operator_equals.html">operator ==</a></li>
+
+
+
+
+</ol>
+
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    myoo
+      1.0.0+1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
+
+
+
+</body>
+
+</html>
+
