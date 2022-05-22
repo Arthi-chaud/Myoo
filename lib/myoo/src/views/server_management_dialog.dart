@@ -82,6 +82,7 @@ class ClientTile extends StatelessWidget {
           flex: 8,
           child: Text(
             serverURL,
+            overflow: TextOverflow.ellipsis,
           ),
         ),
         Expanded(

@@ -22,6 +22,8 @@ Map<String, Widget Function()> parameteredRoutes = {
   '/play': () => const PlayPage(),
 };
 
+const transitionDuration = Duration(milliseconds: 350);
+
 dynamic generateRoutes(RouteSettings settings) =>
   PageRouteBuilder(
     opaque: false,
@@ -32,7 +34,7 @@ dynamic generateRoutes(RouteSettings settings) =>
       }
       return parameteredRoutes[parameteredRoutes.keys.firstWhere((route) => settings.name!.startsWith(route))]!.call();
     },
-    transitionDuration: const Duration(milliseconds: 350),
+    transitionDuration: transitionDuration,
     transitionsBuilder: (context, animation, secondaryAnimation, child) =>
       SlideTransition(
         child: child,

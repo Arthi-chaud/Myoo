@@ -58,11 +58,15 @@ class VideoControls extends StatelessWidget {
                     }
                   ),
                   Container(
-                    height: 100,
+                    height: 110,
                     width: MediaQuery.of(context).size.width,
                     color: getColorScheme(context).background.withOpacity(0.5),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      padding: const EdgeInsets.only(
+                        left: 20,
+                        right: 20,
+                        bottom: 10
+                      ),
                       child: Row(
                         children: [
                           Expanded(
